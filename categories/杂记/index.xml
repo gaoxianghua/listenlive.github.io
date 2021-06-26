@@ -2,89 +2,89 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>杂记 on listenlive.cn</title>
-    <link>https://blog.listenlive.cn/categories/%E6%9D%82%E8%AE%B0/</link>
+    <link>http://blog.listenlive.cn/categories/%E6%9D%82%E8%AE%B0/</link>
     <description>Recent content in 杂记 on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 05 Jan 2021 13:26:51 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/categories/%E6%9D%82%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 13:26:51 +0800</lastBuildDate><atom:link href="http://blog.listenlive.cn/categories/%E6%9D%82%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>解决Hugo/Hexo主题目录themes/无法通过Git提交问题</title>
-      <link>https://blog.listenlive.cn/leaf/2021/01/git_commit/</link>
+      <link>http://blog.listenlive.cn/leaf/2021/01/git_commit/</link>
       <pubDate>Tue, 05 Jan 2021 13:26:51 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2021/01/git_commit/</guid>
+      <guid>http://blog.listenlive.cn/leaf/2021/01/git_commit/</guid>
       <description>剪切themes/.git文件夹到其他目录 从暂存区删除该文件夹 git rm --cache ./themes/next 再重新添加并提交即可 git add . git commit -m &amp;#39;&amp;#39; git push 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>PHP-微信公众号实现发送模板消息</title>
-      <link>https://blog.listenlive.cn/leaf/2020/12/15/wechat01/</link>
+      <link>http://blog.listenlive.cn/leaf/2020/12/15/wechat01/</link>
       <pubDate>Tue, 15 Dec 2020 11:19:55 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/12/15/wechat01/</guid>
+      <guid>http://blog.listenlive.cn/leaf/2020/12/15/wechat01/</guid>
       <description>PHP微信公众号实现发送模板消息 $appid = &amp;#34;wxb7729*******&amp;#34;; $appsecret = &amp;#34;8b99**************&amp;#34;; $url = &amp;#34;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;amp;appid=$appid&amp;amp;secret=$appsecret&amp;#34;; $ch = curl_init(); curl_setopt($ch, CURLOPT_URL, $url); curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); $output = curl_exec($ch); curl_close($ch); $jsoninfo = json_decode($output, true); $ACCESS_TOKEN = $jsoninfo[&amp;#34;access_token&amp;#34;]; $data=array( &amp;#39;touser&amp;#39;=&amp;gt;&amp;#34;oaIgKt*********&amp;#34;, //要发送给用户的openid &amp;#</description>
     </item>
     
     <item>
       <title>苹果电脑MacOs系统开启允许安装外部应用</title>
-      <link>https://blog.listenlive.cn/leaf/2020/10/26/macos01/</link>
+      <link>http://blog.listenlive.cn/leaf/2020/10/26/macos01/</link>
       <pubDate>Mon, 26 Oct 2020 16:07:49 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/10/26/macos01/</guid>
+      <guid>http://blog.listenlive.cn/leaf/2020/10/26/macos01/</guid>
       <description>打开命令行终端，键入命令 sudo spctl --master-disable 在&amp;quot;安全与隐私&amp;quot;查看开启效果 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>php安装Oracle扩展oci8</title>
-      <link>https://blog.listenlive.cn/leaf/2020/10/26/php_oci8/</link>
+      <link>http://blog.listenlive.cn/leaf/2020/10/26/php_oci8/</link>
       <pubDate>Mon, 26 Oct 2020 10:30:00 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/10/26/php_oci8/</guid>
+      <guid>http://blog.listenlive.cn/leaf/2020/10/26/php_oci8/</guid>
       <description>安装oracle-instantclient 下载地址 分别下载 oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm 运行 rpm -ivh oracle-instantclient11.2-* 此时会生成/usr/lib/oracle/11/2/client6</description>
     </item>
     
     <item>
       <title>MySQL常用语句</title>
-      <link>https://blog.listenlive.cn/leaf/2020/08/21/mysql01/</link>
+      <link>http://blog.listenlive.cn/leaf/2020/08/21/mysql01/</link>
       <pubDate>Fri, 21 Aug 2020 10:37:36 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/08/21/mysql01/</guid>
+      <guid>http://blog.listenlive.cn/leaf/2020/08/21/mysql01/</guid>
       <description>表操作 修改表的存储引擎 ALTER TABLE stu engine = &amp;lsquo;InnoDB&amp;rsquo;; 清空表数据 TRUNCATE TABLE tablename; 查询 去除重复数据查询 SELECT DISTINCT class_id FROM stu; 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>Git 版 本 控 制</title>
-      <link>https://blog.listenlive.cn/leaf/2020/08/07/gitcommand/</link>
+      <link>http://blog.listenlive.cn/leaf/2020/08/07/gitcommand/</link>
       <pubDate>Fri, 07 Aug 2020 11:44:45 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/08/07/gitcommand/</guid>
+      <guid>http://blog.listenlive.cn/leaf/2020/08/07/gitcommand/</guid>
       <description>Git基本命令 git config -l 查看配置 git config -global user.name &amp;ldquo;username&amp;rdquo; 全局设置用户名 git config -global user.email &amp;ldquo;email&amp;rdquo; 全局设置用户邮箱 git init 初始化版本库 git add a.php 添加文件到版本库 git add . 添加所有文件到版本</description>
     </item>
     
     <item>
       <title>常 用 网 站</title>
-      <link>https://blog.listenlive.cn/leaf/2020/08/06/url/</link>
+      <link>http://blog.listenlive.cn/leaf/2020/08/06/url/</link>
       <pubDate>Thu, 06 Aug 2020 15:40:02 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/08/06/url/</guid>
+      <guid>http://blog.listenlive.cn/leaf/2020/08/06/url/</guid>
       <description>BootCDN BootCDN 稳定、快速、免费的前端开源项目 CDN 加速服务 AdminLTE AdminLTE 开源后台管理模板 Animate.css Animate.css CSS动画效果 Packagist Packagist The PHP Package Repository 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>npm 版本更新</title>
-      <link>https://blog.listenlive.cn/leaf/2020/07/25/npmcommand.html</link>
+      <link>http://blog.listenlive.cn/leaf/2020/07/25/npmcommand.html</link>
       <pubDate>Sat, 25 Jul 2020 22:58:35 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/07/25/npmcommand.html</guid>
+      <guid>http://blog.listenlive.cn/leaf/2020/07/25/npmcommand.html</guid>
       <description>npm install -g npm //npm 版本更新命令（windows） 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>Laravel 清理缓存</title>
-      <link>https://blog.listenlive.cn/leaf/2020/07/23/command1436.html</link>
+      <link>http://blog.listenlive.cn/leaf/2020/07/23/command1436.html</link>
       <pubDate>Thu, 23 Jul 2020 14:36:43 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/07/23/command1436.html</guid>
+      <guid>http://blog.listenlive.cn/leaf/2020/07/23/command1436.html</guid>
       <description>php artisan route:clear php artisan config:cache php artisan cache:clear php artisan view:clear 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     

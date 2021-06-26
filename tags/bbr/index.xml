@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bbr on listenlive.cn</title>
-    <link>http://blog.listenlive.cn/tags/bbr/</link>
+    <link>https://blog.listenlive.cn/tags/bbr/</link>
     <description>Recent content in bbr on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 09 Feb 2021 13:09:10 +0800</lastBuildDate><atom:link href="http://blog.listenlive.cn/tags/bbr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Feb 2021 13:09:10 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/tags/bbr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux开启bbr加速</title>
-      <link>http://blog.listenlive.cn/leaf/202102/bbr.html</link>
+      <link>https://blog.listenlive.cn/leaf/202102/bbr.html</link>
       <pubDate>Tue, 09 Feb 2021 13:09:10 +0800</pubDate>
       
-      <guid>http://blog.listenlive.cn/leaf/202102/bbr.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/202102/bbr.html</guid>
       <description>安装bbr加速 进入/usr/local/src目录，下载bbr.sh文件 cd /usr/local/src sudo wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh 添加可执行权限 sudo chmod +x bbr.sh 执行该脚本文件,安装完成后提示按y</description>
     </item>
     

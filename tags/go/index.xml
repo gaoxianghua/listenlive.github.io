@@ -2,62 +2,62 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>go on listenlive.cn</title>
-    <link>http://blog.listenlive.cn/tags/go/</link>
+    <link>https://blog.listenlive.cn/tags/go/</link>
     <description>Recent content in go on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 30 Nov 2020 17:57:04 +0800</lastBuildDate><atom:link href="http://blog.listenlive.cn/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Nov 2020 17:57:04 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go-strings和strconv函数的使用</title>
-      <link>http://blog.listenlive.cn/note/2020/11/30/golang02/</link>
+      <link>https://blog.listenlive.cn/note/2020/11/30/golang02/</link>
       <pubDate>Mon, 30 Nov 2020 17:57:04 +0800</pubDate>
       
-      <guid>http://blog.listenlive.cn/note/2020/11/30/golang02/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/11/30/golang02/</guid>
       <description>strings.HasPrefix(s string, prefix string) bool :判断字符串s是否以prefix开头 例：判断一个url是否以http://开头，如果不是则加上http:// func urlProcess(url string) string { result := strings.HasPrefix(url, &amp;#34;http://&amp;#34;) if !result</description>
     </item>
     
     <item>
       <title>go-求阶乘之和</title>
-      <link>http://blog.listenlive.cn/technology/2020/11/30/tech04/</link>
+      <link>https://blog.listenlive.cn/technology/2020/11/30/tech04/</link>
       <pubDate>Mon, 30 Nov 2020 17:06:22 +0800</pubDate>
       
-      <guid>http://blog.listenlive.cn/technology/2020/11/30/tech04/</guid>
+      <guid>https://blog.listenlive.cn/technology/2020/11/30/tech04/</guid>
       <description>求1!+2!+3!+&amp;hellip;+n!阶乘之和 package main import &amp;#34;fmt&amp;#34; func sum(n int) uint64{ var s uint64 = 1 var sum uint64 = 0 for i := 1; i &amp;lt;= n; i++ { s = s * uint64(i) sum += s } return sum } func main() { var n int</description>
     </item>
     
     <item>
       <title>go-输出100-999之间的水仙花数</title>
-      <link>http://blog.listenlive.cn/technology/2020/08/10/tech03/</link>
+      <link>https://blog.listenlive.cn/technology/2020/08/10/tech03/</link>
       <pubDate>Mon, 30 Nov 2020 16:55:08 +0800</pubDate>
       
-      <guid>http://blog.listenlive.cn/technology/2020/08/10/tech03/</guid>
+      <guid>https://blog.listenlive.cn/technology/2020/08/10/tech03/</guid>
       <description>水仙花数是指一个 3 位数，它的每个位上的数字的 3次幂之和等于它本身（例如：1^3 + 5^3+ 3^3 = 153） package main import &amp;#34;fmt&amp;#34; func isSxh(n int) bool{ var i, j, k int i = n % 10 //个位 j</description>
     </item>
     
     <item>
       <title>Go-输出某个区间内所有的素数</title>
-      <link>http://blog.listenlive.cn/technology/2020/11/30/tech02/</link>
+      <link>https://blog.listenlive.cn/technology/2020/11/30/tech02/</link>
       <pubDate>Mon, 30 Nov 2020 15:57:21 +0800</pubDate>
       
-      <guid>http://blog.listenlive.cn/technology/2020/11/30/tech02/</guid>
+      <guid>https://blog.listenlive.cn/technology/2020/11/30/tech02/</guid>
       <description>Go-输出某个区间内所有的素数 package main import &amp;#34;fmt&amp;#34; func isPrime(n int) bool { for i := 2; i &amp;lt; n; i++ { if n%i == 0 { return false } } return true } func main() { var n int var m int fmt.Scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;m) for i := m; i &amp;lt; m; i++{ if isPrime(i) == true {</description>
     </item>
     
     <item>
       <title>Go-反转字符串函数</title>
-      <link>http://blog.listenlive.cn/technology/2020/11/30/tech01/</link>
+      <link>https://blog.listenlive.cn/technology/2020/11/30/tech01/</link>
       <pubDate>Mon, 30 Nov 2020 14:52:24 +0800</pubDate>
       
-      <guid>http://blog.listenlive.cn/technology/2020/11/30/tech01/</guid>
+      <guid>https://blog.listenlive.cn/technology/2020/11/30/tech01/</guid>
       <description>go反转字符串函数 package main import &amp;#34;fmt&amp;#34; func reverse(str string) string { var result string strLen := len(str) for(i := 0; i &amp;lt; strLen; i++){ result = result + fmt.Sprintf(&amp;#34;%c&amp;#34;, str[strLen-i-1]) } return result } //调用 result := reverse(&amp;#34;hello world&amp;#34;) fmt.Println(result) //结果 dlrow olleh 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>Go语言基础01</title>
-      <link>http://blog.listenlive.cn/note/2020/11/24/golang01/</link>
+      <link>https://blog.listenlive.cn/note/2020/11/24/golang01/</link>
       <pubDate>Tue, 24 Nov 2020 15:28:20 +0800</pubDate>
       
-      <guid>http://blog.listenlive.cn/note/2020/11/24/golang01/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/11/24/golang01/</guid>
       <description>Golang语言特性 垃圾回收 内存自动回收，不需要开发人员管理内存 开发人员基本只专注业务实现 只需要new分配内存，无需释放 天然并发 从语言层面支</description>
     </item>
     

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>前端框架 on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/</link>
+    <description>Recent content in 前端框架 on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 10 Aug 2020 10:19:42 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Koa ejs模板引擎与art-template模板引擎</title>
+      <link>https://listenlive.cn/note/2020/08/10/koa03/</link>
+      <pubDate>Mon, 10 Aug 2020 10:19:42 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/08/10/koa03/</guid>
+      <description>Koa ejs的安装与使用 安装koa-views cnpm install koa-views --save 安装ejs cnpm install ejs --save 配置模板引擎中间件 var views = require(&amp;#39;koa-views&amp;#39;); app.use(views(&amp;#39;views&amp;#39;,{ extension:&amp;#39;ejs&amp;#39; })); //这样配置模板的后缀名是.ejs //第</description>
+    </item>
+    
+  </channel>
+</rss>

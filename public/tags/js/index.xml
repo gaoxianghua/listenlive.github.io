@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JS on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/js/</link>
+    <description>Recent content in JS on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 08 Apr 2021 14:28:34 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Js数组操作</title>
+      <link>https://listenlive.cn/note/202104/javascript.html</link>
+      <pubDate>Thu, 08 Apr 2021 14:28:34 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/202104/javascript.html</guid>
+      <description>类型转换 字符串 大部分数据类型都可以使用toString()函数转换为字符串 console.log(([1,2,3]).toString()); //1,2,3 也可以使用函数String转换为字符串 console.log(String([1,2,3])); 或者使用join连接为</description>
+    </item>
+    
+  </channel>
+</rss>

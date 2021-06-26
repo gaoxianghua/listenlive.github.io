@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>crontab on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/crontab/</link>
+    <description>Recent content in crontab on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 19 Jan 2021 17:39:31 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/crontab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用Linux定时任务-Crontab 完成MySQL数据库的备份和表操作</title>
+      <link>https://listenlive.cn/leaf/202101/crontab_linux.html</link>
+      <pubDate>Tue, 19 Jan 2021 17:39:31 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/202101/crontab_linux.html</guid>
+      <description>crontab基本命令 crontab -l //查看定时任务 crontab -e //编辑定时任务 crontab -r //删除定时任务 crontab常用写法 每分钟执行 */1 * * * * command 每小时0分执行</description>
+    </item>
+    
+  </channel>
+</rss>

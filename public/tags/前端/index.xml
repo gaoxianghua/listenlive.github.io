@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>前端 on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/%E5%89%8D%E7%AB%AF/</link>
+    <description>Recent content in 前端 on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 30 Jul 2020 11:17:51 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue基础-05</title>
+      <link>https://listenlive.cn/note/2020/07/30/vue05/</link>
+      <pubDate>Thu, 30 Jul 2020 11:17:51 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/30/vue05/</guid>
+      <description>使用Vue-cli初始化单页面应用 使用npm或cnpm安装 vue-cli cnpm install -g vue-cli 使用vue命令安装项目包 vue init webpack cli 安装vue-route时选Yes,其他都</description>
+    </item>
+    
+    <item>
+      <title>Vue基础-04</title>
+      <link>https://listenlive.cn/note/2020/07/27/vue04/</link>
+      <pubDate>Mon, 27 Jul 2020 16:15:11 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/27/vue04/</guid>
+      <description>Vue声明组件(component)的方式 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;live-slide&amp;gt;&amp;lt;/live-slide&amp;gt; &amp;lt;live-news&amp;gt;&amp;lt;/live-news&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; //全局组件 Vue.component(&amp;#39;liveSlide&amp;#39;,{ template:&amp;#39;&amp;lt;h2&amp;gt;listenlive.cn&amp;lt;/h2&amp;gt;&amp;#39; }); //局部组件 var liveNews = { template:&amp;#34;&amp;lt;h2&amp;gt;ListenLive&amp;lt;/h2&amp;gt;&amp;#34; }; var app = new Vue({ el:&amp;#39;#app&amp;#39;, components:{liveNews}, data:{ }, }); &amp;lt;/script&amp;gt; 子组件中data返回数</description>
+    </item>
+    
+    <item>
+      <title>Vue基础-03</title>
+      <link>https://listenlive.cn/note/2020/07/26/vue03/</link>
+      <pubDate>Sun, 26 Jul 2020 22:01:50 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/26/vue03/</guid>
+      <description>表单提交与prevent操作表单 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;form action=&amp;#34;&amp;#34; @submit.prevent=&amp;#34;post(&amp;#39;listenlive.cn&amp;#39;)&amp;#34;&amp;gt; &amp;lt;h2&amp;gt;{{times}}&amp;lt;/h2&amp;gt; &amp;lt;button&amp;gt;提交&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data: { times:new Date() }, methods:{ post(num){ alert(num);</description>
+    </item>
+    
+    <item>
+      <title>Vue基础-02</title>
+      <link>https://listenlive.cn/note/2020/07/23/vue02/</link>
+      <pubDate>Thu, 23 Jul 2020 17:32:32 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/23/vue02/</guid>
+      <description>使用object与array控制class &amp;lt;style&amp;gt; .font{font-size: 20px} .color{color: skyblue} .red{color: red} &amp;lt;/style&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;h2 :class=&amp;#34;obj&amp;#34;&amp;gt;Vue Object&amp;lt;/h2&amp;gt; &amp;lt;hr/&amp;gt; &amp;lt;h2 :class=&amp;#34;[succ,font]&amp;#34;&amp;gt;listenlive.cn&amp;lt;/h2&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ obj:{color:true,font:true}, //对象形式 //数组形式 succ:&amp;#39;red&amp;#39;, font:&amp;#39;font&amp;#39; } }); &amp;lt;/script&amp;gt; 使用clas</description>
+    </item>
+    
+    <item>
+      <title>Vue基础-01</title>
+      <link>https://listenlive.cn/note/2020/07/13/vue01/</link>
+      <pubDate>Mon, 13 Jul 2020 14:57:32 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/13/vue01/</guid>
+      <description>v-if与v-show v-if：不显示时，第一次就直接不渲染，如果内容已经显示将其改为不显示，将内容直接从DOM去除。只渲染一次的内容用v-</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,562 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>Laravel基础04-视图 | listenlive.cn</title>
+    <meta name="keywords" content="独立,博客,程序员,个人,开发,live,思考,读书,笔记,技术,分享,PHP,Hugo">
+    
+    <meta property="og:title" content="Laravel基础04-视图">
+    <meta property="og:site_name" content="listenlive.cn">
+    <meta property="og:image" content="/img/author.jpg"> 
+    <meta name="title" content="Laravel基础04-视图 - listenlive.cn" />
+    <meta name="description" content="博客 | 软件 | 架构 | PHP | 开发 | Hugo"> 
+    <link rel="shortcut icon" href="https://listenlive.cn/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link href="https://listenlive.cn/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+	  var NexT = window.NexT || {};
+	  var CONFIG = {
+		scheme: 'Pisces',
+		sidebar: {"position":"left","display":"post"},
+		 fancybox: true, 
+		motion: true
+	  };
+	</script>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172515529-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-172515529-1');
+	</script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-meta  custom-logo ">
+
+  <div class="custom-logo-site-title">
+    <a href="https://listenlive.cn/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">listenlive.cn</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">too young too simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />技术
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />笔记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%9D%82%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-leaf"></i> <br />杂记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E5%88%86%E4%BA%AB/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-share"></i> <br />分享
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/post/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/about/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+<section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://listenlive.cn/note/2020/07/23/laravel03/" itemprop="url">
+        Laravel基础04-视图
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-07-23">
+    2020-07-23
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">984 字 ~2分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <h1 id="blade模板引擎的模板继承构建后台界面">Blade模板引擎的模板继承构建后台界面</h1>
+<h2 id="后台视图文件目录">后台视图文件目录</h2>
+<p>-/resources/views/admin/layout 为父级模板目录<br>
+<img src="https://listenlive.cn/images/202007231042.png" alt="父级模板目录"></p>
+<h2 id="使用yield占位定义活动的页面范围">使用@yield占位定义活动的页面范围</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div&gt;
+    @yield(&#39;content&#39;)
+&lt;/div&gt;
+</code></pre></div><h2 id="子页面继承父级模板">子页面继承父级模板</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">@extends(&#39;admin.layout.master&#39;)
+@section(&#39;content&#39;)
+    &lt;div class=&#34;panel panel-default&#34;&gt;
+        &lt;div class=&#34;panel-heading&#34;&gt;
+            &lt;h3 class=&#34;panel-title&#34;&gt;后台管理&lt;/h3&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;panel-body&#34;&gt;
+            后台管理系统
+        &lt;/div&gt;
+    &lt;/div&gt;
+@endsection
+</code></pre></div><h1 id="使用request进行表单验证">使用request进行表单验证</h1>
+<h2 id="创建request">创建request</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan make:request AdminPost
+</code></pre></div><p><em>执行后会在app/Http/Requests目录生成</em><em><strong>AdminPost.php</strong></em><em>文件</em></p>
+<h2 id="首先引入登录验证的中间件即在管理员登录状态才进行验证">首先引入登录验证的中间件，即在管理员登录状态才进行验证</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">use Auth;
+use Validator;
+use Hash;
+
+public function authorize()
+ {
+     return Auth::guard(&#39;admin&#39;)-&gt;check();
+ }
+ /*
+  *添加验证规则--用于确认密码比对
+  */
+public function addValidator()
+ {
+   Validator::extend(&#39;check_password&#39;,function($attribute,$value,$parameters,$validator){
+       return Hash::check($value,Auth::guard(&#39;admin&#39;)-&gt;user()-&gt;password); //验证密码
+   });
+ }
+</code></pre></div><p><em>使用</em><a href="https://learnku.com/docs/laravel/5.8/validation/3899"><em><strong>Validator</strong></em></a><em>验证器</em></p>
+<h2 id="设置验证规则">设置验证规则</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function rules()
+ {
+    $this-&gt;addValidator();
+    return [
+        &#39;password&#39; =&gt; &#39;sometimes|required|confirmed&#39;,
+        &#39;password_confirmation&#39; =&gt; &#39;sometimes|required&#39;,
+        &#39;original_password&#39; =&gt; &#39;sometimes|required|check_password&#39;,
+    ];
+    /*sometimes表示有表单的时候才会验证*/
+ }
+</code></pre></div><h2 id="定义错误提示信息">定义错误提示信息</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function message()
+ {
+       return [
+           &#39;password.required&#39; =&gt; &#39;密码不能为空&#39;,
+           &#39;password_confirmation.required&#39; =&gt; &#39;请输入确认密码&#39;,
+           &#39;password_confirmed&#39; =&gt; &#39;两次密码输入不一致&#39;,
+           &#39;original_password.required&#39; =&gt; &#39;请输入初始密码&#39;,
+           &#39;original_password.check_password&#39; =&gt; &#39;初始密码错误&#39;,
+       ];
+     }   
+</code></pre></div><h2 id="在视图中显示错误提示信息">在视图中显示错误提示信息</h2>
+<p><em>定义错误提示模板errors.blade.php</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">@if (count($errors) &gt; 0)
+    &lt;div class=&#34;modal fade&#34; id=&#34;modal_message&#34;&gt;
+        &lt;div class=&#34;modal-dialog&#34;&gt;
+            &lt;div class=&#34;modal-content&#34;&gt;
+                &lt;div class=&#34;modal-header&#34;&gt;
+                    &lt;button type=&#34;button&#34; class=&#34;close&#34; data-dismiss=&#34;modal&#34; aria-hidden=&#34;true&#34;&gt;
+                        &amp;times;
+                    &lt;/button&gt;
+                    &lt;h4 class=&#34;modal-title&#34;&gt;后台 - 友情提示&lt;/h4&gt;
+                &lt;/div&gt;
+                &lt;div class=&#34;modal-body&#34;&gt;
+                    &lt;div class=&#34;row&#34;&gt;
+                        &lt;div class=&#34;col-sm-2&#34;&gt;
+                            &lt;i class=&#34;fa fa-info-circle fa-4x&#34;&gt;&lt;/i&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&#34;col-sm-9&#34;&gt;
+                            @foreach ($errors-&gt;all() as $error)
+                                {{ $error }}&lt;br&gt;
+                            @endforeach
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&#34;modal-footer&#34;&gt;
+                    &lt;button type=&#34;button&#34; class=&#34;btn btn-default&#34; data-dismiss=&#34;modal&#34;&gt;关闭&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        require([&#39;bootstrap&#39;], function ($) {
+            $(&#39;#modal_message&#39;).modal(&#39;show&#39;);
+            setTimeout(function () {
+                $(&#39;#modal_message&#39;).modal(&#39;hide&#39;);
+            }, 3000);
+        })
+    &lt;/script&gt;
+@endif
+</code></pre></div><h2 id="在控制器中引用并使用request验证">在控制器中引用并使用request验证</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">use App\Http\Requests\AdminPost;
+use Auth;
+public function changePassword(AdminPost $request)
+ {
+    $model = Auth::guard(&#39;admin&#39;)-&gt;user();
+    $model-&gt;password = bcrypt($request[&#39;password&#39;]);    //获取密码加密
+    $model-&gt;save(); //保存更新密码
+ }
+</code></pre></div><h1 id="使用laracasts-flash在视图中展示错误提示信息">使用laracasts-flash在视图中展示错误提示信息</h1>
+<h2 id="安装laracasts-flashhttpsgithubcomlaracastsflash">安装<a href="https://github.com/laracasts/flash">laracasts-flash</a></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">composer require laracasts/flash
+</code></pre></div><h2 id="将此工具在configappphp服务提供者providers里面注册">将此工具在config/app.php服务提供者(providers)里面注册</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Laracasts\Flash\FlashServiceProvider::class,
+</code></pre></div><h2 id="在父级模板中masterbladephp引用">在父级模板中（master.blade.php）引用</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">@include(&#39;flash::message&#39;)
+&lt;script&gt;
+    require([&#39;bootstrap&#39;], function ($) {
+    //使用bootstrap模态块
+        $(&#39;#flash-overlay-modal&#39;).modal();
+    });
+&lt;/script&gt;
+</code></pre></div><h2 id="安装flash扩展支持">安装flash扩展支持</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan vendor:publish --provider=&#34;Laracasts\Flash\FlashServiceProvider&#34;
+</code></pre></div><p>执行后会在resources/views/vendor目录下生成flsh支持目录</p>
+<h2 id="在控制器中使用">在控制器中使用</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function changePassword(AdminPost $request)
+  {
+       $model = Auth::guard(&#39;admin&#39;)-&gt;user();
+       $model-&gt;password = bcrypt($request[&#39;password&#39;]);    //获取密码加密          
+       $model-&gt;save(); //保存更新密码          
+       flash(&#39;密码修改成功&#39;)-&gt;overlay();          
+       return redirect()-&gt;back();             
+  }  
+</code></pre></div>
+    </div>
+	<div class="post-comment">
+    
+    
+<span id="/note/2020/07/23/laravel03" class="leancloud_visitors" data-flag-title="Laravel基础04-视图">
+<p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script type="text/javascript">
+new Valine({
+    el: '#vcomments' ,
+    appId: '9iOmqWQl7wQBsarOb3o2m0eO-gzGzoHsz',
+    appKey: 'U2cCMaQisH6I3GsyClKuvrwK',
+    notify:  false , 
+    verify:  false , 
+    avatar:'mm', 
+    placeholder: '说点什么吧...',
+    visitor:  true 
+});
+</script>
+	</div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://listenlive.cn/tags/laravel" rel="tag" title="Laravel">#Laravel#</a>
+    
+    <a href="https://listenlive.cn/tags/phpstorm" rel="tag" title="PHPstorm">#PHPstorm#</a>
+    
+    <a href="https://listenlive.cn/tags/php" rel="tag" title="PHP">#PHP#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://listenlive.cn/leaf/2020/07/23/command1436/" rel="next" title="Laravel 清理缓存">
+        <i class="fa fa-chevron-left"></i> Laravel 清理缓存
+        </a>
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://listenlive.cn/note/2020/07/22/laravel03/" rel="prev" title="Laravel基础03-中间件的使用">
+        Laravel基础03-中间件的使用 <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+     
+
+
+
+
+    </footer>
+  </article>
+</section>
+
+          </div>
+        </div>
+        <div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://listenlive.cn/img/author.jpg"
+        alt="黑貓警長" />
+    <p class="site-author-name" itemprop="name">黑貓警長</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        Programmer &amp; Architect</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://listenlive.cn/post/">
+        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://listenlive.cn/categories/">      
+         
+        <span class="site-state-item-count">4</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://listenlive.cn/tags/">
+         
+        <span class="site-state-item-count">28</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com" target="_blank" title="GitHub">
+            <i class="fa fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://www.instagram.com/ins0273" target="_blank" title="Instagram">
+            <i class="fa fa-fw fa-instagram"></i>
+            Instagram
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6515305531" target="_blank" title="Weibo">
+            <i class="fa fa-fw fa-weibo"></i>
+            Weibo
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="mailto:listenlive7@gmail.com" target="_blank" title="Gmail">
+            <i class="fa fa-fw fa-envelope"></i>
+            Gmail
+        </a>
+        </span>
+    
+</div>
+
+
+      
+
+      <div class="links-of-blogroll motion-element inline">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5t3mz7o0h3k&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33&amp;bv=35" async="async"></script>
+</div>
+
+    </section>
+    
+  </div>
+</aside>
+
+      </div>
+    </main>
+   
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <span><a href="http://www.beian.miit.gov.cn/">京ICP备17004223号-2</a></span>
+  <span itemprop="copyrightYear">  &copy;2020</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.76.5</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2444a3fc34c4ce99b33ff943eb0c4307";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=500724336" charset="UTF-8"></script> 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://listenlive.cn/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script src="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/utils.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/motion.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/affix.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/post-details.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/toc.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+
+
+</body>
+</html>

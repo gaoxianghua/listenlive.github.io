@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>防火墙 on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</link>
+    <description>Recent content in 防火墙 on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 22 Jan 2021 14:58:14 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/%E9%98%B2%E7%81%AB%E5%A2%99/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux-使用防火墙firewalld开放端口</title>
+      <link>https://listenlive.cn/leaf/20210122/linux-firewalld.html</link>
+      <pubDate>Fri, 22 Jan 2021 14:58:14 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/20210122/linux-firewalld.html</guid>
+      <description>查看当前开了哪些端口其实一个服务对应一个端口，每个服务对应/usr/lib/firewalld/services下面一个xml文件 firewall-cmd --list-services 通过f</description>
+    </item>
+    
+  </channel>
+</rss>

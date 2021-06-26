@@ -1,0 +1,907 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>Js数组操作 | listenlive.cn</title>
+    <meta name="keywords" content="独立,博客,程序员,个人,开发,思考,读书,笔记,技术,分享,PHP,Hugo,Node.js,Golang">
+    
+    <meta property="og:title" content="Js数组操作">
+    <meta property="og:site_name" content="listenlive.cn">
+    <meta property="og:image" content="/img/author.jpg"> 
+    <meta name="title" content="Js数组操作 - listenlive.cn" />
+    <meta name="description" content="博客 | 软件 | 架构 | PHP | 开发 | Hugo | Golang | go | Node.js"> 
+    <link rel="shortcut icon" href="https://listenlive.cn/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link href="https://listenlive.cn/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+	  var NexT = window.NexT || {};
+	  var CONFIG = {
+		scheme: 'Pisces',
+		sidebar: {"position":"left","display":"post"},
+		 fancybox: true, 
+		motion: true
+	  };
+	</script>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172515529-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-172515529-1');
+	</script>
+    
+    <script>
+        (function(){
+            var el = document.createElement("script");
+            el.src = "https://sf1-scmcdn-tos.pstatp.com/goofy/ttzz/push.js?3d1859bbd8237afa8cff7a06067ef806948d05ee71e04b80bd6ca131dbb5de403e7a864e7e749f7172b232222da9c6ab06cf1be964f65732421f189d31e73f5c";
+            el.id = "ttzz";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(el, s);
+        })(window)
+    </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-meta  custom-logo ">
+
+  <div class="custom-logo-site-title">
+    <a href="https://listenlive.cn"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">listenlive.cn</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">too young too simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />技术
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />笔记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%9D%82%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-leaf"></i> <br />杂记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E5%88%86%E4%BA%AB/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-share"></i> <br />分享
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/post/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/about/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+<section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://listenlive.cn/note/202104/javascript.html" itemprop="url">
+        Js数组操作
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2021-04-08">
+    2021-04-08
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">2814 字 ~6分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <h1 id="类型转换">类型转换</h1>
+<h2 id="字符串">字符串</h2>
+<p>大部分数据类型都可以使用<code>toString()</code>函数转换为字符串</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]).<span style="color:#a6e22e">toString</span>());      <span style="color:#75715e">//1,2,3
+</span></code></pre></div><p>也可以使用函数<code>String</code>转换为字符串</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(String([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]));
+</code></pre></div><p>或者使用<code>join</code>连接为字符串</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>([<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>].<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;-&#34;</span>));     <span style="color:#75715e">//1-2-3
+</span></code></pre></div><h2 id="arrayfrom"><code>Array.from</code></h2>
+<p>使用<code>Array.from</code>可将类数组转换为数组，类数组指包含<code>length</code>属性或可迭代的对象。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;你好上海&#39;</span>;
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(Array.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">str</span>));       <span style="color:#75715e">//[&#34;你&#34;,&#34;好&#34;,&#34;上&#34;,&#34;海&#34;]
+</span></code></pre></div><p>为对象设置<code>length</code>属性后也可以转换为数组，但要下标为数值或数值字符串</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+        <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;张三&#39;</span>,
+        <span style="color:#e6db74">&#39;1&#39;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">18</span>,
+        <span style="color:#a6e22e">length</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>
+    };
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(Array.<span style="color:#a6e22e">from</span>(<span style="color:#a6e22e">user</span>)); <span style="color:#75715e">//[&#34;张三&#34;, 18]
+</span></code></pre></div><h2 id="展开语法">展开语法</h2>
+<h3 id="数组合并">数组合并</h3>
+<p>使用<code>...</code>可将数组展开为多个值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#e6db74">&#39;listenlive.cn&#39;</span>,...<span style="color:#a6e22e">a</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">b</span>);     <span style="color:#75715e">//[&#39;a&#39;,&#39;listenlive.cn&#39;,1,2,3]
+</span></code></pre></div><h3 id="函数参数">函数参数</h3>
+<p>使用展示语法可以替接收任意数量的参数</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">live</span>(...<span style="color:#a6e22e">args</span>){
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">args</span>);
+    }
+    <span style="color:#a6e22e">live</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#39;listenlive.cn&#39;</span>);        <span style="color:#75715e">//[1,2,3,&#39;listenlive.cn&#39;]
+</span></code></pre></div><h1 id="解构赋值">解构赋值</h1>
+<h2 id="基本使用">基本使用</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> [<span style="color:#a6e22e">site</span>,<span style="color:#a6e22e">url</span>] <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;listenlive&#39;</span>,<span style="color:#e6db74">&#39;listenlive.cn&#39;</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">site</span>);      <span style="color:#75715e">//listenlive
+</span></code></pre></div><h2 id="剩余解构">剩余解构</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#75715e">//使用一个变量来接收剩余参数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> [<span style="color:#a6e22e">a</span>,...<span style="color:#a6e22e">b</span>] <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;listenlive.cn&#39;</span>,<span style="color:#e6db74">&#39;beijing&#39;</span>,<span style="color:#e6db74">&#39;shanghai&#39;</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>);     <span style="color:#75715e">//listenlive.cn
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">b</span>);     <span style="color:#75715e">//[&#39;beijing&#39;,shanghai]
+</span></code></pre></div><h2 id="字符串解构">字符串解构</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">const</span> [...<span style="color:#a6e22e">a</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;listenlive.cn&#39;</span>
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>);     <span style="color:#75715e">//Array(13)
+</span></code></pre></div><h1 id="管理元素">管理元素</h1>
+<h2 id="向数组追加元素">向数组追加元素</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;listenlive.cn&#39;</span>,<span style="color:#e6db74">&#39;listenlive&#39;</span>];
+    <span style="color:#a6e22e">arr</span>[<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;dada&#39;</span>;
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>);       <span style="color:#75715e">//[1,&#39;listenlive.cn&#39;,&#39;listenlive&#39;,&#39;dada&#39;]
+</span></code></pre></div><h2 id="使用展开语法批量添加元素">使用展开语法批量添加元素</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#39;listen&#39;</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">live</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;listenlive.cn&#39;</span>];
+    <span style="color:#a6e22e">live</span>.<span style="color:#a6e22e">push</span>(...<span style="color:#a6e22e">arr</span>);
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">live</span>);      <span style="color:#75715e">//[&#39;listenlive.cn&#39;,1,2,3,&#39;listen&#39;]
+</span></code></pre></div><h2 id="push"><code>push</code></h2>
+<p>压入元素。返回值为数组元素的数量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;site&#39;</span>,<span style="color:#e6db74">&#39;listenlive&#39;</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#39;apple&#39;</span>,<span style="color:#e6db74">&#39;strawberry&#39;</span>));        <span style="color:#75715e">//4
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>);       <span style="color:#75715e">//[&#39;site&#39;,&#39;listenlive&#39;,&#39;apple&#39;,&#39;strawberry&#39;]
+</span></code></pre></div><h2 id="pop"><code>pop</code></h2>
+<p>从末尾弹出元素，返回值为弹出的元素。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;apple&#39;</span>,<span style="color:#e6db74">&#39;strawberry&#39;</span>,<span style="color:#e6db74">&#39;banana&#39;</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">pop</span>());     <span style="color:#75715e">//banana
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>);     <span style="color:#75715e">//[&#39;apple&#39;,&#39;strawberry&#39;]
+</span></code></pre></div><h2 id="shift"><code>shift</code></h2>
+<p>从数组前面取出一个元素</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;apple&#39;</span>,<span style="color:#e6db74">&#39;banana&#39;</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">shift</span>());     <span style="color:#75715e">//apple
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>);     <span style="color:#75715e">//[&#39;banana&#39;]
+</span></code></pre></div><h2 id="unshift"><code>unshift</code></h2>
+<p>从数组前面添加元素</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;apple&#39;</span>,<span style="color:#e6db74">&#39;banana&#39;</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">unshift</span>(<span style="color:#e6db74">&#39;strawberry&#39;</span>,<span style="color:#e6db74">&#39;grape&#39;</span>));     <span style="color:#75715e">//4
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>);     <span style="color:#75715e">//[&#39;strawberry&#39;,&#39;grape&#39;,&#39;apple&#39;,&#39;banana&#39;]
+</span></code></pre></div><h2 id="fill"><code>fill</code></h2>
+<h3 id="使用fill填充数组元素">使用<code>fill</code>填充数组元素</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> Array(<span style="color:#ae81ff">4</span>).<span style="color:#a6e22e">fill</span>(<span style="color:#e6db74">&#39;apple&#39;</span>);
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>);           <span style="color:#75715e">//[&#39;apple&#39;,&#39;apple&#39;,&#39;apple&#39;,&#39;apple&#39;]
+</span></code></pre></div><h3 id="指定填充位置">指定填充位置</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>];
+    <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">fill</span>(<span style="color:#e6db74">&#34;listenlive.cn&#34;</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>);
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>);       <span style="color:#75715e">//[1,&#39;listenlive.cn&#39;,3,4]
+</span></code></pre></div><h2 id="slice"><code>slice</code></h2>
+<p>数组截取,不会改变原数组</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>));        <span style="color:#75715e">//[1,2]
+</span></code></pre></div><h2 id="splice"><code>splice</code></h2>
+<h3 id="splice可以添加删除替换数组中的元素会对原数组进行改变返回值为删除的元素"><code>splice</code>可以添加、删除、替换数组中的元素，会对原数组进行改变，返回值为删除的元素</h3>
+<p>删除数组元素第一个参数为从哪开始删除，第二个参数为删除的数量。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>)); <span style="color:#75715e">//返回删除的元素 [1, 2, 3] 
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>); <span style="color:#75715e">//删除数据后的原数组 [0, 4, 5, 6]
+</span></code></pre></div><h3 id="通过修改length删除最后一个元素">通过修改<code>length</code>删除最后一个元素</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;apple&#34;</span>, <span style="color:#e6db74">&#34;banana&#34;</span>];
+    <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>);
+</code></pre></div><h3 id="通过指定第三个参数来设置在删除位置添加的元素">通过指定第三个参数来设置在删除位置添加的元素</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#e6db74">&#39;strawberry&#39;</span>)); <span style="color:#75715e">//[1, 2, 3]
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>); <span style="color:#75715e">//[0, &#34;apple&#34;, &#34;strawberry&#34;, 4, 5, 6]
+</span></code></pre></div><h3 id="向末尾添加元素">向末尾添加元素</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span>, <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#e6db74">&#39;strawberry&#39;</span>)); <span style="color:#75715e">//[]
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>); <span style="color:#75715e">// [0, 1, 2, 3, 4, 5, 6, &#34;apple&#34;, &#34;strawberry&#34;]
+</span></code></pre></div><h3 id="向数组前添加元素">向数组前添加元素</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#e6db74">&#39;strawberry&#39;</span>)); <span style="color:#75715e">//[]
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>); <span style="color:#75715e">// [&#34;apple&#34;, &#34;strawberry&#34;，0, 1, 2, 3, 4, 5, 6]
+</span></code></pre></div><h1 id="数组的合并与拆分">数组的合并与拆分</h1>
+<h2 id="join"><code>join</code></h2>
+<p>使用<code>join</code>连接成字符串</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#39;cms&#39;</span>,<span style="color:#e6db74">&#39;apple&#39;</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;-&#39;</span>));     <span style="color:#75715e">//1-cms-apple
+</span></code></pre></div><h2 id="split"><code>split</code></h2>
+<p><code>split</code> 将字符串分割成数组</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;22,28,aa&#34;</span>;
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">price</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;,&#34;</span>));      <span style="color:#75715e">//[&#34;22&#34;,&#34;28&#34;,&#34;aa&#34;]
+</span></code></pre></div><h2 id="concat"><code>concat</code></h2>
+<p><code>concat</code>用于连接两个或多个数组</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;apple&#34;</span>, <span style="color:#e6db74">&#34;strawberrry&#34;</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">listen</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">live</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">array</span>.<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">listen</span>, <span style="color:#a6e22e">live</span>)); <span style="color:#75715e">//[&#34;apple&#34;, &#34;strawberrry&#34;, 1, 2, 3, 4]
+</span></code></pre></div><p><em><strong>也可使用展开语法实现连接</strong></em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>([...<span style="color:#a6e22e">arr</span>,...<span style="color:#a6e22e">listen</span>,...<span style="color:#a6e22e">live</span>]);
+</code></pre></div><h2 id="copywithin"><code>copyWithin</code></h2>
+<p><code>copyWithin</code>从数组中复制一部分到数组中的其他位置</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#a6e22e">array</span>.<span style="color:#a6e22e">copyWithin</span>(<span style="color:#a6e22e">target</span>,<span style="color:#a6e22e">start</span>,<span style="color:#a6e22e">end</span>); 
+    <span style="color:#75715e">/*
+</span><span style="color:#75715e">    *参数说明
+</span><span style="color:#75715e">    *target--必需。复制到指定目标索引位置。
+</span><span style="color:#75715e">    *start--可选。元素复制的起始位置。
+</span><span style="color:#75715e">    *end--可选。停止复制的索引位置 (默认为 array.length)。如果为负值，表示倒数。
+</span><span style="color:#75715e">     */</span>
+</code></pre></div><h1 id="查找元素">查找元素</h1>
+<h2 id="indexof"><code>indexOf</code></h2>
+<p><code>indexOf</code>从前向后查找元素出现的位置，如果找不到返回-1</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#ae81ff">3</span>));  <span style="color:#75715e">//1
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#ae81ff">2</span>));  <span style="color:#75715e">//-1
+</span></code></pre></div><h2 id="includes"><code>includes</code></h2>
+<p>使用<code>includes</code>查找字符串，返回值为布尔类型，方便判断。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">6</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#ae81ff">6</span>));       <span style="color:#75715e">//true
+</span></code></pre></div><h2 id="find"><code>find</code></h2>
+<p><code>find</code>方法找到后会把值返回出来(返回第一次找到的值)，如果找不到返回值为<code>undefined</code></p>
+<h2 id="findindex"><code>findIndex</code></h2>
+<p><code>findIndex</code>与<code>find</code>的区别是返回索引值</p>
+<h1 id="数组排序">数组排序</h1>
+<h2 id="reverse"><code>reverse</code></h2>
+<p>反转数组顺序</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">9</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">reverse</span>());     <span style="color:#75715e">//[9,2,4,1]
+</span></code></pre></div><h2 id="sort"><code>sort</code></h2>
+<h3 id="默认从小到大排序">默认从小到大排序</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">9</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">sort</span>());     <span style="color:#75715e">//[1,2,4,9]
+</span></code></pre></div><h3 id="使用排序函数从大到小排序">使用排序函数从大到小排序</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">9</span>];
+
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">sort</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">v1</span>, <span style="color:#a6e22e">v2</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">v2</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">v1</span>;
+    }));       <span style="color:#75715e">//[9, 4, 2, 1]
+</span></code></pre></div><h1 id="循环遍历">循环遍历</h1>
+<h2 id="for"><code>for</code></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lessons</span> <span style="color:#f92672">=</span> [
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;媒体查询响应式布局&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;FLEX 弹性盒模型&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MYSQL多表查询随意操作&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql&#39;</span>}
+    ];
+    
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">lessons</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+      <span style="color:#a6e22e">lessons</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">`课程: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">lessons</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">title</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+    }
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">lessons</span>);
+</code></pre></div><h2 id="foreach"><code>forEach</code></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lessons</span> <span style="color:#f92672">=</span> [
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;媒体查询响应式布局&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;FLEX 弹性盒模型&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MYSQL多表查询随意操作&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql&#39;</span>}
+    ];
+    
+    <span style="color:#a6e22e">lessons</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">item</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">array</span>) =&gt; {
+        <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">title</span>.<span style="color:#a6e22e">substr</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>);
+    });
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">lessons</span>);
+</code></pre></div><h2 id="forin"><code>for/in</code></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lessons</span> <span style="color:#f92672">=</span> [
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;媒体查询响应式布局&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;FLEX 弹性盒模型&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MYSQL多表查询随意操作&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql&#39;</span>}
+    ];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">lessons</span>) {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`标题: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">lessons</span>[<span style="color:#a6e22e">key</span>].<span style="color:#a6e22e">title</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+    }
+</code></pre></div><h2 id="forof"><code>for/of</code></h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lessons</span> <span style="color:#f92672">=</span> [
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;媒体查询响应式布局&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;FLEX 弹性盒模型&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+        {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MYSQL多表查询随意操作&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql&#39;</span>}
+    ];
+
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">item</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">lessons</span>) {
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`
+</span><span style="color:#e6db74">        标题: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">title</span><span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">        栏目: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">category</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;css&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;前端&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;数据库&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">      `</span>);
+    }
+</code></pre></div><h2 id="实现取数组最大值的方法">实现取数组最大值的方法</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">arrayMax</span>(<span style="color:#a6e22e">array</span>) {
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">max</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">array</span>[<span style="color:#ae81ff">0</span>];
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">elem</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">array</span>) {
+        <span style="color:#a6e22e">max</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">max</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">elem</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">max</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">elem</span>;
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">max</span>;
+    }
+    
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arrayMax</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">9</span>]));
+</code></pre></div><h1 id="扩展方法">扩展方法</h1>
+<h2 id="every"><code>every</code></h2>
+<p>every 用于递归的检测元素，要所有元素操作都要返回真结果才为真。<br>
+实现标题的关键词检查</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">words</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;js&#39;</span>, <span style="color:#e6db74">&#39;css&#39;</span>, <span style="color:#e6db74">&#39;php&#39;</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;dfgdsgdsfdgjs&#39;</span>;
+    
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">words</span>.<span style="color:#a6e22e">every</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">item</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">array</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">title</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">item</span>) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>;
+    });
+    
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">state</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">false</span>) <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;标题必须包含所有关键词&#39;</span>);
+</code></pre></div><h2 id="some"><code>some</code></h2>
+<p>使用 some 函数可以递归的检测元素，如果有一个返回true，表达式结果就是真。第一个参数为元素，第二个参数为索引，第三个参数为原数组。</p>
+<p>使用 some 检测规则关键词的示例，如果匹配到一个词就提示违规。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">words</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;ss&#39;</span>, <span style="color:#e6db74">&#39;蛤蟆&#39;</span>, <span style="color:#e6db74">&#39;wa&#39;</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;wawawawawwww&#39;</span>
+    
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">words</span>.<span style="color:#a6e22e">some</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">item</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">array</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">title</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">item</span>) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>;
+    });
+    
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">state</span>) <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;标题含有违规关键词&#39;</span>);
+</code></pre></div><h2 id="filter"><code>filter</code></h2>
+<p>使用 filter 可以过滤数据中元素<br>
+下面是获取所有在CSS栏目的课程。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lessons</span> <span style="color:#f92672">=</span> [
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;媒体查询响应式布局&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;FLEX 弹性盒模型&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MYSQL多表查询随意操作&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql&#39;</span>}
+    ];
+    
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cssLessons</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">lessons</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">item</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">array</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">category</span>.<span style="color:#a6e22e">toLowerCase</span>() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;css&#39;</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+      }
+    });
+    
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">cssLessons</span>);
+</code></pre></div><h2 id="map"><code>map</code></h2>
+<p>使用 map 映射可以在数组的所有元素上应用函数，用于映射出新的值。
+获取数组所有标题组合的新数组</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lessons</span> <span style="color:#f92672">=</span> [
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;媒体查询响应式布局&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;FLEX 弹性盒模型&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MYSQL多表查询随意操作&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql&#39;</span>}
+    ];
+    
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">lessons</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">item</span> =&gt; <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">title</span>));
+</code></pre></div><p>为所有标题添加上 APPLE</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">lessons</span> <span style="color:#f92672">=</span> [
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;媒体查询响应式布局&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;FLEX 弹性盒模型&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;css&#39;</span>},
+      {<span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;MYSQL多表查询随意操作&#39;</span>,<span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql&#39;</span>}
+    ];
+    
+    <span style="color:#a6e22e">lessons</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">lessons</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">item</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">array</span>) {
+        <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`[APPLE] </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">item</span>[<span style="color:#e6db74">&#39;title&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">item</span>;
+    });
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">lessons</span>);
+</code></pre></div><h2 id="reduce"><code>reduce</code></h2>
+<p>使用 reduce 与 reduceRight 函数可以迭代数组的所有元素，reduce 从前开始 reduceRight 从后面开始</p>
+<h3 id="统计元素出现的次数">统计元素出现的次数</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">countArrayELem</span>(<span style="color:#a6e22e">array</span>, <span style="color:#a6e22e">elem</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">array</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">total</span>, <span style="color:#a6e22e">cur</span>) =&gt; (<span style="color:#a6e22e">total</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">cur</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">elem</span> <span style="color:#f92672">?</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">0</span>);
+    }
+    
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>];
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">countArrayELem</span>(<span style="color:#a6e22e">numbers</span>, <span style="color:#ae81ff">1</span>)); <span style="color:#75715e">//2
+</span></code></pre></div><h3 id="取数组中的最大值">取数组中的最大值</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">arrayMax</span>(<span style="color:#a6e22e">array</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">array</span>.<span style="color:#a6e22e">reduce</span>(
+        (<span style="color:#a6e22e">max</span>, <span style="color:#a6e22e">elem</span>) =&gt; (<span style="color:#a6e22e">max</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">elem</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">max</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">elem</span>), <span style="color:#a6e22e">array</span>[<span style="color:#ae81ff">0</span>]
+        );
+    }
+    
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arrayMax</span>([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">9</span>]));
+</code></pre></div><h3 id="取价格最高的商品">取价格最高的商品</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cart</span> <span style="color:#f92672">=</span> [
+      { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;iphone&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">12000</span> },
+      { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;imac&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25000</span> },
+      { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ipad&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3600</span> }
+    ];
+    
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">maxPrice</span>(<span style="color:#a6e22e">array</span>) {
+      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">array</span>.<span style="color:#a6e22e">reduce</span>(
+        (<span style="color:#a6e22e">goods</span>, <span style="color:#a6e22e">elem</span>) =&gt; (<span style="color:#a6e22e">goods</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">goods</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">elem</span>),
+        <span style="color:#a6e22e">array</span>[<span style="color:#ae81ff">0</span>]
+      );
+    }
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">maxPrice</span>(<span style="color:#a6e22e">cart</span>));
+</code></pre></div><h3 id="计算购物车中的商品总价">计算购物车中的商品总价</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cart</span> <span style="color:#f92672">=</span> [
+        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;iphone&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">12000</span> },
+        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;imac&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25000</span> },
+        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ipad&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3600</span> }
+    ];
+    
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">total</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cart</span>.<span style="color:#a6e22e">reduce</span>(
+        (<span style="color:#a6e22e">total</span>, <span style="color:#a6e22e">goods</span>) =&gt; <span style="color:#a6e22e">total</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">goods</span>.<span style="color:#a6e22e">price</span>, <span style="color:#ae81ff">0</span>
+    );
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">total</span>); <span style="color:#75715e">//40600
+</span></code></pre></div><h3 id="获取价格超过1万的商品名称">获取价格超过1万的商品名称</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">goods</span> <span style="color:#f92672">=</span> [
+        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;iphone&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">12000</span> },
+        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;imac&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25000</span> },
+        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ipad&#34;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3600</span> }
+    ];
+    
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getNameByPrice</span>(<span style="color:#a6e22e">array</span>, <span style="color:#a6e22e">price</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">array</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">goods</span>, <span style="color:#a6e22e">elem</span>) =&gt; {
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">price</span>) {
+                <span style="color:#a6e22e">goods</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">elem</span>);
+            }
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">goods</span>;
+        }, []).<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">elem</span> =&gt; <span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">name</span>);
+    }
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">table</span>(<span style="color:#a6e22e">getNameByPrice</span>(<span style="color:#a6e22e">goods</span>, <span style="color:#ae81ff">10000</span>));
+</code></pre></div><h3 id="实现数组去重">实现数组去重</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>];
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">filterArr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">pre</span>, <span style="color:#a6e22e">cur</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">array</span>) =&gt; {
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">pre</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">cur</span>) <span style="color:#f92672">===</span> <span style="color:#66d9ef">false</span>) {
+            <span style="color:#a6e22e">pre</span> <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">pre</span>, <span style="color:#a6e22e">cur</span>];
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">pre</span>;
+    }, []);
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">filterArr</span>); <span style="color:#75715e">// [1,2,6]
+</span></code></pre></div><hr>
+<blockquote>
+<p>喜欢这篇文章的话 打赏一下吧！</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><img src="https://listenlive.cn/images/pay/eb05acdaec967.png" alt="Wechat"></th>
+<th style="text-align:right"><img src="https://listenlive.cn/images/pay/0831de845.png" alt="Alipay"></th>
+</tr>
+</thead>
+</table>
+
+    </div>
+	<div class="post-comment">
+    
+    
+<span id="/note/202104/javascript.html" class="leancloud_visitors" data-flag-title="Js数组操作">
+<p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js'></script>
+<script type="text/javascript">
+new Valine({
+    el: '#vcomments' ,
+    appId: '9iOmqWQl7wQBsarOb3o2m0eO-gzGzoHsz',
+    appKey: 'U2cCMaQisH6I3GsyClKuvrwK',
+    notify: 'false',
+    verify: 'false',
+    avatar:'mm',
+    placeholder: '说点什么吧...',
+    visitor: 'true'
+});
+</script>
+	</div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://listenlive.cn/tags/javascript" rel="tag" title="JavaScript">#JavaScript#</a>
+    
+    <a href="https://listenlive.cn/tags/js" rel="tag" title="JS">#JS#</a>
+    
+    <a href="https://listenlive.cn/tags/%e6%95%b0%e7%bb%84" rel="tag" title="数组">#数组#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://listenlive.cn/note/202104/docker.html" rel="next" title="Ubuntu-Docker的安装与使用">
+        <i class="fa fa-chevron-left"></i> Ubuntu-Docker的安装与使用
+        </a>
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://listenlive.cn/leaf/202103/axios-soap.html" rel="prev" title="Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService">
+        Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+     
+
+
+
+
+    </footer>
+  </article>
+</section>
+
+          </div>
+        </div>
+        <div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://listenlive.cn/img/author.jpg"
+        alt="黑貓警長" />
+    <p class="site-author-name" itemprop="name">黑貓警長</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        Programmer &amp; Architect</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://listenlive.cn/post/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://listenlive.cn/categories/">      
+         
+        <span class="site-state-item-count">4</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://listenlive.cn/tags/">
+         
+        <span class="site-state-item-count">51</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com" target="_blank" title="GitHub">
+            <i class="fa fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://www.instagram.com/ins0273" target="_blank" title="Instagram">
+            <i class="fa fa-fw fa-instagram"></i>
+            Instagram
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6515305531" target="_blank" title="Weibo">
+            <i class="fa fa-fw fa-weibo"></i>
+            Weibo
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="mailto:listenlive7@gmail.com" target="_blank" title="Gmail">
+            <i class="fa fa-fw fa-envelope"></i>
+            Gmail
+        </a>
+        </span>
+    
+</div>
+
+
+      
+
+      <div class="links-of-blogroll motion-element inline">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5t3mz7o0h3k&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33&amp;bv=35" async="async"></script>
+</div>
+
+    </section>
+    
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#字符串">字符串</a></li>
+    <li><a href="#arrayfrom"><code>Array.from</code></a></li>
+    <li><a href="#展开语法">展开语法</a>
+      <ul>
+        <li><a href="#数组合并">数组合并</a></li>
+        <li><a href="#函数参数">函数参数</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#基本使用">基本使用</a></li>
+    <li><a href="#剩余解构">剩余解构</a></li>
+    <li><a href="#字符串解构">字符串解构</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#向数组追加元素">向数组追加元素</a></li>
+    <li><a href="#使用展开语法批量添加元素">使用展开语法批量添加元素</a></li>
+    <li><a href="#push"><code>push</code></a></li>
+    <li><a href="#pop"><code>pop</code></a></li>
+    <li><a href="#shift"><code>shift</code></a></li>
+    <li><a href="#unshift"><code>unshift</code></a></li>
+    <li><a href="#fill"><code>fill</code></a>
+      <ul>
+        <li><a href="#使用fill填充数组元素">使用<code>fill</code>填充数组元素</a></li>
+        <li><a href="#指定填充位置">指定填充位置</a></li>
+      </ul>
+    </li>
+    <li><a href="#slice"><code>slice</code></a></li>
+    <li><a href="#splice"><code>splice</code></a>
+      <ul>
+        <li><a href="#splice可以添加删除替换数组中的元素会对原数组进行改变返回值为删除的元素"><code>splice</code>可以添加、删除、替换数组中的元素，会对原数组进行改变，返回值为删除的元素</a></li>
+        <li><a href="#通过修改length删除最后一个元素">通过修改<code>length</code>删除最后一个元素</a></li>
+        <li><a href="#通过指定第三个参数来设置在删除位置添加的元素">通过指定第三个参数来设置在删除位置添加的元素</a></li>
+        <li><a href="#向末尾添加元素">向末尾添加元素</a></li>
+        <li><a href="#向数组前添加元素">向数组前添加元素</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#join"><code>join</code></a></li>
+    <li><a href="#split"><code>split</code></a></li>
+    <li><a href="#concat"><code>concat</code></a></li>
+    <li><a href="#copywithin"><code>copyWithin</code></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#indexof"><code>indexOf</code></a></li>
+    <li><a href="#includes"><code>includes</code></a></li>
+    <li><a href="#find"><code>find</code></a></li>
+    <li><a href="#findindex"><code>findIndex</code></a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#reverse"><code>reverse</code></a></li>
+    <li><a href="#sort"><code>sort</code></a>
+      <ul>
+        <li><a href="#默认从小到大排序">默认从小到大排序</a></li>
+        <li><a href="#使用排序函数从大到小排序">使用排序函数从大到小排序</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#for"><code>for</code></a></li>
+    <li><a href="#foreach"><code>forEach</code></a></li>
+    <li><a href="#forin"><code>for/in</code></a></li>
+    <li><a href="#forof"><code>for/of</code></a></li>
+    <li><a href="#实现取数组最大值的方法">实现取数组最大值的方法</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#every"><code>every</code></a></li>
+    <li><a href="#some"><code>some</code></a></li>
+    <li><a href="#filter"><code>filter</code></a></li>
+    <li><a href="#map"><code>map</code></a></li>
+    <li><a href="#reduce"><code>reduce</code></a>
+      <ul>
+        <li><a href="#统计元素出现的次数">统计元素出现的次数</a></li>
+        <li><a href="#取数组中的最大值">取数组中的最大值</a></li>
+        <li><a href="#取价格最高的商品">取价格最高的商品</a></li>
+        <li><a href="#计算购物车中的商品总价">计算购物车中的商品总价</a></li>
+        <li><a href="#获取价格超过1万的商品名称">获取价格超过1万的商品名称</a></li>
+        <li><a href="#实现数组去重">实现数组去重</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div>
+</section>
+
+  </div>
+</aside>
+
+      </div>
+    </main>
+   
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <span><a href="http://www.beian.miit.gov.cn/">京ICP备17004223号-2</a></span>
+  <span itemprop="copyrightYear">  &copy; 2020 - 2021</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.82.0</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2444a3fc34c4ce99b33ff943eb0c4307";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script>
+    var _mtac = {};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500724336");
+
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script> 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://listenlive.cn/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script src="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/utils.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/motion.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/affix.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/post-details.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/toc.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+
+
+</body>
+</html>

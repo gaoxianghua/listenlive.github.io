@@ -1,0 +1,877 @@
+<search>
+    
+     <entry>
+        <title>Windows-Laravel开发环境Homestead搭建</title>
+        <url>https://listenlive.cn/note/202105/installhd.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Laravel</tag><tag>Homestead</tag>
+        </tags>
+        <content type="html"> 准备工作 安装所需软件  Git Vagrant VitrualBox xshell Navicat  生成SSH Key 在用户家目录运行：
+cd ~ ssh-keygen -t rsa -C &amp;#34;youemail@homestead.com&amp;#34; 此时，会生成以下的文件
+下载Homestead的box文件 打开命令终端以管理员权限运行，cd到用户家目录 运行命令： vagrant box add laravel/homestead 输入编号，选择vitrualbox选项 等待下载安装即可（现在国内的下载速度还是可以的，所以不用去找box文件啦） 完成后运行vagrant box list命令查看是否安装成功 配置Homestead 克隆homestead配置文件到用户家目录 cd ~ git clone https://github.com/laravel/homestead.git 执行命令bash init.sh初始化 cd homestead bash init.sh 配置Homestead.yaml文件 --- ip: &amp;#34;192.168.1.10&amp;#34; memory: 2048 cpus: 2 provider: virtualbox authorize: ~/.ssh/id_rsa.pub keys: - ~/.ssh/id_rsa folders: - map: D:\workspace /**自定义自己的工作目录 （注释删除）**/ to: /home/vagrant/code sites: - map: homestead.test to: /home/vagrant/code/homestead/public - map: api.test to: /home/vagrant/code/shopApi/public databases: - homestead - api features: - mysql: true - mariadb: false - postgresql: false - ohmyzsh: false - webdriver: false #services: # - enabled: # - &amp;#34;postgresql@12-main&amp;#34; # - disabled: # - &amp;#34;postgresql@11-main&amp;#34; # ports: # - send: 50000 # to: 5000 # - send: 7777 # to: 777 # protocol: udp 运行vagrant up命令，启动Homestead vagrant up xshell连接虚拟机的IP为yaml配置文件中的IP，用户名和密码均为vagrant Navicat连接MySQL数据库的IP为yaml配置文件中的IP，用户名为homestead，密码为secret 修改Homestead中PHP的版本 # 查看所有 php 版本和当前版本 sudo update-alternatives --display php # 执行后，会列出当前 php 所有版本和编号，输入编号，切换到执行的版本 sudo update-alternatives --config php   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Ubuntu-安装PHP启动报错php: error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: No such file or directory解决办法</title>
+        <url>https://listenlive.cn/note/202105/phperror.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>PHP</tag>
+        </tags>
+        <content type="html"> Ubuntu-使用宝塔面板安装PHP后启动报错：php: error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: No such file or directory 解决办法 前往http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/找到合适的软件包 我这里选择libssl1.0-dev_1.0.2n-1ubuntu5_amd64.deb
+cd /usr/local/src sudo wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0-dev_1.0.2n-1ubuntu5_amd64.deb sudo dpkg -i libssl1.0-dev_1.0.2n-1ubuntu5_amd64.deb 再次重启PHP成功   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Ubuntu-Docker的安装与使用</title>
+        <url>https://listenlive.cn/note/202104/docker.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Docker</tag><tag>Ubuntu</tag>
+        </tags>
+        <content type="html"> 环境配置 删除旧版本 sudo apt-get remove docker docker-engine docker.io containerd runc 更新apt包索引 sudo apt-get update 安装包以允许apt通过HTTPS使用存储库 sudo apt-get install apt-transport-https sudo apt-get install ca-certificates sudo apt-get install curl sudo apt-get install gnupg-agent sudo apt-get install software-properties-common 添加Docker的官方GPG密钥 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88通过搜索指纹的最后8个字符，验证您现在拥有带指纹的密钥
+sudo apt-key fingerprint 0EBFCD88 添加软件源 sudo add-apt-repository \ &amp;#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable&amp;#34; 更新apt索引 sudo apt-get update 执行安装 sudo apt-get install docker-ce docker-ce-cli containerd.io 通过运行hello-world 映像验证是否正确安装了Docker CE sudo docker run hello-world 查看docker版本 sudo docker version 进程维护 停止、启动、重启docker sudo systemctl start | stop | restart docker.service 加入开机自启 sudo systemctl enable docker 开机启动检测 sudo systemctl list-unit-files | grep docker Docker的升级维护 升级 sudo apt-get update 卸载 sudo apt-get purge docker-ce docker-ce-cli containerd.io docker docker.io sudo rm -rf /var/lib/docker sudo apt autoremove 账号权限 由于每次运行docker都要在命令前加sudo,下面设置当前登录账号执行docker命令方法
+创建docker组 sudo groupadd docker 将当前用户添加到docker组 sudo usermod -aG docker $USER 注销账号并重新登录即可 镜像管理 搜索镜像 docker search nginx 安装镜像 docker pull nginx 查看镜像 docker images 删除镜像 docker rmi -f nginx 容器管理 查看运行的容器 docker ps 查看所有容器 docker ps -a 查看容器进程 docker top nginx 查看容器端口映射 docker port xx 查看容器元信息（如IP） docker inspect xx 查看容器日志 docker logs nginx 删除容器 docker rm -f xx   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Js数组操作</title>
+        <url>https://listenlive.cn/note/202104/javascript.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>JavaScript</tag><tag>JS</tag><tag>数组</tag>
+        </tags>
+        <content type="html"> 类型转换 字符串 大部分数据类型都可以使用toString()函数转换为字符串
+console.log(([1,2,3]).toString()); //1,2,3 也可以使用函数String转换为字符串
+console.log(String([1,2,3])); 或者使用join连接为字符串
+console.log([1,2,3].join(&amp;#34;-&amp;#34;)); //1-2-3 Array.from 使用Array.from可将类数组转换为数组，类数组指包含length属性或可迭代的对象。
+let str = &amp;#39;你好上海&amp;#39;; console.log(Array.from(str)); //[&amp;#34;你&amp;#34;,&amp;#34;好&amp;#34;,&amp;#34;上&amp;#34;,&amp;#34;海&amp;#34;] 为对象设置length属性后也可以转换为数组，但要下标为数值或数值字符串
+let user = { 0: &amp;#39;张三&amp;#39;, &amp;#39;1&amp;#39;: 18, length: 2 }; console.log(Array.from(user)); //[&amp;#34;张三&amp;#34;, 18] 展开语法 数组合并 使用...可将数组展开为多个值。
+let a = [1,2,3]; let b = [&amp;#39;a&amp;#39;,&amp;#39;listenlive.cn&amp;#39;,...a]; console.log(b); //[&amp;#39;a&amp;#39;,&amp;#39;listenlive.cn&amp;#39;,1,2,3] 函数参数 使用展示语法可以替接收任意数量的参数
+function live(...args){ console.log(args); } live(1,2,3,&amp;#39;listenlive.cn&amp;#39;); //[1,2,3,&amp;#39;listenlive.cn&amp;#39;] 解构赋值 基本使用 let [site,url] = [&amp;#39;listenlive&amp;#39;,&amp;#39;listenlive.cn&amp;#39;]; console.log(site); //listenlive 剩余解构 //使用一个变量来接收剩余参数  let [a,...b] = [&amp;#39;listenlive.cn&amp;#39;,&amp;#39;beijing&amp;#39;,&amp;#39;shanghai&amp;#39;]; console.log(a); //listenlive.cn  console.log(b); //[&amp;#39;beijing&amp;#39;,shanghai] 字符串解构 const [...a] = &amp;#39;listenlive.cn&amp;#39; console.log(a); //Array(13) 管理元素 向数组追加元素 let arr = [1,&amp;#39;listenlive.cn&amp;#39;,&amp;#39;listenlive&amp;#39;]; arr[arr.length] = &amp;#39;dada&amp;#39;; console.log(arr); //[1,&amp;#39;listenlive.cn&amp;#39;,&amp;#39;listenlive&amp;#39;,&amp;#39;dada&amp;#39;] 使用展开语法批量添加元素 let arr = [1,2,3,&amp;#39;listen&amp;#39;]; let live = [&amp;#39;listenlive.cn&amp;#39;]; live.push(...arr); console.log(live); //[&amp;#39;listenlive.cn&amp;#39;,1,2,3,&amp;#39;listen&amp;#39;] push 压入元素。返回值为数组元素的数量
+let arr = [&amp;#39;site&amp;#39;,&amp;#39;listenlive&amp;#39;]; console.log(arr.push(&amp;#39;apple&amp;#39;,&amp;#39;strawberry&amp;#39;)); //4  console.log(arr); //[&amp;#39;site&amp;#39;,&amp;#39;listenlive&amp;#39;,&amp;#39;apple&amp;#39;,&amp;#39;strawberry&amp;#39;] pop 从末尾弹出元素，返回值为弹出的元素。
+let arr = [&amp;#39;apple&amp;#39;,&amp;#39;strawberry&amp;#39;,&amp;#39;banana&amp;#39;]; console.log(arr.pop()); //banana  console.log(arr); //[&amp;#39;apple&amp;#39;,&amp;#39;strawberry&amp;#39;] shift 从数组前面取出一个元素
+let arr = [&amp;#39;apple&amp;#39;,&amp;#39;banana&amp;#39;]; console.log(arr.shift()); //apple  console.log(arr); //[&amp;#39;banana&amp;#39;] unshift 从数组前面添加元素
+let arr = [&amp;#39;apple&amp;#39;,&amp;#39;banana&amp;#39;]; console.log(arr.unshift(&amp;#39;strawberry&amp;#39;,&amp;#39;grape&amp;#39;)); //4  console.log(arr); //[&amp;#39;strawberry&amp;#39;,&amp;#39;grape&amp;#39;,&amp;#39;apple&amp;#39;,&amp;#39;banana&amp;#39;] fill 使用fill填充数组元素 let arr = Array(4).fill(&amp;#39;apple&amp;#39;); console.log(arr); //[&amp;#39;apple&amp;#39;,&amp;#39;apple&amp;#39;,&amp;#39;apple&amp;#39;,&amp;#39;apple&amp;#39;] 指定填充位置 let arr = [1,2,3,4]; arr.fill(&amp;#34;listenlive.cn&amp;#34;,1,2); console.log(arr); //[1,&amp;#39;listenlive.cn&amp;#39;,3,4] slice 数组截取,不会改变原数组
+let arr = [0,1,2,3,4,5]; console.log(arr.slice(1,3)); //[1,2] splice splice可以添加、删除、替换数组中的元素，会对原数组进行改变，返回值为删除的元素 删除数组元素第一个参数为从哪开始删除，第二个参数为删除的数量。
+let arr = [0, 1, 2, 3, 4, 5, 6]; console.log(arr.splice(1, 3)); //返回删除的元素 [1, 2, 3]  console.log(arr); //删除数据后的原数组 [0, 4, 5, 6] 通过修改length删除最后一个元素 let arr = [&amp;#34;apple&amp;#34;, &amp;#34;banana&amp;#34;]; arr.length = arr.length - 1; console.log(arr); 通过指定第三个参数来设置在删除位置添加的元素 let arr = [0, 1, 2, 3, 4, 5, 6]; console.log(arr.splice(1, 3, &amp;#39;apple&amp;#39;, &amp;#39;strawberry&amp;#39;)); //[1, 2, 3]  console.log(arr); //[0, &amp;#34;apple&amp;#34;, &amp;#34;strawberry&amp;#34;, 4, 5, 6] 向末尾添加元素 let arr = [0, 1, 2, 3, 4, 5, 6]; console.log(arr.splice(arr.length, 0, &amp;#39;apple&amp;#39;, &amp;#39;strawberry&amp;#39;)); //[]  console.log(arr); // [0, 1, 2, 3, 4, 5, 6, &amp;#34;apple&amp;#34;, &amp;#34;strawberry&amp;#34;] 向数组前添加元素 let arr = [0, 1, 2, 3, 4, 5, 6]; console.log(arr.splice(0, 0, &amp;#39;apple&amp;#39;, &amp;#39;strawberry&amp;#39;)); //[]  console.log(arr); // [&amp;#34;apple&amp;#34;, &amp;#34;strawberry&amp;#34;，0, 1, 2, 3, 4, 5, 6] 数组的合并与拆分 join 使用join连接成字符串
+let arr = [1,&amp;#39;cms&amp;#39;,&amp;#39;apple&amp;#39;]; console.log(arr.join(&amp;#39;-&amp;#39;)); //1-cms-apple split split 将字符串分割成数组
+let price = &amp;#34;22,28,aa&amp;#34;; console.log(price.split(&amp;#34;,&amp;#34;)); //[&amp;#34;22&amp;#34;,&amp;#34;28&amp;#34;,&amp;#34;aa&amp;#34;] concat concat用于连接两个或多个数组
+let arr = [&amp;#34;apple&amp;#34;, &amp;#34;strawberrry&amp;#34;]; let listen = [1, 2]; let live = [3, 4]; console.log(array.concat(listen, live)); //[&amp;#34;apple&amp;#34;, &amp;#34;strawberrry&amp;#34;, 1, 2, 3, 4] 也可使用展开语法实现连接
+console.log([...arr,...listen,...live]); copyWithin copyWithin从数组中复制一部分到数组中的其他位置
+array.copyWithin(target,start,end); /* *参数说明 *target--必需。复制到指定目标索引位置。 *start--可选。元素复制的起始位置。 *end--可选。停止复制的索引位置 (默认为 array.length)。如果为负值，表示倒数。 */ 查找元素 indexOf indexOf从前向后查找元素出现的位置，如果找不到返回-1
+let arr = [7,3,5,8,9]; console.log(arr.indexOf(3)); //1  console.log(arr.indexOf(2)); //-1 includes 使用includes查找字符串，返回值为布尔类型，方便判断。
+let arr = [7,3,2,6]; console.log(arr.includes(6)); //true find find方法找到后会把值返回出来(返回第一次找到的值)，如果找不到返回值为undefined
+findIndex findIndex与find的区别是返回索引值
+数组排序 reverse 反转数组顺序
+let arr = [1,4,2,9]; console.log(arr.reverse()); //[9,2,4,1] sort 默认从小到大排序 let arr = [1,4,2,9]; console.log(arr.sort()); //[1,2,4,9] 使用排序函数从大到小排序 let arr = [1, 4, 2, 9]; console.log(arr.sort(function (v1, v2) { return v2 - v1; })); //[9, 4, 2, 1] 循环遍历 for let lessons = [ {title: &amp;#39;媒体查询响应式布局&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;FLEX 弹性盒模型&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;MYSQL多表查询随意操作&amp;#39;,category: &amp;#39;mysql&amp;#39;} ]; for (let i = 0; i &amp;lt; lessons.length; i&#43;&#43;) { lessons[i] = `课程: ${lessons[i].title}`; } console.log(lessons); forEach let lessons = [ {title: &amp;#39;媒体查询响应式布局&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;FLEX 弹性盒模型&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;MYSQL多表查询随意操作&amp;#39;,category: &amp;#39;mysql&amp;#39;} ]; lessons.forEach((item, index, array) =&amp;gt; { item.title = item.title.substr(0, 5); }); console.log(lessons); for/in let lessons = [ {title: &amp;#39;媒体查询响应式布局&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;FLEX 弹性盒模型&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;MYSQL多表查询随意操作&amp;#39;,category: &amp;#39;mysql&amp;#39;} ]; for (const key in lessons) { console.log(`标题: ${lessons[key].title}`); } for/of let lessons = [ {title: &amp;#39;媒体查询响应式布局&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;FLEX 弹性盒模型&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;MYSQL多表查询随意操作&amp;#39;,category: &amp;#39;mysql&amp;#39;} ]; for (const item of lessons) { console.log(` 标题: ${item.title}栏目: ${item.category == &amp;#34;css&amp;#34; ? &amp;#34;前端&amp;#34; : &amp;#34;数据库&amp;#34;}`); } 实现取数组最大值的方法 function arrayMax(array) { let max = array[0]; for (const elem of array) { max = max &amp;gt; elem ? max : elem; } return max; } console.log(arrayMax([1, 3, 2, 9])); 扩展方法 every every 用于递归的检测元素，要所有元素操作都要返回真结果才为真。
+实现标题的关键词检查
+let words = [&amp;#39;js&amp;#39;, &amp;#39;css&amp;#39;, &amp;#39;php&amp;#39;]; let title = &amp;#39;dfgdsgdsfdgjs&amp;#39;; let state = words.every(function (item, index, array) { return title.indexOf(item) &amp;gt;= 0; }); if (state == false) console.log(&amp;#39;标题必须包含所有关键词&amp;#39;); some 使用 some 函数可以递归的检测元素，如果有一个返回true，表达式结果就是真。第一个参数为元素，第二个参数为索引，第三个参数为原数组。
+使用 some 检测规则关键词的示例，如果匹配到一个词就提示违规。
+let words = [&amp;#39;ss&amp;#39;, &amp;#39;蛤蟆&amp;#39;, &amp;#39;wa&amp;#39;]; let title = &amp;#39;wawawawawwww&amp;#39; let state = words.some(function (item, index, array) { return title.indexOf(item) &amp;gt;= 0; }); if (state) console.log(&amp;#39;标题含有违规关键词&amp;#39;); filter 使用 filter 可以过滤数据中元素
+下面是获取所有在CSS栏目的课程。
+let lessons = [ {title: &amp;#39;媒体查询响应式布局&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;FLEX 弹性盒模型&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;MYSQL多表查询随意操作&amp;#39;,category: &amp;#39;mysql&amp;#39;} ]; let cssLessons = lessons.filter(function (item, index, array) { if (item.category.toLowerCase() == &amp;#39;css&amp;#39;) { return true; } }); console.log(cssLessons); map 使用 map 映射可以在数组的所有元素上应用函数，用于映射出新的值。 获取数组所有标题组合的新数组
+let lessons = [ {title: &amp;#39;媒体查询响应式布局&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;FLEX 弹性盒模型&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;MYSQL多表查询随意操作&amp;#39;,category: &amp;#39;mysql&amp;#39;} ]; console.log(lessons.map(item =&amp;gt; item.title)); 为所有标题添加上 APPLE
+let lessons = [ {title: &amp;#39;媒体查询响应式布局&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;FLEX 弹性盒模型&amp;#39;,category: &amp;#39;css&amp;#39;}, {title: &amp;#39;MYSQL多表查询随意操作&amp;#39;,category: &amp;#39;mysql&amp;#39;} ]; lessons = lessons.map(function (item, index, array) { item.title = `[APPLE] ${item[&amp;#39;title&amp;#39;]}`; return item; }); console.log(lessons); reduce 使用 reduce 与 reduceRight 函数可以迭代数组的所有元素，reduce 从前开始 reduceRight 从后面开始
+统计元素出现的次数 function countArrayELem(array, elem) { return array.reduce((total, cur) =&amp;gt; (total &#43;= cur == elem ? 1 : 0), 0); } let numbers = [1, 2, 3, 1, 5]; console.log(countArrayELem(numbers, 1)); //2 取数组中的最大值 function arrayMax(array) { return array.reduce( (max, elem) =&amp;gt; (max &amp;gt; elem ? max : elem), array[0] ); } console.log(arrayMax([1, 3, 2, 9])); 取价格最高的商品 let cart = [ { name: &amp;#34;iphone&amp;#34;, price: 12000 }, { name: &amp;#34;imac&amp;#34;, price: 25000 }, { name: &amp;#34;ipad&amp;#34;, price: 3600 } ]; function maxPrice(array) { return array.reduce( (goods, elem) =&amp;gt; (goods.price &amp;gt; elem.price ? goods : elem), array[0] ); } console.log(maxPrice(cart)); 计算购物车中的商品总价 let cart = [ { name: &amp;#34;iphone&amp;#34;, price: 12000 }, { name: &amp;#34;imac&amp;#34;, price: 25000 }, { name: &amp;#34;ipad&amp;#34;, price: 3600 } ]; const total = cart.reduce( (total, goods) =&amp;gt; total &#43;= goods.price, 0 ); console.log(total); //40600 获取价格超过1万的商品名称 let goods = [ { name: &amp;#34;iphone&amp;#34;, price: 12000 }, { name: &amp;#34;imac&amp;#34;, price: 25000 }, { name: &amp;#34;ipad&amp;#34;, price: 3600 } ]; function getNameByPrice(array, price) { return array.reduce((goods, elem) =&amp;gt; { if (elem.price &amp;gt; price) { goods.push(elem); } return goods; }, []).map(elem =&amp;gt; elem.name); } console.table(getNameByPrice(goods, 10000)); 实现数组去重 let arr = [1, 2, 6, 2, 1]; let filterArr = arr.reduce((pre, cur, index, array) =&amp;gt; { if (pre.includes(cur) === false) { pre = [...pre, cur]; } return pre; }, []); console.log(filterArr); // [1,2,6]   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService</title>
+        <url>https://listenlive.cn/leaf/202103/axios-soap.html</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>api</tag><tag>axios</tag><tag>soap</tag><tag>node.js</tag><tag>koa2</tag>
+        </tags>
+        <content type="html"> axios请求云之讯短信接口实现短信发送 安装axios cnpm install axios --save 方法实现 static async sendMessage(ctx){ let param = Math.random().toString().substr(2, 4); //生成四位随机数  let phone = &amp;#39;157********&amp;#39;; const url = &amp;#39;https://open.ucpaas.com/ol/sms/sendsms&amp;#39;; const axios = require(&amp;#39;axios&amp;#39;); let sendRe = await axios({ method: &amp;#39;post&amp;#39;, url: url, data: { sid: &amp;#34;4rtw******&amp;#34;, token: &amp;#34;5fjg******&amp;#34;, appid: &amp;#34;8aj5******&amp;#34;, templateid: &amp;#39;2780*&amp;#39;, param: param, mobile: phone, //uid: config.uid  }, headers: { &amp;#34;Content-Type&amp;#34;: &amp;#34;application/json;charset=utf-8&amp;#34;, &amp;#34;Accept&amp;#34;: &amp;#34;application/json&amp;#34; } }); if(sendRe.data.code == &amp;#39;000000&amp;#39;){ ctx.json({ code:11, message:&amp;#34;发送成功&amp;#34; }); }else{ ctx.json({ code:22, message:&amp;#34;短信验证码发送失败，&amp;#34;&#43;sendRe.data.code }) } } soap请求WebService服务器数据 安装soap cnpm install soap --save 发起soap请求 async function GetProjectInfo () { var url = &amp;#39;http://digitcode.yesno.com.cn/CCNOutService/OutDigitCodeService.asmx?wsdl&amp;#39;; var args = { userID :&amp;#39;b6cf5d3*******1b3e&amp;#39;, userPwd:&amp;#39;50e3*******066&amp;#39;, ip:&amp;#39;101.*****&amp;#39;, acCode:&amp;#34;20210310****&amp;#34;, language:&amp;#39;1&amp;#39;, channel:&amp;#39;X&amp;#39; }; return new Promise(function (results) { const soap = require(&amp;#39;soap&amp;#39;); soap.createClient(url, function(err, client) { client.Get_AcCodeInfoInterface(args, function(err, result) { if (err) { results(err) }else { results(result) } }); }); }); } module.exports = { GetProjectInfo }; 获取到WebService返回的Xml数据 let resultProductInfo = await GetProjectInfo(); let xmlReply = resultProductInfo.reply; 解析Xml数据 安装xmlreader cnpm install xmlreader --save xml数据转json对象实现 async function XmlToJson (xmlString) { return new Promise(function (result){ var xmlreader = require(&amp;#34;xmlreader&amp;#34;); xmlreader.read(xmlString, function(errors, response){ if(null !== errors ){ result(errors); } let datas={}; datas.reply = response.messageinfo.item.reply.text(); datas.p_code = response.messageinfo.item.zcode.text(); datas.cuanhuocode = response.messageinfo.item.cuanhuocode.text(); datas.productcode = response.messageinfo.item.productcode.text(); result(datas); }); }); } module.exports = { XmlToJson };   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>基于Koa框架的Lincms常用操作</title>
+        <url>https://listenlive.cn/note/202103/lincms.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>lincms</tag><tag>Sequelize</tag><tag>koa</tag><tag>node.js</tag>
+        </tags>
+        <content type="html"> Sequelize事务操作 let transaction; //事务开始 try { transaction = await sequelize.transaction(); const replace_record = { p_code: v.get(&amp;#39;path.p_code&amp;#39;), p_type: v.get(&amp;#39;path.p_type&amp;#39;) }; const { id: record_id } = await ReplaceRecordModel.create(replace_record, { transaction }); await WxReplacesheetsModel.create( { record_id, name: v.get(&amp;#39;path.name&amp;#39;), phone: v.get(&amp;#39;path.phone&amp;#39;), province: v.get(&amp;#39;path.province&amp;#39;), city: v.get(&amp;#39;path.city&amp;#39;), district: v.get(&amp;#39;path.district&amp;#39;), question: v.get(&amp;#39;path.question&amp;#39;), status: 1 }, { transaction } ); await transaction.commit(); //事务提交  ctx.json({ code:11, message:&amp;#34;创建成功&amp;#34; }); }catch (error) { console.log(error) await transaction.rollback(); //事务回滚  throw new Failed({ code:22, message:&amp;#34;创建失败&amp;#34;, }); } 更新update await ReplaceRecordModel.update({status:2},{ where:{ id:1 } }); koa读取Excel文件 const xlsx = require(&amp;#39;xlsx&amp;#39;); const fs = require(&amp;#39;fs&amp;#39;); const path = require(&amp;#39;path&amp;#39;); async function getExcelObjs (arr) { const file = &amp;#39;app/assets/&amp;#39;&#43;arr[0].path; // 获取上传的excel文件路径  const reader = fs.createReadStream(file); // 创建可读流  const upStream = fs.createWriteStream(file); // 创建可写流  const getRes = await getFile(reader, upStream); //等待数据存储完成  const datas = []; //可能存在多个sheet的情况  if (!getRes) { const workbook = xlsx.readFile(file); const sheetNames = workbook.SheetNames; // 返回 [&amp;#39;sheet1&amp;#39;, ...]  for (const sheetName of sheetNames) { const worksheet = workbook.Sheets[sheetName]; const data = xlsx.utils.sheet_to_json(worksheet); datas.push(data); } //删除文件  fs.unlink(file,function(error){ if(error){ console.log(error); return false; } }); return { status: true, datas }; } else { return { status: false, msg: &amp;#39;error message...&amp;#39; }; } } function getFile (reader, upStream) { return new Promise(function (result) { let stream = reader.pipe(upStream); // 可读流通过管道写入可写流  stream.on(&amp;#39;finish&amp;#39;, function (err) { result(err); }); }); } module.exports = { getExcelObjs };   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Linux开启bbr加速</title>
+        <url>https://listenlive.cn/leaf/202102/bbr.html</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>Linux</tag><tag>bbr</tag>
+        </tags>
+        <content type="html"> 安装bbr加速 进入/usr/local/src目录，下载bbr.sh文件 cd /usr/local/src sudo wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh 添加可执行权限 sudo chmod &#43;x bbr.sh 执行该脚本文件,安装完成后提示按y重启系统 sudo sh bbr.sh 判断BBR加速有没有开启成功。输入以下命令： sysctl net.ipv4.tcp_available_congestion_control 如果返回值为：net.ipv4.tcp_available_congestion_control = bbr cubic reno则说明已经开启成功了   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>pip install 出错</title>
+        <url>https://listenlive.cn/leaf/202102/pip.html</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>pip</tag>
+        </tags>
+        <content type="html"> Linux下使用pip命令报错 最近使用腾讯云的实例遇到的坑，运行pip install命令后，报错如下： Traceback (most recent call last): File &amp;#34;/usr/bin/pip&amp;#34;, line 9, in &amp;lt;module&amp;gt; load_entry_point(&amp;#39;pip==21.0&amp;#39;, &amp;#39;console_scripts&amp;#39;, &amp;#39;pip&amp;#39;)() File &amp;#34;/usr/lib/python2.7/site-packages/pkg_resources.py&amp;#34;, line 378, in load_entry_point return get_distribution(dist).load_entry_point(group, name) File &amp;#34;/usr/lib/python2.7/site-packages/pkg_resources.py&amp;#34;, line 2566, in load_entry_point return ep.load() File &amp;#34;/usr/lib/python2.7/site-packages/pkg_resources.py&amp;#34;, line 2260, in load entry = __import__(self.module_name, globals(),globals(), [&amp;#39;__name__&amp;#39;]) File &amp;#34;/usr/lib/python2.7/site-packages/pip/_internal/cli/main.py&amp;#34;, line 60 sys.stderr.write(f&amp;#34;ERROR: {exc}&amp;#34;) 解决方式 重新安装pip yum remove python-pip cd /usr/local/src wget https://bootstrap.pypa.io/2.7/get-pip.py python get-pip.py pip -V   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>PHP&amp;kuaidi.com实现快递查询</title>
+        <url>https://listenlive.cn/leaf/202101/kuaidiapi.html</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>快递API</tag><tag>PHP</tag><tag>快递接口</tag>
+        </tags>
+        <content type="html"> 申请快递查询API授权key kuaidi.com SDK文件KDApi.php /** * 物流信息查询接口SDK */ class KDAPI{ private $_APPKEY = &amp;#39;twde5d8ef***********&amp;#39;; //改为您自己的key private $_APIURL = &amp;#34;https://highapi.kuaidi.com/openapi-querycountordernumber.html?&amp;#34;; private $_show = 0; private $_muti = 0; private $_order = &amp;#39;desc&amp;#39;; /** * 获得的快递网接口查询KEY。 * @param string $key */ public function KuaidiAPi($key){ $this-&amp;gt;_APPKEY = $key; } /** * 设置数据返回类型。0: 返回 json 字符串; 1:返回 xml 对象 * @param number $show */ public function setShow($show = 0){ $this-&amp;gt;_show = $show; } /** * 设置返回物流信息条目数, 0:返回多行完整的信息; 1:只返回一行信息 * @param number $muti */ public function setMuti($muti = 0){ $this-&amp;gt;_muti = $muti; } /** * 设置返回物流信息排序。desc:按时间由新到旧排列; asc:按时间由旧到新排列 * @param string $order */ public function setOrder($order = &amp;#39;desc&amp;#39;){ $this-&amp;gt;_order = $order; } /** * 查询物流信息，传入单号， * @param 物流单号 $nu * @param 公司简码 $com 要查询的快递公司代码,不支持中文,具体请参考快递公司代码文档。 不填默认根据单号自动匹配公司。注:单号匹配成功率高于 95%。 * @throws Exception * @return array */ public function query($nu, $com=&amp;#39;&amp;#39;){ if (function_exists(&amp;#39;curl_init&amp;#39;) == 1) { $url = $this-&amp;gt;_APIURL; $dataArr = array( &amp;#39;id&amp;#39; =&amp;gt; $this-&amp;gt;_APPKEY, &amp;#39;com&amp;#39; =&amp;gt; $com, &amp;#39;nu&amp;#39; =&amp;gt; $nu, &amp;#39;show&amp;#39; =&amp;gt; $this-&amp;gt;_show, &amp;#39;muti&amp;#39; =&amp;gt; $this-&amp;gt;_muti, &amp;#39;order&amp;#39; =&amp;gt; $this-&amp;gt;_order ); foreach ($dataArr as $key =&amp;gt; $value) { $url .= $key . &amp;#39;=&amp;#39; . $value . &amp;#34;&amp;amp;&amp;#34;; } // echo $url; $curl = curl_init(); curl_setopt($curl, CURLOPT_URL, $url); curl_setopt($curl, CURLOPT_HEADER, 0); curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); curl_setopt($curl, CURLOPT_TIMEOUT, 10); $kuaidresult = curl_exec($curl); curl_close($curl); if($this-&amp;gt;_show == 0){ $result = json_decode($kuaidresult, true); }else{ $result = $kuaidresult; } return $result; }else{ throw new Exception(&amp;#34;Please install curl plugin&amp;#34;, 1); } } } 使用示例example.php include &amp;#39;KDApi.php&amp;#39;; $kuaidichaxun = new KDAPI(); //设置返回格式。 0: 返回 json 字符串; 1:返回 xml 对象 //$kuaidichaxun-&amp;gt;setShow(1); //可选，默认为 0 返回json格式 //返回物流信息条目数。 0:返回多行完整的信息; 1:只返回一行信息 //$kuaidichaxun-&amp;gt;setMuti(1); //可选，默认为0 //设置返回物流信息排序。desc:按时间由新到旧排列; asc:按时间由旧到新排列 //$kuaidichaxun-&amp;gt;setOrder(&amp;#39;asc&amp;#39;); //查询 $result = $kuaidichaxun-&amp;gt;query(&amp;#39;YT21212*****&amp;#39;, &amp;#39;yuantong&amp;#39;); var_dump($result); 运行结果   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Linux-使用防火墙firewalld开放端口</title>
+        <url>https://listenlive.cn/leaf/20210122/linux-firewalld.html</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>firewalld</tag><tag>防火墙</tag>
+        </tags>
+        <content type="html"> 查看当前开了哪些端口其实一个服务对应一个端口，每个服务对应/usr/lib/firewalld/services下面一个xml文件 firewall-cmd --list-services 通过firewall-cmd --get-services命令查看可以打开的服务有哪些 新建并编辑vpn-port.xml文件 开放18001端口 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;service&amp;gt; &amp;lt;short&amp;gt;VPN Port&amp;lt;/short&amp;gt; &amp;lt;description&amp;gt;VPN Port 18001&amp;lt;/description&amp;gt; &amp;lt;port protocol=&amp;#34;tcp&amp;#34; port=&amp;#34;18001&amp;#34;/&amp;gt; &amp;lt;/service&amp;gt; 可以通过下面的命令添加一个服务到firewalld firewall-cmd --add-service=vpn-port //vpn-port换成想要开放的service,仅当前有效 firewall-cmd --permanent --add-service=vpn-port //加上--permanent,表示系统重启后也有效 重启防火墙即可生效 systemctl restart firewalld.service   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>使用Linux定时任务-Crontab 完成MySQL数据库的备份和表操作</title>
+        <url>https://listenlive.cn/leaf/202101/crontab_linux.html</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>定时任务</tag><tag>crontab</tag>
+        </tags>
+        <content type="html"> crontab基本命令 crontab -l //查看定时任务 crontab -e //编辑定时任务 crontab -r //删除定时任务 crontab常用写法 每分钟执行 */1 * * * * command 每小时0分执行 0 * * * * command 每天0点执行 0 0 * * * command 每周日0点执行 0 0 * * 0 command 每月1号执行 0 0 1 * * command 每年1月1日执行 0 0 1 1 * command 使用crontab定时任务备份数据库 首先编写shell脚本 back_mysql.sh t = `date &amp;#39;&#43;%Y-%m-%d %H:%M:%S&amp;#39;` //使用时间做文件名 mysqldump -h127.0.0.1 -uusername -ppwd dbname &amp;gt; /var/back_mysql/dbname&amp;#34;$t&amp;#34;.sql 将shell脚本加入到定时任务 00 6 * * * /opt/back_mysql.sh //每天六点备份数据库 使用定时任务定期更新数据库表字段 //每年1月1日更新年龄字段，让 age &#43; 1 0 0 1 1 * mysql -uusername -ppwd -e &amp;#34;use dbname;UPDATE tablename SET age = age &#43; 1;quit;&amp;#34;   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>SEO搜索引擎优化-常用的站长平台总结</title>
+        <url>https://listenlive.cn/share/202101/zhanzhangurl/</url>
+        <categories>
+          <category>分享</category>
+        </categories>
+        <tags>
+          <tag>SEO</tag>
+        </tags>
+        <content type="html"> 百度: https://ziyuan.baidu.com 谷歌: https://analytics.google.com 腾讯: https://mta.qq.com 搜狗: http://zhanzhang.sogou.com 360: http://zhanzhang.so.com 必应: https://www.bing.com/webmasters/homepage 头条: https://zhanzhang.toutiao.com 神马: https://zhanzhang.sm.cn   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Linux-CentOS上Docker的安装与卸载</title>
+        <url>https://listenlive.cn/note/202101/install_docker/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>CentOS</tag><tag>Docker</tag>
+        </tags>
+        <content type="html"> 通过uname -r 命令查看Linux内核版本 uname -r //Docker 要求 CentOS 系统的内核版本高于 3.10 确保yum包更新到最新 yum update 安装需要的软件包 yum install -y yum-utils device-mapper-persistent-data lvm2 //yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的 设置yum源 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 查看所有仓库中所有docker版本，并选择特定版本安装 yum list docker-ce --showduplicates | sort -r 选择版本并安装 sudo yum install docker-ce-19.03.9.ce 启动并加入开机启动 systemctl start docker systemctl enable docker 运行docker version命令，查看版本信息 docker version 卸载命令 yum remove docker docker-common docker-selinux docker-engine   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>解决Hugo/Hexo主题目录themes/无法通过Git提交问题</title>
+        <url>https://listenlive.cn/leaf/2021/01/git_commit/</url>
+        <categories>
+          <category>杂记</category>
+        </categories>
+        <tags>
+          <tag>Git</tag><tag>Hugo</tag>
+        </tags>
+        <content type="html"> 剪切themes/.git文件夹到其他目录 从暂存区删除该文件夹 git rm --cache ./themes/next 再重新添加并提交即可 git add . git commit -m &amp;#39;&amp;#39; git push   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>PHP-微信公众号实现发送模板消息</title>
+        <url>https://listenlive.cn/leaf/2020/12/15/wechat01/</url>
+        <categories>
+          <category>杂记</category>
+        </categories>
+        <tags>
+          <tag>微信开发</tag><tag>模板消息</tag><tag>PHP</tag>
+        </tags>
+        <content type="html"> PHP微信公众号实现发送模板消息 $appid = &amp;#34;wxb7729*******&amp;#34;; $appsecret = &amp;#34;8b99**************&amp;#34;; $url = &amp;#34;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;amp;appid=$appid&amp;amp;secret=$appsecret&amp;#34;; $ch = curl_init(); curl_setopt($ch, CURLOPT_URL, $url); curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); $output = curl_exec($ch); curl_close($ch); $jsoninfo = json_decode($output, true);	$ACCESS_TOKEN = $jsoninfo[&amp;#34;access_token&amp;#34;]; $data=array( &amp;#39;touser&amp;#39;=&amp;gt;&amp;#34;oaIgKt*********&amp;#34;, //要发送给用户的openid &amp;#39;template_id&amp;#39;=&amp;gt;&amp;#34;gSxmffQ*********&amp;#34;,//改成自己的模板id，在微信后台模板消息里查看 &amp;#39;url&amp;#39;=&amp;gt;&amp;#34;https://listenlive.cn&amp;#34;, //用户点击要跳转的url &amp;#39;data&amp;#39;=&amp;gt;array( &amp;#39;first&amp;#39;=&amp;gt;array( &amp;#39;value&amp;#39;=&amp;gt;&amp;#34;亲爱的同学，您有直播提醒，请查阅。&amp;#34;, &amp;#39;color&amp;#39;=&amp;gt;&amp;#34;#000&amp;#34; ), &amp;#39;keyword1&amp;#39;=&amp;gt;array( &amp;#39;value&amp;#39;=&amp;gt;&amp;#34;教授直播&amp;#34;, &amp;#39;color&amp;#39;=&amp;gt;&amp;#34;#f00&amp;#34; ), &amp;#39;keyword2&amp;#39;=&amp;gt;array( &amp;#39;value&amp;#39;=&amp;gt;&amp;#34;教授&amp;#34;, &amp;#39;color&amp;#39;=&amp;gt;&amp;#34;#173177&amp;#34; ), &amp;#39;keyword3&amp;#39;=&amp;gt;array( &amp;#39;value&amp;#39;=&amp;gt;&amp;#34;2020-03-25 19:00&amp;#34;, &amp;#39;color&amp;#39;=&amp;gt;&amp;#34;#3d3d3d&amp;#34; ), &amp;#39;remark&amp;#39;=&amp;gt;array( &amp;#39;value&amp;#39;=&amp;gt;&amp;#34;戳进来可以查看详情&amp;gt;&amp;gt;&amp;gt;&amp;#34;, &amp;#39;color&amp;#39;=&amp;gt;&amp;#34;#3d3d3d&amp;#34; ), ) ); $json_data=json_encode($data);//转化成json数组让微信可以接收 $url=&amp;#34;https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=&amp;#34;.$ACCESS_TOKEN;//模板消息请求URL $res=https_request($url,urldecode($json_data));//请求开始 $res=json_decode($res,true); if($res[&amp;#39;errcode&amp;#39;]==0 &amp;amp;&amp;amp; $res[&amp;#39;errcode&amp;#39;]==&amp;#34;ok&amp;#34;){ echo &amp;#34;发送成功！&amp;#34;; } //curl请求函数 function https_request($url,$data = null){ $curl = curl_init(); curl_setopt($curl, CURLOPT_URL, $url); curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE); curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE); if (!empty($data)){ curl_setopt($curl, CURLOPT_POST, 1); curl_setopt($curl, CURLOPT_POSTFIELDS, $data); } curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); $output = curl_exec($curl); curl_close($curl); return $output; } 发送成功   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Koa框架实现导出Excel文件</title>
+        <url>https://listenlive.cn/note/2020/12/11/koa_import/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Koa2</tag><tag>Node.js</tag>
+        </tags>
+        <content type="html"> 安装引入excel-export包 cnpm install excel-export --save const nodeExcel = require(&amp;#39;excel-export&amp;#39;); 实现导出方法 /** * 数据导出--导出方法 * @param resultData [{},{},] //从数据库中获取的数据格式 */ static async exportData(resultData,ctx){ let conf ={}; conf.name = &amp;#34;worksheet&amp;#34;;//表格名 let alldata = new Array(); for(let i = 0;i&amp;lt;resultData.length;i&#43;&#43;){ let arr = new Array(); arr.push(resultData[i].name); arr.push(resultData[i].phone); arr.push(resultData[i].age); alldata.push(arr); } //决定列名和类型 conf.cols = [{ caption:&amp;#39;姓名&amp;#39;, type:&amp;#39;string&amp;#39; },{ caption:&amp;#39;手机号&amp;#39;, type:&amp;#39;string&amp;#39; },{ caption:&amp;#39;年龄&amp;#39;, type:&amp;#39;string&amp;#39; }]; conf.rows = alldata;//填充数据 let result = nodeExcel.execute(conf); //最后3行express框架是这样写 // res.setHeader(&amp;#39;Content-Type&amp;#39;, &amp;#39;application/vnd.openxmlformats&amp;#39;); // res.setHeader(&amp;#34;Content-Disposition&amp;#34;, &amp;#34;attachment; filename=&amp;#34; &#43; &amp;#34;Report.xlsx&amp;#34;); // res.end(result, &amp;#39;binary&amp;#39;); ctx.set(&amp;#39;Content-Type&amp;#39;, &amp;#39;application/vnd.openxmlformats&amp;#39;); ctx.set(&amp;#34;Content-Disposition&amp;#34;, &amp;#34;attachment; filename=&amp;#34; &#43; &amp;#34;Report.xlsx&amp;#34;); ctx.body=data; }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Go-strings和strconv函数的使用</title>
+        <url>https://listenlive.cn/note/2020/11/30/golang02/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>go</tag><tag>golang</tag>
+        </tags>
+        <content type="html"> strings.HasPrefix(s string, prefix string) bool :判断字符串s是否以prefix开头 例：判断一个url是否以http://开头，如果不是则加上http://
+func urlProcess(url string) string { result := strings.HasPrefix(url, &amp;#34;http://&amp;#34;) if !result { url = fmt.Sprintf(&amp;#34;http://%s&amp;#34;, url) } return url } strings.HasSuffix(s string, suffix string) bool:判断字符串s是否以suffix结尾 例：判断一个路径是否以“/”结尾，如果不是则加上“/”
+func pathProcess(path string) string { result := strings.HasSuffix(path &amp;#34;/&amp;#34;) if !result { path = fmt.Sprintf(&amp;#34;%s/&amp;#34;,path) } return path } strings.Index(s string, str string) int :判断str在s中首次出现的位置，如果没有出现，则返回-1 strings.LastIndex(s string,str string) int :判断str在s中最后出现的位置，如果没有出现，则返回-1 strings.Replace(str string, old string,new string, n int) : 字符串替换 strings.Count(str string, substr string) int : 字符串计数 strings.Repeat(str string, count int) string : 重复count次str strings.ToLower(str string) string : 转为小写 strings.ToUpper(str string) string : 转为大写 strings.TrimSpace(str string) : 去除字符串首尾空白字符 strings.Trim(str string, cut string) : 去除字符串首尾cut字符 strings.TrimLeft(str string, cut string) : 去除字符串首cut字符 strings.TrimRight(str string, cut string) : 去除字符串尾cut字符 strings.Field(str string) : 返回str空格分隔的所有子串slice strings.Split(str string, split string) : 返回str split分隔的所有子串的slice strings.Join(s1 []string, sep string) : 用sep把s1中的所有元素连接起来 strconv.Itoa(i int) : 把一个整数i转成字符串 strconv.Atoi(str string)(int,error) : 把一个字符串转成整型   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>go-求阶乘之和</title>
+        <url>https://listenlive.cn/technology/2020/11/30/tech04/</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>go</tag><tag>golang</tag><tag>阶乘</tag>
+        </tags>
+        <content type="html"> 求1!&#43;2!&#43;3!&#43;&amp;hellip;&#43;n!阶乘之和 package main import &amp;#34;fmt&amp;#34; func sum(n int) uint64{ var s uint64 = 1 var sum uint64 = 0 for i := 1; i &amp;lt;= n; i&#43;&#43; { s = s * uint64(i) sum &#43;= s } return sum } func main() { var n int fmt.Scanf(&amp;#34;%d&amp;#34;,&amp;amp;n) s := sum(n) fmt.Println(n) }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>go-输出100-999之间的水仙花数</title>
+        <url>https://listenlive.cn/technology/2020/08/10/tech03/</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>go</tag><tag>golang</tag><tag>水仙花数</tag>
+        </tags>
+        <content type="html"> 水仙花数是指一个 3 位数，它的每个位上的数字的 3次幂之和等于它本身（例如：1^3 &#43; 5^3&#43; 3^3 = 153）
+package main import &amp;#34;fmt&amp;#34; func isSxh(n int) bool{ var i, j, k int i = n % 10 //个位  j = (n / 10) % 10 //十位  k = (n / 100) % 10 //百位  sum := i*i*i &#43; j*j*j &#43; k*k*k return sum == n } func main() { var n int var m int fmt.Scanf(&amp;#34;%d,%d&amp;#34;,&amp;amp;n,&amp;amp;m) for i := n; i &amp;lt; m; i&#43;&#43; { if isSxh(i) == true { fmt.Println(i) } } }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Go-输出某个区间内所有的素数</title>
+        <url>https://listenlive.cn/technology/2020/11/30/tech02/</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>go</tag><tag>golang</tag>
+        </tags>
+        <content type="html"> Go-输出某个区间内所有的素数 package main import &amp;#34;fmt&amp;#34; func isPrime(n int) bool { for i := 2; i &amp;lt; n; i&#43;&#43; { if n%i == 0 { return false } } return true } func main() { var n int var m int fmt.Scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;m) for i := m; i &amp;lt; m; i&#43;&#43;{ if isPrime(i) == true { fmt.Printf(&amp;#34;%d\n&amp;#34;,i) continue } } }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Go-反转字符串函数</title>
+        <url>https://listenlive.cn/technology/2020/11/30/tech01/</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>go</tag><tag>golang</tag>
+        </tags>
+        <content type="html"> go反转字符串函数 package main import &amp;#34;fmt&amp;#34; func reverse(str string) string { var result string strLen := len(str) for(i := 0; i &amp;lt; strLen; i&#43;&#43;){ result = result &#43; fmt.Sprintf(&amp;#34;%c&amp;#34;, str[strLen-i-1]) } return result } //调用  result := reverse(&amp;#34;hello world&amp;#34;) fmt.Println(result) //结果 dlrow olleh   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Go语言基础01</title>
+        <url>https://listenlive.cn/note/2020/11/24/golang01/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>go</tag><tag>golang</tag>
+        </tags>
+        <content type="html"> Golang语言特性 垃圾回收 内存自动回收，不需要开发人员管理内存 开发人员基本只专注业务实现 只需要new分配内存，无需释放 天然并发 从语言层面支持并发 goroute,轻量级线程 基于CSP(Communicating Sequential Process) 模型实现 channel 管道，类似unix/linux中的pipe 多个goroute之间通过channel进行通信 支持任何文件类型 多返回值 一个函数返回多个值 func calc(a int, b int) (int,int) { sum := a &#43; b avg := (a&#43;b) / 2 return sum, avg } Go基本语法 新建test.go文件 package main import( &amp;#34;fmt&amp;#34; ) func add(a int, b int) int { var sum int sum = a &#43; b return sum } func main(){ var c int c = add(100,200) fmt.Println(&amp;#34;100&#43;200=&amp;#34;,c) } 运行 go run test.go 格式化代码 gofmt -w test.go   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>苹果电脑MacOs系统开启允许安装外部应用</title>
+        <url>https://listenlive.cn/leaf/2020/10/26/macos01/</url>
+        <categories>
+          <category>杂记</category>
+        </categories>
+        <tags>
+          <tag>苹果电脑</tag><tag>MacOs</tag>
+        </tags>
+        <content type="html"> 打开命令行终端，键入命令 sudo spctl --master-disable 在&amp;quot;安全与隐私&amp;quot;查看开启效果   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>php安装Oracle扩展oci8</title>
+        <url>https://listenlive.cn/leaf/2020/10/26/php_oci8/</url>
+        <categories>
+          <category>杂记</category>
+        </categories>
+        <tags>
+          <tag>PHP</tag>
+        </tags>
+        <content type="html"> 安装oracle-instantclient 下载地址 分别下载 oracle-instantclient11.2-basic-11.2.0.4.0-1.x86_64.rpm
+oracle-instantclient11.2-devel-11.2.0.4.0-1.x86_64.rpm
+运行 rpm -ivh oracle-instantclient11.2-* 此时会生成/usr/lib/oracle/11/2/client64/lib 目录
+修改 /etc/ld.so.conf 配置文件 追加以下内容
+/usr/lib/oracle/11.2/client64/lib/
+保存并退出
+执行命令 ldconfig
+安装 oci8 下载oci8组件 下载oci-2.0.8.tgz 解压并安装 tar -xvzf oci-2.0.8.tag
+cd oci-2.0.8
+/www/server/php/56/bin/phpize （用phpize生成configure配置文件) ./configure --with-php-config=/www/server/php/56/bin/php-config --with-oci8=shared,instantclient,/usr/lib/oracle/11.2/client64/lib make &amp;amp;&amp;amp; make install
+修改 php.ini 添加extension=&amp;ldquo;oci8.so&amp;rdquo; 重启PHP，查看phpinfo   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel Api开发之Dingo&amp;Jwt的使用</title>
+        <url>https://listenlive.cn/note/2020/09/22/laravel_dingo/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>PHP</tag><tag>Laravel</tag><tag>Api</tag>
+        </tags>
+        <content type="html"> Dingo 安装组件 composer require dingo/api:2.x 生成配置文件 php artisan vendor:publish 执行命令后会生成config/api.php配置文件
+config/api.php 配置说明 #接口围绕：[x]本地和私有环境 [prs]公司内部app使用 [vnd]公开接口 &amp;#39;standardsTree&amp;#39; =&amp;gt; env(&amp;#39;API_STANDARDS_TREE&amp;#39;, &amp;#39;x&amp;#39;) #项目名称 &amp;#39;subtype&amp;#39; =&amp;gt; env(&amp;#39;API_SUBTYPE&amp;#39;, &amp;#39;hdcms&amp;#39;) #Api前缀 通过 www.hdcms.com/api 来访问 API。 &amp;#39;prefix&amp;#39; =&amp;gt; env(&amp;#39;API_PREFIX&amp;#39;, &amp;#39;api&amp;#39;) #api域名 &amp;#39;domain&amp;#39; =&amp;gt; env(&amp;#39;API_DOMAIN&amp;#39;, &amp;#39;api.hdcms.com&amp;#39;), #版本号 &amp;#39;version&amp;#39; =&amp;gt; env(&amp;#39;API_VERSION&amp;#39;, &amp;#39;v1&amp;#39;) #开发时开启DEBUG便于发现错误 &amp;#39;debug&amp;#39; =&amp;gt; env(&amp;#39;API_DEBUG&amp;#39;, false) 接口版本&amp;ndash;在routes/api.php中定义 $api = app(\Dingo\Api\Routing\Router::class); #默认配置指定的是v1版本，可以直接通过 {host}/api/version 访问到 $api-&amp;gt;version(&amp;#39;v1&amp;#39;, function ($api) { $api-&amp;gt;get(&amp;#39;version&amp;#39;, function () { return &amp;#39;v1&amp;#39;; }); }); #如果v2不是默认版本，需要设置请求头 #Accept: application/[配置项 standardsTree].[配置项 subtype].v2&#43;json $api-&amp;gt;version(&amp;#39;v2&amp;#39;, function ($api) { $api-&amp;gt;get(&amp;#39;version&amp;#39;, function () { return &amp;#39;v2&amp;#39;; }); }); 基础控制器 php artisan make:controller Api/Controller namespace App\Http\Controllers\Api; use Dingo\Api\Routing\Helpers; use Illuminate\Http\Request; use App\Http\Controllers\Controller as SysController; class Controller extends SysController { use Helpers; } 响应结果&amp;ndash;设置响应状态码 return $this-&amp;gt;response-&amp;gt;array(User::get())-&amp;gt;setStatusCode(200); return response()-&amp;gt;json([&amp;#39;error&amp;#39; =&amp;gt; &amp;#39;Unauthorized&amp;#39;], 401); 错误响应 // 一个自定义消息和状态码的普通错误。 return $this-&amp;gt;response-&amp;gt;error(&amp;#39;This is an error.&amp;#39;, 404); // 一个没有找到资源的错误，第一个参数可以传递自定义消息。 return $this-&amp;gt;response-&amp;gt;errorNotFound(); // 一个 bad request 错误，第一个参数可以传递自定义消息。 return $this-&amp;gt;response-&amp;gt;errorBadRequest(); // 一个服务器拒绝错误，第一个参数可以传递自定义消息。 return $this-&amp;gt;response-&amp;gt;errorForbidden(); // 一个内部错误，第一个参数可以传递自定义消息。 return $this-&amp;gt;response-&amp;gt;errorInternal(); // 一个未认证错误，第一个参数可以传递自定义消息。 return $this-&amp;gt;response-&amp;gt;errorUnauthorized(&amp;#39;帐号或密码错误&amp;#39;); 限制请求次数 使用 api.throttle中间件结合 limit、expires 参数可实现接口次数限制
+$api-&amp;gt;version(&amp;#39;v1&amp;#39;, [&amp;#39;namespace&amp;#39; =&amp;gt; &amp;#39;\App\Api&amp;#39;], function ($api) { $api-&amp;gt;group([&amp;#39;middleware&amp;#39; =&amp;gt; &amp;#39;api.throttle&amp;#39;, &amp;#39;limit&amp;#39; =&amp;gt; 2, &amp;#39;expires&amp;#39; =&amp;gt; 1], function ($api) { $api-&amp;gt;get(&amp;#39;user&amp;#39;, &amp;#39;UserController@all&amp;#39;); }); }); 限制1分钟只能访问2次
+Jwt 安装组件 composer require tymon/jwt-auth:2.x 生成配置文件 php artisan vendor:publish 生成密钥 php artisan jwt:secret 这将用 JWT_SECRET=foobar 更新.env文件
+配置说明 JWT配置文件是 config/jwt.php
+#令牌过期时间(单位分钟)，设置null为永不过期 &amp;#39;ttl&amp;#39; =&amp;gt; env(&amp;#39;JWT_TTL&amp;#39;, 60) #刷新令牌时间(单位分钟)，设置为null可永久随时刷新 &amp;#39;refresh_ttl&amp;#39; =&amp;gt; env(&amp;#39;JWT_REFRESH_TTL&amp;#39;, 20160) 更新用户模型示例 首先，您需要在用户模型上实现 Tymon\JWTAuth\Contracts\JWTSubject 契约，它要求您实现两个方法 getJWTIdentifier() 和 getJWTCustomClaims()
+namespace App; use Tymon\JWTAuth\Contracts\JWTSubject; use Illuminate\Notifications\Notifiable; use Illuminate\Foundation\Auth\User as Authenticatable; class User extends Authenticatable implements JWTSubject { use Notifiable; /** * 获取将存储在JWT主题声明中的标识符. * 就是用户表主键 id * * @return mixed */ public function getJWTIdentifier() { return $this-&amp;gt;getKey(); } /** * 返回一个键值数组，其中包含要添加到JWT的任何自定义声明. * * @return array */ public function getJWTCustomClaims() { return []; } } 配置验证守卫 修改 config/auth.php 文件以使用jwt保护来为接口身份验证提供支持
+&amp;#39;guards&amp;#39; =&amp;gt; [ &amp;#39;web&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;session&amp;#39;, &amp;#39;provider&amp;#39; =&amp;gt; &amp;#39;users&amp;#39;, ], &amp;#39;api&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;jwt&amp;#39;, &amp;#39;provider&amp;#39; =&amp;gt; &amp;#39;users&amp;#39;, ], ] 修改dingo配置文件 config/api.php 文件中的身份验证提供者
+&amp;#39;auth&amp;#39; =&amp;gt; [ &amp;#39;jwt&amp;#39; =&amp;gt; \Dingo\Api\Auth\Provider\JWT::class, ], 验证操作 路由定义
+$api = app(\Dingo\Api\Routing\Router::class); $api-&amp;gt;version(&amp;#39;v1&amp;#39;, [&amp;#39;namespace&amp;#39; =&amp;gt; &amp;#39;App\Http\Controllers\Api&amp;#39;,], function ($api) { $api-&amp;gt;post(&amp;#39;login&amp;#39;, &amp;#39;AuthController@login&amp;#39;); $api-&amp;gt;get(&amp;#39;logout&amp;#39;, &amp;#39;AuthController@logout&amp;#39;); $api-&amp;gt;get(&amp;#39;me&amp;#39;, &amp;#39;AuthController@me&amp;#39;); }); 控制器定义
+class AuthController extends Controller { public function __construct() { // 除login外都需要验证 $this-&amp;gt;middleware(&amp;#39;auth:api&amp;#39;, [&amp;#39;except&amp;#39; =&amp;gt; [&amp;#39;login&amp;#39;]]); } //登录获取token public function login() { $credentials = request([&amp;#39;email&amp;#39;, &amp;#39;password&amp;#39;]); if (!$token = auth(&amp;#39;api&amp;#39;)-&amp;gt;attempt($credentials)) { return $this-&amp;gt;response-&amp;gt;errorUnauthorized(&amp;#39;帐号或密码错误&amp;#39;); } return $this-&amp;gt;respondWithToken($token); } //获取用户资料 public function me() { return response()-&amp;gt;json(auth(&amp;#39;api&amp;#39;)-&amp;gt;user()); } //销毁token public function logout() { auth(&amp;#39;api&amp;#39;)-&amp;gt;logout(); return response()-&amp;gt;json([&amp;#39;message&amp;#39; =&amp;gt; &amp;#39;Successfully logged out&amp;#39;]); } //刷新token public function refresh() { return $this-&amp;gt;respondWithToken(auth(&amp;#39;api&amp;#39;)-&amp;gt;refresh()); } //响应token protected function respondWithToken($token) { return response()-&amp;gt;json([ &amp;#39;access_token&amp;#39; =&amp;gt; $token, &amp;#39;token_type&amp;#39; =&amp;gt; &amp;#39;bearer&amp;#39;, &amp;#39;expires_in&amp;#39; =&amp;gt; auth(&amp;#39;api&amp;#39;)-&amp;gt;factory()-&amp;gt;getTTL() * 60, ]); } } 使用令牌 在postman 工具中可以使用以下方式操作
+  喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Larvel-使用Seeder生成测试数据</title>
+        <url>https://listenlive.cn/note/2020/08/24/laravel05/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Laravel</tag><tag>PHP</tag>
+        </tags>
+        <content type="html"> 生成Seeder文件 php artisan make:seeder UserSeeder 运行后会在database/seeds目录下生成UserSeeder.php 文件
+编辑UserSeeder.php 文件 public function run() { //生成30条用户数据，并指定第一条账号的账号邮箱 $users = factory(\App\User::class,30)-&amp;gt;create(); $user = $users[0]; $user-&amp;gt;name = &amp;#39;LISTENLIVE&amp;#39;; $user-&amp;gt;email = &amp;#39;listenlive@126.com&amp;#39;; $user-&amp;gt;save(); } 编辑工厂文件database/factories/UserFactory.php $factory-&amp;gt;define(App\User::class, function (Faker $faker) { return [ &amp;#39;name&amp;#39; =&amp;gt; $faker-&amp;gt;name, &amp;#39;email&amp;#39; =&amp;gt; $faker-&amp;gt;unique()-&amp;gt;safeEmail, &amp;#39;password&amp;#39; =&amp;gt; bcrypt(&amp;#39;admin888&amp;#39;), &amp;#39;remember_token&amp;#39; =&amp;gt; str_random(10), ]; }); 编辑执行Seeder文件database/seeds/DatabaseSeeder.php public function run() { // $this-&amp;gt;call(UsersTableSeeder::class); $this-&amp;gt;call(UserSeeder::class); } 执行填充数据命令 php artisan db:seed   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>MySQL常用语句</title>
+        <url>https://listenlive.cn/leaf/2020/08/21/mysql01/</url>
+        <categories>
+          <category>杂记</category><category>笔记</category>
+        </categories>
+        <tags>
+          <tag>MySQL</tag><tag>数据库</tag>
+        </tags>
+        <content type="html"> 表操作 修改表的存储引擎 ALTER TABLE stu engine = &amp;lsquo;InnoDB&amp;rsquo;; 清空表数据 TRUNCATE TABLE tablename; 查询 去除重复数据查询 SELECT DISTINCT class_id FROM stu;   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Sequelize操作MySQL数据库</title>
+        <url>https://listenlive.cn/note/2020/08/20/sequelize01/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Node.js</tag><tag>Sequelize</tag>
+        </tags>
+        <content type="html"> 安装sequelize、sequelize-cli和mysql2 cnpm install sequelize-cli -g cnpm install sequelize --save cnpm install mysql2 --save 初始化项目 sequelize init 在config.js中配置连接数据库参数 //连接数据库 { &amp;#34;development&amp;#34;: { &amp;#34;username&amp;#34;: &amp;#34;root&amp;#34;, &amp;#34;password&amp;#34;: null, &amp;#34;database&amp;#34;: &amp;#34;bilikoa&amp;#34;, &amp;#34;host&amp;#34;: &amp;#34;127.0.0.1&amp;#34;, &amp;#34;dialect&amp;#34;: &amp;#34;mysql&amp;#34; }, &amp;#34;test&amp;#34;: { &amp;#34;username&amp;#34;: &amp;#34;root&amp;#34;, &amp;#34;password&amp;#34;: null, &amp;#34;database&amp;#34;: &amp;#34;database_test&amp;#34;, &amp;#34;host&amp;#34;: &amp;#34;127.0.0.1&amp;#34;, &amp;#34;dialect&amp;#34;: &amp;#34;mysql&amp;#34; }, &amp;#34;production&amp;#34;: { &amp;#34;username&amp;#34;: &amp;#34;root&amp;#34;, &amp;#34;password&amp;#34;: null, &amp;#34;database&amp;#34;: &amp;#34;database_production&amp;#34;, &amp;#34;host&amp;#34;: &amp;#34;127.0.0.1&amp;#34;, &amp;#34;dialect&amp;#34;: &amp;#34;mysql&amp;#34; } } 建立Article模型和迁移文件 sequelize model:generate --name Article --attributes title:string,content:text 运行迁移，生成数据表 sequelize db:migrate 新建种子文件 sequelize seed:generate --name atricle 配置种子文件seeders/article.js &amp;#39;use strict&amp;#39;; module.exports = { up: async (queryInterface, Sequelize) =&amp;gt; { await queryInterface.bulkInsert(&amp;#39;Articles&amp;#39;, [ { title: &amp;#39;John Doe&amp;#39;, content: &amp;#39;内容。。&amp;#39;, createdAt: new Date(), updatedAt: new Date() }, { title: &amp;#39;John Does&amp;#39;, content: &amp;#39;内容。。&amp;#39;, createdAt: new Date(), updatedAt: new Date() } ], {}); }, down: async (queryInterface, Sequelize) =&amp;gt; { await queryInterface.bulkDelete(&amp;#39;People&amp;#39;, null, {}); } }; 运行种子文件，即可在articles表中生成测试数据 sequelize db:seed:all   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Koa使用require-directory实现路由的自动加载</title>
+        <url>https://listenlive.cn/note/2020/08/13/koa07/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Koa</tag><tag>Node.js</tag>
+        </tags>
+        <content type="html"> require-directory的安装与使用 const Koa = require(&amp;#39;koa&amp;#39;); const app = new Koa(); const requireDirectory = require(&amp;#39;require-directory&amp;#39;); const Router = require(&amp;#39;koa-router&amp;#39;); const modules = requireDirectory(module,&amp;#39;./api&amp;#39;,{ visit:whenLoadModule }) function whenLoadModule(obj){ if(obj instanceof Router){ app.use(obj.routes()) } } app.listen(3000); 路由文件的写法api/v1/book.js const Router = require(&amp;#39;koa-router&amp;#39;); const router = new Router(); router.get(&amp;#39;/v1/book/latest&amp;#39;,(ctx,next)=&amp;gt;{ ctx.body={key:&amp;#39;books&amp;#39;} }) module.exports = router 目录结构   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>使用Koa应用生成器快速生成koa应用</title>
+        <url>https://listenlive.cn/note/2020/08/10/koa06/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Koa</tag><tag>Node.js</tag>
+        </tags>
+        <content type="html"> 全局安装koa脚手架生成工具 cnpm install koa-generator -g 创建项目 koa koa_demo 安装依赖 cd koa_demo cnpm install 启动项目 npm start   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Koa Cookie与Session</title>
+        <url>https://listenlive.cn/note/2020/08/10/koa05/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Koa</tag><tag>Node.js</tag>
+        </tags>
+        <content type="html"> Cookie Koa中设置Cookie值 ctx.cookies.set(name,value,[options]); Koa中获取Cookie值 ctx.cookies.get(&amp;#39;name&amp;#39;); Koa中使用Buffer设置中文Cookie //设置中文Cookie router.get(&amp;#39;/&amp;#39;,async (ctx)=&amp;gt;{ var userinfo=new Buffer(&amp;#39;张三&amp;#39;).toString(&amp;#39;base64&amp;#39;); ctx.cookies.set(&amp;#39;userinfo&amp;#39;,userinfo,{ maxAge:60*1000*60 }); }) //获取中文Cookie router.get(&amp;#39;/news&amp;#39;,async (ctx)=&amp;gt;{ var data=ctx.cookies.get(&amp;#39;userinfo&amp;#39;); var userinfo=new Buffer(data, &amp;#39;base64&amp;#39;).toString(); console.log(userinfo); }) Session 安装并引入koa-session cnpm install koa-session --save const session = require(&amp;#39;koa-session&amp;#39;); 配置koa-session中间件 app.keys = [&amp;#39;some secret hurr&amp;#39;]; const CONFIG = { key: &amp;#39;koa:sess&amp;#39;, //cookie key (default is koa:sess) maxAge: 86400000, // cookie 的过期时间 maxAge in ms (default is 1 days) overwrite: true, //是否可以 overwrite (默认 default true) httpOnly: true, //cookie 是否只有服务器端可以访问 httpOnly or not (default true) signed: true, //签名默认 true rolling: false, //在每次请求时强行设置 cookie，这将重置 cookie 过期时间（默认：false） renew: false, //(boolean) renew session when session is nearly expired, }; app.use(session(CONFIG, app)); 设置与获取Session值 //设置值 ctx.session.username = &amp;#34;张三&amp;#34;; //获取值 ctx.session.username   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Koa post提交数据与静态资源中间件</title>
+        <url>https://listenlive.cn/note/2020/08/10/koa04/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Koa</tag><tag>Node.js</tag>
+        </tags>
+        <content type="html"> 原生Node.js获取post提交的数据 表单 &amp;lt;form action=&amp;#34;/doAdd&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; 用户名: &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;username&amp;#34;/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;br/&amp;gt; 密　码: &amp;lt;input type=&amp;#34;password&amp;#34; name=&amp;#34;password&amp;#34;/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;button type=&amp;#34;submit&amp;#34;&amp;gt;提交&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; 在module/common.js封装获取数据的方法 exports.getPostData=function(ctx){ //获取数据 异步 return new Promise(function(resolve,reject){ try{ let str=&amp;#39;&amp;#39;; ctx.req.on(&amp;#39;data&amp;#39;,function(chunk){ str&#43;=chunk; }) ctx.req.on(&amp;#39;end&amp;#39;,function(chunk){ resolve(str) }) }catch(err){ reject(err) } }) } 获取post提交的数据 //引用获取数据方法 var common = require(&amp;#39;./module/common.js&amp;#39;); //接收post提交的数据 router.post(&amp;#39;/doAdd&amp;#39;,async (ctx)=&amp;gt;{ //原生nodejs 在koa中获取表单提交的数据 var data=await common.getPostData(ctx); console.log(data); ctx.body=data; }) 使用koa-bodyparser中间件获取post提交的数据 安装并引入koa-bodyparser cnpm install koa-bodyparser --save var bodyParser = require(&amp;#39;koa-bodyparser&amp;#39;); 配置kooa-bodyparser中间件 app.use(bodyParser()); 获取post提交的数据 router.post(&amp;#39;/doAdd&amp;#39;,async (ctx)=&amp;gt;{ ctx.body = ctx.request.body; //获取表单提交的数据 }) 静态资源中间件 安装koa-static并引入 cnpm install koa-static --save const static = require(&amp;#39;koa-static&amp;#39;); 配置koa-static中间件 app.use(static(&amp;#39;./static&amp;#39;)); 引入静态资源 &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;css/basic.css&amp;#34;/&amp;gt; //即可成功引入static/css/basic.css   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Koa ejs模板引擎与art-template模板引擎</title>
+        <url>https://listenlive.cn/note/2020/08/10/koa03/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Koa</tag><tag>前端框架</tag><tag>Node.js</tag>
+        </tags>
+        <content type="html"> Koa ejs的安装与使用 安装koa-views cnpm install koa-views --save 安装ejs cnpm install ejs --save 配置模板引擎中间件 var views = require(&amp;#39;koa-views&amp;#39;); app.use(views(&amp;#39;views&amp;#39;,{ extension:&amp;#39;ejs&amp;#39; })); //这样配置模板的后缀名是.ejs //第二种配置方式 app.use(views(&amp;#39;views&amp;#39;,{map:{html:&amp;#39;ejs&amp;#39;}})); //这样配置模板的后缀名是.html 渲染模板 router.get(&amp;#39;/&amp;#39;,async function(ctx){ await ctx.render(&amp;#39;index&amp;#39;); //渲染模板 }); 将数据渲染到模板 router.get(&amp;#39;/&amp;#39;,async function(ctx){ let title = &amp;#39;首页|home&amp;#39; await ctx.render(&amp;#39;index&amp;#39;,{ title:title }); }); 模板文件
+&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&amp;#34;&amp;gt; &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;ie=edge&amp;#34;&amp;gt; &amp;lt;title&amp;gt;&amp;lt;%=title%&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h3&amp;gt;ejs模板&amp;lt;/h3&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 循环遍历数据 router.get(&amp;#39;/&amp;#39;,async function(ctx){ //ctx context 包含request和responses等信息 let title = &amp;#39;Home&amp;#39; await ctx.render(&amp;#39;index&amp;#39;,{ title:title, }); }).get(&amp;#39;/news&amp;#39;,async (ctx)=&amp;gt;{ let list = [&amp;#39;11&amp;#39;,&amp;#39;aa&amp;#39;,&amp;#39;zz&amp;#39;,&amp;#39;bb&amp;#39;,&amp;#39;ff&amp;#39;,&amp;#39;kk&amp;#39;]; await ctx.render(&amp;#39;news&amp;#39;,{ list:list, }); }); 模板文件写法
+&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&amp;#34;&amp;gt; &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;ie=edge&amp;#34;&amp;gt; &amp;lt;title&amp;gt;新闻列表&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;%for(var i=0;i&amp;lt;list.length;i&#43;&#43;){%&amp;gt; &amp;lt;li&amp;gt;&amp;lt;%=list[i]%&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;%}%&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 模板的引用 &amp;lt;% include public/header.ejs%&amp;gt; //表示引用public目录下的header.ejs模板 解析HTML标签 let content = &amp;#39;&amp;lt;h2&amp;gt;Content&amp;lt;/h2&amp;gt;&amp;#39;; &amp;lt;%-content%&amp;gt; //解析HTML标签 使用中间件配置公共的数据 在模板中可以直接使用 app.use(async (ctx,next)=&amp;gt;{ ctx.state.userinfo=&amp;#39;zhangsan&amp;#39;; await next(); /*继续向下匹配路由*/ }) art-template模板引擎（推荐使用） 安装art-template并引入 cnpm install --save art-template cnpm install --save koa-art-template path=require(&amp;#39;path&amp;#39;); const render = require(&amp;#39;koa-art-template&amp;#39;); 配置art-template模板引擎 render(app, { root: path.join(__dirname, &amp;#39;views&amp;#39;), // 视图的位置 extname: &amp;#39;.html&amp;#39;, // 后缀名 debug: process.env.NODE_ENV !== &amp;#39;production&amp;#39; //是否开启调试模式 }); 渲染模板 await ctx.render(&amp;#39;user&amp;#39;); 模板语法 官方文档
+  喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Koa路由和中间件</title>
+        <url>https://listenlive.cn/note/2020/08/09/koa02/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Koa</tag><tag>Node.js</tag>
+        </tags>
+        <content type="html"> Koa路由的安装和配置 安装Koa路由 cnpm install koa-router --save Koa路由的使用 var Koa = require(&amp;#39;koa&amp;#39;); //引入Koa var Router = require(&amp;#39;koa-router&amp;#39;); //引入路由 var app = new Koa(); var router = new Router(); //配置路由 router.get(&amp;#39;/&amp;#39;,async function(ctx){ //ctx context 包含request和responses等信息 ctx.body=&amp;#34;首页&amp;#34;; }).get(&amp;#39;/news&amp;#39;,async (ctx)=&amp;gt;{ ctx.body=&amp;#34;新闻页&amp;#34;; }) //启动路由 app .use(router.routes()) .use(router.allowedMethods()); app.listen(3000); Koa Get传值及获取get传值 router.get(&amp;#39;/newscontent&amp;#39;,async (ctx)=&amp;gt;{ /*在 koa2 中 GET 传值通过 request 接收，但是接收的方法有两种：query 和 querystring。 query：返回的是格式化好的参数对象。 querystring：返回的是请求字符串。*/ //从ctx中读取get传值 console.log(ctx.query); //{ aid: &amp;#39;123&amp;#39; } 获取的是对象 用的最多的方式 ******推荐 console.log(ctx.querystring); //aid=123&amp;amp;name=zhangsan 获取的是一个字符串 console.log(ctx.url); //获取url地址 //ctx里面的request里面获取get传值 console.log(ctx.request.url); console.log(ctx.request.query); //{ aid: &amp;#39;123&amp;#39;, name: &amp;#39;zhangsan&amp;#39; } 对象 console.log(ctx.request.querystring); //aid=123&amp;amp;name=zhangsan ctx.body=&amp;#34;新闻详情&amp;#34;; }) Koa动态路由 router.get(&amp;#39;/package/:aid/:cid&amp;#39;,async (ctx)=&amp;gt;{ //获取动态路由的传值 console.log(ctx.params); //{ aid: &amp;#39;123&amp;#39;, cid: &amp;#39;456&amp;#39; } ctx.body=&amp;#34;新闻详情&amp;#34;; }) Koa中间件 应用级中间件 var Koa = require(&amp;#39;koa&amp;#39;); //引入Koa var Router = require(&amp;#39;koa-router&amp;#39;); //引入路由 var app = new Koa(); var router = new Router(); //中间件 app.use(async (ctx,next)=&amp;gt;{ ctx.body=&amp;#39;这是一个中间件&amp;#39;; console.log(new Date()); await next(); /*当前路由匹配完成后继续向下匹配*/ }); //配置路由 router.get(&amp;#39;/&amp;#39;,async function(ctx){ //ctx context 包含request和responses等信息 ctx.body=&amp;#34;首页&amp;#34;; }); router.get(&amp;#39;/news&amp;#39;,async (ctx)=&amp;gt;{ ctx.body=&amp;#34;新闻页&amp;#34;; }); router.get(&amp;#39;/login&amp;#39;,async (ctx)=&amp;gt;{ ctx.body=&amp;#34;登录&amp;#34;; }); //启动路由 app .use(router.routes()) .use(router.allowedMethods()); app.listen(3000); 路由级中间件 //匹配到news路由之后继续向下匹配路由 router.get(&amp;#39;/news&amp;#39;,async (ctx，next)=&amp;gt;{ console.log(&amp;#39;这是新闻1&amp;#39;); await.next(); }); router.get(&amp;#39;/news&amp;#39;,async (ctx)=&amp;gt;{ ctx.body=&amp;#34;这是新闻2&amp;#34;; }); 错误处理中间件 app.use(async (ctx,next)=&amp;gt;{ next(); if(ctx.status == 404){ ctx.status = 404; ctx.body = &amp;#39;404页面&amp;#39;; } }); app.use(async (ctx,next)=&amp;gt;{ console.log(&amp;#39;这是一个中间件01&amp;#39;); next(); if(ctx.status==404){ /*如果页面找不到*/ ctx.status = 404; ctx.body=&amp;#34;这是一个 404 页面&amp;#34; }else{ console.log(ctx.url); } }) router.get(&amp;#39;/&amp;#39;,async (ctx)=&amp;gt;{ ctx.body=&amp;#34;首页&amp;#34;; }) router.get(&amp;#39;/news&amp;#39;,async (ctx)=&amp;gt;{ console.log(&amp;#39;这是新闻2&amp;#39;); ctx.body=&amp;#39;这是一个新闻&amp;#39;; }) router.get(&amp;#39;/login&amp;#39;,async (ctx)=&amp;gt;{ ctx.body=&amp;#34;新闻列表页面&amp;#34;; }) app.use(router.routes()); /*启动路由*/ app.use(router.allowedMethods()); app.listen(3000); Koa中间件的执行流程 app.use(async (ctx,next)=&amp;gt;{ console.log(&amp;#39;1、这是第一个中间件01&amp;#39;); await next(); console.log(&amp;#39;5、匹配路由完成以后又会返回来执行中间件&amp;#39;); }) app.use(async (ctx,next)=&amp;gt;{ console.log(&amp;#39;2、这是第二个中间件02&amp;#39;); await next(); console.log(&amp;#39;4、匹配路由完成以后又会返回来执行中间件&amp;#39;); }) router.get(&amp;#39;/&amp;#39;,async (ctx)=&amp;gt;{ ctx.body=&amp;#34;首页&amp;#34;; }) router.get(&amp;#39;/news&amp;#39;,async (ctx)=&amp;gt;{ console.log(&amp;#39;3、匹配到了news这个路由&amp;#39;); ctx.body=&amp;#39;这是一个新闻&amp;#39;; }) //运行顺序 1、2、3、4、5、 app.use(router.routes()); /*启动路由*/ app.use(router.allowedMethods()); app.listen(3000);   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Koa框架安装及ES6基础语法</title>
+        <url>https://listenlive.cn/note/2020/08/09/koa01/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Koa</tag><tag>Node.js</tag>
+        </tags>
+        <content type="html"> 安装Koa框架 初始化 npm init --yes 安装Koa cnpm install koa --save 第一个Koa程序app.js var Koa = require(&amp;#39;koa&amp;#39;); //引入Koa var app = new Koa(); //实例化 //中间件 app.use(async(ctx)=&amp;gt;{ ctx.body=&amp;#39;Hello Koa&amp;#39;; }); app.listen(3000); ES6基本语法 let与const let 块作用域,其他等同于var
+const 定义常量
+模板字符串 var name = &amp;#39;张三&amp;#39;; var age = 20; console.log(`${name}的年龄是${age}`); 属性的简写 var name = &amp;#39;zhangsan&amp;#39;; var app={ name //等同于name:name } console.log(app.name); 方法的简写 var name = &amp;#39;zhangsan&amp;#39;; var app={ name, run:function(){ console.log(`${this.name}在跑步`); } } app.run(); 箭头函数 setTimeout(function(){ console.log(&amp;#39;Hello&amp;#39;); },1000) //箭头函数写法 setTimeout(()=&amp;gt;{ console.log(&amp;#39;Hello&amp;#39;); },1000) 回调函数 获取异步方法里面的数据 function getData(callback){ //ajax 模拟异步 setTimeout(function(){ var name = &amp;#39;zhangsan&amp;#39;; callback(name); },1000); } //外部获取异步方法里面的数据 getData(function(data){ console.log(data); }) Promise处理异步 //resolve 成功的回调函数 //reject 失败的回调函数 var p =new Promise(function(resolve,reject){ //ajax 模拟异步 setTimeout(function(){ var name = &amp;#39;zhangsan&amp;#39;; resolve(name); },1000); }) p.then(function(data){ console.log(data); }) Koa异步处理Async Await和Promise的使用 Async与Await async 让方法变为异步方法
+await 等待异步方法执行完成
+async function getData(){ return &amp;#39;这是一个数据&amp;#39;; } //运行结果：Promise {&amp;#39;这是一个数据&amp;#39;} - 返回的是promise对象 获取async异步方法里面的数据 async function getData(){ return &amp;#39;这是一个数据&amp;#39;; } var p = getData(); p.then((data)=&amp;gt;{ console.log(data); }) await用在异步方法里面 async function getData(){ return &amp;#39;这是一个数据&amp;#39;; } async function test(){ var d = await getData(); console.log(d); } //调用 test(); await阻塞功能，把异步改为同步 async function getData(){ console.log(2); } async function test(){ console.log(1); var d = await getData(); console.log(3); } test(); //运行结果 1 2 3 Promise的使用及获取Promise的数据 function getData(){ return new Promise((resolve,reject)=&amp;gt;{ setTimeout(()=&amp;gt;{ var username = &amp;#39;zhangsan&amp;#39;; resolve(username); },1000) }) } async function test(){ var data = await getData(); console.log(data); } test();   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Git 版 本 控 制</title>
+        <url>https://listenlive.cn/leaf/2020/08/07/gitcommand/</url>
+        <categories>
+          <category>杂记</category>
+        </categories>
+        <tags>
+          <tag>Git</tag><tag>Command</tag>
+        </tags>
+        <content type="html"> Git基本命令 git config -l 查看配置
+git config -global user.name &amp;ldquo;username&amp;rdquo; 全局设置用户名
+git config -global user.email &amp;ldquo;email&amp;rdquo; 全局设置用户邮箱
+git init 初始化版本库
+git add a.php 添加文件到版本库
+git add . 添加所有文件到版本库
+git status 查看状态
+git commit -m &amp;lsquo;message&amp;rsquo; 提交到版本库并添加提交信息
+git rm --cached readme.txt 移除版本库中的文件
+git log 查看日志
+git commit --amend 修改最近一次提交的信息
+git reset HEAD a.php 撤销添加
+git checkout -- a.php 撤销文件修改
+git clone -b 分支名 仓库地址 使用Git下载指定分支 git branch 查看分支
+git branch ask 创建分支
+git checkout ask 切换分支 git checkout -b bbs 创建并切换到bbs分支 git merge ask 合并分支
+git branch -d ask 删除分支
+git branch --no-merge 查看未合并的分支
+git branch -D test 删除未合并的分支
+git stash 暂存
+git stash list 暂存列表
+git stash apply 恢复暂存
+git archive master --prefix=&amp;lsquo;bbs/&amp;rsquo; --forma=zip &amp;gt; bbs.zip 生成zip发布压缩包
+git remote add origin https://github.com/gaoxianghua/listenlive.cn.git 本地与GitHub远程关联
+git push -u origin master 推送到远程master分支
+git pull origin ask:ask 将远程ask分支拉到本地
+.gitignore 忽略文件 a.php 忽略提交此文件
+vendor 忽略提交此文件夹
+vendor/*.txt 忽略提交此文件目录下的TXT文件
+!a.php 不忽略此文件
+  喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>常 用 网 站</title>
+        <url>https://listenlive.cn/leaf/2020/08/06/url/</url>
+        <categories>
+          <category>杂记</category><category>分享</category>
+        </categories>
+        <tags>
+          <tag>工具</tag><tag>开源</tag>
+        </tags>
+        <content type="html"> BootCDN BootCDN 稳定、快速、免费的前端开源项目 CDN 加速服务
+AdminLTE AdminLTE 开源后台管理模板
+Animate.css Animate.css CSS动画效果
+Packagist Packagist The PHP Package Repository
+  喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>使用Laravel邮件发送实现用户的验证&amp;注册业务</title>
+        <url>https://listenlive.cn/note/2020/08/04/laravel09/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>PHP</tag><tag>Laravel</tag>
+        </tags>
+        <content type="html"> 注册数据处理方法中添加token并触发邮件发送 //用户注册数据处理 public function store(Request $request) { $data = $this-&amp;gt;validate($request,[ &amp;#39;name&amp;#39; =&amp;gt; &amp;#39;required|min:4&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;required|email|unique:users&amp;#39;, &amp;#39;password&amp;#39; =&amp;gt; &amp;#39;required|min:6|confirmed&amp;#39;, ]); $data[&amp;#39;password&amp;#39;] = bcrypt($data[&amp;#39;password&amp;#39;]); $data[&amp;#39;email_token&amp;#39;] = Str::random(10); $user = User::create($data); //发送注册邮件 \Mail::to($user)-&amp;gt;send(new RegMail($user)); session()-&amp;gt;flash(&amp;#39;success&amp;#39;,&amp;#39;请查看邮箱完成注册验证&amp;#39;); return redirect(&amp;#39;/&amp;#39;); } app/Mail/RegMail.php namespace App\Mail; use Illuminate\Bus\Queueable; use Illuminate\Mail\Mailable; use Illuminate\Queue\SerializesModels; use Illuminate\Contracts\Queue\ShouldQueue; class RegMail extends Mailable { use Queueable, SerializesModels; /** * Create a new message instance. * * @return void */ public $user; //定义公共属性会自动分配到视图模板 public function __construct($user) { // $this-&amp;gt;user = $user; } /** * Build the message. * * @return $this */ public function build() { return $this-&amp;gt;view(&amp;#39;mail.reg&amp;#39;); } } 用户邮件验证视图reg.blade.php &amp;lt;!doctype html&amp;gt; &amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&amp;#34;&amp;gt; &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;ie=edge&amp;#34;&amp;gt; &amp;lt;title&amp;gt;点击链接验证邮箱&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; &amp;lt;a href=&amp;#34;http://blog01.com/confirmEmailToken/{{$user[&amp;#39;email_token&amp;#39;]}}&amp;#34;&amp;gt;点击链接完成验证&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 点击邮件中的链接验证 //用户验证邮件路由 Route::get(&amp;#39;confirmEmailToken/{token}&amp;#39;,&amp;#39;UserController@confirmEmailToken&amp;#39;)-&amp;gt;name(&amp;#39;confirmEmailToken&amp;#39;); 邮件验证方法 public function confirmEmailToken($token) { $user = User::where(&amp;#39;email_token&amp;#39;,$token)-&amp;gt;first(); if($user){ $user -&amp;gt;email_active = true; $user -&amp;gt;save(); session()-&amp;gt;flash(&amp;#39;success&amp;#39;,&amp;#39;验证成功&amp;#39;); \Auth::login($user); return redirect(&amp;#39;/&amp;#39;); } session()-&amp;gt;flash(&amp;#39;danger&amp;#39;,&amp;#39;邮箱验证失败&amp;#39;); return redirect(&amp;#39;/&amp;#39;); }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel&amp;QQ邮箱实现邮件发送</title>
+        <url>https://listenlive.cn/note/2020/08/04/laravel08/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Laravel</tag><tag>PHP</tag>
+        </tags>
+        <content type="html"> 配置.env文件中的邮件部分 MAIL_DRIVER=smtp MAIL_HOST=smtp.qq.com MAIL_PORT=25 MAIL_USERNAME=1099764281@qq.com MAIL_PASSWORD=tmdyxmsfwtqzgbje //QQ邮箱授权码 MAIL_ENCRYPTION=tls MAIL_FROM_ADDRESS=1099764281@qq.com MAIL_FROM_NAME=1099764281 新建邮件发送策略 php artisan make:mail RegMail 邮件发送方法 use App\Mail\RegMail; public function sendMail() { $user = User::find(1); \Mail::to($user)-&amp;gt;send(new RegMail()); return redirect(&amp;#39;/&amp;#39;); }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel登录注册Auth验证及使用Policy模型策略管理用户权限</title>
+        <url>https://listenlive.cn/note/2020/08/03/laravel07/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>PHP</tag><tag>Laravel</tag>
+        </tags>
+        <content type="html"> 路由routes/web.php Route::get(&amp;#39;/&amp;#39;, function () { return view(&amp;#39;welcome&amp;#39;); }); //user资源 Route::resource(&amp;#39;user&amp;#39;,&amp;#39;UserController&amp;#39;); //退出路由 Route::get(&amp;#39;logout&amp;#39;,&amp;#39;LoginController@logout&amp;#39;)-&amp;gt;name(&amp;#39;logout&amp;#39;); //登录路由 Route::get(&amp;#39;login&amp;#39;,&amp;#39;LoginController@login&amp;#39;)-&amp;gt;name(&amp;#39;login&amp;#39;); //登录处理 Route::post(&amp;#39;login&amp;#39;,&amp;#39;LoginController@store&amp;#39;)-&amp;gt;name(&amp;#39;login&amp;#39;); 登录控制器LoginController.php namespace App\Http\Controllers; use Illuminate\Http\Request; class LoginController extends Controller { //登录视图 public function login() { return view(&amp;#39;user.login&amp;#39;); } //登录处理 public function store(Request $request) { $data = $this-&amp;gt;validate($request,[ &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;email|required&amp;#39;, &amp;#39;password&amp;#39; =&amp;gt; &amp;#39;required|min:6&amp;#39;, ]); if(\Auth::attempt($data)){ session()-&amp;gt;flash(&amp;#39;success&amp;#39;,&amp;#39;登录成功&amp;#39;); return redirect(&amp;#39;/&amp;#39;); } session()-&amp;gt;flash(&amp;#39;danger&amp;#39;,&amp;#39;登录失败&amp;#39;); return back(); } public function logout() { \Auth::logout(); session()-&amp;gt;flash(&amp;#39;success&amp;#39;,&amp;#39;退出成功&amp;#39;); return redirect(&amp;#39;/&amp;#39;); } } 用户控制器UserController.php &amp;lt;?php namespace App\Http\Controllers; use App\User; use Illuminate\Http\Request; class UserController extends Controller { public function __construct() { $this-&amp;gt;middleware(&amp;#39;auth&amp;#39;,[ &amp;#39;except&amp;#39;=&amp;gt;[&amp;#39;index&amp;#39;,&amp;#39;show&amp;#39;,&amp;#39;create&amp;#39;,&amp;#39;store&amp;#39;] ]); //已登录用户不显示注册（create）方法 $this-&amp;gt;middleware(&amp;#39;guest&amp;#39;,[ &amp;#39;only&amp;#39;=&amp;gt;[&amp;#39;create&amp;#39;,&amp;#39;store&amp;#39;] ]); } //用户列表 public function index() { $users = User::paginate(10); //分页 return view(&amp;#39;user.index&amp;#39;,compact(&amp;#39;users&amp;#39;)); } //用户信息查看 public function show(User $user) { return view(&amp;#39;user.show&amp;#39;,compact(&amp;#39;user&amp;#39;)); } //用户注册-视图 public function create() { return view(&amp;#39;user.create&amp;#39;); } //注册处理 public function store(Request $request) { $data = $this-&amp;gt;validate($request,[ &amp;#39;name&amp;#39; =&amp;gt; &amp;#39;required|min:4&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;required|email|unique:users&amp;#39;, &amp;#39;password&amp;#39; =&amp;gt; &amp;#39;required|min:6|confirmed&amp;#39;, ]); $data[&amp;#39;password&amp;#39;] = bcrypt($data[&amp;#39;password&amp;#39;]); User::create($data); //注册成功后自动登录处理 \Auth::attempt([&amp;#39;email&amp;#39;=&amp;gt;$request-&amp;gt;email,&amp;#39;password&amp;#39;=&amp;gt;$request-&amp;gt;password]); return redirect()-&amp;gt;route(&amp;#39;/&amp;#39;); } //用户信息修改-视图 public function edit(User $user) { $this-&amp;gt;authorize(&amp;#39;update&amp;#39;,$user); //验证权限-只能修改当前登录的用户资料 return view(&amp;#39;user.edit&amp;#39;,compact(&amp;#39;user&amp;#39;)); } //用户信息修改-更新数据 public function update(Request $request,User $user) { $this-&amp;gt;validate($request,[ &amp;#39;name&amp;#39; =&amp;gt; &amp;#39;required|min:4&amp;#39;, &amp;#39;password&amp;#39; =&amp;gt; &amp;#39;nullable|min:6|confirmed&amp;#39;, ]); $user-&amp;gt;name = $request-&amp;gt;name; if($request-&amp;gt;password){ $user-&amp;gt;password = bcrypt($request-&amp;gt;password); } $user-&amp;gt;save(); session()-&amp;gt;flash(&amp;#39;success&amp;#39;,&amp;#39;修改成功&amp;#39;); return redirect()-&amp;gt;route(&amp;#39;user.show&amp;#39;,$user); } //删除 public function destroy(User $user) { $this-&amp;gt;authorize(&amp;#39;delete&amp;#39;,$user); $user-&amp;gt;delete(); session()-&amp;gt;flash(&amp;#39;success&amp;#39;,&amp;#39;删除成功&amp;#39;); return redirect()-&amp;gt;route(&amp;#39;user.index&amp;#39;); } } 新建UserPolicy php artisan make:policy --model:UserPolicy 在app/Providers/AuthServiceProvider.php中注册 protected $policies = [ &amp;#39;App\Model&amp;#39; =&amp;gt; &amp;#39;App\Policies\ModelPolicy&amp;#39;, &amp;#39;App\User&amp;#39; =&amp;gt; UserPolicy::class ]; app/Policies/UserPolicy.php public function update(User $user, User $model) { //是管理员 或者当前登录的才可以修改资料 return $user-&amp;gt;is_admin || $user-&amp;gt;id == $model-&amp;gt;id; } public function delete(User $user, User $model) { //验证管理员才可以删除，并且管理员不可以删除自己 return $user-&amp;gt;is_admin &amp;amp;&amp;amp; $user-&amp;gt;id != $model-&amp;gt;id; } 用户列表视图 @extends(&amp;#39;layout/default&amp;#39;) @section(&amp;#39;content&amp;#39;) &amp;lt;div class=&amp;#34;card&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;card-header&amp;#34;&amp;gt;用户别表&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;card-body&amp;#34;&amp;gt; &amp;lt;table class=&amp;#34;table&amp;#34;&amp;gt; &amp;lt;thead&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;编号&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;昵称&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;操作&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/thead&amp;gt; &amp;lt;tbody&amp;gt; @foreach($users as $user) &amp;lt;tr&amp;gt; &amp;lt;td scope=&amp;#34;row&amp;#34;&amp;gt;{{$user[&amp;#39;id&amp;#39;]}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{$user[&amp;#39;name&amp;#39;]}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;#34;btn-group&amp;#34;&amp;gt; &amp;lt;a href=&amp;#34;{{route(&amp;#39;user.show&amp;#39;,$user)}}&amp;#34; type=&amp;#34;button&amp;#34; class=&amp;#34;btn btn-success&amp;#34;&amp;gt;查看&amp;lt;/a&amp;gt; @can(&amp;#39;update&amp;#39;,$user) &amp;lt;a href=&amp;#34;{{route(&amp;#39;user.edit&amp;#39;,$user)}}&amp;#34; type=&amp;#34;button&amp;#34; class=&amp;#34;btn btn-info&amp;#34;&amp;gt;修改&amp;lt;/a&amp;gt; @endcan @can(&amp;#39;delete&amp;#39;,$user) &amp;lt;form action=&amp;#34;{{route(&amp;#39;user.destroy&amp;#39;,$user)}}&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; @csrf @method(&amp;#39;DELETE&amp;#39;) &amp;lt;button type=&amp;#34;submit&amp;#34; class=&amp;#34;btn btn-danger&amp;#34;&amp;gt;删除&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; @endcan &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; @endforeach &amp;lt;/tbody&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;!--分页--&amp;gt; &amp;lt;div class=&amp;#34;card-footer text-muted&amp;#34;&amp;gt; {{$users-&amp;gt;links()}} &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; @endsection 使用flash闪存处理提示信息 {{--提示信息处理--}} @foreach([&amp;#39;success&amp;#39;,&amp;#39;danger&amp;#39;] as $t) @if(session()-&amp;gt;has($t)) &amp;lt;div class=&amp;#34;alert alert-{{$t}}&amp;#34; role=&amp;#34;alert&amp;#34;&amp;gt; &amp;lt;strong&amp;gt;{{session()-&amp;gt;get($t)}}&amp;lt;/strong&amp;gt; &amp;lt;/div&amp;gt; @endif @endforeach #错误信息处理
+{{--错误信息处理--}} @if(count($errors)&amp;gt;0) &amp;lt;div class=&amp;#34;alert alert-warning&amp;#34; role=&amp;#34;alert&amp;#34;&amp;gt; @foreach($errors-&amp;gt;all() as $error) &amp;lt;strong&amp;gt;{{$error}}&amp;lt;/strong&amp;gt; @endforeach &amp;lt;/div&amp;gt; @endif 父级视图模板/layout/default.blade.php &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;#34;{{ str_replace(&amp;#39;_&amp;#39;, &amp;#39;-&amp;#39;, app()-&amp;gt;getLocale()) }}&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1&amp;#34;&amp;gt; &amp;lt;title&amp;gt;Blog 01&amp;lt;/title&amp;gt; &amp;lt;!-- Fonts --&amp;gt; &amp;lt;link href=&amp;#34;https://fonts.googleapis.com/css?family=Nunito:200,600&amp;#34; rel=&amp;#34;stylesheet&amp;#34;&amp;gt; &amp;lt;!-- Styles --&amp;gt; &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css&amp;#34; integrity=&amp;#34;sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc&#43;NcPb1dKGj7Sk&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js&amp;#34; integrity=&amp;#34;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C&#43;OGpamoFVy38MVBnE&#43;IbbVYUew&#43;OrCXaRkfj&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js&amp;#34; integrity=&amp;#34;sha384-Q6E9RHvbIyZFJoft&#43;2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js&amp;#34; integrity=&amp;#34;sha384-OgVRvuATP1z7JjHLkuOU7Xw704&#43;h835Lr&#43;6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;nav&amp;gt; &amp;lt;ul class=&amp;#34;nav&amp;#34;&amp;gt; &amp;lt;li class=&amp;#34;nav-item&amp;#34;&amp;gt; &amp;lt;a class=&amp;#34;nav-link active&amp;#34; href=&amp;#34;/&amp;#34;&amp;gt;首页&amp;lt;/a&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;li class=&amp;#34;nav-item&amp;#34;&amp;gt; &amp;lt;a class=&amp;#34;nav-link active&amp;#34; href=&amp;#34;{{route(&amp;#39;user.index&amp;#39;)}}&amp;#34;&amp;gt;用户列表&amp;lt;/a&amp;gt; &amp;lt;/li&amp;gt; @auth &amp;lt;li class=&amp;#34;nav-item&amp;#34;&amp;gt; &amp;lt;a class=&amp;#34;nav-link&amp;#34;&amp;gt;欢迎：&amp;lt;strong&amp;gt;{{auth()-&amp;gt;user()-&amp;gt;name}}&amp;lt;/strong&amp;gt;&amp;lt;/a&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;li class=&amp;#34;nav-item&amp;#34;&amp;gt; &amp;lt;a class=&amp;#34;nav-link&amp;#34; href=&amp;#34;{{route(&amp;#39;user.edit&amp;#39;,auth()-&amp;gt;user())}}&amp;#34;&amp;gt;修改资料&amp;lt;/a&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;li class=&amp;#34;nav-item&amp;#34;&amp;gt; &amp;lt;a class=&amp;#34;nav-link&amp;#34; href=&amp;#34;{{route(&amp;#39;logout&amp;#39;)}}&amp;#34;&amp;gt;退出&amp;lt;/a&amp;gt; &amp;lt;/li&amp;gt; @else &amp;lt;li class=&amp;#34;nav-item&amp;#34;&amp;gt; &amp;lt;a class=&amp;#34;nav-link&amp;#34; href=&amp;#34;{{route(&amp;#39;login&amp;#39;)}}&amp;#34;&amp;gt;登录&amp;lt;/a&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;li class=&amp;#34;nav-item&amp;#34;&amp;gt; &amp;lt;a class=&amp;#34;nav-link&amp;#34; href=&amp;#34;{{route(&amp;#39;user.create&amp;#39;)}}&amp;#34;&amp;gt;注册&amp;lt;/a&amp;gt; &amp;lt;/li&amp;gt; @endauth &amp;lt;/ul&amp;gt; &amp;lt;/nav&amp;gt; {{--错误信息--}} @include(&amp;#39;layout._errors&amp;#39;) {{--提示信息--}} @include(&amp;#39;layout._message&amp;#39;) @yield(&amp;#39;content&amp;#39;) &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel Api开发之laravel/passport授权包的使用及基本配置</title>
+        <url>https://listenlive.cn/note/2020/07/31/laravel06/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>PHP</tag><tag>Laravel</tag><tag>Api</tag>
+        </tags>
+        <content type="html"> 安装laravel/passport composer require laravel/passport=~7.0 指定为7.0版本，laravel5.8不支持8.0及以上版本
+创建所需的表 php artisan migrate 生成secret php artisan passport:install 在app/Providers/AuthServiceProvider.php中引入并在boot方法中调用 use Laravel\Passport\Passport; public function boot() { $this-&amp;gt;registerPolicies(); Passport::routes(); } 配置config/auth.php,将api默认的token改为passport &amp;#39;api&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;passport&amp;#39;, &amp;#39;provider&amp;#39; =&amp;gt; &amp;#39;users&amp;#39;, &amp;#39;hash&amp;#39; =&amp;gt; false, ], 将HasApiTokens Trait引入app/User.php中,这个 Trait 为模型提供一些辅助函数，用于检查已认证用户的令牌和使用范围 namespace App; use Laravel\Passport\HasApiTokens; use Illuminate\Notifications\Notifiable; use Illuminate\Foundation\Auth\User as Authenticatable; class User extends Authenticatable { use HasApiTokens, Notifiable; }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>MongoDB 安装配置</title>
+        <url>https://listenlive.cn/note/2020/07/30/mongodb01/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>MongoDB</tag><tag>nosql</tag><tag>数据库</tag>
+        </tags>
+        <content type="html"> 安装配置（with WAMP） 下载MongoDB，并将安装包移动到wamp环境目录下 在mongodb目录新建log.txt文件和dat文件目录 启动命令 mongod --port 8888 --dbpath d:/wamp64/bin/mongodb/data --logpath d:/wamp64/bin/mongodb/log.txt 查看是否启动成功
+netstat -an 连接MongoDB数据库 mongo localhost:8888 MongoDB基本指令 use dbname //使用数据库，如果没有则创建 show dbs //查看数据库 db.集合名.insert({}) //插入集合 show tables //查看集合 db.集合名.find() //查询集合里面的所有文档 db.集合名.findOne() //查询集合里面的第一个文档 db.集合名.drop() //删除集合 db.dropDatabase() //删除数据库（当前use的数据库） db.集合名.remove({age:5}) //删除文档 db.集合名.update({条件}),{新文档} //更新文档 db.集合名.find({条件}) //查询文档   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Vue基础-05</title>
+        <url>https://listenlive.cn/note/2020/07/30/vue05/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Vue</tag><tag>前端</tag>
+        </tags>
+        <content type="html"> 使用Vue-cli初始化单页面应用 使用npm或cnpm安装 vue-cli cnpm install -g vue-cli 使用vue命令安装项目包 vue init webpack cli 安装vue-route时选Yes,其他都选No
+进入到项目目录，安装依赖包并运行 cd cli cnpm install npm run dev 引入vue-router.js &amp;lt;script src=&amp;#34;https://cdn.bootcdn.net/ajax/libs/vue-router/3.2.0/vue-router.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 路由的使用 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;router-link to=&amp;#34;/applive&amp;#34;&amp;gt;Live&amp;lt;/router-link&amp;gt; &amp;lt;router-link to=&amp;#34;/applisten&amp;#34;&amp;gt;Listen&amp;lt;/router-link&amp;gt; &amp;lt;router-view&amp;gt;&amp;lt;/router-view&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; const applive={ template:&amp;#39;&amp;lt;h1&amp;gt;appLive&amp;lt;/h1&amp;gt;&amp;#39; }; const applisten={ template:&amp;#39;&amp;lt;h1&amp;gt;appListen&amp;lt;/h1&amp;gt;&amp;#39; }; //定义路由器 let route = new VueRouter({ routes:[ {path:&amp;#39;/live&amp;#39;,component:applive}, {path:&amp;#39;/listen&amp;#39;,component:applisten}, ] }); new Vue({ el:&amp;#39;#app&amp;#39;, router:route, data:{ }, }); &amp;lt;/script&amp;gt; vue-router 路由参数以及伪静态 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;router-link to=&amp;#34;/content&amp;#34;&amp;gt;内容&amp;lt;/router-link&amp;gt; {{$route.params.cid}} {{$route.params.cid}} &amp;lt;!--在页面中接收参数--&amp;gt; &amp;lt;router-view&amp;gt;&amp;lt;/router-view&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;content&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;button @click=&amp;#34;show&amp;#34;&amp;gt;参数&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; const content={ template:&amp;#39;#content&amp;#39;, methods:{ show() { console.log(this.$route.params); //在控制台接收参数 } } }; //定义路由器 let routes = [ {path:&amp;#39;/content-:cid-show-:id.html&amp;#39;,component:content}, ]; //把组件交给路由 let router = new VueRouter({routes}); var app = new Vue({ el:&amp;#39;#app&amp;#39;, router, data:{ }, }); &amp;lt;/script&amp;gt; vue路由参数验证处理，保证路由安全 let routes = [ {path:&amp;#39;/content/:id(\\{2})&amp;#39;,component:content}, //正则验证，表示限制id必须为两位数字 ]; 内容列表单页面实例与路由别名的使用 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;router-view&amp;gt;&amp;lt;/router-view&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;home&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;li v-for=&amp;#34;v in news&amp;#34;&amp;gt; &amp;lt;router-link :to=&amp;#34;{name:&amp;#39;content&amp;#39;,params:{id:v.id}}&amp;#34;&amp;gt;{{v.title}}&amp;lt;/router-link&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;content&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1&amp;gt;{{field.title}}&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt; {{field.content}} &amp;lt;/p&amp;gt; &amp;lt;router-link to=&amp;#34;/&amp;#34;&amp;gt;返回首页&amp;lt;/router-link&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; var data =[ {id:1,title:&amp;#39;listen&amp;#39;,content:&amp;#39;listen内容。。。&amp;#39;}, {id:2,title:&amp;#39;live&amp;#39;,content:&amp;#39;live内容。。。&amp;#39;} ]; const home={ template:&amp;#39;#home&amp;#39;, data(){ return{ news:data } } }; const content ={ template:&amp;#39;#content&amp;#39;, data(){ return{ field:{} } }, mounted(){ var id = this.$route.params.id; for(let k=0;k&amp;lt;data.length;k&#43;&#43;){ if(data[k].id==id){ this.field = data[k]; } } } }; //定义路由器 let routes = [ {path:&amp;#39;/&amp;#39;,component:home}, {path:&amp;#39;/content/:id&amp;#39;,component:content,name:&amp;#39;content&amp;#39;}, ]; //把组件交给路由 let router = new VueRouter({routes}); var app = new Vue({ el:&amp;#39;#app&amp;#39;, router, }); &amp;lt;/script&amp;gt; vue-router路由嵌套 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;router-view&amp;gt;&amp;lt;/router-view&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;home&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;li v-for=&amp;#34;v in news&amp;#34;&amp;gt; &amp;lt;router-link :to=&amp;#34;{name:&amp;#39;content&amp;#39;,params:{id:v.id}}&amp;#34;&amp;gt;{{v.title}}&amp;lt;/router-link&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;router-view&amp;gt;&amp;lt;/router-view&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;content&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;h1&amp;gt;{{field.title}}&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt; {{field.content}} &amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; var data =[ {id:1,title:&amp;#39;listen&amp;#39;,content:&amp;#39;listen内容。。。&amp;#39;}, {id:2,title:&amp;#39;live&amp;#39;,content:&amp;#39;live内容。。。&amp;#39;} ]; const home={ template:&amp;#39;#home&amp;#39;, data(){ return{ news:data } } }; const content = { template: &amp;#39;#content&amp;#39;, data() { return { field: {} } }, //监听路由变化 watch: { &amp;#39;$route&amp;#39;(to, from) { this.load(); } }, mounted() { this.load(); }, methods: { load() { var id = this.$route.params.id; for (let k = 0; k &amp;lt; data.length; k&#43;&#43;) { if (data[k].id == id) { this.field = data[k]; } } } } }; //定义路由器 let routes = [ {path:&amp;#39;/&amp;#39;,component:home,children:[ {path:&amp;#39;/content/:id&amp;#39;,component:content,name:&amp;#39;content&amp;#39;}, ]}, ]; //把组件交给路由 let router = new VueRouter({routes}); var app = new Vue({ el:&amp;#39;#app&amp;#39;, router, }); &amp;lt;/script&amp;gt;   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Vue基础-04</title>
+        <url>https://listenlive.cn/note/2020/07/27/vue04/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Vue</tag><tag>前端</tag>
+        </tags>
+        <content type="html"> Vue声明组件(component)的方式 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;live-slide&amp;gt;&amp;lt;/live-slide&amp;gt; &amp;lt;live-news&amp;gt;&amp;lt;/live-news&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; //全局组件 Vue.component(&amp;#39;liveSlide&amp;#39;,{ template:&amp;#39;&amp;lt;h2&amp;gt;listenlive.cn&amp;lt;/h2&amp;gt;&amp;#39; }); //局部组件 var liveNews = { template:&amp;#34;&amp;lt;h2&amp;gt;ListenLive&amp;lt;/h2&amp;gt;&amp;#34; }; var app = new Vue({ el:&amp;#39;#app&amp;#39;, components:{liveNews}, data:{ }, }); &amp;lt;/script&amp;gt; 子组件中data返回数据的实例及text/x-template的使用 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;live-news&amp;gt;&amp;lt;/live-news&amp;gt; &amp;lt;hr/&amp;gt; &amp;lt;live-news&amp;gt;&amp;lt;/live-news&amp;gt; &amp;lt;hr/&amp;gt; &amp;lt;live-news&amp;gt;&amp;lt;/live-news&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;liveNews&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;li v-for=&amp;#34;(v,k) in news&amp;#34;&amp;gt; {{v.title}} &amp;lt;button @click=&amp;#34;del(k)&amp;#34;&amp;gt;删除&amp;lt;/button&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; //局部组件 var liveNews = { template:&amp;#34;#liveNews&amp;#34;, // 子组件返回data要使用对象 data(){ return { news:[ {title:&amp;#39;live&amp;#39;}, {title:&amp;#39;Taipei&amp;#39;}, ] } }, methods:{ del(k){ this.news.splice(k,1); } } }; //根组件 var app = new Vue({ el:&amp;#39;#app&amp;#39;, components:{liveNews}, data:{ }, }); &amp;lt;/script&amp;gt; 组件间参数的传递 父级组件向子组件传递数据 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;live-news :show-del-button=&amp;#34;true&amp;#34; :lists=&amp;#34;news&amp;#34;&amp;gt;&amp;lt;/live-news&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;liveNews&amp;#34;&amp;gt; &amp;lt;div&amp;gt; &amp;lt;li v-for=&amp;#34;(v,k) in lists&amp;#34;&amp;gt; {{v.title}} &amp;lt;button @click=&amp;#34;del(k)&amp;#34;&amp;gt;删除&amp;lt;/button&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; //局部组件(子组件) var liveNews = { template:&amp;#34;#liveNews&amp;#34;, // 子组件返回data要使用对象 props:[&amp;#39;shoeDelButton&amp;#39;,&amp;#39;lists&amp;#39;], //使用props接收数据 methods:{ del(k){ this.news.splice(k,1); } } }; //根组件 var app = new Vue({ el:&amp;#39;#app&amp;#39;, components:{liveNews}, data:{ news:[ {title:&amp;#39;live&amp;#39;}, {title:&amp;#39;hello&amp;#39;}, {title:&amp;#39;广州&amp;#39;}, ] }, }); &amp;lt;/script&amp;gt; props数据的验证 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;live-news :show-del-button=&amp;#34;true&amp;#34; :lists=&amp;#34;news&amp;#34;&amp;gt;&amp;lt;/live-news&amp;gt; &amp;lt;/div&amp;gt; var liveNews = { template:&amp;#34;#liveNews&amp;#34;, props:{ showDelButton:{ type:[Boolean,Number], //验证值为布尔或数字类型才通过 required:true //必须验证 } }, methods:{ del(k){ this.news.splice(k,1); } } }; 子组件使用$emit事件触发父组件实现购物车商品计算功能 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;live-news :lists=&amp;#34;goods&amp;#34; @sum=&amp;#34;total&amp;#34;&amp;gt;&amp;lt;/live-news&amp;gt; 总计：&amp;lt;span&amp;gt;{{totalPrice}}&amp;lt;/span&amp;gt;元 &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;liveNews&amp;#34;&amp;gt; &amp;lt;table border=&amp;#34;1&amp;#34;&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;商品名称&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品价格&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品数量&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr v-for=&amp;#34;(v,k) in lists&amp;#34;&amp;gt; &amp;lt;td&amp;gt;{{v.title}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{v.price}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;v.num&amp;#34; @blur=&amp;#34;sum&amp;#34;/&amp;gt; &amp;lt;!--@blur当元素失去焦点时触发--&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; //局部组件 var liveNews = { template:&amp;#34;#liveNews&amp;#34;, // 子组件返回data要使用对象 props:[&amp;#39;lists&amp;#39;], //使用props接收数据 methods:{ sum(){ this.$emit(&amp;#39;sum&amp;#39;); } } }; //根组件 var app = new Vue({ el:&amp;#39;#app&amp;#39;, components:{liveNews}, mounted(){ //挂载点 - 当页面加载时就执行 this.total(); }, data:{ totalPrice:0, goods:[ {title:&amp;#39;iPhone11&amp;#39;,price:5000,num:1}, {title:&amp;#39;显示器&amp;#39;,price:1000,num:1}, {title:&amp;#39;Macbook&amp;#39;,price:8000,num:1}, ] }, methods:{ total(){ this.totalPrice=0; this.goods.forEach((v)=&amp;gt;{ this.totalPrice &#43;= v.num*v.price; }) } } }); &amp;lt;/script&amp;gt; 使用sync修饰符与computed计算属性 实现购物车原理 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;live-news :lists.sync=&amp;#34;goods&amp;#34; @sum=&amp;#34;total&amp;#34;&amp;gt;&amp;lt;/live-news&amp;gt; 总计：&amp;lt;span&amp;gt;{{totalPrice}}&amp;lt;/span&amp;gt;元 &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/x-template&amp;#34; id=&amp;#34;liveNews&amp;#34;&amp;gt; &amp;lt;table border=&amp;#34;1&amp;#34;&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;商品名称&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品价格&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;商品数量&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr v-for=&amp;#34;(v,k) in lists&amp;#34;&amp;gt; &amp;lt;td&amp;gt;{{v.title}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{v.price}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;v.num&amp;#34; @blur=&amp;#34;sum&amp;#34;/&amp;gt; &amp;lt;!--@blur当元素失去焦点时触发--&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; //局部组件 var liveNews = { template:&amp;#34;#liveNews&amp;#34;, // 子组件返回data要使用对象 props:[&amp;#39;lists&amp;#39;], //使用props接收数据 methods:{ sum(){ this.$emit(&amp;#39;sum&amp;#39;); } } }; //根组件 var app = new Vue({ el:&amp;#39;#app&amp;#39;, components:{liveNews}, computed:{ totalPrice(){ var sum = 0; this.goods.forEach((v)=&amp;gt;{ sum &#43;= v.num*v.price; }) return sum; } }, data:{ totalPrice:0, goods:[ {title:&amp;#39;iPhone11&amp;#39;,price:5000,num:1}, {title:&amp;#39;显示器&amp;#39;,price:1000,num:1}, {title:&amp;#39;Macbook&amp;#39;,price:8000,num:1}, ] }, }); &amp;lt;/script&amp;gt; 使用动态组件灵活设置页面布局&amp;ndash;针对不同用户展示不同界面场景 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div :is=&amp;#34;formType&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;input type=&amp;#34;radio&amp;#34; v-model=&amp;#34;formType&amp;#34; value=&amp;#34;appInput&amp;#34;/&amp;gt; 文本框 &amp;lt;input type=&amp;#34;radio&amp;#34; v-model=&amp;#34;formType&amp;#34; value=&amp;#34;appTextarea&amp;#34;/&amp;gt; 文本域 &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var appInput = { template:&amp;#34;&amp;lt;div&amp;gt;&amp;lt;input/&amp;gt;&amp;lt;/div&amp;gt;&amp;#34;, }; var appTextarea = { template:&amp;#34;&amp;lt;div&amp;gt;&amp;lt;textarea&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;/div&amp;gt;&amp;#34;, }; var app = new Vue({ el:&amp;#39;#app&amp;#39;, components:{appInput,appTextarea}, data:{ formType:&amp;#34;appTextarea&amp;#34;, }, }); &amp;lt;/script&amp;gt;   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Vue基础-03</title>
+        <url>https://listenlive.cn/note/2020/07/26/vue03/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>前端</tag><tag>Vue</tag>
+        </tags>
+        <content type="html"> 表单提交与prevent操作表单 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;form action=&amp;#34;&amp;#34; @submit.prevent=&amp;#34;post(&amp;#39;listenlive.cn&amp;#39;)&amp;#34;&amp;gt; &amp;lt;h2&amp;gt;{{times}}&amp;lt;/h2&amp;gt; &amp;lt;button&amp;gt;提交&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data: { times:new Date() }, methods:{ post(num){ alert(num); } } }); 点击提交按钮异步提交，时间不变
+事件修饰符stop&amp;amp;prevent&amp;amp;capture-防止冒泡事件 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div @click.capture=&amp;#34;box&amp;#34; :style=&amp;#34;{border:&amp;#39;solid 2px red&amp;#39;}&amp;#34;&amp;gt; &amp;lt;a href=&amp;#34;https://listenlive.cn&amp;#34; @click.stop.prevent=&amp;#34;links&amp;#34;&amp;gt;Blog&amp;lt;/a&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#34;#app&amp;#34;, methods:{ box(){ alert(&amp;#39;div&amp;#39;); }, links(){ alert(&amp;#39;listenlive.cn&amp;#39;); } } }); &amp;lt;/script&amp;gt; 此外还有once修饰符，表示只绑定一次
+&amp;lt;a href=&amp;#34;https://listenlive.cn&amp;#34; @click.stop.prevent.once=&amp;#34;links&amp;#34;&amp;gt;Blog&amp;lt;/a&amp;gt; 键盘事件修饰符 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; @keyup.enter=&amp;#34;keyEvent&amp;#34;&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;!--按回车键触发--&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; @keyup.delete=&amp;#34;keyEvent&amp;#34;&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;!--按Del键触发--&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; @keyup.tab=&amp;#34;keyEvent&amp;#34;&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;!--按Tab键触发--&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; @keyup.esc=&amp;#34;keyEvent&amp;#34;&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;!--按esc键触发--&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; @keyup.space=&amp;#34;keyEvent&amp;#34;&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;!--按空格键触发--&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; @keyup.ctrl.65=&amp;#34;keyEvent&amp;#34;&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;!--按Ctrl&#43;A键触发--&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, methods:{ keyEvent(){ alert(&amp;#39;listenlive.cn&amp;#39;); } } }); &amp;lt;/script&amp;gt; 鼠标事件 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div @click.left=&amp;#34;handler&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;!--鼠标左键--&amp;gt; &amp;lt;div @click.middle=&amp;#34;handler&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;!--鼠标中键--&amp;gt; &amp;lt;div @contextmenu.prevent=&amp;#34;handler&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;!--鼠标右键（一般用于弹出自定义菜单）--&amp;gt; &amp;lt;/div&amp;gt; 使用Vue将数据分配到表单，并用bootstrap布局， 使用 BootCDN 引入Bootstrap和JQuery
+&amp;lt;link href=&amp;#34;https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css&amp;#34; rel=&amp;#34;stylesheet&amp;#34;&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;link href=&amp;#34;https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/fontawesome.min.css&amp;#34; rel=&amp;#34;stylesheet&amp;#34;&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;panel panel-default&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;panel-heading&amp;#34;&amp;gt; &amp;lt;h3 class=&amp;#34;panel-title&amp;#34;&amp;gt;Panel title&amp;lt;/h3&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;panel-body&amp;#34;&amp;gt; &amp;lt;form action=&amp;#34;&amp;#34; class=&amp;#34;form-horizontal&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;标题&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model=&amp;#34;field.title&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;点击数&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model=&amp;#34;field.click&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;链接&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model=&amp;#34;field.url&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;摘要&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;textarea name=&amp;#34;&amp;#34; class=&amp;#34;form-control&amp;#34; v-model=&amp;#34;field.description&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ field:{ title:&amp;#39;ListenLive&amp;#39;, click:999, url:&amp;#39;listenlive.cn&amp;#39;, description:&amp;#39;摘要&amp;#39; } }, methods:{ } }); &amp;lt;/script&amp;gt; Vue表单处理控件-复选框CheckBox的使用方式 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;panel panel-default&amp;#34;&amp;gt; &amp;lt;form action=&amp;#34;&amp;#34; class=&amp;#34;form-horizontal&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;panel-heading&amp;#34;&amp;gt; &amp;lt;h3 class=&amp;#34;panel-title&amp;#34;&amp;gt;Panel title&amp;lt;/h3&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;panel-body&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;标题&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model=&amp;#34;field.title&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;属性&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;checkbox-inline&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;checkbox&amp;#34; v-model=&amp;#34;field.flag&amp;#34; value=&amp;#34;hot&amp;#34;/&amp;gt;热门 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;checkbox-inline&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;checkbox&amp;#34; v-model=&amp;#34;field.flag&amp;#34; value=&amp;#34;recommend&amp;#34;/&amp;gt;推荐 &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;点击数&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model=&amp;#34;field.click&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;链接&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model=&amp;#34;field.url&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;摘要&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;textarea name=&amp;#34;&amp;#34; class=&amp;#34;form-control&amp;#34; v-model=&amp;#34;field.description&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;类型&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;checkbox-inline&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;checkbox&amp;#34; v-model=&amp;#34;field.draft&amp;#34;/&amp;gt;草稿 &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;button class=&amp;#34;btn btn-primary col-sm-offset-2&amp;#34;&amp;gt;保存&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ field:{ title:&amp;#39;ListenLive&amp;#39;, click:999, url:&amp;#39;listenlive.cn&amp;#39;, description:&amp;#39;摘要&amp;#39;, draft:false, //草稿 flag:[] //属性 } }, methods:{ } }); &amp;lt;/script&amp;gt; 安装Vue调试工具 在谷歌网上应用商店搜索vue.js devtools并安装 打控制台即可使用vue调试工具 Vue处理表单控件之radio &amp;lt;div class=&amp;#34;radio-inline&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;radio&amp;#34; v-model=&amp;#34;field.type&amp;#34; value=&amp;#34;draft&amp;#34;/&amp;gt;草稿 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;radio-inline&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;radio&amp;#34; v-model=&amp;#34;field.type&amp;#34; value=&amp;#34;send&amp;#34;/&amp;gt;发送 &amp;lt;/div&amp;gt; 使用radio时为v-model设置同样的值
+&amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ field:{ title:&amp;#39;ListenLive&amp;#39;, click:999, url:&amp;#39;listenlive.cn&amp;#39;, description:&amp;#39;摘要&amp;#39;, draft:false, type:&amp;#39;send&amp;#39;, flag:[] } }, methods:{ } }); &amp;lt;/script&amp;gt; Vue处理表单控件之select &amp;lt;div class=&amp;#34;form-group&amp;#34;&amp;gt; &amp;lt;label for=&amp;#34;&amp;#34; class=&amp;#34;col-sm-2 control-label&amp;#34;&amp;gt;栏目&amp;lt;/label&amp;gt; &amp;lt;div class=&amp;#34;col-sm-10&amp;#34;&amp;gt; &amp;lt;select v-model=&amp;#34;field.cid&amp;#34; class=&amp;#34;form-control&amp;#34;&amp;gt; &amp;lt;option value=&amp;#34;&amp;#34;&amp;gt;==请选择栏目==&amp;lt;/option&amp;gt; &amp;lt;option v-for=&amp;#34;v in category&amp;#34; :value=&amp;#34;v.cid&amp;#34;&amp;gt;{{v.title}}&amp;lt;/option&amp;gt; &amp;lt;/select&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ category:[ {cid:1,title:&amp;#39;北京&amp;#39;}, {cid:2,title:&amp;#39;天津&amp;#39;}, {cid:3,title:&amp;#39;上海&amp;#39;}, {cid:4,title:&amp;#39;重庆&amp;#39;}, {cid:5,title:&amp;#39;广州&amp;#39;}, ], field:{ title:&amp;#39;ListenLive&amp;#39;, click:999, url:&amp;#39;listenlive.cn&amp;#39;, description:&amp;#39;摘要&amp;#39;, draft:false, type:&amp;#39;send&amp;#39;, flag:[], cid:5 } }, methods:{ } }); &amp;lt;/script&amp;gt; 表单修饰符 number、trim、lazy number 将字符串转为整型
+&amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model.number=&amp;#34;field.vlaue&amp;#34;/&amp;gt; trim 去除字符串两端的空格
+&amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model.trim=&amp;#34;field.title&amp;#34;/&amp;gt; lazy 懒加载-当光标移出输入框时才触发
+&amp;lt;input type=&amp;#34;text&amp;#34; class=&amp;#34;form-control&amp;#34; v-model.trim.lazy=&amp;#34;field.title&amp;#34;/&amp;gt;   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>npm 版本更新</title>
+        <url>https://listenlive.cn/leaf/2020/07/25/npmcommand.html</url>
+        <categories>
+          <category>杂记</category>
+        </categories>
+        <tags>
+          <tag>npm</tag>
+        </tags>
+        <content type="html"> npm install -g npm //npm 版本更新命令（windows）   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Vue基础-02</title>
+        <url>https://listenlive.cn/note/2020/07/23/vue02/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Vue</tag><tag>前端</tag>
+        </tags>
+        <content type="html"> 使用object与array控制class &amp;lt;style&amp;gt; .font{font-size: 20px} .color{color: skyblue} .red{color: red} &amp;lt;/style&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;h2 :class=&amp;#34;obj&amp;#34;&amp;gt;Vue Object&amp;lt;/h2&amp;gt; &amp;lt;hr/&amp;gt; &amp;lt;h2 :class=&amp;#34;[succ,font]&amp;#34;&amp;gt;listenlive.cn&amp;lt;/h2&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ obj:{color:true,font:true}, //对象形式 //数组形式 succ:&amp;#39;red&amp;#39;, font:&amp;#39;font&amp;#39; } }); &amp;lt;/script&amp;gt; 使用class表达式实现“删除-恢复”功能 &amp;lt;style&amp;gt; .font{font-size: 20px} .success{color: green} .error{color: red} &amp;lt;/style&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;li v-for=&amp;#34;v in news&amp;#34;&amp;gt; &amp;lt;span :class=&amp;#34;v.status?&amp;#39;success&amp;#39;:&amp;#39;error&amp;#39;&amp;#34;&amp;gt;{{v.title}}&amp;lt;/span&amp;gt; &amp;lt;button v-on:click=&amp;#34;changeStatus(v,false)&amp;#34; v-if=&amp;#34;v.status&amp;#34;&amp;gt; 删除&amp;lt;/button&amp;gt; &amp;lt;button v-on:click=&amp;#34;changeStatus(v,true)&amp;#34; v-if=&amp;#34;!v.status&amp;#34;&amp;gt; 恢复&amp;lt;/button&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, methods:{ changeStatus:function (item,status) { item.status = status; } }, data:{ news:[ {title:&amp;#39;北京&amp;#39;,status:true}, {title:&amp;#39;上海&amp;#39;,status:true}, {title:&amp;#39;广州&amp;#39;,status:true}, ] } }); &amp;lt;/script&amp;gt; 使用Vue设置行内样式与动态改变style样式 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;h2 :style=&amp;#34;{color:&amp;#39;red&amp;#39;,fontSize:size&#43;&amp;#39;px&amp;#39;}&amp;#34;&amp;gt;动态改变大小&amp;lt;/h2&amp;gt; &amp;lt;h2 :style=&amp;#34;style&amp;#34;&amp;gt;Listenlive&amp;lt;/h2&amp;gt; &amp;lt;h2 :style=&amp;#34;[live]&amp;#34;&amp;gt;listenlive.cn&amp;lt;/h2&amp;gt; &amp;lt;input type=&amp;#34;number&amp;#34; v-model=&amp;#34;size&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ red:&amp;#39;green&amp;#39;, size:16, style:{ color:&amp;#39;blue&amp;#39; }, live:{ color:&amp;#39;yellow&amp;#39;, backgroundColor:&amp;#39;blue&amp;#39; } } }); &amp;lt;/script&amp;gt; v-if 在注册场景下的实际应用 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;age&amp;#34;/&amp;gt; &amp;lt;span v-if=&amp;#34;age&amp;lt;20&amp;#34;&amp;gt;小孩&amp;lt;/span&amp;gt; &amp;lt;span v-else-if=&amp;#34;age&amp;lt;30&amp;#34;&amp;gt;青年&amp;lt;/span&amp;gt; &amp;lt;span v-else-if=&amp;#34;age&amp;lt;50&amp;#34;&amp;gt;中年&amp;lt;/span&amp;gt; &amp;lt;span v-else=&amp;#34;age&amp;lt;50&amp;#34;&amp;gt;老年&amp;lt;/span&amp;gt; &amp;lt;hr/&amp;gt; &amp;lt;input type=&amp;#34;checkbox&amp;#34; v-model=&amp;#34;copyright&amp;#34;&amp;gt;接受协议&amp;lt;br/&amp;gt; &amp;lt;span v-if=&amp;#34;copyright==false&amp;#34;&amp;gt;请先接受协议&amp;lt;/span&amp;gt; &amp;lt;button v-else&amp;gt;注册&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ copyright:false, age:0 } }); &amp;lt;/script&amp;gt; 使用key值解决表单切换混乱问题 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;template v-if=&amp;#34;regType==&amp;#39;mail&amp;#39;&amp;#34;&amp;gt; 邮箱：&amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;account&amp;#34; key=&amp;#34;mail-register&amp;#34;&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;template v-else&amp;gt; 手机：&amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;account&amp;#34; key=&amp;#34;phone-register&amp;#34;&amp;gt; &amp;lt;/template&amp;gt; &amp;lt;hr/&amp;gt; &amp;lt;input type=&amp;#34;radio&amp;#34; value=&amp;#34;mail&amp;#34; v-model=&amp;#34;regType&amp;#34;&amp;gt;邮箱注册 &amp;lt;input type=&amp;#34;radio&amp;#34; value=&amp;#34;phone&amp;#34; v-model=&amp;#34;regType&amp;#34;&amp;gt;手机注册 &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ regType:&amp;#39;mail&amp;#39; } }); &amp;lt;/script&amp;gt; 此时点击切换注册方式则会清空表单内容
+v-for 循环列表数据，并使用key添加序号 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;table border=&amp;#34;1&amp;#34;&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;th&amp;gt;序号&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;编号&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;标题&amp;lt;/th&amp;gt; &amp;lt;th&amp;gt;城市&amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tbody&amp;gt; &amp;lt;tr v-for=&amp;#34;(field,key) in news&amp;#34;&amp;gt; &amp;lt;td&amp;gt;{{key&#43;1}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{field.id}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{field.title}}&amp;lt;/td&amp;gt; &amp;lt;td&amp;gt;{{city}}&amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/tbody&amp;gt; &amp;lt;/table&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ city:&amp;#39;台北&amp;#39;, news:[ {id:20200725,title:&amp;#39;listenlive.cn&amp;#39;}, {id:20200726,title:&amp;#39;Hello Taipei&amp;#39;} ] } }); &amp;lt;/script&amp;gt; v-for 结合计算属性（computed）实现根据条件筛选数据功能 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;li v-for=&amp;#34;v in stus&amp;#34;&amp;gt; {{v.name}} - {{v.sex}} &amp;lt;/li&amp;gt; &amp;lt;input type=&amp;#34;radio&amp;#34; v-model=&amp;#34;type&amp;#34; value=&amp;#34;girl&amp;#34;&amp;gt;Girl &amp;lt;input type=&amp;#34;radio&amp;#34; v-model=&amp;#34;type&amp;#34; value=&amp;#34;boy&amp;#34;&amp;gt;Boy &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, computed:{ stus(){ if(this.type==&amp;#39;all&amp;#39;){ return this.user; }else{ var Type = this.type; return this.user.filter(function (v) { return v.sex == Type; }) } } }, data: { type:&amp;#39;all&amp;#39;, user:[ {name:&amp;#39;小明&amp;#39;,sex:&amp;#39;boy&amp;#39;}, {name:&amp;#39;小麗&amp;#39;,sex:&amp;#39;girl&amp;#39;}, {name:&amp;#39;小芳&amp;#39;,sex:&amp;#39;girl&amp;#39;}, {name:&amp;#39;小五&amp;#39;,sex:&amp;#39;boy&amp;#39;}, {name:&amp;#39;張三&amp;#39;,sex:&amp;#39;boy&amp;#39;}, {name:&amp;#39;李四&amp;#39;,sex:&amp;#39;girl&amp;#39;}, {name:&amp;#39;貓貓&amp;#39;,sex:&amp;#39;girl&amp;#39;}, {name:&amp;#39;狗狗&amp;#39;,sex:&amp;#39;boy&amp;#39;}, ] } }); &amp;lt;/script&amp;gt; Vue改良push语法-发表评论功能的实现 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;li v-for=&amp;#34;v in comments&amp;#34;&amp;gt; {{v.content}} &amp;lt;/li&amp;gt; &amp;lt;textarea v-model=&amp;#34;current_content&amp;#34; cols=&amp;#34;30&amp;#34; rows=&amp;#34;10&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;button v-on:click=&amp;#34;push&amp;#34;&amp;gt;發表評論&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data: { current_content:&amp;#39;&amp;#39;, comments:[ {content:&amp;#39;小明&amp;#39;}, {content:&amp;#39;小麗&amp;#39;}, {content:&amp;#39;小芳&amp;#39;}, {content:&amp;#39;小五&amp;#39;}, {content:&amp;#39;張三&amp;#39;}, {content:&amp;#39;李四&amp;#39;}, ] }, methods:{ push(){ var content = {content:this.current_content}; this.comments.push(content); this.current_content = &amp;#39;&amp;#39;; //清空文本域 } } }); &amp;lt;/script&amp;gt; 使用unshift和pop函数实现数据插入及删除功能 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;li v-for=&amp;#34;v in comments&amp;#34;&amp;gt; {{v.content}} &amp;lt;/li&amp;gt; &amp;lt;textarea v-model=&amp;#34;current_content&amp;#34; cols=&amp;#34;30&amp;#34; rows=&amp;#34;10&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;button v-on:click=&amp;#34;push(&amp;#39;pre&amp;#39;)&amp;#34;&amp;gt;發表到前面&amp;lt;/button&amp;gt; &amp;lt;button v-on:click=&amp;#34;push(&amp;#39;end&amp;#39;)&amp;#34;&amp;gt;發表到後面&amp;lt;/button&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;button v-on:click=&amp;#34;del(&amp;#39;last&amp;#39;)&amp;#34;&amp;gt;刪除最後一條評論&amp;lt;/button&amp;gt; &amp;lt;button v-on:click=&amp;#34;del(&amp;#39;first&amp;#39;)&amp;#34;&amp;gt;刪除第一條評論&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data: { current_content:&amp;#39;&amp;#39;, comments:[ {content:&amp;#39;小明&amp;#39;}, {content:&amp;#39;小麗&amp;#39;}, {content:&amp;#39;小芳&amp;#39;}, {content:&amp;#39;小五&amp;#39;}, {content:&amp;#39;張三&amp;#39;}, {content:&amp;#39;李四&amp;#39;}, ] }, methods:{ push(type){ var content = {content:this.current_content}; switch(type){ case &amp;#39;end&amp;#39;: this.comments.push(content); //发表到最后一条评论 this.current_content = &amp;#39;&amp;#39;; break; case &amp;#39;pre&amp;#39;: this.comments.unshift(content); //发表到第一条评论 this.current_content = &amp;#39;&amp;#39;; break; } }, del(type){ switch (type) { case &amp;#39;last&amp;#39;: this.comments.pop(); //删除最后一条评论 break; case &amp;#39;first&amp;#39;: this.comments.shift(); //删除第一条评论 break; } } } }); &amp;lt;/script&amp;gt; 使用splice函数实现单条数据的删除 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;li v-for=&amp;#34;(v,k) in comments&amp;#34;&amp;gt; {{v.content}} &amp;lt;button v-on:click=&amp;#34;remove(k)&amp;#34;&amp;gt;刪除&amp;lt;/button&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;textarea v-model=&amp;#34;current_content&amp;#34; cols=&amp;#34;30&amp;#34; rows=&amp;#34;10&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;button v-on:click=&amp;#34;push(&amp;#39;pre&amp;#39;)&amp;#34;&amp;gt;發表到前面&amp;lt;/button&amp;gt; &amp;lt;button v-on:click=&amp;#34;push(&amp;#39;end&amp;#39;)&amp;#34;&amp;gt;發表到後面&amp;lt;/button&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;button v-on:click=&amp;#34;del(&amp;#39;last&amp;#39;)&amp;#34;&amp;gt;刪除最後一條評論&amp;lt;/button&amp;gt; &amp;lt;button v-on:click=&amp;#34;del(&amp;#39;first&amp;#39;)&amp;#34;&amp;gt;刪除第一條評論&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data: { current_content:&amp;#39;&amp;#39;, comments:[ {content:&amp;#39;小明&amp;#39;}, {content:&amp;#39;小麗&amp;#39;}, {content:&amp;#39;小芳&amp;#39;}, {content:&amp;#39;小五&amp;#39;}, {content:&amp;#39;張三&amp;#39;}, {content:&amp;#39;李四&amp;#39;}, ] }, methods:{ //单条数据刪除 remove(k){ this.comments.splice(k,1); }, push(type){ var content = {content:this.current_content}; switch(type){ case &amp;#39;end&amp;#39;: this.comments.push(content); //发表到最后一条评论 this.current_content = &amp;#39;&amp;#39;; break; case &amp;#39;pre&amp;#39;: this.comments.unshift(content); //发表到第一条评论 this.current_content = &amp;#39;&amp;#39;; break; } }, del(type){ switch (type) { case &amp;#39;last&amp;#39;: this.comments.pop(); //删除最后一条评论 break; case &amp;#39;first&amp;#39;: this.comments.shift(); //删除第一条评论 break; } } } }); &amp;lt;/script&amp;gt; sort排序与reverse反向排序 //排序 sort(){ this.comments.sort(function (a,b) { return a.id &amp;gt; b.id; }) }, //反向排序 reverse(){ this.comments.reverse(); }, 使用filter与RegExp方法实现字符匹配搜索功能 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;li v-for=&amp;#34;(v,k) in comments&amp;#34;&amp;gt; {{v.id}} - {{v.content}} &amp;lt;button v-on:click=&amp;#34;remove(k)&amp;#34;&amp;gt;刪除&amp;lt;/button&amp;gt; &amp;lt;/li&amp;gt; &amp;lt;textarea v-model=&amp;#34;current_content&amp;#34; cols=&amp;#34;30&amp;#34; rows=&amp;#34;10&amp;#34;&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;button v-on:click=&amp;#34;push(&amp;#39;pre&amp;#39;)&amp;#34;&amp;gt;發表到前面&amp;lt;/button&amp;gt; &amp;lt;button v-on:click=&amp;#34;push(&amp;#39;end&amp;#39;)&amp;#34;&amp;gt;發表到後面&amp;lt;/button&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;button v-on:click=&amp;#34;del(&amp;#39;last&amp;#39;)&amp;#34;&amp;gt;刪除最後一條評論&amp;lt;/button&amp;gt; &amp;lt;button v-on:click=&amp;#34;del(&amp;#39;first&amp;#39;)&amp;#34;&amp;gt;刪除第一條評論&amp;lt;/button&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;button v-on:click=&amp;#34;sort()&amp;#34;&amp;gt;排序&amp;lt;/button&amp;gt; &amp;lt;button v-on:click=&amp;#34;reverse()&amp;#34;&amp;gt;反向排序&amp;lt;/button&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-on:keyup.enter=&amp;#34;search&amp;#34; v-model=&amp;#34;search_content&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data: { current_content:&amp;#39;&amp;#39;, //搜索内容 search_content:&amp;#39;&amp;#39;, comments:[ {id:5,content:&amp;#39;小明&amp;#39;}, {id:6,content:&amp;#39;小麗&amp;#39;}, {id:1,content:&amp;#39;Live&amp;#39;}, {id:4,content:&amp;#39;Listen&amp;#39;}, {id:2,content:&amp;#39;張三&amp;#39;}, {id:3,content:&amp;#39;李四&amp;#39;}, ] }, methods:{ //搜索 search(){ this.comments = this.comments.filter((item)=&amp;gt;{ var reg = new RegExp(this.search_content,&amp;#39;i&amp;#39;); //&amp;#39;i&amp;#39;模式修正符，不区分大小写进行搜索 return reg.test(item.content); }) }, //排序 sort(){ this.comments.sort(function (a,b) { return a.id &amp;gt; b.id; }) }, //反向排序 reverse(){ this.comments.reverse(); }, //单条数据刪除 remove(k){ this.comments.splice(k,1); }, push(type){ var content = {content:this.current_content}; switch(type){ case &amp;#39;end&amp;#39;: this.comments.push(content); this.current_content = &amp;#39;&amp;#39;; break; case &amp;#39;pre&amp;#39;: this.comments.unshift(content); this.current_content = &amp;#39;&amp;#39;; break; } }, del(type){ switch (type) { case &amp;#39;last&amp;#39;: this.comments.pop(); break; case &amp;#39;first&amp;#39;: this.comments.shift(); break; } } } }); &amp;lt;/script&amp;gt;   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel 清理缓存</title>
+        <url>https://listenlive.cn/leaf/2020/07/23/command1436.html</url>
+        <categories>
+          <category>杂记</category>
+        </categories>
+        <tags>
+          <tag>Laravel</tag><tag>PHP</tag>
+        </tags>
+        <content type="html"> php artisan route:clear php artisan config:cache php artisan cache:clear php artisan view:clear   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel基础04-视图</title>
+        <url>https://listenlive.cn/note/2020/07/23/laravel04/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Laravel</tag><tag>PHPstorm</tag><tag>PHP</tag>
+        </tags>
+        <content type="html"> Blade模板引擎的模板继承构建后台界面 后台视图文件目录 -/resources/views/admin/layout 为父级模板目录
+使用@yield占位定义活动的页面范围 &amp;lt;div&amp;gt; @yield(&amp;#39;content&amp;#39;) &amp;lt;/div&amp;gt; 子页面继承父级模板 @extends(&amp;#39;admin.layout.master&amp;#39;) @section(&amp;#39;content&amp;#39;) &amp;lt;div class=&amp;#34;panel panel-default&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;panel-heading&amp;#34;&amp;gt; &amp;lt;h3 class=&amp;#34;panel-title&amp;#34;&amp;gt;后台管理&amp;lt;/h3&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;panel-body&amp;#34;&amp;gt; 后台管理系统 &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; @endsection 使用request进行表单验证 创建request php artisan make:request AdminPost 执行后会在app/Http/Requests目录生成AdminPost.php文件
+首先引入登录验证的中间件，即在管理员登录状态才进行验证 use Auth; use Validator; use Hash; public function authorize() { return Auth::guard(&amp;#39;admin&amp;#39;)-&amp;gt;check(); } /* *添加验证规则--用于确认密码比对 */ public function addValidator() { Validator::extend(&amp;#39;check_password&amp;#39;,function($attribute,$value,$parameters,$validator){ return Hash::check($value,Auth::guard(&amp;#39;admin&amp;#39;)-&amp;gt;user()-&amp;gt;password); //验证密码 }); } 使用Validator验证器
+设置验证规则 public function rules() { $this-&amp;gt;addValidator(); return [ &amp;#39;password&amp;#39; =&amp;gt; &amp;#39;sometimes|required|confirmed&amp;#39;, &amp;#39;password_confirmation&amp;#39; =&amp;gt; &amp;#39;sometimes|required&amp;#39;, &amp;#39;original_password&amp;#39; =&amp;gt; &amp;#39;sometimes|required|check_password&amp;#39;, ]; /*sometimes表示有表单的时候才会验证*/ } 定义错误提示信息 public function message() { return [ &amp;#39;password.required&amp;#39; =&amp;gt; &amp;#39;密码不能为空&amp;#39;, &amp;#39;password_confirmation.required&amp;#39; =&amp;gt; &amp;#39;请输入确认密码&amp;#39;, &amp;#39;password_confirmed&amp;#39; =&amp;gt; &amp;#39;两次密码输入不一致&amp;#39;, &amp;#39;original_password.required&amp;#39; =&amp;gt; &amp;#39;请输入初始密码&amp;#39;, &amp;#39;original_password.check_password&amp;#39; =&amp;gt; &amp;#39;初始密码错误&amp;#39;, ]; } 在视图中显示错误提示信息 定义错误提示模板errors.blade.php
+@if (count($errors) &amp;gt; 0) &amp;lt;div class=&amp;#34;modal fade&amp;#34; id=&amp;#34;modal_message&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;modal-dialog&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;modal-content&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;modal-header&amp;#34;&amp;gt; &amp;lt;button type=&amp;#34;button&amp;#34; class=&amp;#34;close&amp;#34; data-dismiss=&amp;#34;modal&amp;#34; aria-hidden=&amp;#34;true&amp;#34;&amp;gt; &amp;amp;times; &amp;lt;/button&amp;gt; &amp;lt;h4 class=&amp;#34;modal-title&amp;#34;&amp;gt;后台 - 友情提示&amp;lt;/h4&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;modal-body&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;row&amp;#34;&amp;gt; &amp;lt;div class=&amp;#34;col-sm-2&amp;#34;&amp;gt; &amp;lt;i class=&amp;#34;fa fa-info-circle fa-4x&amp;#34;&amp;gt;&amp;lt;/i&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;col-sm-9&amp;#34;&amp;gt; @foreach ($errors-&amp;gt;all() as $error) {{ $error }}&amp;lt;br&amp;gt; @endforeach &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;modal-footer&amp;#34;&amp;gt; &amp;lt;button type=&amp;#34;button&amp;#34; class=&amp;#34;btn btn-default&amp;#34; data-dismiss=&amp;#34;modal&amp;#34;&amp;gt;关闭&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; require([&amp;#39;bootstrap&amp;#39;], function ($) { $(&amp;#39;#modal_message&amp;#39;).modal(&amp;#39;show&amp;#39;); setTimeout(function () { $(&amp;#39;#modal_message&amp;#39;).modal(&amp;#39;hide&amp;#39;); }, 3000); }) &amp;lt;/script&amp;gt; @endif 在控制器中引用并使用request验证 use App\Http\Requests\AdminPost; use Auth; public function changePassword(AdminPost $request) { $model = Auth::guard(&amp;#39;admin&amp;#39;)-&amp;gt;user(); $model-&amp;gt;password = bcrypt($request[&amp;#39;password&amp;#39;]); //获取密码加密 $model-&amp;gt;save(); //保存更新密码 } 使用laracasts-flash在视图中展示错误提示信息 安装laracasts-flash composer require laracasts/flash 将此工具在config/app.php服务提供者(providers)里面注册 Laracasts\Flash\FlashServiceProvider::class, 在父级模板中（master.blade.php）引用 @include(&amp;#39;flash::message&amp;#39;) &amp;lt;script&amp;gt; require([&amp;#39;bootstrap&amp;#39;], function ($) { //使用bootstrap模态块 $(&amp;#39;#flash-overlay-modal&amp;#39;).modal(); }); &amp;lt;/script&amp;gt; 安装flash扩展支持 php artisan vendor:publish --provider=&amp;#34;Laracasts\Flash\FlashServiceProvider&amp;#34; 执行后会在resources/views/vendor目录下生成flsh支持目录
+在控制器中使用 public function changePassword(AdminPost $request) { $model = Auth::guard(&amp;#39;admin&amp;#39;)-&amp;gt;user(); $model-&amp;gt;password = bcrypt($request[&amp;#39;password&amp;#39;]); //获取密码加密 $model-&amp;gt;save(); //保存更新密码 flash(&amp;#39;密码修改成功&amp;#39;)-&amp;gt;overlay(); return redirect()-&amp;gt;back(); }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel基础03-中间件的使用</title>
+        <url>https://listenlive.cn/note/2020/07/22/laravel03/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Laravel</tag><tag>PHP</tag><tag>PHPstorm</tag>
+        </tags>
+        <content type="html"> 使用中间件进行后台权限验证 创建中间件 php artisan make:middleware AdminMiddleware 执行后会在app/Http/Middleware目录下生成AdminMiddleware.php文件
+在AdminMiddleware类handle方法中使用Auth验证 use Auth; public function handle($request, Closure $next) { if(!Auth::guard(&amp;#39;admin&amp;#39;)-&amp;gt;check()){ return redirect(&amp;#39;/admin/login&amp;#39;); } return $next($request); } 路由中挂载此中间件 配置app/Http/Kernel.php
+protected $routeMiddleware = [ &amp;#39;admin.auth&amp;#39; =&amp;gt; AdminMiddleware::class, //在路由中挂载登录验证中间件 &amp;#39;auth&amp;#39; =&amp;gt; \App\Http\Middleware\Authenticate::class, &amp;#39;auth.basic&amp;#39; =&amp;gt; \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class, &amp;#39;bindings&amp;#39; =&amp;gt; \Illuminate\Routing\Middleware\SubstituteBindings::class, &amp;#39;cache.headers&amp;#39; =&amp;gt; \Illuminate\Http\Middleware\SetCacheHeaders::class, &amp;#39;can&amp;#39; =&amp;gt; \Illuminate\Auth\Middleware\Authorize::class, &amp;#39;guest&amp;#39; =&amp;gt; \App\Http\Middleware\RedirectIfAuthenticated::class, &amp;#39;signed&amp;#39; =&amp;gt; \Illuminate\Routing\Middleware\ValidateSignature::class, &amp;#39;throttle&amp;#39; =&amp;gt; \Illuminate\Routing\Middleware\ThrottleRequests::class, &amp;#39;verified&amp;#39; =&amp;gt; \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class, ]; 在控制器中使用登录验证中间件 public function __construct() { //登录验证中间件 $this-&amp;gt;middleware(&amp;#39;admin.auth&amp;#39;)-&amp;gt;except([&amp;#39;loginForm&amp;#39;,&amp;#39;login&amp;#39;]); } except() 排除loginForm、login方法
+Auth&amp;amp;guard完成退出功能 退出方法 public function logout() { Auth::guard(&amp;#39;admin&amp;#39;)-&amp;gt;logout(); return redirect(&amp;#39;/admin/login&amp;#39;); }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel基础02-后台登录验证</title>
+        <url>https://listenlive.cn/note/2020/07/21/laravel02/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Laravel</tag><tag>PHP</tag><tag>PHPstorm</tag>
+        </tags>
+        <content type="html"> 创建后台控制器 php artisan make:controller Admin/EntryController 配置路由 Route::get(&amp;#39;/login&amp;#39;,&amp;#39;Admin\EntryController@loginForm&amp;#39;); 或者采用配置命名空间的方式指定到Admin目录，简化一些重复代码
+Route::group([&amp;#39;prefix&amp;#39; =&amp;gt; &amp;#39;admin&amp;#39;,&amp;#39;namespace&amp;#39; =&amp;gt; &amp;#39;Admin&amp;#39;],function(){ Route::get(&amp;#39;/login&amp;#39;,&amp;#39;EntryController@loginForm&amp;#39;); }); 使用Auth登录验证 编辑config/auth.php文件，在guards里定义admin入口 &amp;#39;admin&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;session&amp;#39;, &amp;#39;provider&amp;#39; =&amp;gt; &amp;#39;admins&amp;#39;, ], 在providers里添加admins,并指定model &amp;#39;admins&amp;#39; =&amp;gt; [ &amp;#39;driver&amp;#39; =&amp;gt; &amp;#39;eloquent&amp;#39;, &amp;#39;model&amp;#39; =&amp;gt; App\Model\Admin::class, ], 在控制器里面引入Auth use Auth; 添加登录验证方法login并验证 public function login() { $status = Auth::guard(&amp;#39;admin&amp;#39;)-&amp;gt;attempt([ &amp;#39;username&amp;#39; =&amp;gt; Request::input(&amp;#39;username&amp;#39;), &amp;#39;password&amp;#39; =&amp;gt; Request::input(&amp;#39;password&amp;#39;), ]); dd($status); } laravel在表单提交数据的时候要在form中使用csrf验证
+{{ csrf_field() }} 验证登录 public function login() { $status = Auth::guard(&amp;#39;admin&amp;#39;)-&amp;gt;attempt([ &amp;#39;username&amp;#39; =&amp;gt; Request::input(&amp;#39;username&amp;#39;), &amp;#39;password&amp;#39; =&amp;gt; Request::input(&amp;#39;password&amp;#39;), ]); if($status){ return redirect(&amp;#39;/admin/index&amp;#39;); } return redirect(&amp;#39;/admin/login&amp;#39;)-&amp;gt;with(&amp;#39;error&amp;#39;,&amp;#39;用户名或密码错误&amp;#39;); } 使用with闪存(只存储一次)向视图传递错误信息 @if(session(&amp;#39;error&amp;#39;)) &amp;lt;div class=&amp;#34;alert alert-danger&amp;#34;&amp;gt; {{session(&amp;#39;error&amp;#39;)}} &amp;lt;/div&amp;gt; @endif   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Laravel基础01-安装配置</title>
+        <url>https://listenlive.cn/note/2020/07/16/laravel01/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Laravel</tag><tag>PHP</tag><tag>PHPstorm</tag>
+        </tags>
+        <content type="html"> 安装 composer安装 composer命令：
+composer create-project --prefer-dist laravel/laravel hd Laravel目录： 安装提示工具 前往PHP应用商店packagist.org下载安装代码提示工具 barryvdh/laravel-ide-helper 使用composer安装以上ide增强工具 composer require barryvdh/laravel-ide-helper 把增强工具引入laravel项目中 在/config/app.php providers扩展中添加代码：
+Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, 执行artisan命令初始化组件 php artisan ide-helper:generate 重启PHPstorm，完成工具安装 数据库配置 laravel有两个地方可以配置数据库：
+ /.env 文件 （默认配置项） /config/database.php 文件  使用migration建表  执行make:migration命令创建hd数据表PHP文件  php artisan make:migration create_hd_table --create=hd 执行成功后会在database/migrations目录中生成PHP文件 2) 执行migrate命令创建hd数据表
+php artisan migrate 解决MySQL 5.6版本执行migrate命令报错，无法创建表问题 错误信息：Illuminate\Database\QueryException
+解决方法1：将MySQL升级至5.7&#43;
+解决方法2：将/config/database.php mysql配置由utf8bm4改为utf8
+解决方法3：将/app/Providers/AppServiceProvider.php 文件中引入Schema
+use Schema; 在boot方法中添加：
+Schema::defaultStringLength(191); 再次执行migrate命令数据表 数据表创建成功
+前后端路由配置 在/routes目录下新建admin目录作为后台路由 在/routes/web.php中包含admin目录文件 include __DIR__.&amp;#39;/admin/web.php&amp;#39;; 在routes/admin/web.php中配置路由组 Route::group([&amp;#39;prefix&amp;#39; =&amp;gt; &amp;#39;admin&amp;#39;],function(){ Route::get(&amp;#39;/abc&amp;#39;,function(){ return &amp;#39;abc&amp;#39;; }); }); 输入&amp;rsquo;域名/admin/abc&amp;rsquo;即可访问到后台admin路由 使用模型（Model）创建表 php artisan make:model Model/Admin -m -m 表示同时创建migration
+编辑database/migrations/下的文件，设置表字段 public function up() { Schema::create(&amp;#39;admins&amp;#39;, function (Blueprint $table) { $table-&amp;gt;increments(&amp;#39;id&amp;#39;); $table-&amp;gt;timestamps(); $table-&amp;gt;string(&amp;#39;username&amp;#39;)-&amp;gt;unique(); //表示username字段不允许重复 $table-&amp;gt;string(&amp;#39;password&amp;#39;); }); } 执行migrate命令创建admins表 php artisan migrate 为admins表添加数据 编辑database/factories/Modelfactory.php文件，添加如下代码：
+$factory-&amp;gt;define(\App\Model\Admin::class, function (Faker $faker) { return [ &amp;#39;username&amp;#39; =&amp;gt; $faker-&amp;gt;name, &amp;#39;password&amp;#39; =&amp;gt; bcrypt(&amp;#39;admin888&amp;#39;), ]; }); 接下来使用tinker添加数据
+php artisan tinker #启动tinker &amp;gt;&amp;gt;&amp;gt;factory(App\Model\Admin::class,3)-&amp;gt;create(); 此时admins表会新增3条数据   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Vue基础-01</title>
+        <url>https://listenlive.cn/note/2020/07/13/vue01/</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Vue</tag><tag>前端</tag>
+        </tags>
+        <content type="html"> v-if与v-show v-if：不显示时，第一次就直接不渲染，如果内容已经显示将其改为不显示，将内容直接从DOM去除。只渲染一次的内容用v-if
+v-show:不显示时，就会改为display:none,但是会渲染在DOM上。反复需要切换的内容使用v-show
+使用v-show实现点击切换效果 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;div v-show=&amp;#34;isShow&amp;#34; id=&amp;#34;pane&amp;#34;&amp;gt; Hello Vue &amp;lt;/div&amp;gt; &amp;lt;button @click=&amp;#34;showPane&amp;#34;&amp;gt;切换显示内容&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; let app = new Vue({ el:&amp;#34;#app&amp;#34;, data:{ isShow:true }, methods:{ showPane:function(){ app.isShow = !app.isShow; } } }) &amp;lt;/script&amp;gt; 使用v-if实现点击切换效果 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;h3 v-if=&amp;#34;tab==1&amp;#34;&amp;gt;首页&amp;lt;/h3&amp;gt; &amp;lt;h3 v-else-if=&amp;#34;tab==2&amp;#34;&amp;gt;新闻页&amp;lt;/h3&amp;gt; &amp;lt;h3 v-else&amp;gt;个人中心&amp;lt;/h3&amp;gt; &amp;lt;button @click=&amp;#34;tabChange&amp;#34; data-id=&amp;#34;1&amp;#34;&amp;gt;首页&amp;lt;/button&amp;gt; &amp;lt;button @click=&amp;#34;tabChange&amp;#34; data-id=&amp;#34;2&amp;#34;&amp;gt;新闻&amp;lt;/button&amp;gt; &amp;lt;button @click=&amp;#34;tabChange&amp;#34; data-id=&amp;#34;3&amp;#34;&amp;gt;个人中心&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; let app = new Vue({ el:&amp;#34;#app&amp;#34;, data:{ tab:1 }, methods:{ tabChange:function(e){ let tabid = e.target.dataset.id app.tab = tabid //等同于 this.tab = tabid } } }) &amp;lt;/script&amp;gt; 列表渲染 v-for &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;ul&amp;gt; &amp;lt;li v-for=&amp;#34;item in city&amp;#34;&amp;gt; {{item}} &amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; var app = new Vue({ el:&amp;#34;#app&amp;#34;, data:{ city:[&amp;#39;北京&amp;#39;,&amp;#39;天津&amp;#39;,&amp;#39;上海&amp;#39;,&amp;#39;重庆&amp;#39;] } }) &amp;lt;/script&amp;gt; 动态绑定 &amp;lt;style&amp;gt; .font{ color:red; } &amp;lt;/style&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;span :class=&amp;#34;hello&amp;#34; :id=&amp;#34;sid&amp;#34;&amp;gt;Hello&amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; var app = new Vue({ el:&amp;#34;#app&amp;#34;, data:{ hello:&amp;#39;font&amp;#39;, sid:&amp;#39;bid&amp;#39; } }) &amp;lt;/script&amp;gt; 双向绑定 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;span&amp;gt;{{form}}&amp;lt;/span&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;form&amp;#34;/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; var app = new Vue({ el:&amp;#34;#app&amp;#34;, data:{ form:&amp;#39;表单提交&amp;#39; } }) &amp;lt;/script&amp;gt; 数据只绑定一次的话用v-once
+&amp;lt;h3 v-once&amp;gt;{{form}}&amp;lt;/h3&amp;gt; v-text与v-html &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;h2 v-text=&amp;#34;tname&amp;#34;&amp;gt;&amp;lt;/h2&amp;gt; &amp;lt;h2 v-html=&amp;#34;tname&amp;#34;&amp;gt;&amp;lt;/h2&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; var app = new Vue({ el:&amp;#34;#app&amp;#34;, data:{ tname:&amp;#39;&amp;lt;h1 style=&amp;#34;color: skyblue&amp;#34;&amp;gt;listenlive.cn&amp;lt;/h1&amp;gt;&amp;#39; } }) &amp;lt;/script&amp;gt; 动态改变属性 &amp;lt;style&amp;gt; .tname1{color:red} .tname2{color:green} &amp;lt;/style&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;h2 :class=&amp;#34;&amp;#39;tname&amp;#39; &#43; n&amp;#34;&amp;gt;COLOR&amp;lt;/h2&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;n&amp;#34;&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;input type=&amp;#34;radio&amp;#34; v-model=&amp;#34;n&amp;#34; value=&amp;#34;1&amp;#34;&amp;gt; RED &amp;lt;input type=&amp;#34;radio&amp;#34; v-model=&amp;#34;n&amp;#34; value=&amp;#34;2&amp;#34;&amp;gt; GREEN &amp;lt;/div&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34;&amp;gt; var app = new Vue({ el:&amp;#34;#app&amp;#34;, data:{ n:1 } }) &amp;lt;/script&amp;gt; computed - 购物车商品价格计算逻辑 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;n1&amp;#34;&amp;gt; &#43; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;n2&amp;#34;&amp;gt; = &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;sum&amp;#34;&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, computed:{ sum:function () { return this.n1*1 &#43; this.n2*1; //*1表示将字符串转为整型 } }, data:{ n1:0, n2:1 } }); &amp;lt;/script&amp;gt; watch - 监听变量的更改 在常用的搜索场景，输入一个词展示相关搜索结果
+使用npm安装axios - 跨域请求数据 npm install axios 引入axios &amp;lt;script src=&amp;#34;node_modules/axios/dist/axios.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;word&amp;#34;&amp;gt; &amp;lt;h3&amp;gt; 搜索结果：{{result}} &amp;lt;/h3&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, watch:{ word: function (newV,oldV) { axios.get(&amp;#39;0725.php?word=&amp;#39;&#43;newV).then(function (response) { app.result = response.data; }) } }, data:{ word:&amp;#39;&amp;#39;, result:&amp;#39;&amp;#39; } }); &amp;lt;/script&amp;gt; 使用lodash解决实时请求造成资源浪费问题 安装并引入lodash npm install lodash &amp;lt;script src=&amp;#34;node_modules/lodash/lodash.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;input type=&amp;#34;text&amp;#34; v-model=&amp;#34;word&amp;#34;&amp;gt; &amp;lt;h3&amp;gt; 搜索结果：{{result}} &amp;lt;/h3&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, watch:{ word: _.debounce( function (newV,oldV) { axios.get(&amp;#39;0725.php?word=&amp;#39;&#43;newV).then(function (response) { app.result = response.data; }) },3000 ) }, data:{ word:&amp;#39;&amp;#39;, result:&amp;#39;&amp;#39; } }); &amp;lt;/script&amp;gt; 使用_.debounce()方法，设置3秒后才请求后台数据，减轻服务器压力
+  喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>真正的粉丝都应该会做的数学题——五点共圆</title>
+        <url>https://listenlive.cn/share/2020/07/13/knowledge01/</url>
+        <categories>
+          <category>分享</category>
+        </categories>
+        <tags>
+          <tag>提高知识水平</tag><tag>膜法</tag>
+        </tags>
+        <content type="html"> 作为一个合格的粉丝，只要一提到有关他的数学题，就应该想到经典的“五点共圆”。这是他1999年在澳门访问的时候访问当地一个中学时向学生提出的一个几何问题。这个问题时隔一年后在武汉日报上被刊载出来并向广大市民征求问题答案。迅速就引来了广大市民关于这个问题的讨论与解答。不过这个问题确实有一定的难度，因为最终晚报的编辑部收到的解答也不过寥寥数百份而已。这其实也说明了蛤蛤的水平不知道比咱们普通人高到哪里去了，毕竟人家是正儿八经的交大高材生，我们还是要努力提高自己的知识水平。
+这道题就连声名赫赫的数学大师丘成桐都花了半个小时才得出答案。不过要想作为一个真正的粉丝的话仅仅知道有这样一回事是不够的，还要知道这道题具体要怎么解答。一般他的粉丝学历一般都不低，大部分都是经受过高等教育的，所以对平面几何应该不陌生。诸位如果还有兴趣的话可以继续往下阅览，如果对数学没兴趣或者是有阴影的就可以在这里止步了 。
+不过弄懂了五点共圆的数学原理我们能在“high level&amp;quot;的目标上迈出第一步，这也是爷爷想看到的，提高自己的知识水平，做一个能担负起天下兴亡的青年。
+  喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>Hugo基本命令</title>
+        <url>https://listenlive.cn/note/2020/07/10/hugocommand.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>Hugo</tag>
+        </tags>
+        <content type="html"> Hugo基本命令 hugo server --noHTTPCache	#启动 hugo server --disableFastRender	#FastRender启动 hugo new site &amp;#34;listenlive.cn&amp;#34;	#创建站点 hugo new post/note/xx.md	#创建文章 hugo #编译所有文件并输出到public目录 Hugo下载   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>欢迎大家</title>
+        <url>https://listenlive.cn/home/welcome/</url>
+        <categories>
+          
+        </categories>
+        <tags>
+          
+        </tags>
+        <content type="html"> Welcome
+</content>
+    </entry>
+    
+</search>

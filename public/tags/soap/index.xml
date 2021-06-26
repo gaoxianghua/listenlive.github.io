@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>soap on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/soap/</link>
+    <description>Recent content in soap on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/soap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService</title>
+      <link>https://listenlive.cn/leaf/202103/axios-soap.html</link>
+      <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/202103/axios-soap.html</guid>
+      <description>axios请求云之讯短信接口实现短信发送 安装axios cnpm install axios --save 方法实现 static async sendMessage(ctx){ let param = Math.random().toString().substr(2, 4); //生成四位随机数 let phone = &amp;#39;157********&amp;#39;; const url = &amp;#39;https://open.ucpaas.com/ol/sms/sendsms&amp;#39;; const axios = require(&amp;#39;axios&amp;#39;); let sendRe = await axios({ method:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微信开发 on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
+    <description>Recent content in 微信开发 on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 15 Dec 2020 11:19:55 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PHP-微信公众号实现发送模板消息</title>
+      <link>https://listenlive.cn/leaf/2020/12/15/wechat01/</link>
+      <pubDate>Tue, 15 Dec 2020 11:19:55 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/2020/12/15/wechat01/</guid>
+      <description>PHP微信公众号实现发送模板消息 $appid = &amp;#34;wxb7729*******&amp;#34;; $appsecret = &amp;#34;8b99**************&amp;#34;; $url = &amp;#34;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;amp;appid=$appid&amp;amp;secret=$appsecret&amp;#34;; $ch = curl_init(); curl_setopt($ch, CURLOPT_URL, $url); curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); $output = curl_exec($ch); curl_close($ch); $jsoninfo = json_decode($output, true); $ACCESS_TOKEN = $jsoninfo[&amp;#34;access_token&amp;#34;]; $data=array( &amp;#39;touser&amp;#39;=&amp;gt;&amp;#34;oaIgKt*********&amp;#34;, //要发送给用户的openid &amp;#</description>
+    </item>
+    
+  </channel>
+</rss>

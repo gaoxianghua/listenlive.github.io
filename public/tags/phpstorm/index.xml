@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PHPstorm on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/phpstorm/</link>
+    <description>Recent content in PHPstorm on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 23 Jul 2020 10:35:48 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/phpstorm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Laravel基础04-视图</title>
+      <link>https://listenlive.cn/note/2020/07/23/laravel04/</link>
+      <pubDate>Thu, 23 Jul 2020 10:35:48 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/23/laravel04/</guid>
+      <description>Blade模板引擎的模板继承构建后台界面 后台视图文件目录 -/resources/views/admin/layout 为父级模板目录 使用@yield占位定义活动的页面范围 &amp;lt;div&amp;gt; @yield(&amp;#39;content&amp;#39;) &amp;lt;/div&amp;gt; 子页面继承父级模板 @extends(&amp;#39;admin.layout.master&amp;#39;) @section(&amp;#39;content&amp;#39;) &amp;lt;div</description>
+    </item>
+    
+    <item>
+      <title>Laravel基础03-中间件的使用</title>
+      <link>https://listenlive.cn/note/2020/07/22/laravel03/</link>
+      <pubDate>Wed, 22 Jul 2020 17:06:05 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/22/laravel03/</guid>
+      <description>使用中间件进行后台权限验证 创建中间件 php artisan make:middleware AdminMiddleware 执行后会在app/Http/Middleware目录下生成AdminMiddleware.php</description>
+    </item>
+    
+    <item>
+      <title>Laravel基础02-后台登录验证</title>
+      <link>https://listenlive.cn/note/2020/07/21/laravel02/</link>
+      <pubDate>Tue, 21 Jul 2020 13:29:04 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/21/laravel02/</guid>
+      <description>创建后台控制器 php artisan make:controller Admin/EntryController 配置路由 Route::get(&amp;#39;/login&amp;#39;,&amp;#39;Admin\EntryController@loginForm&amp;#39;); 或者采用配置命名空间的方式指定到Admin目录，简化一些重复代码 Route::group([&amp;#39;prefix&amp;#39; =&amp;gt; &amp;#39;admin&amp;#39;,&amp;#39;namespace&amp;#39; =&amp;gt; &amp;#39;Admin&amp;#39;],function(){ Route::get(&amp;#39;/login&amp;#39;,&amp;#39;EntryController@loginForm&amp;#39;); }); 使用Auth登录验证 编辑con</description>
+    </item>
+    
+    <item>
+      <title>Laravel基础01-安装配置</title>
+      <link>https://listenlive.cn/note/2020/07/16/laravel01/</link>
+      <pubDate>Thu, 16 Jul 2020 10:30:47 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/16/laravel01/</guid>
+      <description>安装 composer安装 composer命令： composer create-project --prefer-dist laravel/laravel hd Laravel目录： 安装提示工具 前往PHP应用商店packagist.org下载安装</description>
+    </item>
+    
+  </channel>
+</rss>

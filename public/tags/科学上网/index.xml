@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>科学上网 on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</link>
+    <description>Recent content in 科学上网 on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 22 Jan 2021 14:06:41 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用阿里云/腾讯云国外服务器&#43;Shadowsocks实现科学上网</title>
+      <link>https://listenlive.cn/leaf/20210122/ssr.html</link>
+      <pubDate>Fri, 22 Jan 2021 14:06:41 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/20210122/ssr.html</guid>
+      <description>购买阿里云/腾讯云国外服务器 根据自己情况可以在阿里云或腾讯云购买合适的云服务器，可选择包年、包月或按流量付费 设置安全组 开放18001端口 手动</description>
+    </item>
+    
+  </channel>
+</rss>

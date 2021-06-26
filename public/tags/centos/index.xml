@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CentOS on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/centos/</link>
+    <description>Recent content in CentOS on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 06 Jan 2021 14:42:00 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux-CentOS上Docker的安装与卸载</title>
+      <link>https://listenlive.cn/note/202101/install_docker/</link>
+      <pubDate>Wed, 06 Jan 2021 14:42:00 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/202101/install_docker/</guid>
+      <description>通过uname -r 命令查看Linux内核版本 uname -r //Docker 要求 CentOS 系统的内核版本高于 3.10 确保yum包更新到最新 yum update 安装需要的软件包 yum install -y yum-utils device-mapper-persistent-data lvm2 //yum-util 提供yum</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>lincms on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/lincms/</link>
+    <description>Recent content in lincms on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 03 Mar 2021 14:00:49 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/lincms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基于Koa框架的Lincms常用操作</title>
+      <link>https://listenlive.cn/note/202103/lincms.html</link>
+      <pubDate>Wed, 03 Mar 2021 14:00:49 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/202103/lincms.html</guid>
+      <description>Sequelize事务操作 let transaction; //事务开始 try { transaction = await sequelize.transaction(); const replace_record = { p_code: v.get(&amp;#39;path.p_code&amp;#39;), p_type: v.get(&amp;#39;path.p_type&amp;#39;) }; const { id: record_id } = await ReplaceRecordModel.create(replace_record, { transaction }); await WxReplacesheetsModel.create( { record_id, name: v.get(&amp;#39;path.name&amp;#39;), phone: v.get(&amp;#39;path.phone&amp;#39;), province: v.get(&amp;#39;path.province&amp;#39;), city: v.get(&amp;#39;path.city&amp;#39;), district: v.get(&amp;#39;path.district&amp;#39;), question: v.get(&amp;#39;path.question&amp;#39;), status: 1 }, { transaction } );</description>
+    </item>
+    
+  </channel>
+</rss>

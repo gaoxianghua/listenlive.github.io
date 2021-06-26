@@ -1,0 +1,708 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>Laravel登录注册Auth验证及使用Policy模型策略管理用户权限 | listenlive.cn</title>
+    <meta name="keywords" content="独立,博客,程序员,个人,开发,思考,读书,笔记,技术,分享,PHP,Hugo,Node.js,Golang">
+    
+    <meta property="og:title" content="Laravel登录注册Auth验证及使用Policy模型策略管理用户权限">
+    <meta property="og:site_name" content="listenlive.cn">
+    <meta property="og:image" content="/img/author.jpg"> 
+    <meta name="title" content="Laravel登录注册Auth验证及使用Policy模型策略管理用户权限 - listenlive.cn" />
+    <meta name="description" content="博客 | 软件 | 架构 | PHP | 开发 | Hugo | Golang | go | Node.js"> 
+    <link rel="shortcut icon" href="https://listenlive.cn/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link href="https://listenlive.cn/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+	  var NexT = window.NexT || {};
+	  var CONFIG = {
+		scheme: 'Pisces',
+		sidebar: {"position":"left","display":"post"},
+		 fancybox: true, 
+		motion: true
+	  };
+	</script>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172515529-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-172515529-1');
+	</script>
+    
+    <script>
+        (function(){
+            var el = document.createElement("script");
+            el.src = "https://sf1-scmcdn-tos.pstatp.com/goofy/ttzz/push.js?3d1859bbd8237afa8cff7a06067ef806948d05ee71e04b80bd6ca131dbb5de403e7a864e7e749f7172b232222da9c6ab06cf1be964f65732421f189d31e73f5c";
+            el.id = "ttzz";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(el, s);
+        })(window)
+    </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-meta  custom-logo ">
+
+  <div class="custom-logo-site-title">
+    <a href="https://listenlive.cn"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">listenlive.cn</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">too young too simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />技术
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />笔记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%9D%82%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-leaf"></i> <br />杂记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E5%88%86%E4%BA%AB/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-share"></i> <br />分享
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/post/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/about/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+<section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://listenlive.cn/note/2020/08/03/laravel07/" itemprop="url">
+        Laravel登录注册Auth验证及使用Policy模型策略管理用户权限
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-08-03">
+    2020-08-03
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">1791 字 ~4分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <h1 id="路由routeswebphp">路由routes/web.php</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Route::get(&#39;/&#39;, function () {
+    return view(&#39;welcome&#39;);
+});
+//user资源
+Route::resource(&#39;user&#39;,&#39;UserController&#39;);
+//退出路由
+Route::get(&#39;logout&#39;,&#39;LoginController@logout&#39;)-&gt;name(&#39;logout&#39;);
+//登录路由
+Route::get(&#39;login&#39;,&#39;LoginController@login&#39;)-&gt;name(&#39;login&#39;);
+//登录处理
+Route::post(&#39;login&#39;,&#39;LoginController@store&#39;)-&gt;name(&#39;login&#39;);
+</code></pre></div><h1 id="登录控制器logincontrollerphp">登录控制器LoginController.php</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+class LoginController extends Controller
+{
+    //登录视图
+    public function login()
+    {
+        return view(&#39;user.login&#39;);
+    }
+    //登录处理
+    public function store(Request $request)
+    {
+        $data = $this-&gt;validate($request,[
+            &#39;email&#39; =&gt;  &#39;email|required&#39;,
+            &#39;password&#39; =&gt;  &#39;required|min:6&#39;,
+        ]);
+        if(\Auth::attempt($data)){
+            session()-&gt;flash(&#39;success&#39;,&#39;登录成功&#39;);
+            return redirect(&#39;/&#39;);
+        }
+        session()-&gt;flash(&#39;danger&#39;,&#39;登录失败&#39;);
+        return back();
+    }
+    public function logout()
+    {
+        \Auth::logout();
+        session()-&gt;flash(&#39;success&#39;,&#39;退出成功&#39;);
+        return redirect(&#39;/&#39;);
+    }
+}
+</code></pre></div><h1 id="用户控制器usercontrollerphp">用户控制器UserController.php</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
+namespace App\Http\Controllers;
+use App\User;
+use Illuminate\Http\Request;
+class UserController extends Controller
+{
+    public function __construct()
+    {
+        $this-&gt;middleware(&#39;auth&#39;,[
+            &#39;except&#39;=&gt;[&#39;index&#39;,&#39;show&#39;,&#39;create&#39;,&#39;store&#39;]
+        ]);
+        //已登录用户不显示注册（create）方法
+        $this-&gt;middleware(&#39;guest&#39;,[
+            &#39;only&#39;=&gt;[&#39;create&#39;,&#39;store&#39;]
+        ]);
+    }
+    //用户列表
+    public function index()
+    {
+        $users = User::paginate(10);    //分页
+        return view(&#39;user.index&#39;,compact(&#39;users&#39;));
+    }
+    //用户信息查看
+    public function show(User $user)
+    {
+        return view(&#39;user.show&#39;,compact(&#39;user&#39;));
+    }
+    //用户注册-视图
+    public function create()
+    {
+        return view(&#39;user.create&#39;);
+    }
+    //注册处理
+    public function store(Request $request)
+    {
+        $data = $this-&gt;validate($request,[
+            &#39;name&#39;  =&gt;  &#39;required|min:4&#39;,
+            &#39;email&#39;  =&gt;  &#39;required|email|unique:users&#39;,
+            &#39;password&#39;  =&gt; &#39;required|min:6|confirmed&#39;,
+        ]);
+        $data[&#39;password&#39;] = bcrypt($data[&#39;password&#39;]);
+        User::create($data);
+        //注册成功后自动登录处理
+        \Auth::attempt([&#39;email&#39;=&gt;$request-&gt;email,&#39;password&#39;=&gt;$request-&gt;password]);
+        return redirect()-&gt;route(&#39;/&#39;);
+    }
+    //用户信息修改-视图
+    public function edit(User $user)
+    {
+        $this-&gt;authorize(&#39;update&#39;,$user);   //验证权限-只能修改当前登录的用户资料
+        return view(&#39;user.edit&#39;,compact(&#39;user&#39;));
+    }
+    //用户信息修改-更新数据
+    public function update(Request $request,User $user)
+    {
+        $this-&gt;validate($request,[
+            &#39;name&#39;  =&gt;  &#39;required|min:4&#39;,
+            &#39;password&#39;  =&gt; &#39;nullable|min:6|confirmed&#39;,
+        ]);
+        $user-&gt;name = $request-&gt;name;
+        if($request-&gt;password){
+            $user-&gt;password = bcrypt($request-&gt;password);
+        }
+        $user-&gt;save();
+        session()-&gt;flash(&#39;success&#39;,&#39;修改成功&#39;);
+        return redirect()-&gt;route(&#39;user.show&#39;,$user);
+    }
+    //删除
+    public function destroy(User $user)
+    {
+        $this-&gt;authorize(&#39;delete&#39;,$user);
+        $user-&gt;delete();
+        session()-&gt;flash(&#39;success&#39;,&#39;删除成功&#39;);
+        return redirect()-&gt;route(&#39;user.index&#39;);
+    }
+}
+</code></pre></div><h1 id="新建userpolicy">新建UserPolicy</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan make:policy --model:UserPolicy
+</code></pre></div><h2 id="在appprovidersauthserviceproviderphp中注册">在app/Providers/AuthServiceProvider.php中注册</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">protected $policies = [
+        &#39;App\Model&#39; =&gt; &#39;App\Policies\ModelPolicy&#39;,
+        &#39;App\User&#39;  =&gt;  UserPolicy::class
+    ];
+</code></pre></div><h2 id="apppoliciesuserpolicyphp">app/Policies/UserPolicy.php</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function update(User $user, User $model)
+{
+    //是管理员 或者当前登录的才可以修改资料
+    return $user-&gt;is_admin || $user-&gt;id == $model-&gt;id;
+}    
+
+public function delete(User $user, User $model)
+{
+    //验证管理员才可以删除，并且管理员不可以删除自己
+    return $user-&gt;is_admin &amp;&amp; $user-&gt;id != $model-&gt;id;
+}
+</code></pre></div><h1 id="用户列表视图">用户列表视图</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">@extends(&#39;layout/default&#39;)
+@section(&#39;content&#39;)
+    &lt;div class=&#34;card&#34;&gt;
+        &lt;div class=&#34;card-header&#34;&gt;用户别表&lt;/div&gt;
+        &lt;div class=&#34;card-body&#34;&gt;
+            &lt;table class=&#34;table&#34;&gt;
+                &lt;thead&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;编号&lt;/th&gt;
+                    &lt;th&gt;昵称&lt;/th&gt;
+                    &lt;th&gt;操作&lt;/th&gt;
+                &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                @foreach($users as $user)
+                &lt;tr&gt;
+                    &lt;td scope=&#34;row&#34;&gt;{{$user[&#39;id&#39;]}}&lt;/td&gt;
+                    &lt;td&gt;{{$user[&#39;name&#39;]}}&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;div class=&#34;btn-group&#34;&gt;
+                            &lt;a href=&#34;{{route(&#39;user.show&#39;,$user)}}&#34; type=&#34;button&#34; class=&#34;btn btn-success&#34;&gt;查看&lt;/a&gt;
+                            @can(&#39;update&#39;,$user)
+                            &lt;a href=&#34;{{route(&#39;user.edit&#39;,$user)}}&#34; type=&#34;button&#34; class=&#34;btn btn-info&#34;&gt;修改&lt;/a&gt;
+                            @endcan
+                            @can(&#39;delete&#39;,$user)
+                            &lt;form action=&#34;{{route(&#39;user.destroy&#39;,$user)}}&#34; method=&#34;post&#34;&gt;
+                                @csrf
+                                @method(&#39;DELETE&#39;)
+                                &lt;button type=&#34;submit&#34; class=&#34;btn btn-danger&#34;&gt;删除&lt;/button&gt;
+                            &lt;/form&gt;
+                            @endcan
+                        &lt;/div&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                @endforeach
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+        &lt;/div&gt;
+        &lt;!--分页--&gt;
+        &lt;div class=&#34;card-footer text-muted&#34;&gt;
+            {{$users-&gt;links()}}
+        &lt;/div&gt;
+    &lt;/div&gt;
+@endsection
+</code></pre></div><h1 id="使用flash闪存处理提示信息">使用flash闪存处理提示信息</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">{{--提示信息处理--}}
+@foreach([&#39;success&#39;,&#39;danger&#39;] as $t)
+    @if(session()-&gt;has($t))
+        &lt;div class=&#34;alert alert-{{$t}}&#34; role=&#34;alert&#34;&gt;
+            &lt;strong&gt;{{session()-&gt;get($t)}}&lt;/strong&gt;
+        &lt;/div&gt;
+        @endif
+@endforeach
+</code></pre></div><p>#错误信息处理</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">{{--错误信息处理--}}
+@if(count($errors)&gt;0)
+    &lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+        @foreach($errors-&gt;all() as $error)
+            &lt;strong&gt;{{$error}}&lt;/strong&gt;
+        @endforeach
+    &lt;/div&gt;
+@endif
+</code></pre></div><h1 id="父级视图模板layoutdefaultbladephp">父级视图模板/layout/default.blade.php</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;{{ str_replace(&#39;_&#39;, &#39;-&#39;, app()-&gt;getLocale()) }}&#34;&gt;
+&lt;head&gt;
+    &lt;meta charset=&#34;utf-8&#34;&gt;
+    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;
+    &lt;title&gt;Blog 01&lt;/title&gt;
+    &lt;!-- Fonts --&gt;
+    &lt;link href=&#34;https://fonts.googleapis.com/css?family=Nunito:200,600&#34; rel=&#34;stylesheet&#34;&gt;
+    &lt;!-- Styles --&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css&#34; integrity=&#34;sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk&#34; crossorigin=&#34;anonymous&#34;&gt;
+    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js&#34; integrity=&#34;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js&#34; integrity=&#34;sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js&#34; integrity=&#34;sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;nav&gt;
+    &lt;ul class=&#34;nav&#34;&gt;
+        &lt;li class=&#34;nav-item&#34;&gt;
+            &lt;a class=&#34;nav-link active&#34; href=&#34;/&#34;&gt;首页&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class=&#34;nav-item&#34;&gt;
+            &lt;a class=&#34;nav-link active&#34; href=&#34;{{route(&#39;user.index&#39;)}}&#34;&gt;用户列表&lt;/a&gt;
+        &lt;/li&gt;
+        @auth
+            &lt;li class=&#34;nav-item&#34;&gt;
+                &lt;a class=&#34;nav-link&#34;&gt;欢迎：&lt;strong&gt;{{auth()-&gt;user()-&gt;name}}&lt;/strong&gt;&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&#34;nav-item&#34;&gt;
+                &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;user.edit&#39;,auth()-&gt;user())}}&#34;&gt;修改资料&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&#34;nav-item&#34;&gt;
+                &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;logout&#39;)}}&#34;&gt;退出&lt;/a&gt;
+            &lt;/li&gt;
+            @else
+                &lt;li class=&#34;nav-item&#34;&gt;
+                    &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;login&#39;)}}&#34;&gt;登录&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class=&#34;nav-item&#34;&gt;
+                    &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;user.create&#39;)}}&#34;&gt;注册&lt;/a&gt;
+                &lt;/li&gt;
+        @endauth
+    &lt;/ul&gt;
+&lt;/nav&gt;
+{{--错误信息--}}
+@include(&#39;layout._errors&#39;)
+{{--提示信息--}}
+@include(&#39;layout._message&#39;)
+@yield(&#39;content&#39;)
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div><p><img src="https://listenlive.cn/images/note/202008041017.png" alt=""></p>
+<hr>
+<blockquote>
+<p>喜欢这篇文章的话 打赏一下吧！</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><img src="https://listenlive.cn/images/pay/eb05acdaec967.png" alt="Wechat"></th>
+<th style="text-align:right"><img src="https://listenlive.cn/images/pay/0831de845.png" alt="Alipay"></th>
+</tr>
+</thead>
+</table>
+
+    </div>
+	<div class="post-comment">
+    
+    
+<span id="/note/2020/08/03/laravel07" class="leancloud_visitors" data-flag-title="Laravel登录注册Auth验证及使用Policy模型策略管理用户权限">
+<p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js'></script>
+<script type="text/javascript">
+new Valine({
+    el: '#vcomments' ,
+    appId: '9iOmqWQl7wQBsarOb3o2m0eO-gzGzoHsz',
+    appKey: 'U2cCMaQisH6I3GsyClKuvrwK',
+    notify: 'false',
+    verify: 'false',
+    avatar:'mm',
+    placeholder: '说点什么吧...',
+    visitor: 'true'
+});
+</script>
+	</div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://listenlive.cn/tags/php" rel="tag" title="PHP">#PHP#</a>
+    
+    <a href="https://listenlive.cn/tags/laravel" rel="tag" title="Laravel">#Laravel#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://listenlive.cn/note/2020/08/04/laravel08/" rel="next" title="Laravel&amp;QQ邮箱实现邮件发送">
+        <i class="fa fa-chevron-left"></i> Laravel&amp;QQ邮箱实现邮件发送
+        </a>
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://listenlive.cn/note/2020/07/31/laravel06/" rel="prev" title="Laravel Api开发之laravel/passport授权包的使用及基本配置">
+        Laravel Api开发之laravel/passport授权包的使用及基本配置 <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+     
+
+
+
+
+    </footer>
+  </article>
+</section>
+
+          </div>
+        </div>
+        <div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://listenlive.cn/img/author.jpg"
+        alt="黑貓警長" />
+    <p class="site-author-name" itemprop="name">黑貓警長</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        Programmer &amp; Architect</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://listenlive.cn/post/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://listenlive.cn/categories/">      
+         
+        <span class="site-state-item-count">4</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://listenlive.cn/tags/">
+         
+        <span class="site-state-item-count">51</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com" target="_blank" title="GitHub">
+            <i class="fa fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://www.instagram.com/ins0273" target="_blank" title="Instagram">
+            <i class="fa fa-fw fa-instagram"></i>
+            Instagram
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6515305531" target="_blank" title="Weibo">
+            <i class="fa fa-fw fa-weibo"></i>
+            Weibo
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="mailto:listenlive7@gmail.com" target="_blank" title="Gmail">
+            <i class="fa fa-fw fa-envelope"></i>
+            Gmail
+        </a>
+        </span>
+    
+</div>
+
+
+      
+
+      <div class="links-of-blogroll motion-element inline">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5t3mz7o0h3k&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33&amp;bv=35" async="async"></script>
+</div>
+
+    </section>
+    
+  </div>
+</aside>
+
+      </div>
+    </main>
+   
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <span><a href="http://www.beian.miit.gov.cn/">京ICP备17004223号-2</a></span>
+  <span itemprop="copyrightYear">  &copy; 2020 - 2021</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.82.0</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2444a3fc34c4ce99b33ff943eb0c4307";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script>
+    var _mtac = {};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500724336");
+
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script> 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://listenlive.cn/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script src="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/utils.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/motion.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/affix.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/post-details.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/toc.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+
+
+</body>
+</html>

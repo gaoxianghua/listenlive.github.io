@@ -1,0 +1,668 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>Vue基础-01 | listenlive.cn</title>
+    <meta name="keywords" content="独立,博客,程序员,个人,开发,思考,读书,笔记,技术,分享,PHP,Hugo,Node.js,Golang">
+    
+    <meta property="og:title" content="Vue基础-01">
+    <meta property="og:site_name" content="listenlive.cn">
+    <meta property="og:image" content="/img/author.jpg"> 
+    <meta name="title" content="Vue基础-01 - listenlive.cn" />
+    <meta name="description" content="博客 | 软件 | 架构 | PHP | 开发 | Hugo | Golang | go | Node.js"> 
+    <link rel="shortcut icon" href="https://listenlive.cn/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link href="https://listenlive.cn/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+	  var NexT = window.NexT || {};
+	  var CONFIG = {
+		scheme: 'Pisces',
+		sidebar: {"position":"left","display":"post"},
+		 fancybox: true, 
+		motion: true
+	  };
+	</script>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172515529-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-172515529-1');
+	</script>
+    
+    <script>
+        (function(){
+            var el = document.createElement("script");
+            el.src = "https://sf1-scmcdn-tos.pstatp.com/goofy/ttzz/push.js?3d1859bbd8237afa8cff7a06067ef806948d05ee71e04b80bd6ca131dbb5de403e7a864e7e749f7172b232222da9c6ab06cf1be964f65732421f189d31e73f5c";
+            el.id = "ttzz";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(el, s);
+        })(window)
+    </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-meta  custom-logo ">
+
+  <div class="custom-logo-site-title">
+    <a href="https://listenlive.cn"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">listenlive.cn</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">too young too simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />技术
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />笔记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%9D%82%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-leaf"></i> <br />杂记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E5%88%86%E4%BA%AB/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-share"></i> <br />分享
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/post/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/about/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+<section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://listenlive.cn/note/2020/07/13/vue01/" itemprop="url">
+        Vue基础-01
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-07-13">
+    2020-07-13
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">1084 字 ~3分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <h1 id="v-if与v-show">v-if与v-show</h1>
+<p>v-if：不显示时，第一次就直接不渲染，如果内容已经显示将其改为不显示，将内容直接从DOM去除。<strong>只渲染一次的内容用v-if</strong><br>
+v-show:不显示时，就会改为display:none,但是会渲染在DOM上。<strong>反复需要切换的内容使用v-show</strong></p>
+<h1 id="使用v-show实现点击切换效果">使用v-show实现点击切换效果</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+	&lt;div v-show=&#34;isShow&#34; id=&#34;pane&#34;&gt;
+		Hello Vue
+	&lt;/div&gt;
+	&lt;button @click=&#34;showPane&#34;&gt;切换显示内容&lt;/button&gt;
+&lt;/div&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+	let app = new Vue({
+		el:&#34;#app&#34;,
+		data:{
+			isShow:true
+		},
+		methods:{
+			showPane:function(){
+				app.isShow = !app.isShow;
+			}
+		}
+	})
+&lt;/script&gt;
+</code></pre></div><h1 id="使用v-if实现点击切换效果">使用v-if实现点击切换效果</h1>
+<p><img src="https://listenlive.cn/images/vue_tab.png" alt="菜单切换"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+	&lt;h3 v-if=&#34;tab==1&#34;&gt;首页&lt;/h3&gt;
+	&lt;h3 v-else-if=&#34;tab==2&#34;&gt;新闻页&lt;/h3&gt;
+	&lt;h3 v-else&gt;个人中心&lt;/h3&gt;
+	
+	&lt;button @click=&#34;tabChange&#34; data-id=&#34;1&#34;&gt;首页&lt;/button&gt;
+	&lt;button @click=&#34;tabChange&#34; data-id=&#34;2&#34;&gt;新闻&lt;/button&gt;
+	&lt;button @click=&#34;tabChange&#34; data-id=&#34;3&#34;&gt;个人中心&lt;/button&gt;
+&lt;/div&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+	let app = new Vue({
+		el:&#34;#app&#34;,
+		data:{
+			tab:1
+		},
+		methods:{
+			tabChange:function(e){
+				let tabid = e.target.dataset.id
+				app.tab = tabid //等同于 this.tab = tabid
+			}
+		}
+	})
+&lt;/script&gt;
+</code></pre></div><h1 id="列表渲染-v-for">列表渲染 v-for</h1>
+<p><img src="https://listenlive.cn/images/vue_list.png" alt="列表渲染"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+	&lt;ul&gt;
+		&lt;li v-for=&#34;item in city&#34;&gt;
+			{{item}}
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+	var app = new Vue({
+		el:&#34;#app&#34;,
+		data:{
+			city:[&#39;北京&#39;,&#39;天津&#39;,&#39;上海&#39;,&#39;重庆&#39;]
+		}
+	})
+&lt;/script&gt;
+</code></pre></div><h1 id="动态绑定">动态绑定</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;style&gt;
+    .font{
+        color:red;
+    }
+&lt;/style&gt;
+&lt;div id=&#34;app&#34;&gt;
+    &lt;span :class=&#34;hello&#34; :id=&#34;sid&#34;&gt;Hello&lt;/span&gt;
+&lt;/div&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+    var app = new Vue({
+        el:&#34;#app&#34;,
+        data:{
+            hello:&#39;font&#39;,
+            sid:&#39;bid&#39;
+        }
+    })
+&lt;/script&gt;
+</code></pre></div><h2 id="双向绑定">双向绑定</h2>
+<p><img src="https://listenlive.cn/images/202007241546.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;span&gt;{{form}}&lt;/span&gt; &lt;br/&gt;
+    &lt;input type=&#34;text&#34; v-model=&#34;form&#34;/&gt;
+&lt;/div&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+    var app = new Vue({
+        el:&#34;#app&#34;,
+        data:{
+            form:&#39;表单提交&#39;
+        }
+    })
+&lt;/script&gt;
+</code></pre></div><p><em>数据只绑定一次的话用</em><em><strong>v-once</strong></em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;h3 v-once&gt;{{form}}&lt;/h3&gt;
+</code></pre></div><h2 id="v-text与v-html">v-text与v-html</h2>
+<p><img src="https://listenlive.cn/images/202007241626.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;h2 v-text=&#34;tname&#34;&gt;&lt;/h2&gt;
+    &lt;h2 v-html=&#34;tname&#34;&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+    var app = new Vue({
+        el:&#34;#app&#34;,
+        data:{
+            tname:&#39;&lt;h1 style=&#34;color: skyblue&#34;&gt;listenlive.cn&lt;/h1&gt;&#39;
+        }
+    })
+&lt;/script&gt;
+</code></pre></div><h2 id="动态改变属性">动态改变属性</h2>
+<p><img src="https://listenlive.cn/images/202007241820.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;style&gt;
+    .tname1{color:red}
+    .tname2{color:green}
+&lt;/style&gt;
+&lt;div id=&#34;app&#34;&gt;
+    &lt;h2 :class=&#34;&#39;tname&#39; + n&#34;&gt;COLOR&lt;/h2&gt;
+    &lt;input type=&#34;text&#34; v-model=&#34;n&#34;&gt; &lt;br/&gt;
+    &lt;input type=&#34;radio&#34; v-model=&#34;n&#34; value=&#34;1&#34;&gt; RED
+    &lt;input type=&#34;radio&#34; v-model=&#34;n&#34; value=&#34;2&#34;&gt; GREEN
+&lt;/div&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+    var app = new Vue({
+        el:&#34;#app&#34;,
+        data:{
+            n:1
+        }
+    })
+&lt;/script&gt;
+</code></pre></div><h2 id="computed---购物车商品价格计算逻辑">computed - 购物车商品价格计算逻辑</h2>
+<p><img src="https://listenlive.cn/images/202007252044.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;input type=&#34;text&#34; v-model=&#34;n1&#34;&gt; +
+    &lt;input type=&#34;text&#34; v-model=&#34;n2&#34;&gt; =
+    &lt;input type=&#34;text&#34; v-model=&#34;sum&#34;&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var app = new Vue({
+       el:&#39;#app&#39;,
+        computed:{
+          sum:function () {
+              return this.n1*1 + this.n2*1; //*1表示将字符串转为整型
+          }
+        },
+       data:{
+           n1:0,
+           n2:1
+       }
+    });
+&lt;/script&gt;
+</code></pre></div><h2 id="watch---监听变量的更改">watch - 监听变量的更改</h2>
+<p><em>在常用的搜索场景，输入一个词展示相关搜索结果</em><br>
+<img src="https://listenlive.cn/images/202007252307.png" alt=""></p>
+<h3 id="使用npm安装axios---跨域请求数据">使用npm安装axios - 跨域请求数据</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">npm install axios
+</code></pre></div><h3 id="引入axios">引入axios</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;script src=&#34;node_modules/axios/dist/axios.js&#34;&gt;&lt;/script&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;input type=&#34;text&#34; v-model=&#34;word&#34;&gt;
+    &lt;h3&gt;
+        搜索结果：{{result}}
+    &lt;/h3&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var app = new Vue({
+       el:&#39;#app&#39;,
+       watch:{
+           word: function (newV,oldV) {
+               axios.get(&#39;0725.php?word=&#39;+newV).then(function (response) {
+                   app.result = response.data;
+               })
+           }
+       },
+       data:{
+           word:&#39;&#39;,
+           result:&#39;&#39;
+       }
+    });
+&lt;/script&gt;
+</code></pre></div><h2 id="使用lodash解决实时请求造成资源浪费问题">使用lodash解决实时请求造成资源浪费问题</h2>
+<p><img src="https://listenlive.cn/images/202007252334.png" alt=""></p>
+<h3 id="安装并引入lodash">安装并引入lodash</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">npm install lodash
+
+&lt;script src=&#34;node_modules/lodash/lodash.js&#34;&gt;&lt;/script&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;input type=&#34;text&#34; v-model=&#34;word&#34;&gt;
+    &lt;h3&gt;
+        搜索结果：{{result}}
+    &lt;/h3&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var app = new Vue({
+       el:&#39;#app&#39;,
+       watch:{
+           word: _.debounce(
+               function (newV,oldV) {
+                   axios.get(&#39;0725.php?word=&#39;+newV).then(function (response) {
+                       app.result = response.data;
+                   })
+               },3000
+           )
+       },
+       data:{
+           word:&#39;&#39;,
+           result:&#39;&#39;
+       }
+    });
+&lt;/script&gt;
+</code></pre></div><p><em>使用</em><em><strong><a href="https://www.lodashjs.com/docs/lodash.debounce">_.debounce()</a></strong></em><em>方法，设置3秒后才请求后台数据，减轻服务器压力</em></p>
+<hr>
+<blockquote>
+<p>喜欢这篇文章的话 打赏一下吧！</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><img src="https://listenlive.cn/images/pay/eb05acdaec967.png" alt="Wechat"></th>
+<th style="text-align:right"><img src="https://listenlive.cn/images/pay/0831de845.png" alt="Alipay"></th>
+</tr>
+</thead>
+</table>
+
+    </div>
+	<div class="post-comment">
+    
+    
+<span id="/note/2020/07/13/vue01" class="leancloud_visitors" data-flag-title="Vue基础-01">
+<p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js'></script>
+<script type="text/javascript">
+new Valine({
+    el: '#vcomments' ,
+    appId: '9iOmqWQl7wQBsarOb3o2m0eO-gzGzoHsz',
+    appKey: 'U2cCMaQisH6I3GsyClKuvrwK',
+    notify: 'false',
+    verify: 'false',
+    avatar:'mm',
+    placeholder: '说点什么吧...',
+    visitor: 'true'
+});
+</script>
+	</div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://listenlive.cn/tags/vue" rel="tag" title="Vue">#Vue#</a>
+    
+    <a href="https://listenlive.cn/tags/%e5%89%8d%e7%ab%af" rel="tag" title="前端">#前端#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://listenlive.cn/note/2020/07/16/laravel01/" rel="next" title="Laravel基础01-安装配置">
+        <i class="fa fa-chevron-left"></i> Laravel基础01-安装配置
+        </a>
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://listenlive.cn/share/2020/07/13/knowledge01/" rel="prev" title="真正的粉丝都应该会做的数学题——五点共圆">
+        真正的粉丝都应该会做的数学题——五点共圆 <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+     
+
+
+
+
+    </footer>
+  </article>
+</section>
+
+          </div>
+        </div>
+        <div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://listenlive.cn/img/author.jpg"
+        alt="黑貓警長" />
+    <p class="site-author-name" itemprop="name">黑貓警長</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        Programmer &amp; Architect</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://listenlive.cn/post/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://listenlive.cn/categories/">      
+         
+        <span class="site-state-item-count">4</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://listenlive.cn/tags/">
+         
+        <span class="site-state-item-count">51</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com" target="_blank" title="GitHub">
+            <i class="fa fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://www.instagram.com/ins0273" target="_blank" title="Instagram">
+            <i class="fa fa-fw fa-instagram"></i>
+            Instagram
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6515305531" target="_blank" title="Weibo">
+            <i class="fa fa-fw fa-weibo"></i>
+            Weibo
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="mailto:listenlive7@gmail.com" target="_blank" title="Gmail">
+            <i class="fa fa-fw fa-envelope"></i>
+            Gmail
+        </a>
+        </span>
+    
+</div>
+
+
+      
+
+      <div class="links-of-blogroll motion-element inline">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5t3mz7o0h3k&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33&amp;bv=35" async="async"></script>
+</div>
+
+    </section>
+    
+  </div>
+</aside>
+
+      </div>
+    </main>
+   
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <span><a href="http://www.beian.miit.gov.cn/">京ICP备17004223号-2</a></span>
+  <span itemprop="copyrightYear">  &copy; 2020 - 2021</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.82.0</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2444a3fc34c4ce99b33ff943eb0c4307";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script>
+    var _mtac = {};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500724336");
+
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script> 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://listenlive.cn/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script src="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/utils.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/motion.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/affix.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/post-details.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/toc.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+
+
+</body>
+</html>

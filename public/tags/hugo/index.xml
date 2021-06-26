@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/hugo/</link>
+    <description>Recent content in Hugo on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 05 Jan 2021 13:26:51 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决Hugo/Hexo主题目录themes/无法通过Git提交问题</title>
+      <link>https://listenlive.cn/leaf/2021/01/git_commit/</link>
+      <pubDate>Tue, 05 Jan 2021 13:26:51 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/2021/01/git_commit/</guid>
+      <description>剪切themes/.git文件夹到其他目录 从暂存区删除该文件夹 git rm --cache ./themes/next 再重新添加并提交即可 git add . git commit -m &amp;#39;&amp;#39; git push 喜欢这篇文章的话 打赏一下吧！</description>
+    </item>
+    
+    <item>
+      <title>Hugo基本命令</title>
+      <link>https://listenlive.cn/note/2020/07/10/hugocommand.html</link>
+      <pubDate>Fri, 10 Jul 2020 14:52:58 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/2020/07/10/hugocommand.html</guid>
+      <description>Hugo基本命令 hugo server --noHTTPCache #启动 hugo server --disableFastRender #FastRender启动 hugo new site &amp;#34;listenlive.cn&amp;#34; #创建站点 hugo new post/note/xx.md #创建文章 hugo #编译所有文件并输出到public目录 Hug</description>
+    </item>
+    
+  </channel>
+</rss>

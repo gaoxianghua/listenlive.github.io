@@ -1,0 +1,728 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    <title>Vue基础-03 | listenlive.cn</title>
+    <meta name="keywords" content="独立,博客,程序员,个人,开发,思考,读书,笔记,技术,分享,PHP,Hugo,Node.js,Golang">
+    
+    <meta property="og:title" content="Vue基础-03">
+    <meta property="og:site_name" content="listenlive.cn">
+    <meta property="og:image" content="/img/author.jpg"> 
+    <meta name="title" content="Vue基础-03 - listenlive.cn" />
+    <meta name="description" content="博客 | 软件 | 架构 | PHP | 开发 | Hugo | Golang | go | Node.js"> 
+    <link rel="shortcut icon" href="https://listenlive.cn/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="https://listenlive.cn/img/apple-touch-icon.png" />
+    <link href="https://listenlive.cn/js/vendor/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="https://listenlive.cn/css/syntax.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" id="hexo.configuration">
+	  var NexT = window.NexT || {};
+	  var CONFIG = {
+		scheme: 'Pisces',
+		sidebar: {"position":"left","display":"post"},
+		 fancybox: true, 
+		motion: true
+	  };
+	</script>
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172515529-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-172515529-1');
+	</script>
+    
+    <script>
+        (function(){
+            var el = document.createElement("script");
+            el.src = "https://sf1-scmcdn-tos.pstatp.com/goofy/ttzz/push.js?3d1859bbd8237afa8cff7a06067ef806948d05ee71e04b80bd6ca131dbb5de403e7a864e7e749f7172b232222da9c6ab06cf1be964f65732421f189d31e73f5c";
+            el.id = "ttzz";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(el, s);
+        })(window)
+    </script>
+</head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<div class="container one-collumn sidebar-position-left page-home  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-meta  custom-logo ">
+
+  <div class="custom-logo-site-title">
+    <a href="https://listenlive.cn"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">listenlive.cn</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">too young too simple</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+    <ul id="menu" class="menu">
+      
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />技术
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />笔记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E6%9D%82%E8%AE%B0/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-leaf"></i> <br />杂记
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/categories/%E5%88%86%E4%BA%AB/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-share"></i> <br />分享
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/post/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档
+          </a>
+        </li>
+      
+        <li class="menu-item ">
+          <a href="https://listenlive.cn/about/" rel="section">
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于
+          </a>
+        </li>
+      
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger"> <i class="menu-item-icon fa fa-search fa-fw"></i> <br /> 搜索</a>
+      </li>
+    </ul>
+    <div class="site-search">
+      <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+    </div>
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+<section id="posts" class="posts-expand">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://listenlive.cn/note/2020/07/26/vue03/" itemprop="url">
+        Vue基础-03
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-07-26">
+    2020-07-26
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">1885 字 ~4分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    <h1 id="表单提交与prevent操作表单">表单提交与prevent操作表单</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;form action=&#34;&#34; @submit.prevent=&#34;post(&#39;listenlive.cn&#39;)&#34;&gt;
+        &lt;h2&gt;{{times}}&lt;/h2&gt;
+        &lt;button&gt;提交&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var app = new Vue({
+        el:&#39;#app&#39;,
+        data: {
+            times:new Date()
+        },
+        methods:{
+            post(num){
+                alert(num);
+            }
+        }
+    });
+</code></pre></div><p><em>点击提交按钮异步提交，时间不变</em><br>
+<img src="https://listenlive.cn/images/note/202007262200.png" alt=""></p>
+<h1 id="事件修饰符stoppreventcapture-防止冒泡事件">事件修饰符stop&amp;prevent&amp;capture-防止冒泡事件</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;div @click.capture=&#34;box&#34; :style=&#34;{border:&#39;solid 2px red&#39;}&#34;&gt; 
+        &lt;a href=&#34;https://listenlive.cn&#34; @click.stop.prevent=&#34;links&#34;&gt;Blog&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var app = new Vue({
+        el:&#34;#app&#34;,
+        methods:{
+            box(){
+                alert(&#39;div&#39;);
+            },
+             links(){
+                alert(&#39;listenlive.cn&#39;);
+            }          
+        }       
+    });
+&lt;/script&gt;
+</code></pre></div><p><em>此外还有once修饰符，表示只绑定一次</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"> &lt;a href=&#34;https://listenlive.cn&#34; @click.stop.prevent.once=&#34;links&#34;&gt;Blog&lt;/a&gt;
+</code></pre></div><h1 id="键盘事件修饰符">键盘事件修饰符</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+  &lt;input type=&#34;text&#34; @keyup.enter=&#34;keyEvent&#34;&gt;&lt;br/&gt;  &lt;!--按回车键触发--&gt;
+  &lt;input type=&#34;text&#34; @keyup.delete=&#34;keyEvent&#34;&gt;&lt;br/&gt; &lt;!--按Del键触发--&gt;
+  &lt;input type=&#34;text&#34; @keyup.tab=&#34;keyEvent&#34;&gt;&lt;br/&gt;     &lt;!--按Tab键触发--&gt;
+  &lt;input type=&#34;text&#34; @keyup.esc=&#34;keyEvent&#34;&gt;&lt;br/&gt;     &lt;!--按esc键触发--&gt;
+  &lt;input type=&#34;text&#34; @keyup.space=&#34;keyEvent&#34;&gt;&lt;br/&gt;   &lt;!--按空格键触发--&gt;
+  &lt;input type=&#34;text&#34; @keyup.ctrl.65=&#34;keyEvent&#34;&gt;&lt;br/&gt;   &lt;!--按Ctrl+A键触发--&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var app = new Vue({
+        el:&#39;#app&#39;,
+        methods:{
+            keyEvent(){
+                alert(&#39;listenlive.cn&#39;);
+            }
+        }
+    });
+&lt;/script&gt;
+</code></pre></div><h1 id="鼠标事件">鼠标事件</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;div @click.left=&#34;handler&#34;&gt;&lt;/div&gt;   &lt;!--鼠标左键--&gt;
+    &lt;div @click.middle=&#34;handler&#34;&gt;&lt;/div&gt;   &lt;!--鼠标中键--&gt;
+    &lt;div @contextmenu.prevent=&#34;handler&#34;&gt;&lt;/div&gt;   &lt;!--鼠标右键（一般用于弹出自定义菜单）--&gt;
+&lt;/div&gt;
+</code></pre></div><h1 id="使用vue将数据分配到表单并用bootstrap布局">使用Vue将数据分配到表单，并用bootstrap布局，</h1>
+<p>使用 <strong><a href="https://bootcdn.cn">BootCDN</a></strong> 引入<strong>Bootstrap</strong>和<strong>JQuery</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;link href=&#34;https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css&#34; rel=&#34;stylesheet&#34;&gt;
+&lt;script src=&#34;https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://cdn.bootcdn.net/ajax/libs/font-awesome/5.14.0/css/fontawesome.min.css&#34; rel=&#34;stylesheet&#34;&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;div class=&#34;panel panel-default&#34;&gt;
+        &lt;div class=&#34;panel-heading&#34;&gt;
+            &lt;h3 class=&#34;panel-title&#34;&gt;Panel title&lt;/h3&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;panel-body&#34;&gt;
+            &lt;form action=&#34;&#34; class=&#34;form-horizontal&#34;&gt;
+                &lt;div class=&#34;form-group&#34;&gt;
+                    &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;标题&lt;/label&gt;
+                    &lt;div class=&#34;col-sm-10&#34;&gt;
+                        &lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model=&#34;field.title&#34;/&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&#34;form-group&#34;&gt;
+                    &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;点击数&lt;/label&gt;
+                    &lt;div class=&#34;col-sm-10&#34;&gt;
+                        &lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model=&#34;field.click&#34;/&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&#34;form-group&#34;&gt;
+                    &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;链接&lt;/label&gt;
+                    &lt;div class=&#34;col-sm-10&#34;&gt;
+                        &lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model=&#34;field.url&#34;/&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&#34;form-group&#34;&gt;
+                    &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;摘要&lt;/label&gt;
+                    &lt;div class=&#34;col-sm-10&#34;&gt;
+                        &lt;textarea name=&#34;&#34; class=&#34;form-control&#34; v-model=&#34;field.description&#34;&gt;&lt;/textarea&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;    
+&lt;/div&gt;
+&lt;script&gt;
+    var app = new Vue({
+        el:&#39;#app&#39;,
+        data:{
+          field:{
+              title:&#39;ListenLive&#39;,
+              click:999,
+              url:&#39;listenlive.cn&#39;,
+              description:&#39;摘要&#39;
+          }
+        },
+        methods:{
+        }
+    });
+&lt;/script&gt;
+</code></pre></div><p><img src="https://listenlive.cn/images/note/202007271328.png" alt=""></p>
+<h1 id="vue表单处理控件-复选框checkbox的使用方式">Vue表单处理控件-复选框CheckBox的使用方式</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
+    &lt;div class=&#34;panel panel-default&#34;&gt;
+        &lt;form action=&#34;&#34; class=&#34;form-horizontal&#34;&gt;
+        &lt;div class=&#34;panel-heading&#34;&gt;
+            &lt;h3 class=&#34;panel-title&#34;&gt;Panel title&lt;/h3&gt;
+        &lt;/div&gt;
+        &lt;div class=&#34;panel-body&#34;&gt;
+            &lt;div class=&#34;form-group&#34;&gt;
+                &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;标题&lt;/label&gt;
+                &lt;div class=&#34;col-sm-10&#34;&gt;
+                    &lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model=&#34;field.title&#34;/&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&#34;form-group&#34;&gt;
+                &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;属性&lt;/label&gt;
+                &lt;div class=&#34;col-sm-10&#34;&gt;
+                    &lt;div class=&#34;checkbox-inline&#34;&gt;
+                        &lt;input type=&#34;checkbox&#34; v-model=&#34;field.flag&#34; value=&#34;hot&#34;/&gt;热门
+                    &lt;/div&gt;
+                    &lt;div class=&#34;checkbox-inline&#34;&gt;
+                        &lt;input type=&#34;checkbox&#34; v-model=&#34;field.flag&#34; value=&#34;recommend&#34;/&gt;推荐
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&#34;form-group&#34;&gt;
+                &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;点击数&lt;/label&gt;
+                &lt;div class=&#34;col-sm-10&#34;&gt;
+                    &lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model=&#34;field.click&#34;/&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&#34;form-group&#34;&gt;
+                &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;链接&lt;/label&gt;
+                &lt;div class=&#34;col-sm-10&#34;&gt;
+                    &lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model=&#34;field.url&#34;/&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&#34;form-group&#34;&gt;
+                &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;摘要&lt;/label&gt;
+                &lt;div class=&#34;col-sm-10&#34;&gt;
+                    &lt;textarea name=&#34;&#34; class=&#34;form-control&#34; v-model=&#34;field.description&#34;&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&#34;form-group&#34;&gt;
+                &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;类型&lt;/label&gt;
+                &lt;div class=&#34;col-sm-10&#34;&gt;
+                    &lt;div class=&#34;checkbox-inline&#34;&gt;
+                        &lt;input type=&#34;checkbox&#34; v-model=&#34;field.draft&#34;/&gt;草稿
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+            &lt;button class=&#34;btn btn-primary col-sm-offset-2&#34;&gt;保存&lt;/button&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    var app = new Vue({
+        el:&#39;#app&#39;,
+        data:{
+          field:{
+              title:&#39;ListenLive&#39;,
+              click:999,
+              url:&#39;listenlive.cn&#39;,
+              description:&#39;摘要&#39;,
+              draft:false,      //草稿
+              flag:[]           //属性
+          }
+        },
+        methods:{
+        }
+    });
+&lt;/script&gt;
+</code></pre></div><p><img src="https://listenlive.cn/images/note/202007271351.png" alt=""></p>
+<h1 id="安装vue调试工具">安装Vue调试工具</h1>
+<h2 id="在谷歌网上应用商店搜索vuejs-devtools并安装">在谷歌网上应用商店搜索vue.js devtools并安装</h2>
+<p><img src="https://listenlive.cn/images/note/202007271400.png" alt=""></p>
+<h2 id="打控制台即可使用vue调试工具">打控制台即可使用vue调试工具</h2>
+<p><img src="https://listenlive.cn/images/note/202007271403.png" alt=""></p>
+<h1 id="vue处理表单控件之radio">Vue处理表单控件之radio</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div class=&#34;radio-inline&#34;&gt;
+     &lt;input type=&#34;radio&#34; v-model=&#34;field.type&#34; value=&#34;draft&#34;/&gt;草稿
+&lt;/div&gt;
+&lt;div class=&#34;radio-inline&#34;&gt;
+     &lt;input type=&#34;radio&#34; v-model=&#34;field.type&#34; value=&#34;send&#34;/&gt;发送
+&lt;/div&gt;
+</code></pre></div><p><em>使用radio时为v-model设置同样的值</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;script&gt;
+    var app = new Vue({
+        el:&#39;#app&#39;,
+        data:{
+          field:{
+              title:&#39;ListenLive&#39;,
+              click:999,
+              url:&#39;listenlive.cn&#39;,
+              description:&#39;摘要&#39;,
+              draft:false,
+              type:&#39;send&#39;,
+              flag:[]
+          }
+        },
+        methods:{
+        }
+    });
+&lt;/script&gt;
+</code></pre></div><p><img src="https://listenlive.cn/images/note/202007271420.png" alt=""></p>
+<h1 id="vue处理表单控件之select">Vue处理表单控件之select</h1>
+<p><img src="https://listenlive.cn/images/note/202007271450.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div class=&#34;form-group&#34;&gt;
+    &lt;label for=&#34;&#34; class=&#34;col-sm-2 control-label&#34;&gt;栏目&lt;/label&gt;
+    &lt;div class=&#34;col-sm-10&#34;&gt;
+        &lt;select v-model=&#34;field.cid&#34; class=&#34;form-control&#34;&gt;
+            &lt;option value=&#34;&#34;&gt;==请选择栏目==&lt;/option&gt;
+            &lt;option v-for=&#34;v in category&#34; :value=&#34;v.cid&#34;&gt;{{v.title}}&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;script&gt;
+    var app = new Vue({
+        el:&#39;#app&#39;,
+        data:{
+            category:[
+                {cid:1,title:&#39;北京&#39;},
+                {cid:2,title:&#39;天津&#39;},
+                {cid:3,title:&#39;上海&#39;},
+                {cid:4,title:&#39;重庆&#39;},
+                {cid:5,title:&#39;广州&#39;},
+            ],
+          field:{
+              title:&#39;ListenLive&#39;,
+              click:999,
+              url:&#39;listenlive.cn&#39;,
+              description:&#39;摘要&#39;,
+              draft:false,
+              type:&#39;send&#39;,
+              flag:[],
+              cid:5
+          }
+        },
+        methods:{
+        }
+    });
+&lt;/script&gt;
+</code></pre></div><h1 id="表单修饰符-numbertrimlazy">表单修饰符 number、trim、lazy</h1>
+<p><strong>number</strong> 将字符串转为整型</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model.number=&#34;field.vlaue&#34;/&gt;
+</code></pre></div><p><strong>trim</strong> 去除字符串两端的空格</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model.trim=&#34;field.title&#34;/&gt;
+</code></pre></div><p><strong>lazy</strong> 懒加载-当光标移出输入框时才触发</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;input type=&#34;text&#34; class=&#34;form-control&#34; v-model.trim.lazy=&#34;field.title&#34;/&gt;
+</code></pre></div><hr>
+<blockquote>
+<p>喜欢这篇文章的话 打赏一下吧！</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><img src="https://listenlive.cn/images/pay/eb05acdaec967.png" alt="Wechat"></th>
+<th style="text-align:right"><img src="https://listenlive.cn/images/pay/0831de845.png" alt="Alipay"></th>
+</tr>
+</thead>
+</table>
+
+    </div>
+	<div class="post-comment">
+    
+    
+<span id="/note/2020/07/26/vue03" class="leancloud_visitors" data-flag-title="Vue基础-03">
+<p></p>
+</span>
+<div id="vcomments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine@^1/dist/Valine.min.js'></script>
+<script type="text/javascript">
+new Valine({
+    el: '#vcomments' ,
+    appId: '9iOmqWQl7wQBsarOb3o2m0eO-gzGzoHsz',
+    appKey: 'U2cCMaQisH6I3GsyClKuvrwK',
+    notify: 'false',
+    verify: 'false',
+    avatar:'mm',
+    placeholder: '说点什么吧...',
+    visitor: 'true'
+});
+</script>
+	</div>
+    <footer class="post-footer">
+     
+ 
+<div class="post-tags">     
+     
+    <a href="https://listenlive.cn/tags/%e5%89%8d%e7%ab%af" rel="tag" title="前端">#前端#</a>
+    
+    <a href="https://listenlive.cn/tags/vue" rel="tag" title="Vue">#Vue#</a>
+    
+</div>
+
+
+
+     <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+    
+        <a href="https://listenlive.cn/note/2020/07/27/vue04/" rel="next" title="Vue基础-04">
+        <i class="fa fa-chevron-left"></i> Vue基础-04
+        </a>
+    
+    </div>
+
+    <div class="post-nav-prev post-nav-item">
+    
+        <a href="https://listenlive.cn/leaf/2020/07/25/npmcommand.html" rel="prev" title="npm 版本更新">
+        npm 版本更新 <i class="fa fa-chevron-right"></i>
+        </a>
+    
+    </div>
+</div>
+      
+     
+     
+     
+
+
+
+
+    </footer>
+  </article>
+</section>
+
+          </div>
+        </div>
+        <div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+<aside id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+        src="https://listenlive.cn/img/author.jpg"
+        alt="黑貓警長" />
+    <p class="site-author-name" itemprop="name">黑貓警長</p>
+    <p class="site-description motion-element" itemprop="description"> 
+        Programmer &amp; Architect</p>
+</div>
+      <nav class="site-state motion-element">
+    <div class="site-state-item site-state-posts">
+      <a href="https://listenlive.cn/post/">
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">日志</span>
+      </a>
+    </div>
+    <div class="site-state-item site-state-categories">    
+        <a href="https://listenlive.cn/categories/">      
+         
+        <span class="site-state-item-count">4</span>
+        
+        <span class="site-state-item-name">分类</span>
+        
+        </a>
+    </div>
+
+    <div class="site-state-item site-state-tags">
+        <a href="https://listenlive.cn/tags/">
+         
+        <span class="site-state-item-count">51</span>
+        
+        <span class="site-state-item-name">标签</span>
+        </a>
+    </div>
+</nav>
+      
+      
+<div class="links-of-author motion-element">
+    
+        <span class="links-of-author-item">
+        <a href="https://github.com" target="_blank" title="GitHub">
+            <i class="fa fa-fw fa-github"></i>
+            GitHub
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://www.instagram.com/ins0273" target="_blank" title="Instagram">
+            <i class="fa fa-fw fa-instagram"></i>
+            Instagram
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6515305531" target="_blank" title="Weibo">
+            <i class="fa fa-fw fa-weibo"></i>
+            Weibo
+        </a>
+        </span>
+    
+        <span class="links-of-author-item">
+        <a href="mailto:listenlive7@gmail.com" target="_blank" title="Gmail">
+            <i class="fa fa-fw fa-envelope"></i>
+            Gmail
+        </a>
+        </span>
+    
+</div>
+
+
+      
+
+      <div class="links-of-blogroll motion-element inline">
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5t3mz7o0h3k&amp;m=0&amp;s=220&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33&amp;bv=35" async="async"></script>
+</div>
+
+    </section>
+    
+  </div>
+</aside>
+
+      </div>
+    </main>
+   
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <span><a href="http://www.beian.miit.gov.cn/">京ICP备17004223号-2</a></span>
+  <span itemprop="copyrightYear">  &copy; 2020 - 2021</span>
+  <span class="with-love"><i class="fa fa-heart"></i></span>
+  <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
+</div>
+<div class="powered-by">
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.82.0</a>
+</div>
+<div class="theme-info">
+  Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+      <span id="scrollpercent"><span>0</span>%</span>
+    </div>
+  </div>
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?2444a3fc34c4ce99b33ff943eb0c4307";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script>
+    var _mtac = {};
+    (function() {
+        var mta = document.createElement("script");
+        mta.src = "//pingjs.qq.com/h5/stats.js?v2.0.4";
+        mta.setAttribute("name", "MTAH5");
+        mta.setAttribute("sid", "500724336");
+
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mta, s);
+    })();
+</script> 
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery/index.js?v=2.1.3"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/fastclick/lib/fastclick.min.js?v=1.0.6"></script> 
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.min.js?v=1.2.1"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/vendor/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="https://listenlive.cn/js/vendor/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+
+<script src="https://listenlive.cn/js/vendor/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/utils.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/motion.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/affix.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/schemes/pisces.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/scrollspy.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/post-details.js"></script>
+<script type="text/javascript" src="https://listenlive.cn/js/toc.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="https://listenlive.cn/js/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+
+
+</body>
+</html>

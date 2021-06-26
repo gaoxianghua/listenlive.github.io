@@ -2,107 +2,107 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>node.js on listenlive.cn</title>
-    <link>https://listenlive.cn/tags/node.js/</link>
+    <link>https://blog.listenlive.cn/tags/node.js/</link>
     <description>Recent content in node.js on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService</title>
-      <link>https://listenlive.cn/leaf/202103/axios-soap.html</link>
+      <link>https://blog.listenlive.cn/leaf/202103/axios-soap.html</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://listenlive.cn/leaf/202103/axios-soap.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/202103/axios-soap.html</guid>
       <description>axios请求云之讯短信接口实现短信发送 安装axios cnpm install axios --save 方法实现 static async sendMessage(ctx){ let param = Math.random().toString().substr(2, 4); //生成四位随机数 let phone = &amp;#39;157********&amp;#39;; const url = &amp;#39;https://open.ucpaas.com/ol/sms/sendsms&amp;#39;; const axios = require(&amp;#39;axios&amp;#39;); let sendRe = await axios({ method:</description>
     </item>
     
     <item>
       <title>基于Koa框架的Lincms常用操作</title>
-      <link>https://listenlive.cn/note/202103/lincms.html</link>
+      <link>https://blog.listenlive.cn/note/202103/lincms.html</link>
       <pubDate>Wed, 03 Mar 2021 14:00:49 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/202103/lincms.html</guid>
+      <guid>https://blog.listenlive.cn/note/202103/lincms.html</guid>
       <description>Sequelize事务操作 let transaction; //事务开始 try { transaction = await sequelize.transaction(); const replace_record = { p_code: v.get(&amp;#39;path.p_code&amp;#39;), p_type: v.get(&amp;#39;path.p_type&amp;#39;) }; const { id: record_id } = await ReplaceRecordModel.create(replace_record, { transaction }); await WxReplacesheetsModel.create( { record_id, name: v.get(&amp;#39;path.name&amp;#39;), phone: v.get(&amp;#39;path.phone&amp;#39;), province: v.get(&amp;#39;path.province&amp;#39;), city: v.get(&amp;#39;path.city&amp;#39;), district: v.get(&amp;#39;path.district&amp;#39;), question: v.get(&amp;#39;path.question&amp;#39;), status: 1 }, { transaction } );</description>
     </item>
     
     <item>
       <title>Koa框架实现导出Excel文件</title>
-      <link>https://listenlive.cn/note/2020/12/11/koa_import/</link>
+      <link>https://blog.listenlive.cn/note/2020/12/11/koa_import/</link>
       <pubDate>Fri, 11 Dec 2020 17:29:57 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/12/11/koa_import/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/12/11/koa_import/</guid>
       <description>安装引入excel-export包 cnpm install excel-export --save const nodeExcel = require(&amp;#39;excel-export&amp;#39;); 实现导出方法 /** * 数据导出--导出方法 * @param resultData [{},{},] //从数据库中获取的数据格式 */ static async exportData(resultData,ctx){ let conf ={}; conf.name =</description>
     </item>
     
     <item>
       <title>Sequelize操作MySQL数据库</title>
-      <link>https://listenlive.cn/note/2020/08/20/sequelize01/</link>
+      <link>https://blog.listenlive.cn/note/2020/08/20/sequelize01/</link>
       <pubDate>Thu, 20 Aug 2020 14:00:54 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/08/20/sequelize01/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/08/20/sequelize01/</guid>
       <description>安装sequelize、sequelize-cli和mysql2 cnpm install sequelize-cli -g cnpm install sequelize --save cnpm install mysql2 --save 初始化项目 sequelize init 在config.js中配置连接数据库参</description>
     </item>
     
     <item>
       <title>Koa使用require-directory实现路由的自动加载</title>
-      <link>https://listenlive.cn/note/2020/08/13/koa07/</link>
+      <link>https://blog.listenlive.cn/note/2020/08/13/koa07/</link>
       <pubDate>Thu, 13 Aug 2020 14:10:35 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/08/13/koa07/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/08/13/koa07/</guid>
       <description>require-directory的安装与使用 const Koa = require(&amp;#39;koa&amp;#39;); const app = new Koa(); const requireDirectory = require(&amp;#39;require-directory&amp;#39;); const Router = require(&amp;#39;koa-router&amp;#39;); const modules = requireDirectory(module,&amp;#39;./api&amp;#39;,{ visit:whenLoadModule }) function whenLoadModule(obj){ if(obj instanceof Router){ app.use(obj.routes()) } } app.listen(3000); 路由文件的写法api/v1/b</description>
     </item>
     
     <item>
       <title>使用Koa应用生成器快速生成koa应用</title>
-      <link>https://listenlive.cn/note/2020/08/10/koa06/</link>
+      <link>https://blog.listenlive.cn/note/2020/08/10/koa06/</link>
       <pubDate>Mon, 10 Aug 2020 16:48:12 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/08/10/koa06/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/08/10/koa06/</guid>
       <description>全局安装koa脚手架生成工具 cnpm install koa-generator -g 创建项目 koa koa_demo 安装依赖 cd koa_demo cnpm install 启动项目 npm start 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>Koa Cookie与Session</title>
-      <link>https://listenlive.cn/note/2020/08/10/koa05/</link>
+      <link>https://blog.listenlive.cn/note/2020/08/10/koa05/</link>
       <pubDate>Mon, 10 Aug 2020 14:52:11 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/08/10/koa05/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/08/10/koa05/</guid>
       <description>Cookie Koa中设置Cookie值 ctx.cookies.set(name,value,[options]); Koa中获取Cookie值 ctx.cookies.get(&amp;#39;name&amp;#39;); Koa中使用Buffer设置中文Cookie //设置中文Cookie router.get(&amp;#39;/&amp;#39;,async (ctx)=&amp;gt;{ var userinfo=new Buf</description>
     </item>
     
     <item>
       <title>Koa post提交数据与静态资源中间件</title>
-      <link>https://listenlive.cn/note/2020/08/10/koa04/</link>
+      <link>https://blog.listenlive.cn/note/2020/08/10/koa04/</link>
       <pubDate>Mon, 10 Aug 2020 12:03:41 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/08/10/koa04/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/08/10/koa04/</guid>
       <description>原生Node.js获取post提交的数据 表单 &amp;lt;form action=&amp;#34;/doAdd&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; 用户名: &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;username&amp;#34;/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;br/&amp;gt; 密 码: &amp;lt;input type=&amp;#34;password&amp;#34; name=&amp;#34;password&amp;#34;/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;button type=&amp;#34;submit&amp;#34;&amp;gt;提交</description>
     </item>
     
     <item>
       <title>Koa ejs模板引擎与art-template模板引擎</title>
-      <link>https://listenlive.cn/note/2020/08/10/koa03/</link>
+      <link>https://blog.listenlive.cn/note/2020/08/10/koa03/</link>
       <pubDate>Mon, 10 Aug 2020 10:19:42 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/08/10/koa03/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/08/10/koa03/</guid>
       <description>Koa ejs的安装与使用 安装koa-views cnpm install koa-views --save 安装ejs cnpm install ejs --save 配置模板引擎中间件 var views = require(&amp;#39;koa-views&amp;#39;); app.use(views(&amp;#39;views&amp;#39;,{ extension:&amp;#39;ejs&amp;#39; })); //这样配置模板的后缀名是.ejs //第</description>
     </item>
     
     <item>
       <title>Koa路由和中间件</title>
-      <link>https://listenlive.cn/note/2020/08/09/koa02/</link>
+      <link>https://blog.listenlive.cn/note/2020/08/09/koa02/</link>
       <pubDate>Sun, 09 Aug 2020 11:01:49 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/08/09/koa02/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/08/09/koa02/</guid>
       <description>Koa路由的安装和配置 安装Koa路由 cnpm install koa-router --save Koa路由的使用 var Koa = require(&amp;#39;koa&amp;#39;); //引入Koa var Router = require(&amp;#39;koa-router&amp;#39;); //引入路由 var app = new Koa(); var router = new Router(); //配置路由 router.get(&amp;#39;/&amp;#39;,async function(ctx){ //ctx</description>
     </item>
     
     <item>
       <title>Koa框架安装及ES6基础语法</title>
-      <link>https://listenlive.cn/note/2020/08/09/koa01/</link>
+      <link>https://blog.listenlive.cn/note/2020/08/09/koa01/</link>
       <pubDate>Sun, 09 Aug 2020 08:59:12 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/08/09/koa01/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/08/09/koa01/</guid>
       <description>安装Koa框架 初始化 npm init --yes 安装Koa cnpm install koa --save 第一个Koa程序app.js var Koa = require(&amp;#39;koa&amp;#39;); //引入Koa var app = new Koa(); //实例化 //中间件 app.use(async(ctx)=&amp;gt;{ ctx.body=&amp;#39;Hello Koa&amp;#39;; }); app.listen(3000); ES6</description>
     </item>
     

@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>api on listenlive.cn</title>
-    <link>https://listenlive.cn/tags/api/</link>
+    <link>https://blog.listenlive.cn/tags/api/</link>
     <description>Recent content in api on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/tags/api/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService</title>
-      <link>https://listenlive.cn/leaf/202103/axios-soap.html</link>
+      <link>https://blog.listenlive.cn/leaf/202103/axios-soap.html</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://listenlive.cn/leaf/202103/axios-soap.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/202103/axios-soap.html</guid>
       <description>axios请求云之讯短信接口实现短信发送 安装axios cnpm install axios --save 方法实现 static async sendMessage(ctx){ let param = Math.random().toString().substr(2, 4); //生成四位随机数 let phone = &amp;#39;157********&amp;#39;; const url = &amp;#39;https://open.ucpaas.com/ol/sms/sendsms&amp;#39;; const axios = require(&amp;#39;axios&amp;#39;); let sendRe = await axios({ method:</description>
     </item>
     
     <item>
       <title>Laravel Api开发之Dingo&amp;Jwt的使用</title>
-      <link>https://listenlive.cn/note/2020/09/22/laravel_dingo/</link>
+      <link>https://blog.listenlive.cn/note/2020/09/22/laravel_dingo/</link>
       <pubDate>Tue, 22 Sep 2020 15:02:17 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/09/22/laravel_dingo/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/09/22/laravel_dingo/</guid>
       <description>Dingo 安装组件 composer require dingo/api:2.x 生成配置文件 php artisan vendor:publish 执行命令后会生成config/api.php配置文件 config/api.php 配置说明 #接口围绕：[x]本地和私有环境 [prs]公</description>
     </item>
     
     <item>
       <title>Laravel Api开发之laravel/passport授权包的使用及基本配置</title>
-      <link>https://listenlive.cn/note/2020/07/31/laravel06/</link>
+      <link>https://blog.listenlive.cn/note/2020/07/31/laravel06/</link>
       <pubDate>Fri, 31 Jul 2020 17:18:54 +0800</pubDate>
       
-      <guid>https://listenlive.cn/note/2020/07/31/laravel06/</guid>
+      <guid>https://blog.listenlive.cn/note/2020/07/31/laravel06/</guid>
       <description>安装laravel/passport composer require laravel/passport=~7.0 指定为7.0版本，laravel5.8不支持8.0及以上版本 创建所需的表 php artisan migrate 生成secret php artisan</description>
     </item>
     

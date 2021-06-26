@@ -2,98 +2,98 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>技术 on listenlive.cn</title>
-    <link>https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/</link>
+    <link>https://blog.listenlive.cn/categories/%E6%8A%80%E6%9C%AF/</link>
     <description>Recent content in 技术 on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService</title>
-      <link>https://listenlive.cn/leaf/202103/axios-soap.html</link>
+      <link>https://blog.listenlive.cn/leaf/202103/axios-soap.html</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://listenlive.cn/leaf/202103/axios-soap.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/202103/axios-soap.html</guid>
       <description>axios请求云之讯短信接口实现短信发送 安装axios cnpm install axios --save 方法实现 static async sendMessage(ctx){ let param = Math.random().toString().substr(2, 4); //生成四位随机数 let phone = &amp;#39;157********&amp;#39;; const url = &amp;#39;https://open.ucpaas.com/ol/sms/sendsms&amp;#39;; const axios = require(&amp;#39;axios&amp;#39;); let sendRe = await axios({ method:</description>
     </item>
     
     <item>
       <title>Linux开启bbr加速</title>
-      <link>https://listenlive.cn/leaf/202102/bbr.html</link>
+      <link>https://blog.listenlive.cn/leaf/202102/bbr.html</link>
       <pubDate>Tue, 09 Feb 2021 13:09:10 +0800</pubDate>
       
-      <guid>https://listenlive.cn/leaf/202102/bbr.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/202102/bbr.html</guid>
       <description>安装bbr加速 进入/usr/local/src目录，下载bbr.sh文件 cd /usr/local/src sudo wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh 添加可执行权限 sudo chmod +x bbr.sh 执行该脚本文件,安装完成后提示按y</description>
     </item>
     
     <item>
       <title>pip install 出错</title>
-      <link>https://listenlive.cn/leaf/202102/pip.html</link>
+      <link>https://blog.listenlive.cn/leaf/202102/pip.html</link>
       <pubDate>Mon, 08 Feb 2021 15:28:06 +0800</pubDate>
       
-      <guid>https://listenlive.cn/leaf/202102/pip.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/202102/pip.html</guid>
       <description>Linux下使用pip命令报错 最近使用腾讯云的实例遇到的坑，运行pip install命令后，报错如下： Traceback (most recent call last): File &amp;#34;/usr/bin/pip&amp;#34;, line 9, in &amp;lt;module&amp;gt; load_entry_point(&amp;#39;pip==21.0&amp;#39;, &amp;#39;console_scripts&amp;#39;, &amp;#39;pip&amp;#39;)() File &amp;#34;/usr/lib/python2.7/site-packages/pkg_resources.py&amp;#34;, line 378, in</description>
     </item>
     
     <item>
       <title>PHP&amp;kuaidi.com实现快递查询</title>
-      <link>https://listenlive.cn/leaf/202101/kuaidiapi.html</link>
+      <link>https://blog.listenlive.cn/leaf/202101/kuaidiapi.html</link>
       <pubDate>Tue, 26 Jan 2021 16:14:21 +0800</pubDate>
       
-      <guid>https://listenlive.cn/leaf/202101/kuaidiapi.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/202101/kuaidiapi.html</guid>
       <description>申请快递查询API授权key kuaidi.com SDK文件KDApi.php /** * 物流信息查询接口SDK */ class KDAPI{ private $_APPKEY = &amp;#39;twde5d8ef***********&amp;#39;; //改为您自己的key private $_APIURL = &amp;#34;https://highapi.kuaidi.com/openapi-querycountordernumber.html?&amp;#34;; private $_show = 0; private $_muti</description>
     </item>
     
     <item>
       <title>Linux-使用防火墙firewalld开放端口</title>
-      <link>https://listenlive.cn/leaf/20210122/linux-firewalld.html</link>
+      <link>https://blog.listenlive.cn/leaf/20210122/linux-firewalld.html</link>
       <pubDate>Fri, 22 Jan 2021 14:58:14 +0800</pubDate>
       
-      <guid>https://listenlive.cn/leaf/20210122/linux-firewalld.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/20210122/linux-firewalld.html</guid>
       <description>查看当前开了哪些端口其实一个服务对应一个端口，每个服务对应/usr/lib/firewalld/services下面一个xml文件 firewall-cmd --list-services 通过f</description>
     </item>
     
     <item>
       <title>使用Linux定时任务-Crontab 完成MySQL数据库的备份和表操作</title>
-      <link>https://listenlive.cn/leaf/202101/crontab_linux.html</link>
+      <link>https://blog.listenlive.cn/leaf/202101/crontab_linux.html</link>
       <pubDate>Tue, 19 Jan 2021 17:39:31 +0800</pubDate>
       
-      <guid>https://listenlive.cn/leaf/202101/crontab_linux.html</guid>
+      <guid>https://blog.listenlive.cn/leaf/202101/crontab_linux.html</guid>
       <description>crontab基本命令 crontab -l //查看定时任务 crontab -e //编辑定时任务 crontab -r //删除定时任务 crontab常用写法 每分钟执行 */1 * * * * command 每小时0分执行</description>
     </item>
     
     <item>
       <title>go-求阶乘之和</title>
-      <link>https://listenlive.cn/technology/2020/11/30/tech04/</link>
+      <link>https://blog.listenlive.cn/technology/2020/11/30/tech04/</link>
       <pubDate>Mon, 30 Nov 2020 17:06:22 +0800</pubDate>
       
-      <guid>https://listenlive.cn/technology/2020/11/30/tech04/</guid>
+      <guid>https://blog.listenlive.cn/technology/2020/11/30/tech04/</guid>
       <description>求1!+2!+3!+&amp;hellip;+n!阶乘之和 package main import &amp;#34;fmt&amp;#34; func sum(n int) uint64{ var s uint64 = 1 var sum uint64 = 0 for i := 1; i &amp;lt;= n; i++ { s = s * uint64(i) sum += s } return sum } func main() { var n int</description>
     </item>
     
     <item>
       <title>go-输出100-999之间的水仙花数</title>
-      <link>https://listenlive.cn/technology/2020/08/10/tech03/</link>
+      <link>https://blog.listenlive.cn/technology/2020/08/10/tech03/</link>
       <pubDate>Mon, 30 Nov 2020 16:55:08 +0800</pubDate>
       
-      <guid>https://listenlive.cn/technology/2020/08/10/tech03/</guid>
+      <guid>https://blog.listenlive.cn/technology/2020/08/10/tech03/</guid>
       <description>水仙花数是指一个 3 位数，它的每个位上的数字的 3次幂之和等于它本身（例如：1^3 + 5^3+ 3^3 = 153） package main import &amp;#34;fmt&amp;#34; func isSxh(n int) bool{ var i, j, k int i = n % 10 //个位 j</description>
     </item>
     
     <item>
       <title>Go-输出某个区间内所有的素数</title>
-      <link>https://listenlive.cn/technology/2020/11/30/tech02/</link>
+      <link>https://blog.listenlive.cn/technology/2020/11/30/tech02/</link>
       <pubDate>Mon, 30 Nov 2020 15:57:21 +0800</pubDate>
       
-      <guid>https://listenlive.cn/technology/2020/11/30/tech02/</guid>
+      <guid>https://blog.listenlive.cn/technology/2020/11/30/tech02/</guid>
       <description>Go-输出某个区间内所有的素数 package main import &amp;#34;fmt&amp;#34; func isPrime(n int) bool { for i := 2; i &amp;lt; n; i++ { if n%i == 0 { return false } } return true } func main() { var n int var m int fmt.Scanf(&amp;#34;%d%d&amp;#34;, &amp;amp;n, &amp;amp;m) for i := m; i &amp;lt; m; i++{ if isPrime(i) == true {</description>
     </item>
     
     <item>
       <title>Go-反转字符串函数</title>
-      <link>https://listenlive.cn/technology/2020/11/30/tech01/</link>
+      <link>https://blog.listenlive.cn/technology/2020/11/30/tech01/</link>
       <pubDate>Mon, 30 Nov 2020 14:52:24 +0800</pubDate>
       
-      <guid>https://listenlive.cn/technology/2020/11/30/tech01/</guid>
+      <guid>https://blog.listenlive.cn/technology/2020/11/30/tech01/</guid>
       <description>go反转字符串函数 package main import &amp;#34;fmt&amp;#34; func reverse(str string) string { var result string strLen := len(str) for(i := 0; i &amp;lt; strLen; i++){ result = result + fmt.Sprintf(&amp;#34;%c&amp;#34;, str[strLen-i-1]) } return result } //调用 result := reverse(&amp;#34;hello world&amp;#34;) fmt.Println(result) //结果 dlrow olleh 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     

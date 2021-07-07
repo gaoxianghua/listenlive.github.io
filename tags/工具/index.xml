@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>工具 on listenlive.cn</title>
-    <link>https://blog.listenlive.cn/tags/%E5%B7%A5%E5%85%B7/</link>
+    <link>https://listenlive.cn/tags/%E5%B7%A5%E5%85%B7/</link>
     <description>Recent content in 工具 on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 06 Aug 2020 15:40:02 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Aug 2020 15:40:02 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>常 用 网 站</title>
-      <link>https://blog.listenlive.cn/leaf/2020/08/06/url/</link>
+      <link>https://listenlive.cn/leaf/2020/08/06/url/</link>
       <pubDate>Thu, 06 Aug 2020 15:40:02 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/08/06/url/</guid>
+      <guid>https://listenlive.cn/leaf/2020/08/06/url/</guid>
       <description>BootCDN BootCDN 稳定、快速、免费的前端开源项目 CDN 加速服务 AdminLTE AdminLTE 开源后台管理模板 Animate.css Animate.css CSS动画效果 Packagist Packagist The PHP Package Repository 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     

@@ -2,467 +2,467 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on listenlive.cn</title>
-    <link>https://blog.listenlive.cn/tags/</link>
+    <link>https://listenlive.cn/tags/</link>
     <description>Recent content in Tags on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 18 May 2021 15:20:48 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 May 2021 15:20:48 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Homestead</title>
-      <link>https://blog.listenlive.cn/tags/homestead/</link>
+      <link>https://listenlive.cn/tags/homestead/</link>
       <pubDate>Tue, 18 May 2021 15:20:48 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/homestead/</guid>
+      <guid>https://listenlive.cn/tags/homestead/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Laravel</title>
-      <link>https://blog.listenlive.cn/tags/laravel/</link>
+      <link>https://listenlive.cn/tags/laravel/</link>
       <pubDate>Tue, 18 May 2021 15:20:48 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/laravel/</guid>
+      <guid>https://listenlive.cn/tags/laravel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PHP</title>
-      <link>https://blog.listenlive.cn/tags/php/</link>
+      <link>https://listenlive.cn/tags/php/</link>
       <pubDate>Sat, 08 May 2021 10:36:36 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/php/</guid>
+      <guid>https://listenlive.cn/tags/php/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://blog.listenlive.cn/tags/docker/</link>
+      <link>https://listenlive.cn/tags/docker/</link>
       <pubDate>Thu, 29 Apr 2021 12:34:31 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/docker/</guid>
+      <guid>https://listenlive.cn/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ubuntu</title>
-      <link>https://blog.listenlive.cn/tags/ubuntu/</link>
+      <link>https://listenlive.cn/tags/ubuntu/</link>
       <pubDate>Thu, 29 Apr 2021 12:34:31 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/ubuntu/</guid>
+      <guid>https://listenlive.cn/tags/ubuntu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JavaScript</title>
-      <link>https://blog.listenlive.cn/tags/javascript/</link>
+      <link>https://listenlive.cn/tags/javascript/</link>
       <pubDate>Thu, 08 Apr 2021 14:28:34 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/javascript/</guid>
+      <guid>https://listenlive.cn/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JS</title>
-      <link>https://blog.listenlive.cn/tags/js/</link>
+      <link>https://listenlive.cn/tags/js/</link>
       <pubDate>Thu, 08 Apr 2021 14:28:34 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/js/</guid>
+      <guid>https://listenlive.cn/tags/js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>数组</title>
-      <link>https://blog.listenlive.cn/tags/%E6%95%B0%E7%BB%84/</link>
+      <link>https://listenlive.cn/tags/%E6%95%B0%E7%BB%84/</link>
       <pubDate>Thu, 08 Apr 2021 14:28:34 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E6%95%B0%E7%BB%84/</guid>
+      <guid>https://listenlive.cn/tags/%E6%95%B0%E7%BB%84/</guid>
       <description></description>
     </item>
     
     <item>
       <title>api</title>
-      <link>https://blog.listenlive.cn/tags/api/</link>
+      <link>https://listenlive.cn/tags/api/</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/api/</guid>
+      <guid>https://listenlive.cn/tags/api/</guid>
       <description></description>
     </item>
     
     <item>
       <title>axios</title>
-      <link>https://blog.listenlive.cn/tags/axios/</link>
+      <link>https://listenlive.cn/tags/axios/</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/axios/</guid>
+      <guid>https://listenlive.cn/tags/axios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>koa2</title>
-      <link>https://blog.listenlive.cn/tags/koa2/</link>
+      <link>https://listenlive.cn/tags/koa2/</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/koa2/</guid>
+      <guid>https://listenlive.cn/tags/koa2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>node.js</title>
-      <link>https://blog.listenlive.cn/tags/node.js/</link>
+      <link>https://listenlive.cn/tags/node.js/</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/node.js/</guid>
+      <guid>https://listenlive.cn/tags/node.js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>soap</title>
-      <link>https://blog.listenlive.cn/tags/soap/</link>
+      <link>https://listenlive.cn/tags/soap/</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/soap/</guid>
+      <guid>https://listenlive.cn/tags/soap/</guid>
       <description></description>
     </item>
     
     <item>
       <title>koa</title>
-      <link>https://blog.listenlive.cn/tags/koa/</link>
+      <link>https://listenlive.cn/tags/koa/</link>
       <pubDate>Wed, 03 Mar 2021 14:00:49 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/koa/</guid>
+      <guid>https://listenlive.cn/tags/koa/</guid>
       <description></description>
     </item>
     
     <item>
       <title>lincms</title>
-      <link>https://blog.listenlive.cn/tags/lincms/</link>
+      <link>https://listenlive.cn/tags/lincms/</link>
       <pubDate>Wed, 03 Mar 2021 14:00:49 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/lincms/</guid>
+      <guid>https://listenlive.cn/tags/lincms/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sequelize</title>
-      <link>https://blog.listenlive.cn/tags/sequelize/</link>
+      <link>https://listenlive.cn/tags/sequelize/</link>
       <pubDate>Wed, 03 Mar 2021 14:00:49 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/sequelize/</guid>
+      <guid>https://listenlive.cn/tags/sequelize/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bbr</title>
-      <link>https://blog.listenlive.cn/tags/bbr/</link>
+      <link>https://listenlive.cn/tags/bbr/</link>
       <pubDate>Tue, 09 Feb 2021 13:09:10 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/bbr/</guid>
+      <guid>https://listenlive.cn/tags/bbr/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://blog.listenlive.cn/tags/linux/</link>
+      <link>https://listenlive.cn/tags/linux/</link>
       <pubDate>Tue, 09 Feb 2021 13:09:10 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/linux/</guid>
+      <guid>https://listenlive.cn/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pip</title>
-      <link>https://blog.listenlive.cn/tags/pip/</link>
+      <link>https://listenlive.cn/tags/pip/</link>
       <pubDate>Mon, 08 Feb 2021 15:28:06 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/pip/</guid>
+      <guid>https://listenlive.cn/tags/pip/</guid>
       <description></description>
     </item>
     
     <item>
       <title>快递API</title>
-      <link>https://blog.listenlive.cn/tags/%E5%BF%AB%E9%80%92api/</link>
+      <link>https://listenlive.cn/tags/%E5%BF%AB%E9%80%92api/</link>
       <pubDate>Tue, 26 Jan 2021 16:14:21 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E5%BF%AB%E9%80%92api/</guid>
+      <guid>https://listenlive.cn/tags/%E5%BF%AB%E9%80%92api/</guid>
       <description></description>
     </item>
     
     <item>
       <title>快递接口</title>
-      <link>https://blog.listenlive.cn/tags/%E5%BF%AB%E9%80%92%E6%8E%A5%E5%8F%A3/</link>
+      <link>https://listenlive.cn/tags/%E5%BF%AB%E9%80%92%E6%8E%A5%E5%8F%A3/</link>
       <pubDate>Tue, 26 Jan 2021 16:14:21 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E5%BF%AB%E9%80%92%E6%8E%A5%E5%8F%A3/</guid>
+      <guid>https://listenlive.cn/tags/%E5%BF%AB%E9%80%92%E6%8E%A5%E5%8F%A3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>firewalld</title>
-      <link>https://blog.listenlive.cn/tags/firewalld/</link>
+      <link>https://listenlive.cn/tags/firewalld/</link>
       <pubDate>Fri, 22 Jan 2021 14:58:14 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/firewalld/</guid>
+      <guid>https://listenlive.cn/tags/firewalld/</guid>
       <description></description>
     </item>
     
     <item>
       <title>防火墙</title>
-      <link>https://blog.listenlive.cn/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</link>
+      <link>https://listenlive.cn/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</link>
       <pubDate>Fri, 22 Jan 2021 14:58:14 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</guid>
+      <guid>https://listenlive.cn/tags/%E9%98%B2%E7%81%AB%E5%A2%99/</guid>
       <description></description>
     </item>
     
     <item>
       <title>crontab</title>
-      <link>https://blog.listenlive.cn/tags/crontab/</link>
+      <link>https://listenlive.cn/tags/crontab/</link>
       <pubDate>Tue, 19 Jan 2021 17:39:31 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/crontab/</guid>
+      <guid>https://listenlive.cn/tags/crontab/</guid>
       <description></description>
     </item>
     
     <item>
       <title>定时任务</title>
-      <link>https://blog.listenlive.cn/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</link>
+      <link>https://listenlive.cn/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</link>
       <pubDate>Tue, 19 Jan 2021 17:39:31 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</guid>
+      <guid>https://listenlive.cn/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SEO</title>
-      <link>https://blog.listenlive.cn/tags/seo/</link>
+      <link>https://listenlive.cn/tags/seo/</link>
       <pubDate>Fri, 15 Jan 2021 13:24:58 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/seo/</guid>
+      <guid>https://listenlive.cn/tags/seo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CentOS</title>
-      <link>https://blog.listenlive.cn/tags/centos/</link>
+      <link>https://listenlive.cn/tags/centos/</link>
       <pubDate>Wed, 06 Jan 2021 14:42:00 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/centos/</guid>
+      <guid>https://listenlive.cn/tags/centos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Git</title>
-      <link>https://blog.listenlive.cn/tags/git/</link>
+      <link>https://listenlive.cn/tags/git/</link>
       <pubDate>Tue, 05 Jan 2021 13:26:51 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/git/</guid>
+      <guid>https://listenlive.cn/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://blog.listenlive.cn/tags/hugo/</link>
+      <link>https://listenlive.cn/tags/hugo/</link>
       <pubDate>Tue, 05 Jan 2021 13:26:51 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/hugo/</guid>
+      <guid>https://listenlive.cn/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>微信开发</title>
-      <link>https://blog.listenlive.cn/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
+      <link>https://listenlive.cn/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</link>
       <pubDate>Tue, 15 Dec 2020 11:19:55 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
+      <guid>https://listenlive.cn/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/</guid>
       <description></description>
     </item>
     
     <item>
       <title>模板消息</title>
-      <link>https://blog.listenlive.cn/tags/%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF/</link>
+      <link>https://listenlive.cn/tags/%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF/</link>
       <pubDate>Tue, 15 Dec 2020 11:19:55 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF/</guid>
+      <guid>https://listenlive.cn/tags/%E6%A8%A1%E6%9D%BF%E6%B6%88%E6%81%AF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>https://blog.listenlive.cn/tags/go/</link>
+      <link>https://listenlive.cn/tags/go/</link>
       <pubDate>Mon, 30 Nov 2020 17:57:04 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/go/</guid>
+      <guid>https://listenlive.cn/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>https://blog.listenlive.cn/tags/golang/</link>
+      <link>https://listenlive.cn/tags/golang/</link>
       <pubDate>Mon, 30 Nov 2020 17:57:04 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/golang/</guid>
+      <guid>https://listenlive.cn/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>阶乘</title>
-      <link>https://blog.listenlive.cn/tags/%E9%98%B6%E4%B9%98/</link>
+      <link>https://listenlive.cn/tags/%E9%98%B6%E4%B9%98/</link>
       <pubDate>Mon, 30 Nov 2020 17:06:22 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E9%98%B6%E4%B9%98/</guid>
+      <guid>https://listenlive.cn/tags/%E9%98%B6%E4%B9%98/</guid>
       <description></description>
     </item>
     
     <item>
       <title>水仙花数</title>
-      <link>https://blog.listenlive.cn/tags/%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0/</link>
+      <link>https://listenlive.cn/tags/%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0/</link>
       <pubDate>Mon, 30 Nov 2020 16:55:08 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0/</guid>
+      <guid>https://listenlive.cn/tags/%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MacOs</title>
-      <link>https://blog.listenlive.cn/tags/macos/</link>
+      <link>https://listenlive.cn/tags/macos/</link>
       <pubDate>Mon, 26 Oct 2020 16:07:49 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/macos/</guid>
+      <guid>https://listenlive.cn/tags/macos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>苹果电脑</title>
-      <link>https://blog.listenlive.cn/tags/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91/</link>
+      <link>https://listenlive.cn/tags/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91/</link>
       <pubDate>Mon, 26 Oct 2020 16:07:49 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91/</guid>
+      <guid>https://listenlive.cn/tags/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MySQL</title>
-      <link>https://blog.listenlive.cn/tags/mysql/</link>
+      <link>https://listenlive.cn/tags/mysql/</link>
       <pubDate>Fri, 21 Aug 2020 10:37:36 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/mysql/</guid>
+      <guid>https://listenlive.cn/tags/mysql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>数据库</title>
-      <link>https://blog.listenlive.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <link>https://listenlive.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
       <pubDate>Fri, 21 Aug 2020 10:37:36 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <guid>https://listenlive.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description></description>
     </item>
     
     <item>
       <title>前端框架</title>
-      <link>https://blog.listenlive.cn/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/</link>
+      <link>https://listenlive.cn/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/</link>
       <pubDate>Mon, 10 Aug 2020 10:19:42 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/</guid>
+      <guid>https://listenlive.cn/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Command</title>
-      <link>https://blog.listenlive.cn/tags/command/</link>
+      <link>https://listenlive.cn/tags/command/</link>
       <pubDate>Fri, 07 Aug 2020 11:44:45 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/command/</guid>
+      <guid>https://listenlive.cn/tags/command/</guid>
       <description></description>
     </item>
     
     <item>
       <title>工具</title>
-      <link>https://blog.listenlive.cn/tags/%E5%B7%A5%E5%85%B7/</link>
+      <link>https://listenlive.cn/tags/%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Thu, 06 Aug 2020 15:40:02 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://listenlive.cn/tags/%E5%B7%A5%E5%85%B7/</guid>
       <description></description>
     </item>
     
     <item>
       <title>开源</title>
-      <link>https://blog.listenlive.cn/tags/%E5%BC%80%E6%BA%90/</link>
+      <link>https://listenlive.cn/tags/%E5%BC%80%E6%BA%90/</link>
       <pubDate>Thu, 06 Aug 2020 15:40:02 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E5%BC%80%E6%BA%90/</guid>
+      <guid>https://listenlive.cn/tags/%E5%BC%80%E6%BA%90/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MongoDB</title>
-      <link>https://blog.listenlive.cn/tags/mongodb/</link>
+      <link>https://listenlive.cn/tags/mongodb/</link>
       <pubDate>Thu, 30 Jul 2020 16:57:57 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/mongodb/</guid>
+      <guid>https://listenlive.cn/tags/mongodb/</guid>
       <description></description>
     </item>
     
     <item>
       <title>nosql</title>
-      <link>https://blog.listenlive.cn/tags/nosql/</link>
+      <link>https://listenlive.cn/tags/nosql/</link>
       <pubDate>Thu, 30 Jul 2020 16:57:57 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/nosql/</guid>
+      <guid>https://listenlive.cn/tags/nosql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Vue</title>
-      <link>https://blog.listenlive.cn/tags/vue/</link>
+      <link>https://listenlive.cn/tags/vue/</link>
       <pubDate>Thu, 30 Jul 2020 11:17:51 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/vue/</guid>
+      <guid>https://listenlive.cn/tags/vue/</guid>
       <description></description>
     </item>
     
     <item>
       <title>前端</title>
-      <link>https://blog.listenlive.cn/tags/%E5%89%8D%E7%AB%AF/</link>
+      <link>https://listenlive.cn/tags/%E5%89%8D%E7%AB%AF/</link>
       <pubDate>Thu, 30 Jul 2020 11:17:51 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E5%89%8D%E7%AB%AF/</guid>
+      <guid>https://listenlive.cn/tags/%E5%89%8D%E7%AB%AF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>npm</title>
-      <link>https://blog.listenlive.cn/tags/npm/</link>
+      <link>https://listenlive.cn/tags/npm/</link>
       <pubDate>Sat, 25 Jul 2020 22:58:35 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/npm/</guid>
+      <guid>https://listenlive.cn/tags/npm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PHPstorm</title>
-      <link>https://blog.listenlive.cn/tags/phpstorm/</link>
+      <link>https://listenlive.cn/tags/phpstorm/</link>
       <pubDate>Thu, 23 Jul 2020 10:35:48 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/phpstorm/</guid>
+      <guid>https://listenlive.cn/tags/phpstorm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>提高知识水平</title>
-      <link>https://blog.listenlive.cn/tags/%E6%8F%90%E9%AB%98%E7%9F%A5%E8%AF%86%E6%B0%B4%E5%B9%B3/</link>
+      <link>https://listenlive.cn/tags/%E6%8F%90%E9%AB%98%E7%9F%A5%E8%AF%86%E6%B0%B4%E5%B9%B3/</link>
       <pubDate>Sun, 12 Jul 2020 17:40:40 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E6%8F%90%E9%AB%98%E7%9F%A5%E8%AF%86%E6%B0%B4%E5%B9%B3/</guid>
+      <guid>https://listenlive.cn/tags/%E6%8F%90%E9%AB%98%E7%9F%A5%E8%AF%86%E6%B0%B4%E5%B9%B3/</guid>
       <description></description>
     </item>
     
     <item>
       <title>膜法</title>
-      <link>https://blog.listenlive.cn/tags/%E8%86%9C%E6%B3%95/</link>
+      <link>https://listenlive.cn/tags/%E8%86%9C%E6%B3%95/</link>
       <pubDate>Sun, 12 Jul 2020 17:40:40 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/tags/%E8%86%9C%E6%B3%95/</guid>
+      <guid>https://listenlive.cn/tags/%E8%86%9C%E6%B3%95/</guid>
       <description></description>
     </item>
     

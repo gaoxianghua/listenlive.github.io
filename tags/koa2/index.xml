@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>koa2 on listenlive.cn</title>
-    <link>https://blog.listenlive.cn/tags/koa2/</link>
+    <link>https://listenlive.cn/tags/koa2/</link>
     <description>Recent content in koa2 on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/tags/koa2/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/koa2/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService</title>
-      <link>https://blog.listenlive.cn/leaf/202103/axios-soap.html</link>
+      <link>https://listenlive.cn/leaf/202103/axios-soap.html</link>
       <pubDate>Wed, 10 Mar 2021 11:24:18 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/202103/axios-soap.html</guid>
+      <guid>https://listenlive.cn/leaf/202103/axios-soap.html</guid>
       <description>axios请求云之讯短信接口实现短信发送 安装axios cnpm install axios --save 方法实现 static async sendMessage(ctx){ let param = Math.random().toString().substr(2, 4); //生成四位随机数 let phone = &amp;#39;157********&amp;#39;; const url = &amp;#39;https://open.ucpaas.com/ol/sms/sendsms&amp;#39;; const axios = require(&amp;#39;axios&amp;#39;); let sendRe = await axios({ method:</description>
     </item>
     
     <item>
       <title>Koa框架实现导出Excel文件</title>
-      <link>https://blog.listenlive.cn/note/2020/12/11/koa_import/</link>
+      <link>https://listenlive.cn/note/2020/12/11/koa_import/</link>
       <pubDate>Fri, 11 Dec 2020 17:29:57 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/12/11/koa_import/</guid>
+      <guid>https://listenlive.cn/note/2020/12/11/koa_import/</guid>
       <description>安装引入excel-export包 cnpm install excel-export --save const nodeExcel = require(&amp;#39;excel-export&amp;#39;); 实现导出方法 /** * 数据导出--导出方法 * @param resultData [{},{},] //从数据库中获取的数据格式 */ static async exportData(resultData,ctx){ let conf ={}; conf.name =</description>
     </item>
     

@@ -2,323 +2,323 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>笔记 on listenlive.cn</title>
-    <link>https://blog.listenlive.cn/categories/%E7%AC%94%E8%AE%B0/</link>
+    <link>https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 笔记 on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 18 May 2021 15:20:48 +0800</lastBuildDate><atom:link href="https://blog.listenlive.cn/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 May 2021 15:20:48 +0800</lastBuildDate><atom:link href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows-Laravel开发环境Homestead搭建</title>
-      <link>https://blog.listenlive.cn/note/202105/installhd.html</link>
+      <link>https://listenlive.cn/note/202105/installhd.html</link>
       <pubDate>Tue, 18 May 2021 15:20:48 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/202105/installhd.html</guid>
+      <guid>https://listenlive.cn/note/202105/installhd.html</guid>
       <description>准备工作 安装所需软件 Git Vagrant VitrualBox xshell Navicat 生成SSH Key 在用户家目录运行： cd ~ ssh-keygen -t rsa -C &amp;#34;youemail@homestead.com&amp;#34; 此时，会生成以下的文件 下载Homestead的box文件 打开命令终</description>
     </item>
     
     <item>
       <title>Ubuntu-安装PHP启动报错php: error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: No such file or directory解决办法</title>
-      <link>https://blog.listenlive.cn/note/202105/phperror.html</link>
+      <link>https://listenlive.cn/note/202105/phperror.html</link>
       <pubDate>Sat, 08 May 2021 10:36:36 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/202105/phperror.html</guid>
+      <guid>https://listenlive.cn/note/202105/phperror.html</guid>
       <description>Ubuntu-使用宝塔面板安装PHP后启动报错：php: error while loading shared libraries: libcrypto.so.1.0.0: cannot open shared object file: No such file or directory 解决办法 前往http://security.ubun</description>
     </item>
     
     <item>
       <title>Ubuntu-Docker的安装与使用</title>
-      <link>https://blog.listenlive.cn/note/202104/docker.html</link>
+      <link>https://listenlive.cn/note/202104/docker.html</link>
       <pubDate>Thu, 29 Apr 2021 12:34:31 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/202104/docker.html</guid>
+      <guid>https://listenlive.cn/note/202104/docker.html</guid>
       <description>环境配置 删除旧版本 sudo apt-get remove docker docker-engine docker.io containerd runc 更新apt包索引 sudo apt-get update 安装包以允许apt通过HTTPS使用存储库 sudo apt-get install apt-transport-https sudo apt-get install ca-certificates sudo apt-get install curl sudo apt-get install gnupg-agent sudo apt-get install software-properties-common 添</description>
     </item>
     
     <item>
       <title>Js数组操作</title>
-      <link>https://blog.listenlive.cn/note/202104/javascript.html</link>
+      <link>https://listenlive.cn/note/202104/javascript.html</link>
       <pubDate>Thu, 08 Apr 2021 14:28:34 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/202104/javascript.html</guid>
+      <guid>https://listenlive.cn/note/202104/javascript.html</guid>
       <description>类型转换 字符串 大部分数据类型都可以使用toString()函数转换为字符串 console.log(([1,2,3]).toString()); //1,2,3 也可以使用函数String转换为字符串 console.log(String([1,2,3])); 或者使用join连接为</description>
     </item>
     
     <item>
       <title>基于Koa框架的Lincms常用操作</title>
-      <link>https://blog.listenlive.cn/note/202103/lincms.html</link>
+      <link>https://listenlive.cn/note/202103/lincms.html</link>
       <pubDate>Wed, 03 Mar 2021 14:00:49 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/202103/lincms.html</guid>
+      <guid>https://listenlive.cn/note/202103/lincms.html</guid>
       <description>Sequelize事务操作 let transaction; //事务开始 try { transaction = await sequelize.transaction(); const replace_record = { p_code: v.get(&amp;#39;path.p_code&amp;#39;), p_type: v.get(&amp;#39;path.p_type&amp;#39;) }; const { id: record_id } = await ReplaceRecordModel.create(replace_record, { transaction }); await WxReplacesheetsModel.create( { record_id, name: v.get(&amp;#39;path.name&amp;#39;), phone: v.get(&amp;#39;path.phone&amp;#39;), province: v.get(&amp;#39;path.province&amp;#39;), city: v.get(&amp;#39;path.city&amp;#39;), district: v.get(&amp;#39;path.district&amp;#39;), question: v.get(&amp;#39;path.question&amp;#39;), status: 1 }, { transaction } );</description>
     </item>
     
     <item>
       <title>Linux-CentOS上Docker的安装与卸载</title>
-      <link>https://blog.listenlive.cn/note/202101/install_docker/</link>
+      <link>https://listenlive.cn/note/202101/install_docker/</link>
       <pubDate>Wed, 06 Jan 2021 14:42:00 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/202101/install_docker/</guid>
+      <guid>https://listenlive.cn/note/202101/install_docker/</guid>
       <description>通过uname -r 命令查看Linux内核版本 uname -r //Docker 要求 CentOS 系统的内核版本高于 3.10 确保yum包更新到最新 yum update 安装需要的软件包 yum install -y yum-utils device-mapper-persistent-data lvm2 //yum-util 提供yum</description>
     </item>
     
     <item>
       <title>Koa框架实现导出Excel文件</title>
-      <link>https://blog.listenlive.cn/note/2020/12/11/koa_import/</link>
+      <link>https://listenlive.cn/note/2020/12/11/koa_import/</link>
       <pubDate>Fri, 11 Dec 2020 17:29:57 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/12/11/koa_import/</guid>
+      <guid>https://listenlive.cn/note/2020/12/11/koa_import/</guid>
       <description>安装引入excel-export包 cnpm install excel-export --save const nodeExcel = require(&amp;#39;excel-export&amp;#39;); 实现导出方法 /** * 数据导出--导出方法 * @param resultData [{},{},] //从数据库中获取的数据格式 */ static async exportData(resultData,ctx){ let conf ={}; conf.name =</description>
     </item>
     
     <item>
       <title>Go-strings和strconv函数的使用</title>
-      <link>https://blog.listenlive.cn/note/2020/11/30/golang02/</link>
+      <link>https://listenlive.cn/note/2020/11/30/golang02/</link>
       <pubDate>Mon, 30 Nov 2020 17:57:04 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/11/30/golang02/</guid>
+      <guid>https://listenlive.cn/note/2020/11/30/golang02/</guid>
       <description>strings.HasPrefix(s string, prefix string) bool :判断字符串s是否以prefix开头 例：判断一个url是否以http://开头，如果不是则加上http:// func urlProcess(url string) string { result := strings.HasPrefix(url, &amp;#34;http://&amp;#34;) if !result</description>
     </item>
     
     <item>
       <title>Go语言基础01</title>
-      <link>https://blog.listenlive.cn/note/2020/11/24/golang01/</link>
+      <link>https://listenlive.cn/note/2020/11/24/golang01/</link>
       <pubDate>Tue, 24 Nov 2020 15:28:20 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/11/24/golang01/</guid>
+      <guid>https://listenlive.cn/note/2020/11/24/golang01/</guid>
       <description>Golang语言特性 垃圾回收 内存自动回收，不需要开发人员管理内存 开发人员基本只专注业务实现 只需要new分配内存，无需释放 天然并发 从语言层面支</description>
     </item>
     
     <item>
       <title>Laravel Api开发之Dingo&amp;Jwt的使用</title>
-      <link>https://blog.listenlive.cn/note/2020/09/22/laravel_dingo/</link>
+      <link>https://listenlive.cn/note/2020/09/22/laravel_dingo/</link>
       <pubDate>Tue, 22 Sep 2020 15:02:17 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/09/22/laravel_dingo/</guid>
+      <guid>https://listenlive.cn/note/2020/09/22/laravel_dingo/</guid>
       <description>Dingo 安装组件 composer require dingo/api:2.x 生成配置文件 php artisan vendor:publish 执行命令后会生成config/api.php配置文件 config/api.php 配置说明 #接口围绕：[x]本地和私有环境 [prs]公</description>
     </item>
     
     <item>
       <title>Larvel-使用Seeder生成测试数据</title>
-      <link>https://blog.listenlive.cn/note/2020/08/24/laravel05/</link>
+      <link>https://listenlive.cn/note/2020/08/24/laravel05/</link>
       <pubDate>Mon, 24 Aug 2020 15:38:00 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/24/laravel05/</guid>
+      <guid>https://listenlive.cn/note/2020/08/24/laravel05/</guid>
       <description>生成Seeder文件 php artisan make:seeder UserSeeder 运行后会在database/seeds目录下生成UserSeeder.php 文件 编辑UserSeeder.php</description>
     </item>
     
     <item>
       <title>MySQL常用语句</title>
-      <link>https://blog.listenlive.cn/leaf/2020/08/21/mysql01/</link>
+      <link>https://listenlive.cn/leaf/2020/08/21/mysql01/</link>
       <pubDate>Fri, 21 Aug 2020 10:37:36 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/leaf/2020/08/21/mysql01/</guid>
+      <guid>https://listenlive.cn/leaf/2020/08/21/mysql01/</guid>
       <description>表操作 修改表的存储引擎 ALTER TABLE stu engine = &amp;lsquo;InnoDB&amp;rsquo;; 清空表数据 TRUNCATE TABLE tablename; 查询 去除重复数据查询 SELECT DISTINCT class_id FROM stu; 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>Sequelize操作MySQL数据库</title>
-      <link>https://blog.listenlive.cn/note/2020/08/20/sequelize01/</link>
+      <link>https://listenlive.cn/note/2020/08/20/sequelize01/</link>
       <pubDate>Thu, 20 Aug 2020 14:00:54 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/20/sequelize01/</guid>
+      <guid>https://listenlive.cn/note/2020/08/20/sequelize01/</guid>
       <description>安装sequelize、sequelize-cli和mysql2 cnpm install sequelize-cli -g cnpm install sequelize --save cnpm install mysql2 --save 初始化项目 sequelize init 在config.js中配置连接数据库参</description>
     </item>
     
     <item>
       <title>Koa使用require-directory实现路由的自动加载</title>
-      <link>https://blog.listenlive.cn/note/2020/08/13/koa07/</link>
+      <link>https://listenlive.cn/note/2020/08/13/koa07/</link>
       <pubDate>Thu, 13 Aug 2020 14:10:35 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/13/koa07/</guid>
+      <guid>https://listenlive.cn/note/2020/08/13/koa07/</guid>
       <description>require-directory的安装与使用 const Koa = require(&amp;#39;koa&amp;#39;); const app = new Koa(); const requireDirectory = require(&amp;#39;require-directory&amp;#39;); const Router = require(&amp;#39;koa-router&amp;#39;); const modules = requireDirectory(module,&amp;#39;./api&amp;#39;,{ visit:whenLoadModule }) function whenLoadModule(obj){ if(obj instanceof Router){ app.use(obj.routes()) } } app.listen(3000); 路由文件的写法api/v1/b</description>
     </item>
     
     <item>
       <title>使用Koa应用生成器快速生成koa应用</title>
-      <link>https://blog.listenlive.cn/note/2020/08/10/koa06/</link>
+      <link>https://listenlive.cn/note/2020/08/10/koa06/</link>
       <pubDate>Mon, 10 Aug 2020 16:48:12 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/10/koa06/</guid>
+      <guid>https://listenlive.cn/note/2020/08/10/koa06/</guid>
       <description>全局安装koa脚手架生成工具 cnpm install koa-generator -g 创建项目 koa koa_demo 安装依赖 cd koa_demo cnpm install 启动项目 npm start 喜欢这篇文章的话 打赏一下吧！</description>
     </item>
     
     <item>
       <title>Koa Cookie与Session</title>
-      <link>https://blog.listenlive.cn/note/2020/08/10/koa05/</link>
+      <link>https://listenlive.cn/note/2020/08/10/koa05/</link>
       <pubDate>Mon, 10 Aug 2020 14:52:11 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/10/koa05/</guid>
+      <guid>https://listenlive.cn/note/2020/08/10/koa05/</guid>
       <description>Cookie Koa中设置Cookie值 ctx.cookies.set(name,value,[options]); Koa中获取Cookie值 ctx.cookies.get(&amp;#39;name&amp;#39;); Koa中使用Buffer设置中文Cookie //设置中文Cookie router.get(&amp;#39;/&amp;#39;,async (ctx)=&amp;gt;{ var userinfo=new Buf</description>
     </item>
     
     <item>
       <title>Koa post提交数据与静态资源中间件</title>
-      <link>https://blog.listenlive.cn/note/2020/08/10/koa04/</link>
+      <link>https://listenlive.cn/note/2020/08/10/koa04/</link>
       <pubDate>Mon, 10 Aug 2020 12:03:41 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/10/koa04/</guid>
+      <guid>https://listenlive.cn/note/2020/08/10/koa04/</guid>
       <description>原生Node.js获取post提交的数据 表单 &amp;lt;form action=&amp;#34;/doAdd&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; 用户名: &amp;lt;input type=&amp;#34;text&amp;#34; name=&amp;#34;username&amp;#34;/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;br/&amp;gt; 密 码: &amp;lt;input type=&amp;#34;password&amp;#34; name=&amp;#34;password&amp;#34;/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;br/&amp;gt; &amp;lt;button type=&amp;#34;submit&amp;#34;&amp;gt;提交</description>
     </item>
     
     <item>
       <title>Koa ejs模板引擎与art-template模板引擎</title>
-      <link>https://blog.listenlive.cn/note/2020/08/10/koa03/</link>
+      <link>https://listenlive.cn/note/2020/08/10/koa03/</link>
       <pubDate>Mon, 10 Aug 2020 10:19:42 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/10/koa03/</guid>
+      <guid>https://listenlive.cn/note/2020/08/10/koa03/</guid>
       <description>Koa ejs的安装与使用 安装koa-views cnpm install koa-views --save 安装ejs cnpm install ejs --save 配置模板引擎中间件 var views = require(&amp;#39;koa-views&amp;#39;); app.use(views(&amp;#39;views&amp;#39;,{ extension:&amp;#39;ejs&amp;#39; })); //这样配置模板的后缀名是.ejs //第</description>
     </item>
     
     <item>
       <title>Koa路由和中间件</title>
-      <link>https://blog.listenlive.cn/note/2020/08/09/koa02/</link>
+      <link>https://listenlive.cn/note/2020/08/09/koa02/</link>
       <pubDate>Sun, 09 Aug 2020 11:01:49 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/09/koa02/</guid>
+      <guid>https://listenlive.cn/note/2020/08/09/koa02/</guid>
       <description>Koa路由的安装和配置 安装Koa路由 cnpm install koa-router --save Koa路由的使用 var Koa = require(&amp;#39;koa&amp;#39;); //引入Koa var Router = require(&amp;#39;koa-router&amp;#39;); //引入路由 var app = new Koa(); var router = new Router(); //配置路由 router.get(&amp;#39;/&amp;#39;,async function(ctx){ //ctx</description>
     </item>
     
     <item>
       <title>Koa框架安装及ES6基础语法</title>
-      <link>https://blog.listenlive.cn/note/2020/08/09/koa01/</link>
+      <link>https://listenlive.cn/note/2020/08/09/koa01/</link>
       <pubDate>Sun, 09 Aug 2020 08:59:12 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/09/koa01/</guid>
+      <guid>https://listenlive.cn/note/2020/08/09/koa01/</guid>
       <description>安装Koa框架 初始化 npm init --yes 安装Koa cnpm install koa --save 第一个Koa程序app.js var Koa = require(&amp;#39;koa&amp;#39;); //引入Koa var app = new Koa(); //实例化 //中间件 app.use(async(ctx)=&amp;gt;{ ctx.body=&amp;#39;Hello Koa&amp;#39;; }); app.listen(3000); ES6</description>
     </item>
     
     <item>
       <title>使用Laravel邮件发送实现用户的验证&amp;注册业务</title>
-      <link>https://blog.listenlive.cn/note/2020/08/04/laravel09/</link>
+      <link>https://listenlive.cn/note/2020/08/04/laravel09/</link>
       <pubDate>Tue, 04 Aug 2020 17:21:13 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/04/laravel09/</guid>
+      <guid>https://listenlive.cn/note/2020/08/04/laravel09/</guid>
       <description>注册数据处理方法中添加token并触发邮件发送 //用户注册数据处理 public function store(Request $request) { $data = $this-&amp;gt;validate($request,[ &amp;#39;name&amp;#39; =&amp;gt; &amp;#39;required|min:4&amp;#39;, &amp;#39;email&amp;#39; =&amp;gt; &amp;#39;required|email|unique:users&amp;#39;, &amp;#39;password&amp;#39; =&amp;gt; &amp;#39;required|min:6|confirmed&amp;#39;, ]); $data[&amp;#39;password&amp;#39;] = bcrypt($data[&amp;#39;password&amp;#39;]); $data[&amp;#39;email_token&amp;#39;] = Str::random(10); $user = User::create($data); //发送注册邮件 \Mail::to($user)-&amp;gt;send(new RegMail($user));</description>
     </item>
     
     <item>
       <title>Laravel&amp;QQ邮箱实现邮件发送</title>
-      <link>https://blog.listenlive.cn/note/2020/08/04/laravel08/</link>
+      <link>https://listenlive.cn/note/2020/08/04/laravel08/</link>
       <pubDate>Tue, 04 Aug 2020 11:16:11 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/04/laravel08/</guid>
+      <guid>https://listenlive.cn/note/2020/08/04/laravel08/</guid>
       <description>配置.env文件中的邮件部分 MAIL_DRIVER=smtp MAIL_HOST=smtp.qq.com MAIL_PORT=25 MAIL_USERNAME=1099764281@qq.com MAIL_PASSWORD=tmdyxmsfwtqzgbje //QQ邮箱授权码 MAIL_ENCRYPTION=tls MAIL_FROM_ADDRESS=1099764281@qq.com MAIL_FROM_NAME=1099764281 新建邮件发送策略 php artisan make:mail RegMail 邮件发送方法 use App\Mail\RegMail; public function sendMail() { $user = User::find(1); \Mail::to($user)-&amp;gt;send(new RegMail()); return redirect(&amp;#39;/&amp;#39;); } 喜欢这篇文章的</description>
     </item>
     
     <item>
       <title>Laravel登录注册Auth验证及使用Policy模型策略管理用户权限</title>
-      <link>https://blog.listenlive.cn/note/2020/08/03/laravel07/</link>
+      <link>https://listenlive.cn/note/2020/08/03/laravel07/</link>
       <pubDate>Mon, 03 Aug 2020 20:18:44 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/08/03/laravel07/</guid>
+      <guid>https://listenlive.cn/note/2020/08/03/laravel07/</guid>
       <description>路由routes/web.php Route::get(&amp;#39;/&amp;#39;, function () { return view(&amp;#39;welcome&amp;#39;); }); //user资源 Route::resource(&amp;#39;user&amp;#39;,&amp;#39;UserController&amp;#39;); //退出路由 Route::get(&amp;#39;logout&amp;#39;,&amp;#39;LoginController@logout&amp;#39;)-&amp;gt;name(&amp;#39;logout&amp;#39;); //登录路由 Route::get(&amp;#39;login&amp;#39;,&amp;#39;LoginController@login&amp;#39;)-&amp;gt;name(&amp;#39;login&amp;#39;); //登录处理 Route::post(&amp;#39;login&amp;#39;,&amp;#39;LoginController@store&amp;#39;)-&amp;gt;name(&amp;#39;login&amp;#39;); 登录控制器LoginControl</description>
     </item>
     
     <item>
       <title>Laravel Api开发之laravel/passport授权包的使用及基本配置</title>
-      <link>https://blog.listenlive.cn/note/2020/07/31/laravel06/</link>
+      <link>https://listenlive.cn/note/2020/07/31/laravel06/</link>
       <pubDate>Fri, 31 Jul 2020 17:18:54 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/31/laravel06/</guid>
+      <guid>https://listenlive.cn/note/2020/07/31/laravel06/</guid>
       <description>安装laravel/passport composer require laravel/passport=~7.0 指定为7.0版本，laravel5.8不支持8.0及以上版本 创建所需的表 php artisan migrate 生成secret php artisan</description>
     </item>
     
     <item>
       <title>MongoDB 安装配置</title>
-      <link>https://blog.listenlive.cn/note/2020/07/30/mongodb01/</link>
+      <link>https://listenlive.cn/note/2020/07/30/mongodb01/</link>
       <pubDate>Thu, 30 Jul 2020 16:57:57 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/30/mongodb01/</guid>
+      <guid>https://listenlive.cn/note/2020/07/30/mongodb01/</guid>
       <description>安装配置（with WAMP） 下载MongoDB，并将安装包移动到wamp环境目录下 在mongodb目录新建log.txt文件和dat文件目录</description>
     </item>
     
     <item>
       <title>Vue基础-05</title>
-      <link>https://blog.listenlive.cn/note/2020/07/30/vue05/</link>
+      <link>https://listenlive.cn/note/2020/07/30/vue05/</link>
       <pubDate>Thu, 30 Jul 2020 11:17:51 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/30/vue05/</guid>
+      <guid>https://listenlive.cn/note/2020/07/30/vue05/</guid>
       <description>使用Vue-cli初始化单页面应用 使用npm或cnpm安装 vue-cli cnpm install -g vue-cli 使用vue命令安装项目包 vue init webpack cli 安装vue-route时选Yes,其他都</description>
     </item>
     
     <item>
       <title>Vue基础-04</title>
-      <link>https://blog.listenlive.cn/note/2020/07/27/vue04/</link>
+      <link>https://listenlive.cn/note/2020/07/27/vue04/</link>
       <pubDate>Mon, 27 Jul 2020 16:15:11 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/27/vue04/</guid>
+      <guid>https://listenlive.cn/note/2020/07/27/vue04/</guid>
       <description>Vue声明组件(component)的方式 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;live-slide&amp;gt;&amp;lt;/live-slide&amp;gt; &amp;lt;live-news&amp;gt;&amp;lt;/live-news&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; //全局组件 Vue.component(&amp;#39;liveSlide&amp;#39;,{ template:&amp;#39;&amp;lt;h2&amp;gt;listenlive.cn&amp;lt;/h2&amp;gt;&amp;#39; }); //局部组件 var liveNews = { template:&amp;#34;&amp;lt;h2&amp;gt;ListenLive&amp;lt;/h2&amp;gt;&amp;#34; }; var app = new Vue({ el:&amp;#39;#app&amp;#39;, components:{liveNews}, data:{ }, }); &amp;lt;/script&amp;gt; 子组件中data返回数</description>
     </item>
     
     <item>
       <title>Vue基础-03</title>
-      <link>https://blog.listenlive.cn/note/2020/07/26/vue03/</link>
+      <link>https://listenlive.cn/note/2020/07/26/vue03/</link>
       <pubDate>Sun, 26 Jul 2020 22:01:50 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/26/vue03/</guid>
+      <guid>https://listenlive.cn/note/2020/07/26/vue03/</guid>
       <description>表单提交与prevent操作表单 &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;form action=&amp;#34;&amp;#34; @submit.prevent=&amp;#34;post(&amp;#39;listenlive.cn&amp;#39;)&amp;#34;&amp;gt; &amp;lt;h2&amp;gt;{{times}}&amp;lt;/h2&amp;gt; &amp;lt;button&amp;gt;提交&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data: { times:new Date() }, methods:{ post(num){ alert(num);</description>
     </item>
     
     <item>
       <title>Vue基础-02</title>
-      <link>https://blog.listenlive.cn/note/2020/07/23/vue02/</link>
+      <link>https://listenlive.cn/note/2020/07/23/vue02/</link>
       <pubDate>Thu, 23 Jul 2020 17:32:32 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/23/vue02/</guid>
+      <guid>https://listenlive.cn/note/2020/07/23/vue02/</guid>
       <description>使用object与array控制class &amp;lt;style&amp;gt; .font{font-size: 20px} .color{color: skyblue} .red{color: red} &amp;lt;/style&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt; &amp;lt;h2 :class=&amp;#34;obj&amp;#34;&amp;gt;Vue Object&amp;lt;/h2&amp;gt; &amp;lt;hr/&amp;gt; &amp;lt;h2 :class=&amp;#34;[succ,font]&amp;#34;&amp;gt;listenlive.cn&amp;lt;/h2&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; var app = new Vue({ el:&amp;#39;#app&amp;#39;, data:{ obj:{color:true,font:true}, //对象形式 //数组形式 succ:&amp;#39;red&amp;#39;, font:&amp;#39;font&amp;#39; } }); &amp;lt;/script&amp;gt; 使用clas</description>
     </item>
     
     <item>
       <title>Laravel基础04-视图</title>
-      <link>https://blog.listenlive.cn/note/2020/07/23/laravel04/</link>
+      <link>https://listenlive.cn/note/2020/07/23/laravel04/</link>
       <pubDate>Thu, 23 Jul 2020 10:35:48 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/23/laravel04/</guid>
+      <guid>https://listenlive.cn/note/2020/07/23/laravel04/</guid>
       <description>Blade模板引擎的模板继承构建后台界面 后台视图文件目录 -/resources/views/admin/layout 为父级模板目录 使用@yield占位定义活动的页面范围 &amp;lt;div&amp;gt; @yield(&amp;#39;content&amp;#39;) &amp;lt;/div&amp;gt; 子页面继承父级模板 @extends(&amp;#39;admin.layout.master&amp;#39;) @section(&amp;#39;content&amp;#39;) &amp;lt;div</description>
     </item>
     
     <item>
       <title>Laravel基础03-中间件的使用</title>
-      <link>https://blog.listenlive.cn/note/2020/07/22/laravel03/</link>
+      <link>https://listenlive.cn/note/2020/07/22/laravel03/</link>
       <pubDate>Wed, 22 Jul 2020 17:06:05 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/22/laravel03/</guid>
+      <guid>https://listenlive.cn/note/2020/07/22/laravel03/</guid>
       <description>使用中间件进行后台权限验证 创建中间件 php artisan make:middleware AdminMiddleware 执行后会在app/Http/Middleware目录下生成AdminMiddleware.php</description>
     </item>
     
     <item>
       <title>Laravel基础02-后台登录验证</title>
-      <link>https://blog.listenlive.cn/note/2020/07/21/laravel02/</link>
+      <link>https://listenlive.cn/note/2020/07/21/laravel02/</link>
       <pubDate>Tue, 21 Jul 2020 13:29:04 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/21/laravel02/</guid>
+      <guid>https://listenlive.cn/note/2020/07/21/laravel02/</guid>
       <description>创建后台控制器 php artisan make:controller Admin/EntryController 配置路由 Route::get(&amp;#39;/login&amp;#39;,&amp;#39;Admin\EntryController@loginForm&amp;#39;); 或者采用配置命名空间的方式指定到Admin目录，简化一些重复代码 Route::group([&amp;#39;prefix&amp;#39; =&amp;gt; &amp;#39;admin&amp;#39;,&amp;#39;namespace&amp;#39; =&amp;gt; &amp;#39;Admin&amp;#39;],function(){ Route::get(&amp;#39;/login&amp;#39;,&amp;#39;EntryController@loginForm&amp;#39;); }); 使用Auth登录验证 编辑con</description>
     </item>
     
     <item>
       <title>Laravel基础01-安装配置</title>
-      <link>https://blog.listenlive.cn/note/2020/07/16/laravel01/</link>
+      <link>https://listenlive.cn/note/2020/07/16/laravel01/</link>
       <pubDate>Thu, 16 Jul 2020 10:30:47 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/16/laravel01/</guid>
+      <guid>https://listenlive.cn/note/2020/07/16/laravel01/</guid>
       <description>安装 composer安装 composer命令： composer create-project --prefer-dist laravel/laravel hd Laravel目录： 安装提示工具 前往PHP应用商店packagist.org下载安装</description>
     </item>
     
     <item>
       <title>Vue基础-01</title>
-      <link>https://blog.listenlive.cn/note/2020/07/13/vue01/</link>
+      <link>https://listenlive.cn/note/2020/07/13/vue01/</link>
       <pubDate>Mon, 13 Jul 2020 14:57:32 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/13/vue01/</guid>
+      <guid>https://listenlive.cn/note/2020/07/13/vue01/</guid>
       <description>v-if与v-show v-if：不显示时，第一次就直接不渲染，如果内容已经显示将其改为不显示，将内容直接从DOM去除。只渲染一次的内容用v-</description>
     </item>
     
     <item>
       <title>Hugo基本命令</title>
-      <link>https://blog.listenlive.cn/note/2020/07/10/hugocommand.html</link>
+      <link>https://listenlive.cn/note/2020/07/10/hugocommand.html</link>
       <pubDate>Fri, 10 Jul 2020 14:52:58 +0800</pubDate>
       
-      <guid>https://blog.listenlive.cn/note/2020/07/10/hugocommand.html</guid>
+      <guid>https://listenlive.cn/note/2020/07/10/hugocommand.html</guid>
       <description>Hugo基本命令 hugo server --noHTTPCache #启动 hugo server --disableFastRender #FastRender启动 hugo new site &amp;#34;listenlive.cn&amp;#34; #创建站点 hugo new post/note/xx.md #创建文章 hugo #编译所有文件并输出到public目录 Hug</description>
     </item>
     

@@ -23,6 +23,12 @@ xmlns:mobile="http://www.baidu.com/schemas/sitemap-mobile/1/">
     <loc>https://listenlive.cn/tags/api/</loc>
 </url>
 <url>
+    <loc>https://listenlive.cn/tags/Spotify/</loc>
+</url>
+<url>
+    <loc>https://listenlive.cn/tags/Musixmath/</loc>
+</url>
+<url>
     <loc>https://listenlive.cn/tags/bbr/</loc>
 </url>
 <url>
@@ -327,5 +333,8 @@ xmlns:mobile="http://www.baidu.com/schemas/sitemap-mobile/1/">
 </url>
 <url>
     <loc>https://listenlive.cn/note/202105/installhd.html</loc>
+</url>
+<url>
+    <loc>https://listenlive.cn/share/202107/musixmath.html</loc>
 </url>
 </urlset>

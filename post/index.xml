@@ -6,7 +6,16 @@
     <description>Recent content in Posts on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 18 May 2021 15:20:48 +0800</lastBuildDate><atom:link href="https://listenlive.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Jul 2021 16:07:32 +0800</lastBuildDate><atom:link href="https://listenlive.cn/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spotify&#43;Musixmath使用体验</title>
+      <link>https://listenlive.cn/share/202107/musixmath.html</link>
+      <pubDate>Sat, 10 Jul 2021 16:07:32 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/share/202107/musixmath.html</guid>
+      <description>Musixmath这款看歌词的软件竟然可以跨设备同步 我在iPad上使用Spotify播放音乐，在电脑上打开Musixmath软件可以同步当前</description>
+    </item>
+    
     <item>
       <title>Windows-Laravel开发环境Homestead搭建</title>
       <link>https://listenlive.cn/note/202105/installhd.html</link>

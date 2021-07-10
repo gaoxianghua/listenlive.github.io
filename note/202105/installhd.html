@@ -184,7 +184,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">575 字 ~2分钟</span>
+<span class="leancloud-visitors-count">650 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -233,7 +233,7 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: D:<span style="color:#ae81ff">\w</span>orkspace           /**自定义自己的工作目录  （注释删除）**/
+    - map: D:<span style="color:#ae81ff">\w</span>orkspace           /**自定义自己的工作目录<span style="color:#f92672">(</span>注释删除<span style="color:#f92672">)</span>**/
       to: /home/vagrant/code
 
 sites:
@@ -241,6 +241,10 @@ sites:
       to: /home/vagrant/code/homestead/public
     - map: api.test
       to: /home/vagrant/code/shopApi/public
+    - map: tp5.test
+      to: /home/vagrant/code/tp5/public
+      php: <span style="color:#e6db74">&#34;7.2&#34;</span>                /**指定php版本<span style="color:#f92672">(</span>注释内容删除<span style="color:#f92672">)</span>**/
+      type: thinkphp            /**TP框架需指定thinkphp类型<span style="color:#f92672">(</span>为了支持pathinfo<span style="color:#f92672">)(</span>注释内容删除<span style="color:#f92672">)</span>**/
 
 databases:
     - homestead
@@ -328,6 +332,10 @@ new Valine({
      <div class="post-nav">
     <div class="post-nav-next post-nav-item">
     
+        <a href="https://listenlive.cn/share/202107/musixmath.html" rel="next" title="Spotify&#43;Musixmath使用体验">
+        <i class="fa fa-chevron-left"></i> Spotify&#43;Musixmath使用体验
+        </a>
+    
     </div>
 
     <div class="post-nav-prev post-nav-item">
@@ -383,7 +391,7 @@ new Valine({
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://listenlive.cn/post/">
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -400,7 +408,7 @@ new Valine({
     <div class="site-state-item site-state-tags">
         <a href="https://listenlive.cn/tags/">
          
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">53</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -493,7 +501,7 @@ new Valine({
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.82.0</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
 </div>
 <div class="theme-info">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

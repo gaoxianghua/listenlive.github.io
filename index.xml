@@ -6,7 +6,16 @@
     <description>Recent content on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 10 Jul 2021 16:07:32 +0800</lastBuildDate><atom:link href="https://listenlive.cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Sep 2021 00:22:13 +0800</lastBuildDate><atom:link href="https://listenlive.cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>记一次Docker mysql容器在windows虚拟机无法启动问题</title>
+      <link>https://listenlive.cn/leaf/202109/docker_err.html</link>
+      <pubDate>Sat, 11 Sep 2021 00:22:13 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/202109/docker_err.html</guid>
+      <description>环境 使用的环境是Windows10+homestead(VirtualBox) 启动过程 运行sudo docker-compose up -d 容器可以正常启动 运行sudo docker exec -it db-mysql</description>
+    </item>
+    
     <item>
       <title>Spotify&#43;Musixmath使用体验</title>
       <link>https://listenlive.cn/share/202107/musixmath.html</link>

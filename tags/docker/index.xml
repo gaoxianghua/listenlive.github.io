@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docker on listenlive.cn</title>
+    <title>docker on listenlive.cn</title>
     <link>https://listenlive.cn/tags/docker/</link>
-    <description>Recent content in Docker on listenlive.cn</description>
+    <description>Recent content in docker on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 29 Apr 2021 12:34:31 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Sep 2021 00:22:13 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>记一次Docker mysql容器在windows虚拟机无法启动问题</title>
+      <link>https://listenlive.cn/leaf/202109/docker_err.html</link>
+      <pubDate>Sat, 11 Sep 2021 00:22:13 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/202109/docker_err.html</guid>
+      <description>环境 使用的环境是Windows10+homestead(VirtualBox) 启动过程 运行sudo docker-compose up -d 容器可以正常启动 运行sudo docker exec -it db-mysql</description>
+    </item>
+    
     <item>
       <title>Ubuntu-Docker的安装与使用</title>
       <link>https://listenlive.cn/note/202104/docker.html</link>

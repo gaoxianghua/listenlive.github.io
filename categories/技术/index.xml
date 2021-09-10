@@ -6,7 +6,16 @@
     <description>Recent content in 技术 on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 10 Mar 2021 11:24:18 +0800</lastBuildDate><atom:link href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Sep 2021 00:22:13 +0800</lastBuildDate><atom:link href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>记一次Docker mysql容器在windows虚拟机无法启动问题</title>
+      <link>https://listenlive.cn/leaf/202109/docker_err.html</link>
+      <pubDate>Sat, 11 Sep 2021 00:22:13 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/202109/docker_err.html</guid>
+      <description>环境 使用的环境是Windows10+homestead(VirtualBox) 启动过程 运行sudo docker-compose up -d 容器可以正常启动 运行sudo docker exec -it db-mysql</description>
+    </item>
+    
     <item>
       <title>Node-Koa2之axios请求云之讯短信发送接口和soap请求WebService</title>
       <link>https://listenlive.cn/leaf/202103/axios-soap.html</link>

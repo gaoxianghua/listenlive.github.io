@@ -493,7 +493,16 @@ new Valine({
 <aside id="sidebar" class="sidebar">
   <div class="sidebar-inner">
 
-    <section class="site-overview sidebar-panel  sidebar-panel-active ">
+  <ul class="sidebar-nav motion-element">
+    <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+      文章目录
+    </li>
+    <li class="sidebar-nav-overview" data-target="site-overview">
+      站点概览
+    </li>
+  </ul>
+
+    <section class="site-overview sidebar-panel ">
       <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image"
         src="https://listenlive.cn/img/author.jpg"
@@ -571,6 +580,30 @@ new Valine({
 
     </section>
     
+<section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+    <div class="post-toc">
+        <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#双向绑定">双向绑定</a></li>
+    <li><a href="#v-text与v-html">v-text与v-html</a></li>
+    <li><a href="#动态改变属性">动态改变属性</a></li>
+    <li><a href="#computed---购物车商品价格计算逻辑">computed - 购物车商品价格计算逻辑</a></li>
+    <li><a href="#watch---监听变量的更改">watch - 监听变量的更改</a>
+      <ul>
+        <li><a href="#使用npm安装axios---跨域请求数据">使用npm安装axios - 跨域请求数据</a></li>
+        <li><a href="#引入axios">引入axios</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用lodash解决实时请求造成资源浪费问题">使用lodash解决实时请求造成资源浪费问题</a>
+      <ul>
+        <li><a href="#安装并引入lodash">安装并引入lodash</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div>
+</section>
+
   </div>
 </aside>
 
@@ -580,7 +613,7 @@ new Valine({
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright" >
-  <span><a href="http://www.beian.miit.gov.cn/">京ICP备17004223号</a></span>
+  <span><a target="_blank" href="https://beian.miit.gov.cn/">京ICP备17004223号</a></span>
   <span itemprop="copyrightYear">  &copy; 2020 - 2021</span>
   <span class="with-love"><i class="fa fa-heart"></i></span>
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>

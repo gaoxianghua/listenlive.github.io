@@ -6,7 +6,16 @@
     <description>Recent content on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 11 Sep 2021 00:22:13 +0800</lastBuildDate><atom:link href="https://listenlive.cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Nov 2021 16:59:27 +0800</lastBuildDate><atom:link href="https://listenlive.cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu手动LNMP环境搭建</title>
+      <link>https://listenlive.cn/leaf/20211110/lnmp.html</link>
+      <pubDate>Wed, 10 Nov 2021 16:59:27 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/20211110/lnmp.html</guid>
+      <description>安装Nginx sudo apt install nginx 安装MySQL sudo apt install mysql-server-5.7 安装PHP sudo apt install php7.2 sudo apt install php-fpm7.2 安装PHP扩展 sudo apt install php7.2-xml php7.2-mysql php7.2-curl 设置MySQL用户名密码 #查看初始用户名和密</description>
+    </item>
+    
     <item>
       <title>记一次Docker mysql容器在windows虚拟机无法启动问题</title>
       <link>https://listenlive.cn/leaf/202109/docker_err.html</link>
@@ -373,7 +382,7 @@
       <pubDate>Tue, 04 Aug 2020 11:16:11 +0800</pubDate>
       
       <guid>https://listenlive.cn/note/2020/08/04/laravel08/</guid>
-      <description>配置.env文件中的邮件部分 MAIL_DRIVER=smtp MAIL_HOST=smtp.qq.com MAIL_PORT=25 MAIL_USERNAME=1099764281@qq.com MAIL_PASSWORD=tmdyxmsfwtqzgbje //QQ邮箱授权码 MAIL_ENCRYPTION=tls MAIL_FROM_ADDRESS=1099764281@qq.com MAIL_FROM_NAME=1099764281 新建邮件发送策略 php artisan make:mail RegMail 邮件发送方法 use App\Mail\RegMail; public function sendMail() { $user = User::find(1); \Mail::to($user)-&amp;gt;send(new RegMail()); return redirect(&amp;#39;/&amp;#39;); } 喜欢这篇文章的</description>
+      <description>配置.env文件中的邮件部分 MAIL_DRIVER=smtp MAIL_HOST=smtp.qq.com MAIL_PORT=25 MAIL_USERNAME=1099764281@qq.com MAIL_PASSWORD=tmd****** //QQ邮箱授权码 MAIL_ENCRYPTION=tls MAIL_FROM_ADDRESS=1099764281@qq.com MAIL_FROM_NAME=1099764281 新建邮件发送策略 php artisan make:mail RegMail 邮件发送方法 use App\Mail\RegMail; public function sendMail() { $user = User::find(1); \Mail::to($user)-&amp;gt;send(new RegMail()); return redirect(&amp;#39;/&amp;#39;); } 喜欢这篇文章的</description>
     </item>
     
     <item>

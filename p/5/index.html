@@ -148,6 +148,59 @@
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://listenlive.cn/note/2020/08/10/koa06/" itemprop="url">
+        使用Koa应用生成器快速生成koa应用
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-08-10">
+    2020-08-10
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">52 字 ~1分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    全局安装koa脚手架生成工具 cnpm install koa-generator -g 创建项目 koa koa_demo 安装依赖 cd koa_demo cnpm install 启动项目 npm start 喜欢这篇文章的话 打赏一下吧！
+    </div>
+    
+    <footer class="post-footer"><div class="post-eof"></div></footer>
+  </article>
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link" href="https://listenlive.cn/note/2020/08/10/koa05/" itemprop="url">
         Koa Cookie与Session
         </a>
@@ -559,65 +612,6 @@
     <footer class="post-footer"><div class="post-eof"></div></footer>
   </article>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://listenlive.cn/note/2020/08/04/laravel09/" itemprop="url">
-        使用Laravel邮件发送实现用户的验证&amp;注册业务
-        </a>
-      </h1>
-      <div class="post-meta">
-      <span class="post-time">
-<span class="post-meta-item-icon">
-    <i class="fa fa-calendar-o"></i>
-</span>
-<span class="post-meta-item-text">时间：</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-08-04">
-    2020-08-04
-</time>
-</span> 
-      
-
-  <span class="post-category" >
-  &nbsp; | &nbsp;
-  <span class="post-meta-item-icon">
-    <i class="fa fa-folder-o"></i>
-  </span>
-  <span class="post-meta-item-text">分类：</span>
-  
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
-        <span itemprop="name">笔记</span>
-      </a>
-      &nbsp; 
-    </span>
-  
-</span>
-
-
-       <span>
-&nbsp; | &nbsp;
-<span class="post-meta-item-icon">
-    <i class="fa fa-eye"></i>
-</span>
-<span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">568 字 ~2分钟</span>
-</span>
-      </div>
-    </header>
-    <div class="post-body" itemprop="articleBody">
-    注册数据处理方法中添加token并触发邮件发送 //用户注册数据处理 public function store(Request $request) { $data = $this-&gt;validate($request,[ &#39;name&#39; =&gt; &#39;required|min:4&#39;, &#39;email&#39; =&gt; &#39;required|email|unique:users&#39;, &#39;password&#39; =&gt; &#39;required|min:6|confirmed&#39;, ]); $data[&#39;password&#39;] = bcrypt($data[&#39;password&#39;]); $data[&#39;email_token&#39;] = Str::random(10); $user = User::create($data); //发送注册邮件 \Mail::to($user)-&gt;send(new RegMail($user));
-    </div>
-    
-    <div class="post-more-link text-center">
-    <a class="btn" href="https://listenlive.cn/note/2020/08/04/laravel09/" rel="contents">
-      阅读全文 &raquo;
-    </a>
-    </div>
-    
-    <footer class="post-footer"><div class="post-eof"></div></footer>
-  </article>
-
 </section>
 
 
@@ -719,7 +713,7 @@
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://listenlive.cn/post/">
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -736,7 +730,7 @@
     <div class="site-state-item site-state-tags">
         <a href="https://listenlive.cn/tags/">
          
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">54</span>
         
         <span class="site-state-item-name">标签</span>
         </a>

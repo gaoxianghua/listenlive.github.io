@@ -6,7 +6,16 @@
     <description>Recent content in 技术 on listenlive.cn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 11 Sep 2021 00:22:13 +0800</lastBuildDate><atom:link href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Nov 2021 16:59:27 +0800</lastBuildDate><atom:link href="https://listenlive.cn/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu手动LNMP环境搭建</title>
+      <link>https://listenlive.cn/leaf/20211110/lnmp.html</link>
+      <pubDate>Wed, 10 Nov 2021 16:59:27 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/leaf/20211110/lnmp.html</guid>
+      <description>安装Nginx sudo apt install nginx 安装MySQL sudo apt install mysql-server-5.7 安装PHP sudo apt install php7.2 sudo apt install php-fpm7.2 安装PHP扩展 sudo apt install php7.2-xml php7.2-mysql php7.2-curl 设置MySQL用户名密码 #查看初始用户名和密</description>
+    </item>
+    
     <item>
       <title>记一次Docker mysql容器在windows虚拟机无法启动问题</title>
       <link>https://listenlive.cn/leaf/202109/docker_err.html</link>

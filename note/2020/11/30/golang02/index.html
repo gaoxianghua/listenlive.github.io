@@ -270,7 +270,7 @@ for(var i in vsubmit)
         let site = '链接： '+window.location.href+"<br/>";
         var date = new Date();
         let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "http://pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };

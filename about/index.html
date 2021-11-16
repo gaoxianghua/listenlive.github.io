@@ -195,6 +195,24 @@ new Valine({
     placeholder: '说点什么吧...',
     visitor: 'true'
 });
+
+
+let vsubmit = document.getElementsByClassName('vsubmit');
+for(var i in vsubmit)
+{
+    vsubmit[i].onclick=function() { 
+        var httpRequest = new XMLHttpRequest();
+        let = pushToken = 'e5c93939959f49d798fa84b847220442';
+        let title = '网站有新的留言了!';
+        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
+        let site = '链接： '+window.location.href+"<br/>";
+        var date = new Date();
+        let subDate = '时间： '+date .toLocaleString()+"<br/>";
+        let url = "http://pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        httpRequest.open('GET', url, true);
+        httpRequest.send();
+    };
+}
 </script>
 	</div>
     <footer class="post-footer">

@@ -324,7 +324,7 @@ for(var i in vsubmit)
 {
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
-        let = pushToken = 'e5c93939959f49d798fa84b847220442';
+        let pushToken = 'e5c93939959f49d798fa84b847220442';
         let title = '网站有新的留言了!';
         let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
         let site = '链接： '+window.location.href+"<br/>";
@@ -579,6 +579,26 @@ for(var i in vsubmit)
     "HTML-CSS": { fonts: ["TeX"] }
   });
 </script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script src="http://ip.ws.126.net/ipquery" charset="utf-8"></script>
+<script>
+  let pushToken = 'e5c93939959f49d798fa84b847220442';
+  var httpRequest = new XMLHttpRequest();
+  let title = '网站来新的访客了!';
+  let viewPage = '浏览的网页： '+document.URL+"<br/>";
+  let fromPage = '来自： '+document.referrer+"<br/>";
+  let fromIp = 'IP: '+returnCitySN["cip"]+"<br/>";
+  let cname = '省份: '+lo+"<br/>";
+  let city = '城市: '+lc+"<br/>";
+  let cid = '城市代码: '+returnCitySN["cid"]+"<br/>";
+  var date = new Date();
+  let viewTime = '时间： '+date .toLocaleString()+"<br/>";
+  let url = "//pushplus.hxtrip.com/send?token="+pushToken+"&title="+title+"&content="+viewPage+fromPage+fromIp+cname+city+cid+viewTime+"&template=html";
+  httpRequest.open('GET', url, true);
+  httpRequest.send();
+</script>
+
+
 
 
 </body>

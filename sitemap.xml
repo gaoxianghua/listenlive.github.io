@@ -1,6 +1,37 @@
 <search>
     
      <entry>
+        <title>rpmrebuild重新打包</title>
+        <url>https://listenlive.cn/note/20220324/rpmrebuild.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>rpm</tag><tag>rpmrebuild</tag>
+        </tags>
+        <content type="html"> rpmrebuild的使用 安装rpmrebuild yum install rpmrebuild 制作rpm包过程较为麻烦，此处使用rpmrebuild去将本机已安装好的nginx包进行重新打包，用于下次安装部署 修改nginx的配置文件如/etc/nginx/nginx.conf 重新打包 rpmrebuild nginx 执行后文件会生成于/root/rpmbuild/RPMS/x86_64/nginx.**.rpm
+  喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
+        <title>rpmbuild制作rpm包</title>
+        <url>https://listenlive.cn/note/20220322/make-rpm.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>rpm</tag><tag>rpmbuild</tag>
+        </tags>
+        <content type="html"> rpmbuild 安装rpmbuild yum install rpm-build 生成rpmbuild目录结构 使用非root账户
+rpmbuild -ba nginx.spec //会报错，没有文件或目录 此时会生成rpmbuild工作目录 编写SEPC工程文件 在rpmbuild/SEPCS目录新建SPEC工程文件
+vi webrtc-server.spec 文件内容示例：
+Name: webrtc-server Version: 1.0	Release: 1.0 Summary: webrtc-server Group: System	License: GPL BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root Requires: etcd redis supervisor %description webrtc-server %prep echo &amp;#34;do not&amp;#34; %install cp -ar %{_sourcedir}/opt %{buildroot}/ chmod 755 %{buildroot}/opt/dispatch/bin/dispatch chmod 755 %{buildroot}/opt/signal_a/bin/sdn-signal-server chmod 755 %{buildroot}/opt/record/bin/sdn-record-server chmod 755 %{buildroot}/opt/record/data mkdir -p %{buildroot}/var/log/signal_a install -m 755 %{_sourcedir}/server.log %{buildroot}/var/log/signal_a/server.log mkdir -p %{buildroot}/var/log/record install -m 755 %{_sourcedir}/server.log %{buildroot}/var/log/record/server.log mkdir -p %{buildroot}/etc/supervisord.d install -m 755 %{_sourcedir}/dispatch.conf %{buildroot}/etc/supervisord.d/dispatch.conf install -m 755 %{_sourcedir}/signal-a.conf %{buildroot}/etc/supervisord.d/signal-a.conf install -m 755 %{_sourcedir}/record.conf %{buildroot}/etc/supervisord.d/record.conf %files %defattr(-,root,root,-) /opt/dispatch /opt/signal_a /opt/record %doc /etc/supervisord.d/dispatch.conf /etc/supervisord.d/signal-a.conf /etc/supervisord.d/record.conf /var/log/record/server.log /var/log/signal_a/server.log %pre %post supervisorctl update %preun rm -rf /opt/dispatch rm -rf /opt/signal_a rm -rf /opt/record rm -rf /var/log/signal_a rm -rf /var/log/record %changelog * Wed Jan 19 2022 &amp;lt;157****0273@126.com&amp;gt; - 1.0.0.1 - your writing 将需要用到的二进制程序及相关配置文件上传至SOURCES目录 SOURCES目录下文件内容及结构： 执行工程文件生成rpm包 rpmbuild -bb webrtc.spec 成功执行后将会在rpmbuild/RPMS目录生成rpm文件
+  喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
         <title>Ubuntu手动LNMP环境搭建</title>
         <url>https://listenlive.cn/leaf/20211110/lnmp.html</url>
         <categories>

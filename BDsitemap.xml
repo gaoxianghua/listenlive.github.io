@@ -158,6 +158,15 @@ xmlns:mobile="http://www.baidu.com/schemas/sitemap-mobile/1/">
     <loc>https://listenlive.cn/tags/docker/</loc>
 </url>
 <url>
+    <loc>https://listenlive.cn/tags/rpm/</loc>
+</url>
+<url>
+    <loc>https://listenlive.cn/tags/rpmbuild/</loc>
+</url>
+<url>
+    <loc>https://listenlive.cn/tags/rpmrebuild/</loc>
+</url>
+<url>
     <loc>https://listenlive.cn/post/</loc>
 </url>
 <url>
@@ -345,5 +354,11 @@ xmlns:mobile="http://www.baidu.com/schemas/sitemap-mobile/1/">
 </url>
 <url>
     <loc>https://listenlive.cn/leaf/20211110/lnmp.html</loc>
+</url>
+<url>
+    <loc>https://listenlive.cn/note/20220324/rpmrebuild.html</loc>
+</url>
+<url>
+    <loc>https://listenlive.cn/note/20220322/make-rpm.html</loc>
 </url>
 </urlset>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rpm on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/rpm/</link>
+    <description>Recent content in rpm on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 24 Mar 2022 21:06:46 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/rpm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>rpmrebuild重新打包</title>
+      <link>https://listenlive.cn/note/20220324/rpmrebuild.html</link>
+      <pubDate>Thu, 24 Mar 2022 21:06:46 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/20220324/rpmrebuild.html</guid>
+      <description>rpmrebuild的使用 安装rpmrebuild yum install rpmrebuild 制作rpm包过程较为麻烦，此处使用rpmrebuild去将本机已安装好的nginx包</description>
+    </item>
+    
+    <item>
+      <title>rpmbuild制作rpm包</title>
+      <link>https://listenlive.cn/note/20220322/make-rpm.html</link>
+      <pubDate>Thu, 24 Mar 2022 19:48:46 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/20220322/make-rpm.html</guid>
+      <description>rpmbuild 安装rpmbuild yum install rpm-build 生成rpmbuild目录结构 使用非root账户 rpmbuild -ba nginx.spec //会报错，没有文件或目录 此时会生成rpmbuild工作目录</description>
+    </item>
+    
+  </channel>
+</rss>

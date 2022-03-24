@@ -148,6 +148,124 @@
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://listenlive.cn/note/2020/07/27/vue04/" itemprop="url">
+        Vue基础-04
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-07-27">
+    2020-07-27
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">1202 字 ~3分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    Vue声明组件(component)的方式 &lt;div id=&#34;app&#34;&gt; &lt;live-slide&gt;&lt;/live-slide&gt; &lt;live-news&gt;&lt;/live-news&gt; &lt;/div&gt; &lt;script&gt; //全局组件 Vue.component(&#39;liveSlide&#39;,{ template:&#39;&lt;h2&gt;listenlive.cn&lt;/h2&gt;&#39; }); //局部组件 var liveNews = { template:&#34;&lt;h2&gt;ListenLive&lt;/h2&gt;&#34; }; var app = new Vue({ el:&#39;#app&#39;, components:{liveNews}, data:{ }, }); &lt;/script&gt; 子组件中data返回数
+    </div>
+    
+    <div class="post-more-link text-center">
+    <a class="btn" href="https://listenlive.cn/note/2020/07/27/vue04/" rel="contents">
+      阅读全文 &raquo;
+    </a>
+    </div>
+    
+    <footer class="post-footer"><div class="post-eof"></div></footer>
+  </article>
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link" href="https://listenlive.cn/note/2020/07/26/vue03/" itemprop="url">
+        Vue基础-03
+        </a>
+      </h1>
+      <div class="post-meta">
+      <span class="post-time">
+<span class="post-meta-item-icon">
+    <i class="fa fa-calendar-o"></i>
+</span>
+<span class="post-meta-item-text">时间：</span>
+<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-07-26">
+    2020-07-26
+</time>
+</span> 
+      
+
+  <span class="post-category" >
+  &nbsp; | &nbsp;
+  <span class="post-meta-item-icon">
+    <i class="fa fa-folder-o"></i>
+  </span>
+  <span class="post-meta-item-text">分类：</span>
+  
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
+        <span itemprop="name">笔记</span>
+      </a>
+      &nbsp; 
+    </span>
+  
+</span>
+
+
+       <span>
+&nbsp; | &nbsp;
+<span class="post-meta-item-icon">
+    <i class="fa fa-eye"></i>
+</span>
+<span class="post-meta-item-text">阅读：</span>
+<span class="leancloud-visitors-count">1885 字 ~4分钟</span>
+</span>
+      </div>
+    </header>
+    <div class="post-body" itemprop="articleBody">
+    表单提交与prevent操作表单 &lt;div id=&#34;app&#34;&gt; &lt;form action=&#34;&#34; @submit.prevent=&#34;post(&#39;listenlive.cn&#39;)&#34;&gt; &lt;h2&gt;{{times}}&lt;/h2&gt; &lt;button&gt;提交&lt;/button&gt; &lt;/form&gt; &lt;/div&gt; &lt;script&gt; var app = new Vue({ el:&#39;#app&#39;, data: { times:new Date() }, methods:{ post(num){ alert(num);
+    </div>
+    
+    <div class="post-more-link text-center">
+    <a class="btn" href="https://listenlive.cn/note/2020/07/26/vue03/" rel="contents">
+      阅读全文 &raquo;
+    </a>
+    </div>
+    
+    <footer class="post-footer"><div class="post-eof"></div></footer>
+  </article>
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
         <a class="post-title-link" href="https://listenlive.cn/leaf/2020/07/25/npmcommand.html" itemprop="url">
         npm 版本更新
         </a>
@@ -487,124 +605,6 @@
     <footer class="post-footer"><div class="post-eof"></div></footer>
   </article>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://listenlive.cn/note/2020/07/16/laravel01/" itemprop="url">
-        Laravel基础01-安装配置
-        </a>
-      </h1>
-      <div class="post-meta">
-      <span class="post-time">
-<span class="post-meta-item-icon">
-    <i class="fa fa-calendar-o"></i>
-</span>
-<span class="post-meta-item-text">时间：</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-07-16">
-    2020-07-16
-</time>
-</span> 
-      
-
-  <span class="post-category" >
-  &nbsp; | &nbsp;
-  <span class="post-meta-item-icon">
-    <i class="fa fa-folder-o"></i>
-  </span>
-  <span class="post-meta-item-text">分类：</span>
-  
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
-        <span itemprop="name">笔记</span>
-      </a>
-      &nbsp; 
-    </span>
-  
-</span>
-
-
-       <span>
-&nbsp; | &nbsp;
-<span class="post-meta-item-icon">
-    <i class="fa fa-eye"></i>
-</span>
-<span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">959 字 ~2分钟</span>
-</span>
-      </div>
-    </header>
-    <div class="post-body" itemprop="articleBody">
-    安装 composer安装 composer命令： composer create-project --prefer-dist laravel/laravel hd Laravel目录： 安装提示工具 前往PHP应用商店packagist.org下载安装
-    </div>
-    
-    <div class="post-more-link text-center">
-    <a class="btn" href="https://listenlive.cn/note/2020/07/16/laravel01/" rel="contents">
-      阅读全文 &raquo;
-    </a>
-    </div>
-    
-    <footer class="post-footer"><div class="post-eof"></div></footer>
-  </article>
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link" href="https://listenlive.cn/note/2020/07/13/vue01/" itemprop="url">
-        Vue基础-01
-        </a>
-      </h1>
-      <div class="post-meta">
-      <span class="post-time">
-<span class="post-meta-item-icon">
-    <i class="fa fa-calendar-o"></i>
-</span>
-<span class="post-meta-item-text">时间：</span>
-<time itemprop="dateCreated" datetime="2016-03-22T13:04:35+08:00" content="2020-07-13">
-    2020-07-13
-</time>
-</span> 
-      
-
-  <span class="post-category" >
-  &nbsp; | &nbsp;
-  <span class="post-meta-item-icon">
-    <i class="fa fa-folder-o"></i>
-  </span>
-  <span class="post-meta-item-text">分类：</span>
-  
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-      <a href="https://listenlive.cn/categories/%E7%AC%94%E8%AE%B0" itemprop="url" rel="index">
-        <span itemprop="name">笔记</span>
-      </a>
-      &nbsp; 
-    </span>
-  
-</span>
-
-
-       <span>
-&nbsp; | &nbsp;
-<span class="post-meta-item-icon">
-    <i class="fa fa-eye"></i>
-</span>
-<span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">1084 字 ~3分钟</span>
-</span>
-      </div>
-    </header>
-    <div class="post-body" itemprop="articleBody">
-    v-if与v-show v-if：不显示时，第一次就直接不渲染，如果内容已经显示将其改为不显示，将内容直接从DOM去除。只渲染一次的内容用v-
-    </div>
-    
-    <div class="post-more-link text-center">
-    <a class="btn" href="https://listenlive.cn/note/2020/07/13/vue01/" rel="contents">
-      阅读全文 &raquo;
-    </a>
-    </div>
-    
-    <footer class="post-footer"><div class="post-eof"></div></footer>
-  </article>
-
 </section>
 
 
@@ -706,7 +706,7 @@
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://listenlive.cn/post/">
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -723,7 +723,7 @@
     <div class="site-state-item site-state-tags">
         <a href="https://listenlive.cn/tags/">
          
-        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-count">57</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -789,7 +789,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   <span><a target="_blank" href="https://beian.miit.gov.cn/">京ICP备17004223号</a></span>
-  <span itemprop="copyrightYear">  &copy; 2020 - 2021</span>
+  <span itemprop="copyrightYear">  &copy; 2020 - 2022</span>
   <span class="with-love"><i class="fa fa-heart"></i></span>
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>

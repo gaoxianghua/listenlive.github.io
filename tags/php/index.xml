@@ -13,7 +13,7 @@
       <pubDate>Wed, 10 Nov 2021 16:59:27 +0800</pubDate>
       
       <guid>https://listenlive.cn/leaf/20211110/lnmp.html</guid>
-      <description>安装Nginx sudo apt install nginx 安装MySQL sudo apt install mysql-server-5.7 安装PHP sudo apt install php7.2 sudo apt install php-fpm7.2 安装PHP扩展 sudo apt install php7.2-xml php7.2-mysql php7.2-curl 设置MySQL用户名密码 #查看初始用户名和密</description>
+      <description>安装Nginx sudo apt install nginx 安装MySQL sudo apt install mysql-server-5.7 安装PHP sudo apt install php7.2 sudo apt install php-fpm7.2 安装PHP扩展 sudo apt install php7.2-xml php7.2-json php7.2-mysql php7.2-curl php7.2-gd php7.2-pdo php7.2-mbstring php7.2-mysqlnd 设置MySQL用户名密码 #查看初始</description>
     </item>
     
     <item>

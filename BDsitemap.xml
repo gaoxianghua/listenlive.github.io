@@ -361,4 +361,7 @@ xmlns:mobile="http://www.baidu.com/schemas/sitemap-mobile/1/">
 <url>
     <loc>https://listenlive.cn/note/20220322/make-rpm.html</loc>
 </url>
+<url>
+    <loc>https://listenlive.cn/leaf/202205/lnmp-docker.html</loc>
+</url>
 </urlset>

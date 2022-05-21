@@ -1,6 +1,19 @@
 <search>
     
      <entry>
+        <title>使用docker-compose一键搭建LNMP环境</title>
+        <url>https://listenlive.cn/leaf/202205/lnmp-docker.html</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>LNMP</tag><tag>docker</tag><tag>docker-compose</tag>
+        </tags>
+        <content type="html"> 环境  OS: Ubuntu 软件: docker、docker-compose  目录结构 我的目录结构 创建docker-compose.yml文件 version: &amp;#34;2&amp;#34; services: php-fpm: image: phpdockerio/php74-fpm container_name: php74 working_dir: /application restart: always volumes: - ./application:/application - ./conf/php-fpm/php.ini:/etc/php/7.4/fpm/conf.d/php.ini #php.ini配置文件映射 ports: - 9000:9000 nginx: image: nginx:alpine container_name: nginx restart: always working_dir: /application volumes: - ./application:/application - ./conf/nginx/conf.d/phpinfo.conf:/etc/nginx/conf.d/phpinfo.conf #nginx站点配置文件 # - ./conf/ssl/example.crt:/etc/nginx/ssl/example.crt # - ./conf/ssl/example.key:/etc/nginx/ssl/example.key ports: - 8080:80 - 8081:8081 mysql: image: mysql:8.0.19 container_name: mysql restart: always volumes: - ./data/mysql:/var/lib/mysql ports: - 33066:3306 environment: - MYSQL_ROOT_PASSWORD=123456 nginx站点配置文件 以phpinfophpinfo.conf为例： server { listen 8081; root /application/phpinfo; index index.html index.htm index.php; charset utf-8; client_max_body_size 2048M; location / { if (!-e $request_filename) { rewrite ^(.*)$ /index.php?s=/$1 last; break; } } location = /favicon.ico { access_log off; log_not_found off; } location = /robots.txt { access_log off; log_not_found off; } access_log off; error_log /var/log/nginx/phpinfo-error.log error; sendfile off; location ~ \.php$ { fastcgi_split_path_info ^(.&#43;\.php)(/.&#43;)$; fastcgi_pass php74:9000; #注意此处fastcgi_pass的配置,这个地方的php74; 是nginx容器连接php-fpm的容器 fastcgi_index index.php; include fastcgi_params; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; fastcgi_intercept_errors off; fastcgi_buffer_size 16k; fastcgi_buffers 4 16k; fastcgi_connect_timeout 300; fastcgi_send_timeout 300; fastcgi_read_timeout 300; } location ~ /\.ht { deny all; } } 使用docker-compose一键启动 执行命令启动 #一键启动LNMP sudo docker-compose up -d #一键关闭LNMP sudo docker-compose down 启动后,访问站点成功   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
         <title>rpmrebuild重新打包</title>
         <url>https://listenlive.cn/note/20220324/rpmrebuild.html</url>
         <categories>

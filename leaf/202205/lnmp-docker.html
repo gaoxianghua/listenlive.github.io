@@ -218,7 +218,13 @@
             working_dir: /application
             volumes:
                 - ./application:/application
-                - ./conf/nginx/conf.d/phpinfo.conf:/etc/nginx/conf.d/phpinfo.conf   #nginx站点配置文件
+
+                #nginx站点配置文件
+                - ./conf/nginx/conf.d/phpinfo.conf:/etc/nginx/conf.d/phpinfo.conf   
+                # - ./conf/nginx/conf.d/site01.conf:/etc/nginx/conf.d/site01.conf   
+                # - ./conf/nginx/conf.d/site02.conf:/etc/nginx/conf.d/site02.conf  
+
+                #ssl
                 # - ./conf/ssl/example.crt:/etc/nginx/ssl/example.crt
                 # - ./conf/ssl/example.key:/etc/nginx/ssl/example.key
             ports:

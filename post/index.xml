@@ -179,15 +179,6 @@
     </item>
     
     <item>
-      <title>解决Hugo/Hexo主题目录themes/无法通过Git提交问题</title>
-      <link>https://listenlive.cn/leaf/2021/01/git_commit/</link>
-      <pubDate>Tue, 05 Jan 2021 13:26:51 +0800</pubDate>
-      
-      <guid>https://listenlive.cn/leaf/2021/01/git_commit/</guid>
-      <description>剪切themes/.git文件夹到其他目录 从暂存区删除该文件夹 git rm --cache ./themes/next 再重新添加并提交即可 git add . git commit -m &amp;#39;&amp;#39; git push 喜欢这篇文章的话 打赏一下吧！</description>
-    </item>
-    
-    <item>
       <title>PHP-微信公众号实现发送模板消息</title>
       <link>https://listenlive.cn/leaf/2020/12/15/wechat01/</link>
       <pubDate>Tue, 15 Dec 2020 11:19:55 +0800</pubDate>

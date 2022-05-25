@@ -184,7 +184,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">398 字 ~1分钟</span>
+<span class="leancloud-visitors-count">405 字 ~1分钟</span>
 </span>
       </div>
     </header>
@@ -207,7 +207,7 @@
             restart: always
             volumes:
                 - ./application:/application
-                - ./conf/php-fpm/php.ini:/etc/php/7.4/fpm/conf.d/php.ini    #php.ini配置文件映射
+                - ./conf/php-fpm/php.ini:/etc/php/7.4/fpm/php.ini    #php.ini配置文件映射
             ports:
                 - 9000:9000
 
@@ -224,7 +224,7 @@
                 # - ./conf/nginx/conf.d/site01.conf:/etc/nginx/conf.d/site01.conf   
                 # - ./conf/nginx/conf.d/site02.conf:/etc/nginx/conf.d/site02.conf  
 
-                #ssl
+                # ssl
                 # - ./conf/ssl/example.crt:/etc/nginx/ssl/example.crt
                 # - ./conf/ssl/example.key:/etc/nginx/ssl/example.key
             ports:
@@ -269,7 +269,7 @@
         
             location ~ \.php$ {
                 fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass php74:9000;    #注意此处fastcgi_pass的配置,这个地方的php74; 是nginx容器连接php-fpm的容器
+                fastcgi_pass php74:9000;    #注意此处fastcgi_pass的配置,这个地方的php74是nginx容器连接php-fpm的容器
                 fastcgi_index index.php;
                 include fastcgi_params;
                 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -302,8 +302,8 @@
 <table>
 <thead>
 <tr>
-<th><img src="https://listenlive.cn/images/pay/eb05acdaec967.png" alt="Wechat"></th>
-<th style="text-align:right"><img src="https://listenlive.cn/images/pay/0831de845.png" alt="Alipay"></th>
+<th><img src="https://cdn.listenlive.cn/blog/images/pay/eb05acdaec967.png" alt="Wechat"></th>
+<th style="text-align:right"><img src="https://cdn.listenlive.cn/blog/images/pay/0831de845.png" alt="Alipay"></th>
 </tr>
 </thead>
 </table>
@@ -421,7 +421,7 @@ for(var i in vsubmit)
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://listenlive.cn/post/">
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>

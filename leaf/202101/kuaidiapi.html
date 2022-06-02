@@ -192,127 +192,126 @@
     <h1 id="申请快递查询api授权key">申请快递查询API授权key</h1>
 <h2 id="kuaidicomhttpkuaidicom"><a href="http://kuaidi.com">kuaidi.com</a></h2>
 <h1 id="sdk文件kdapiphp">SDK文件KDApi.php</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/**
- * 物流信息查询接口SDK
- */
-class KDAPI{
-    private $_APPKEY = &#39;twde5d8ef***********&#39;;   //改为您自己的key
-    private $_APIURL = &#34;https://highapi.kuaidi.com/openapi-querycountordernumber.html?&#34;;    
-    private $_show = 0;
-    private $_muti = 0;
-    private $_order = &#39;desc&#39;;
-
-    /**
-     * 获得的快递网接口查询KEY。
-     * @param string $key
-     */
-
-    public function KuaidiAPi($key){
-
-        $this-&gt;_APPKEY = $key;
-    }
-
-    /**
-     * 设置数据返回类型。0: 返回 json 字符串; 1:返回 xml 对象
-     * @param number $show
-     */
-
-    public function setShow($show = 0){
-
-        $this-&gt;_show = $show;
-    }
-
-
-    /**
-     * 设置返回物流信息条目数, 0:返回多行完整的信息; 1:只返回一行信息
-     * @param number $muti
-     */
-
-    public function setMuti($muti = 0){
-
-        $this-&gt;_muti = $muti;
-    }
-
-    /**
-     * 设置返回物流信息排序。desc:按时间由新到旧排列; asc:按时间由旧到新排列
-     * @param string $order
-     */
-
-    public function setOrder($order = &#39;desc&#39;){
-
-        $this-&gt;_order = $order;
-    }
-
-    /**
-     * 查询物流信息，传入单号，
-     * @param 物流单号 $nu
-     * @param 公司简码 $com 要查询的快递公司代码,不支持中文,具体请参考快递公司代码文档。 不填默认根据单号自动匹配公司。注:单号匹配成功率高于 95%。
-     * @throws Exception
-     * @return array
-     */
-
-    public function query($nu, $com=&#39;&#39;){
-
-        if (function_exists(&#39;curl_init&#39;) == 1) {
-
-            $url = $this-&gt;_APIURL;
-            $dataArr = array(
-                &#39;id&#39; =&gt; $this-&gt;_APPKEY,
-                &#39;com&#39; =&gt; $com,
-                &#39;nu&#39; =&gt; $nu,
-                &#39;show&#39; =&gt; $this-&gt;_show,
-                &#39;muti&#39; =&gt; $this-&gt;_muti,
-                &#39;order&#39; =&gt; $this-&gt;_order
-            );
-
-
-            foreach ($dataArr as $key =&gt; $value) {
-
-                $url .= $key . &#39;=&#39; . $value . &#34;&amp;&#34;;
-            }
-
-            // echo $url;
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_TIMEOUT, 10);
-            $kuaidresult = curl_exec($curl);
-            curl_close($curl);
-
-
-            if($this-&gt;_show == 0){
-
-                $result = json_decode($kuaidresult, true);
-            }else{
-
-                $result = $kuaidresult;
-            }
-
-            return $result;
-
-        }else{
-
-            throw new Exception(&#34;Please install curl plugin&#34;, 1); 
-        }
-    }
-
-}
-
-</code></pre></div><h1 id="使用示例examplephp">使用示例example.php</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">include &#39;KDApi.php&#39;;
-$kuaidichaxun = new KDAPI();
-//设置返回格式。 0: 返回 json 字符串; 1:返回 xml 对象
-//$kuaidichaxun-&gt;setShow(1); //可选，默认为 0 返回json格式
-//返回物流信息条目数。 0:返回多行完整的信息; 1:只返回一行信息
-//$kuaidichaxun-&gt;setMuti(1); //可选，默认为0
-//设置返回物流信息排序。desc:按时间由新到旧排列; asc:按时间由旧到新排列
-//$kuaidichaxun-&gt;setOrder(&#39;asc&#39;);
-//查询
-$result = $kuaidichaxun-&gt;query(&#39;YT21212*****&#39;, &#39;yuantong&#39;);
-
-var_dump($result);
-</code></pre></div><h1 id="运行结果">运行结果</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>/**
+</span></span><span style="display:flex;"><span> * 物流信息查询接口SDK
+</span></span><span style="display:flex;"><span> */
+</span></span><span style="display:flex;"><span>class KDAPI{
+</span></span><span style="display:flex;"><span>    private $_APPKEY = &#39;twde5d8ef***********&#39;;   //改为您自己的key
+</span></span><span style="display:flex;"><span>    private $_APIURL = &#34;https://highapi.kuaidi.com/openapi-querycountordernumber.html?&#34;;    
+</span></span><span style="display:flex;"><span>    private $_show = 0;
+</span></span><span style="display:flex;"><span>    private $_muti = 0;
+</span></span><span style="display:flex;"><span>    private $_order = &#39;desc&#39;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    /**
+</span></span><span style="display:flex;"><span>     * 获得的快递网接口查询KEY。
+</span></span><span style="display:flex;"><span>     * @param string $key
+</span></span><span style="display:flex;"><span>     */
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    public function KuaidiAPi($key){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $this-&gt;_APPKEY = $key;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    /**
+</span></span><span style="display:flex;"><span>     * 设置数据返回类型。0: 返回 json 字符串; 1:返回 xml 对象
+</span></span><span style="display:flex;"><span>     * @param number $show
+</span></span><span style="display:flex;"><span>     */
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    public function setShow($show = 0){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $this-&gt;_show = $show;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    /**
+</span></span><span style="display:flex;"><span>     * 设置返回物流信息条目数, 0:返回多行完整的信息; 1:只返回一行信息
+</span></span><span style="display:flex;"><span>     * @param number $muti
+</span></span><span style="display:flex;"><span>     */
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    public function setMuti($muti = 0){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $this-&gt;_muti = $muti;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    /**
+</span></span><span style="display:flex;"><span>     * 设置返回物流信息排序。desc:按时间由新到旧排列; asc:按时间由旧到新排列
+</span></span><span style="display:flex;"><span>     * @param string $order
+</span></span><span style="display:flex;"><span>     */
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    public function setOrder($order = &#39;desc&#39;){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $this-&gt;_order = $order;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    /**
+</span></span><span style="display:flex;"><span>     * 查询物流信息，传入单号，
+</span></span><span style="display:flex;"><span>     * @param 物流单号 $nu
+</span></span><span style="display:flex;"><span>     * @param 公司简码 $com 要查询的快递公司代码,不支持中文,具体请参考快递公司代码文档。 不填默认根据单号自动匹配公司。注:单号匹配成功率高于 95%。
+</span></span><span style="display:flex;"><span>     * @throws Exception
+</span></span><span style="display:flex;"><span>     * @return array
+</span></span><span style="display:flex;"><span>     */
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    public function query($nu, $com=&#39;&#39;){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        if (function_exists(&#39;curl_init&#39;) == 1) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            $url = $this-&gt;_APIURL;
+</span></span><span style="display:flex;"><span>            $dataArr = array(
+</span></span><span style="display:flex;"><span>                &#39;id&#39; =&gt; $this-&gt;_APPKEY,
+</span></span><span style="display:flex;"><span>                &#39;com&#39; =&gt; $com,
+</span></span><span style="display:flex;"><span>                &#39;nu&#39; =&gt; $nu,
+</span></span><span style="display:flex;"><span>                &#39;show&#39; =&gt; $this-&gt;_show,
+</span></span><span style="display:flex;"><span>                &#39;muti&#39; =&gt; $this-&gt;_muti,
+</span></span><span style="display:flex;"><span>                &#39;order&#39; =&gt; $this-&gt;_order
+</span></span><span style="display:flex;"><span>            );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            foreach ($dataArr as $key =&gt; $value) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                $url .= $key . &#39;=&#39; . $value . &#34;&amp;&#34;;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            // echo $url;
+</span></span><span style="display:flex;"><span>            $curl = curl_init();
+</span></span><span style="display:flex;"><span>            curl_setopt($curl, CURLOPT_URL, $url);
+</span></span><span style="display:flex;"><span>            curl_setopt($curl, CURLOPT_HEADER, 0);
+</span></span><span style="display:flex;"><span>            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+</span></span><span style="display:flex;"><span>            curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+</span></span><span style="display:flex;"><span>            $kuaidresult = curl_exec($curl);
+</span></span><span style="display:flex;"><span>            curl_close($curl);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            if($this-&gt;_show == 0){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                $result = json_decode($kuaidresult, true);
+</span></span><span style="display:flex;"><span>            }else{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                $result = $kuaidresult;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            return $result;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        }else{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            throw new Exception(&#34;Please install curl plugin&#34;, 1); 
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="使用示例examplephp">使用示例example.php</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>include &#39;KDApi.php&#39;;
+</span></span><span style="display:flex;"><span>$kuaidichaxun = new KDAPI();
+</span></span><span style="display:flex;"><span>//设置返回格式。 0: 返回 json 字符串; 1:返回 xml 对象
+</span></span><span style="display:flex;"><span>//$kuaidichaxun-&gt;setShow(1); //可选，默认为 0 返回json格式
+</span></span><span style="display:flex;"><span>//返回物流信息条目数。 0:返回多行完整的信息; 1:只返回一行信息
+</span></span><span style="display:flex;"><span>//$kuaidichaxun-&gt;setMuti(1); //可选，默认为0
+</span></span><span style="display:flex;"><span>//设置返回物流信息排序。desc:按时间由新到旧排列; asc:按时间由旧到新排列
+</span></span><span style="display:flex;"><span>//$kuaidichaxun-&gt;setOrder(&#39;asc&#39;);
+</span></span><span style="display:flex;"><span>//查询
+</span></span><span style="display:flex;"><span>$result = $kuaidichaxun-&gt;query(&#39;YT21212*****&#39;, &#39;yuantong&#39;);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>var_dump($result);
+</span></span></code></pre></div><h1 id="运行结果">运行结果</h1>
 <p><img src="https://cdn.listenlive.cn/blog/images/leaf/202101/express01291003.png" alt=""></p>
 <hr>
 <blockquote>
@@ -331,7 +330,7 @@ var_dump($result);
 	<div class="post-comment">
     
     
-<span id="/leaf/202101/kuaidiapi.html" class="leancloud_visitors" data-flag-title="PHP&amp;kuaidi.com实现快递查询">
+<span id="https://listenlive.cn/leaf/202101/kuaidiapi.html" class="leancloud_visitors" data-flag-title="PHP&amp;kuaidi.com实现快递查询">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -355,12 +354,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "PHP\u0026kuaidi.com实现快递查询 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -535,7 +539,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

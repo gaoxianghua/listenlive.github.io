@@ -198,38 +198,38 @@
 <h2 id="运行service-mysql-status查看mysql启动状态发现服务未启动">运行<code>service mysql status</code>查看<code>mysql</code>启动状态,发现服务未启动</h2>
 <p><img src="https://listenlive.cn/images/leaf/202109/9b93c530ddbb15e.png" alt=""></p>
 <h2 id="运行sudo-docker-logs-db-mysql查看容器启动日志">运行<code>sudo docker logs db-mysql</code>查看容器启动日志:</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    [ERROR] InnoDB: Operating system error number 95 in a file operation.
-    [ERROR] InnoDB: Error number 95 means &#39;Operation not supported&#39;
-    [Note] InnoDB: Some operating system error numbers are described at http://dev.mysql.com/doc/refman/5.7/en/operating-system-error-codes.html
-    [ERROR] InnoDB: File ./ib_logfile0: &#39;Linux aio&#39; returned OS error 195. Cannot continue operation
-    [ERROR] InnoDB: Cannot continue operation.
-</code></pre></div><p><img src="https://listenlive.cn/images/leaf/202109/d9aba719c9ae.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    [ERROR] InnoDB: Operating system error number 95 in a file operation.
+</span></span><span style="display:flex;"><span>    [ERROR] InnoDB: Error number 95 means &#39;Operation not supported&#39;
+</span></span><span style="display:flex;"><span>    [Note] InnoDB: Some operating system error numbers are described at http://dev.mysql.com/doc/refman/5.7/en/operating-system-error-codes.html
+</span></span><span style="display:flex;"><span>    [ERROR] InnoDB: File ./ib_logfile0: &#39;Linux aio&#39; returned OS error 195. Cannot continue operation
+</span></span><span style="display:flex;"><span>    [ERROR] InnoDB: Cannot continue operation.
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/leaf/202109/d9aba719c9ae.png" alt=""></p>
 <h1 id="解决办法">解决办法</h1>
 <h2 id="start-the-container-like-this-">start the container like this :</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker run -it mysql --innodb_use_native_aio=0
-</code></pre></div><h2 id="add-the-command-to-your-docker-compose-file-">add the command to your docker-compose file :</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    command: --innodb_use_native_aio=0
-</code></pre></div><h2 id="add-an-option-to-your-mycnf-file-in-your-build">add an option to your my.cnf file in your build</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    innodb_use_native_aio=0
-</code></pre></div><p><strong>From</strong>  <a href="https://stackoverflow.com/questions/48239668/fails-to-initialize-mysql-database-on-windows-10">stackoverflow</a>  <strong>By</strong>  <a href="https://stackoverflow.com/users/3306354/andrewd">@AndrewD</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker run -it mysql --innodb_use_native_aio=0
+</span></span></code></pre></div><h2 id="add-the-command-to-your-docker-compose-file-">add the command to your docker-compose file :</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    command: --innodb_use_native_aio=0
+</span></span></code></pre></div><h2 id="add-an-option-to-your-mycnf-file-in-your-build">add an option to your my.cnf file in your build</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    innodb_use_native_aio=0
+</span></span></code></pre></div><p><strong>From</strong>  <a href="https://stackoverflow.com/questions/48239668/fails-to-initialize-mysql-database-on-windows-10">stackoverflow</a>  <strong>By</strong>  <a href="https://stackoverflow.com/users/3306354/andrewd">@AndrewD</a></p>
 <h1 id="附我的docker-composeyml文件">附：我的<code>docker-compose.yml</code>文件</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile">    version: <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>    services: <span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>        mysql:<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>            image: docker-mysql57<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>            container_name: db-mysql<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>            restart: always<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>            environment:<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>                - MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MYSQL_ROOT_PASSWORD<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>                - MYSQL_DATABASE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MYSQL_DATABASE<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>                - MYSQL_USER<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MYSQL_USER<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>                - MYSQL_PASSWORD<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MYSQL_PASSWORD<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>            volumes: <span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>                - ./data/mysql:/var/lib/mysql<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>            ports: <span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>                - 33066:3306<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>            command: --innodb_use_native_aio<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>   <span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span>    version: <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>    services: <span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>        mysql:<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>            image: docker-mysql57<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>            container_name: db-mysql<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>            restart: always<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>            environment:<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>                - MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MYSQL_ROOT_PASSWORD<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>                - MYSQL_DATABASE<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MYSQL_DATABASE<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>                - MYSQL_USER<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MYSQL_USER<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>                - MYSQL_PASSWORD<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>MYSQL_PASSWORD<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>            volumes: <span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>                - ./data/mysql:/var/lib/mysql<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>            ports: <span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>                - 33066:3306<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>            command: --innodb_use_native_aio<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>   <span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
 </blockquote>
@@ -246,7 +246,7 @@
 	<div class="post-comment">
     
     
-<span id="/leaf/202109/docker_err.html" class="leancloud_visitors" data-flag-title="记一次Docker mysql容器在windows虚拟机无法启动问题">
+<span id="https://listenlive.cn/leaf/202109/docker_err.html" class="leancloud_visitors" data-flag-title="记一次Docker mysql容器在windows虚拟机无法启动问题">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -270,12 +270,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "记一次Docker mysql容器在windows虚拟机无法启动问题 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -461,7 +466,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

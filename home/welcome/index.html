@@ -177,7 +177,7 @@
 	<div class="post-comment">
     
     
-<span id="/home/welcome" class="leancloud_visitors" data-flag-title="欢迎大家">
+<span id="https://listenlive.cn/home/welcome/" class="leancloud_visitors" data-flag-title="欢迎大家">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -201,12 +201,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "欢迎大家 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -350,7 +355,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

@@ -194,26 +194,26 @@
 <p><img src="https://listenlive.cn/images/note/202007311027.png" alt=""></p>
 <h2 id="在mongodb目录新建logtxt文件和dat文件目录">在mongodb目录新建log.txt文件和dat文件目录</h2>
 <h2 id="启动命令">启动命令</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mongod --port 8888 --dbpath d:/wamp64/bin/mongodb/data --logpath d:/wamp64/bin/mongodb/log.txt
-</code></pre></div><p>查看是否启动成功</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">netstat -an
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202007311035.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mongod --port 8888 --dbpath d:/wamp64/bin/mongodb/data --logpath d:/wamp64/bin/mongodb/log.txt
+</span></span></code></pre></div><p>查看是否启动成功</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>netstat -an
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202007311035.png" alt=""></p>
 <h2 id="连接mongodb数据库">连接MongoDB数据库</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mongo localhost:8888
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202007311040.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>mongo localhost:8888
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202007311040.png" alt=""></p>
 <h1 id="mongodb基本指令">MongoDB基本指令</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">use dbname                          //使用数据库，如果没有则创建
-show dbs                            //查看数据库
-db.集合名.insert({})                 //插入集合
-show tables                         //查看集合
-db.集合名.find()                     //查询集合里面的所有文档
-db.集合名.findOne()                  //查询集合里面的第一个文档
-db.集合名.drop()                     //删除集合
-db.dropDatabase()                   //删除数据库（当前use的数据库）
-db.集合名.remove({age:5})            //删除文档
-db.集合名.update({条件}),{新文档}      //更新文档
-db.集合名.find({条件})                //查询文档
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>use dbname                          //使用数据库，如果没有则创建
+</span></span><span style="display:flex;"><span>show dbs                            //查看数据库
+</span></span><span style="display:flex;"><span>db.集合名.insert({})                 //插入集合
+</span></span><span style="display:flex;"><span>show tables                         //查看集合
+</span></span><span style="display:flex;"><span>db.集合名.find()                     //查询集合里面的所有文档
+</span></span><span style="display:flex;"><span>db.集合名.findOne()                  //查询集合里面的第一个文档
+</span></span><span style="display:flex;"><span>db.集合名.drop()                     //删除集合
+</span></span><span style="display:flex;"><span>db.dropDatabase()                   //删除数据库（当前use的数据库）
+</span></span><span style="display:flex;"><span>db.集合名.remove({age:5})            //删除文档
+</span></span><span style="display:flex;"><span>db.集合名.update({条件}),{新文档}      //更新文档
+</span></span><span style="display:flex;"><span>db.集合名.find({条件})                //查询文档
+</span></span></code></pre></div><hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
 </blockquote>
@@ -230,7 +230,7 @@ db.集合名.find({条件})                //查询文档
 	<div class="post-comment">
     
     
-<span id="/note/2020/07/30/mongodb01" class="leancloud_visitors" data-flag-title="MongoDB 安装配置">
+<span id="https://listenlive.cn/note/2020/07/30/mongodb01/" class="leancloud_visitors" data-flag-title="MongoDB 安装配置">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -254,12 +254,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "MongoDB 安装配置 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -415,7 +420,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

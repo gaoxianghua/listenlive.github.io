@@ -200,86 +200,86 @@
 </ul>
 <h1 id="生成ssh-key">生成SSH Key</h1>
 <p>在用户<code>家</code>目录运行：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> cd ~
- ssh-keygen -t rsa -C <span style="color:#e6db74">&#34;youemail@homestead.com&#34;</span>
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202105/ssh.png" alt=""><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span> cd ~
+</span></span><span style="display:flex;"><span> ssh-keygen -t rsa -C <span style="color:#e6db74">&#34;youemail@homestead.com&#34;</span>
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202105/ssh.png" alt=""><br>
 此时，会生成以下的文件<br>
 <img src="https://listenlive.cn/images/note/202105/ssh-img.png" alt=""></p>
 <h1 id="下载homestead的box文件">下载Homestead的box文件</h1>
 <h2 id="打开命令终端以管理员权限运行cd到用户家目录">打开命令终端以管理员权限运行，cd到用户<code>家</code>目录</h2>
 <p><img src="https://listenlive.cn/images/note/202105/command.png" alt=""></p>
 <h2 id="运行命令">运行命令：</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vagrant box add laravel/homestead
-</code></pre></div><h2 id="输入编号选择vitrualbox选项">输入编号，选择vitrualbox选项</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vagrant box add laravel/homestead
+</span></span></code></pre></div><h2 id="输入编号选择vitrualbox选项">输入编号，选择vitrualbox选项</h2>
 <h2 id="等待下载安装即可现在国内的下载速度还是可以的所以不用去找box文件啦">等待下载安装即可（现在国内的下载速度还是可以的，所以不用去找box文件啦）</h2>
 <h2 id="完成后运行vagrant-box-list命令查看是否安装成功">完成后运行<code>vagrant box list</code>命令查看是否安装成功</h2>
 <h1 id="配置homestead">配置Homestead</h1>
 <h2 id="克隆homestead配置文件到用户家目录">克隆homestead配置文件到用户<code>家</code>目录</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~ 
-git clone https://github.com/laravel/homestead.git
-</code></pre></div><h2 id="执行命令bash-initsh初始化">执行命令<code>bash init.sh</code>初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd homestead
-bash init.sh
-</code></pre></div><h2 id="配置homesteadyaml文件">配置<code>Homestead.yaml</code>文件</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">---
-ip: <span style="color:#e6db74">&#34;192.168.1.10&#34;</span>
-memory: <span style="color:#ae81ff">2048</span>
-cpus: <span style="color:#ae81ff">2</span>
-provider: virtualbox
-
-authorize: ~/.ssh/id_rsa.pub
-
-keys:
-    - ~/.ssh/id_rsa
-
-folders:
-    - map: D:<span style="color:#ae81ff">\w</span>orkspace           /**自定义自己的工作目录<span style="color:#f92672">(</span>注释删除<span style="color:#f92672">)</span>**/
-      to: /home/vagrant/code
-
-sites:
-    - map: homestead.test
-      to: /home/vagrant/code/homestead/public
-    - map: api.test
-      to: /home/vagrant/code/shopApi/public
-    - map: tp5.test
-      to: /home/vagrant/code/tp5/public
-      php: <span style="color:#e6db74">&#34;7.2&#34;</span>                /**指定php版本<span style="color:#f92672">(</span>注释内容删除<span style="color:#f92672">)</span>**/
-      type: thinkphp            /**TP框架需指定thinkphp类型<span style="color:#f92672">(</span>为了支持pathinfo<span style="color:#f92672">)(</span>注释内容删除<span style="color:#f92672">)</span>**/
-
-databases:
-    - homestead
-    - api
-
-features:
-    - mysql: true
-    - mariadb: false
-    - postgresql: false
-    - ohmyzsh: false
-    - webdriver: false
-
-<span style="color:#75715e">#services:</span>
-<span style="color:#75715e">#    - enabled:</span>
-<span style="color:#75715e">#        - &#34;postgresql@12-main&#34;</span>
-<span style="color:#75715e">#    - disabled:</span>
-<span style="color:#75715e">#        - &#34;postgresql@11-main&#34;</span>
-
-<span style="color:#75715e"># ports:</span>
-<span style="color:#75715e">#     - send: 50000</span>
-<span style="color:#75715e">#       to: 5000</span>
-<span style="color:#75715e">#     - send: 7777</span>
-<span style="color:#75715e">#       to: 777</span>
-<span style="color:#75715e">#       protocol: udp</span>
-</code></pre></div><h1 id="运行vagrant-up命令启动homestead">运行<code>vagrant up</code>命令，启动Homestead</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">    vagrant up
-</code></pre></div><h2 id="xshell连接虚拟机的ip为yaml配置文件中的ip用户名和密码均为vagrant">xshell连接虚拟机的IP为yaml配置文件中的IP，用户名和密码均为vagrant</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd ~ 
+</span></span><span style="display:flex;"><span>git clone https://github.com/laravel/homestead.git
+</span></span></code></pre></div><h2 id="执行命令bash-initsh初始化">执行命令<code>bash init.sh</code>初始化</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd homestead
+</span></span><span style="display:flex;"><span>bash init.sh
+</span></span></code></pre></div><h2 id="配置homesteadyaml文件">配置<code>Homestead.yaml</code>文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>ip: <span style="color:#e6db74">&#34;192.168.1.10&#34;</span>
+</span></span><span style="display:flex;"><span>memory: <span style="color:#ae81ff">2048</span>
+</span></span><span style="display:flex;"><span>cpus: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>provider: virtualbox
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>authorize: ~/.ssh/id_rsa.pub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>keys:
+</span></span><span style="display:flex;"><span>    - ~/.ssh/id_rsa
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>folders:
+</span></span><span style="display:flex;"><span>    - map: D:<span style="color:#ae81ff">\w</span>orkspace           /**自定义自己的工作目录<span style="color:#f92672">(</span>注释删除<span style="color:#f92672">)</span>**/
+</span></span><span style="display:flex;"><span>      to: /home/vagrant/code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sites:
+</span></span><span style="display:flex;"><span>    - map: homestead.test
+</span></span><span style="display:flex;"><span>      to: /home/vagrant/code/homestead/public
+</span></span><span style="display:flex;"><span>    - map: api.test
+</span></span><span style="display:flex;"><span>      to: /home/vagrant/code/shopApi/public
+</span></span><span style="display:flex;"><span>    - map: tp5.test
+</span></span><span style="display:flex;"><span>      to: /home/vagrant/code/tp5/public
+</span></span><span style="display:flex;"><span>      php: <span style="color:#e6db74">&#34;7.2&#34;</span>                /**指定php版本<span style="color:#f92672">(</span>注释内容删除<span style="color:#f92672">)</span>**/
+</span></span><span style="display:flex;"><span>      type: thinkphp            /**TP框架需指定thinkphp类型<span style="color:#f92672">(</span>为了支持pathinfo<span style="color:#f92672">)(</span>注释内容删除<span style="color:#f92672">)</span>**/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>databases:
+</span></span><span style="display:flex;"><span>    - homestead
+</span></span><span style="display:flex;"><span>    - api
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>features:
+</span></span><span style="display:flex;"><span>    - mysql: true
+</span></span><span style="display:flex;"><span>    - mariadb: false
+</span></span><span style="display:flex;"><span>    - postgresql: false
+</span></span><span style="display:flex;"><span>    - ohmyzsh: false
+</span></span><span style="display:flex;"><span>    - webdriver: false
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#services:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    - enabled:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#        - &#34;postgresql@12-main&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    - disabled:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#        - &#34;postgresql@11-main&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ports:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     - send: 50000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#       to: 5000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     - send: 7777</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#       to: 777</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#       protocol: udp</span>
+</span></span></code></pre></div><h1 id="运行vagrant-up命令启动homestead">运行<code>vagrant up</code>命令，启动Homestead</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>    vagrant up
+</span></span></code></pre></div><h2 id="xshell连接虚拟机的ip为yaml配置文件中的ip用户名和密码均为vagrant">xshell连接虚拟机的IP为yaml配置文件中的IP，用户名和密码均为vagrant</h2>
 <p><img src="https://listenlive.cn/images/note/202105/xshell_link.png" alt=""></p>
 <h2 id="navicat连接mysql数据库的ip为yaml配置文件中的ip用户名为homestead密码为secret">Navicat连接MySQL数据库的IP为yaml配置文件中的IP，用户名为homestead，密码为secret</h2>
 <h1 id="修改homestead中php的版本">修改Homestead中PHP的版本</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 查看所有 php 版本和当前版本</span>
-sudo update-alternatives --display php 
-<span style="color:#75715e"># 执行后，会列出当前 php 所有版本和编号，输入编号，切换到执行的版本</span>
-sudo update-alternatives --config php 
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202105/installhd.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># 查看所有 php 版本和当前版本</span>
+</span></span><span style="display:flex;"><span>sudo update-alternatives --display php 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 执行后，会列出当前 php 所有版本和编号，输入编号，切换到执行的版本</span>
+</span></span><span style="display:flex;"><span>sudo update-alternatives --config php 
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202105/installhd.png" alt=""></p>
 <hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
@@ -297,7 +297,7 @@ sudo update-alternatives --config php
 	<div class="post-comment">
     
     
-<span id="/note/202105/installhd.html" class="leancloud_visitors" data-flag-title="Windows-Laravel开发环境Homestead搭建">
+<span id="https://listenlive.cn/note/202105/installhd.html" class="leancloud_visitors" data-flag-title="Windows-Laravel开发环境Homestead搭建">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -321,12 +321,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Windows-Laravel开发环境Homestead搭建 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -518,7 +523,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

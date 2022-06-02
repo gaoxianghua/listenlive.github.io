@@ -190,259 +190,259 @@
     </header>
     <div class="post-body" itemprop="articleBody">
     <h1 id="路由routeswebphp">路由routes/web.php</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Route::get(&#39;/&#39;, function () {
-    return view(&#39;welcome&#39;);
-});
-//user资源
-Route::resource(&#39;user&#39;,&#39;UserController&#39;);
-//退出路由
-Route::get(&#39;logout&#39;,&#39;LoginController@logout&#39;)-&gt;name(&#39;logout&#39;);
-//登录路由
-Route::get(&#39;login&#39;,&#39;LoginController@login&#39;)-&gt;name(&#39;login&#39;);
-//登录处理
-Route::post(&#39;login&#39;,&#39;LoginController@store&#39;)-&gt;name(&#39;login&#39;);
-</code></pre></div><h1 id="登录控制器logincontrollerphp">登录控制器LoginController.php</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-class LoginController extends Controller
-{
-    //登录视图
-    public function login()
-    {
-        return view(&#39;user.login&#39;);
-    }
-    //登录处理
-    public function store(Request $request)
-    {
-        $data = $this-&gt;validate($request,[
-            &#39;email&#39; =&gt;  &#39;email|required&#39;,
-            &#39;password&#39; =&gt;  &#39;required|min:6&#39;,
-        ]);
-        if(\Auth::attempt($data)){
-            session()-&gt;flash(&#39;success&#39;,&#39;登录成功&#39;);
-            return redirect(&#39;/&#39;);
-        }
-        session()-&gt;flash(&#39;danger&#39;,&#39;登录失败&#39;);
-        return back();
-    }
-    public function logout()
-    {
-        \Auth::logout();
-        session()-&gt;flash(&#39;success&#39;,&#39;退出成功&#39;);
-        return redirect(&#39;/&#39;);
-    }
-}
-</code></pre></div><h1 id="用户控制器usercontrollerphp">用户控制器UserController.php</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;?php
-namespace App\Http\Controllers;
-use App\User;
-use Illuminate\Http\Request;
-class UserController extends Controller
-{
-    public function __construct()
-    {
-        $this-&gt;middleware(&#39;auth&#39;,[
-            &#39;except&#39;=&gt;[&#39;index&#39;,&#39;show&#39;,&#39;create&#39;,&#39;store&#39;]
-        ]);
-        //已登录用户不显示注册（create）方法
-        $this-&gt;middleware(&#39;guest&#39;,[
-            &#39;only&#39;=&gt;[&#39;create&#39;,&#39;store&#39;]
-        ]);
-    }
-    //用户列表
-    public function index()
-    {
-        $users = User::paginate(10);    //分页
-        return view(&#39;user.index&#39;,compact(&#39;users&#39;));
-    }
-    //用户信息查看
-    public function show(User $user)
-    {
-        return view(&#39;user.show&#39;,compact(&#39;user&#39;));
-    }
-    //用户注册-视图
-    public function create()
-    {
-        return view(&#39;user.create&#39;);
-    }
-    //注册处理
-    public function store(Request $request)
-    {
-        $data = $this-&gt;validate($request,[
-            &#39;name&#39;  =&gt;  &#39;required|min:4&#39;,
-            &#39;email&#39;  =&gt;  &#39;required|email|unique:users&#39;,
-            &#39;password&#39;  =&gt; &#39;required|min:6|confirmed&#39;,
-        ]);
-        $data[&#39;password&#39;] = bcrypt($data[&#39;password&#39;]);
-        User::create($data);
-        //注册成功后自动登录处理
-        \Auth::attempt([&#39;email&#39;=&gt;$request-&gt;email,&#39;password&#39;=&gt;$request-&gt;password]);
-        return redirect()-&gt;route(&#39;/&#39;);
-    }
-    //用户信息修改-视图
-    public function edit(User $user)
-    {
-        $this-&gt;authorize(&#39;update&#39;,$user);   //验证权限-只能修改当前登录的用户资料
-        return view(&#39;user.edit&#39;,compact(&#39;user&#39;));
-    }
-    //用户信息修改-更新数据
-    public function update(Request $request,User $user)
-    {
-        $this-&gt;validate($request,[
-            &#39;name&#39;  =&gt;  &#39;required|min:4&#39;,
-            &#39;password&#39;  =&gt; &#39;nullable|min:6|confirmed&#39;,
-        ]);
-        $user-&gt;name = $request-&gt;name;
-        if($request-&gt;password){
-            $user-&gt;password = bcrypt($request-&gt;password);
-        }
-        $user-&gt;save();
-        session()-&gt;flash(&#39;success&#39;,&#39;修改成功&#39;);
-        return redirect()-&gt;route(&#39;user.show&#39;,$user);
-    }
-    //删除
-    public function destroy(User $user)
-    {
-        $this-&gt;authorize(&#39;delete&#39;,$user);
-        $user-&gt;delete();
-        session()-&gt;flash(&#39;success&#39;,&#39;删除成功&#39;);
-        return redirect()-&gt;route(&#39;user.index&#39;);
-    }
-}
-</code></pre></div><h1 id="新建userpolicy">新建UserPolicy</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan make:policy --model:UserPolicy
-</code></pre></div><h2 id="在appprovidersauthserviceproviderphp中注册">在app/Providers/AuthServiceProvider.php中注册</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">protected $policies = [
-        &#39;App\Model&#39; =&gt; &#39;App\Policies\ModelPolicy&#39;,
-        &#39;App\User&#39;  =&gt;  UserPolicy::class
-    ];
-</code></pre></div><h2 id="apppoliciesuserpolicyphp">app/Policies/UserPolicy.php</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function update(User $user, User $model)
-{
-    //是管理员 或者当前登录的才可以修改资料
-    return $user-&gt;is_admin || $user-&gt;id == $model-&gt;id;
-}    
-
-public function delete(User $user, User $model)
-{
-    //验证管理员才可以删除，并且管理员不可以删除自己
-    return $user-&gt;is_admin &amp;&amp; $user-&gt;id != $model-&gt;id;
-}
-</code></pre></div><h1 id="用户列表视图">用户列表视图</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">@extends(&#39;layout/default&#39;)
-@section(&#39;content&#39;)
-    &lt;div class=&#34;card&#34;&gt;
-        &lt;div class=&#34;card-header&#34;&gt;用户别表&lt;/div&gt;
-        &lt;div class=&#34;card-body&#34;&gt;
-            &lt;table class=&#34;table&#34;&gt;
-                &lt;thead&gt;
-                &lt;tr&gt;
-                    &lt;th&gt;编号&lt;/th&gt;
-                    &lt;th&gt;昵称&lt;/th&gt;
-                    &lt;th&gt;操作&lt;/th&gt;
-                &lt;/tr&gt;
-                &lt;/thead&gt;
-                &lt;tbody&gt;
-                @foreach($users as $user)
-                &lt;tr&gt;
-                    &lt;td scope=&#34;row&#34;&gt;{{$user[&#39;id&#39;]}}&lt;/td&gt;
-                    &lt;td&gt;{{$user[&#39;name&#39;]}}&lt;/td&gt;
-                    &lt;td&gt;
-                        &lt;div class=&#34;btn-group&#34;&gt;
-                            &lt;a href=&#34;{{route(&#39;user.show&#39;,$user)}}&#34; type=&#34;button&#34; class=&#34;btn btn-success&#34;&gt;查看&lt;/a&gt;
-                            @can(&#39;update&#39;,$user)
-                            &lt;a href=&#34;{{route(&#39;user.edit&#39;,$user)}}&#34; type=&#34;button&#34; class=&#34;btn btn-info&#34;&gt;修改&lt;/a&gt;
-                            @endcan
-                            @can(&#39;delete&#39;,$user)
-                            &lt;form action=&#34;{{route(&#39;user.destroy&#39;,$user)}}&#34; method=&#34;post&#34;&gt;
-                                @csrf
-                                @method(&#39;DELETE&#39;)
-                                &lt;button type=&#34;submit&#34; class=&#34;btn btn-danger&#34;&gt;删除&lt;/button&gt;
-                            &lt;/form&gt;
-                            @endcan
-                        &lt;/div&gt;
-                    &lt;/td&gt;
-                &lt;/tr&gt;
-                @endforeach
-                &lt;/tbody&gt;
-            &lt;/table&gt;
-        &lt;/div&gt;
-        &lt;!--分页--&gt;
-        &lt;div class=&#34;card-footer text-muted&#34;&gt;
-            {{$users-&gt;links()}}
-        &lt;/div&gt;
-    &lt;/div&gt;
-@endsection
-</code></pre></div><h1 id="使用flash闪存处理提示信息">使用flash闪存处理提示信息</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">{{--提示信息处理--}}
-@foreach([&#39;success&#39;,&#39;danger&#39;] as $t)
-    @if(session()-&gt;has($t))
-        &lt;div class=&#34;alert alert-{{$t}}&#34; role=&#34;alert&#34;&gt;
-            &lt;strong&gt;{{session()-&gt;get($t)}}&lt;/strong&gt;
-        &lt;/div&gt;
-        @endif
-@endforeach
-</code></pre></div><p>#错误信息处理</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">{{--错误信息处理--}}
-@if(count($errors)&gt;0)
-    &lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
-        @foreach($errors-&gt;all() as $error)
-            &lt;strong&gt;{{$error}}&lt;/strong&gt;
-        @endforeach
-    &lt;/div&gt;
-@endif
-</code></pre></div><h1 id="父级视图模板layoutdefaultbladephp">父级视图模板/layout/default.blade.php</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;!DOCTYPE html&gt;
-&lt;html lang=&#34;{{ str_replace(&#39;_&#39;, &#39;-&#39;, app()-&gt;getLocale()) }}&#34;&gt;
-&lt;head&gt;
-    &lt;meta charset=&#34;utf-8&#34;&gt;
-    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;
-    &lt;title&gt;Blog 01&lt;/title&gt;
-    &lt;!-- Fonts --&gt;
-    &lt;link href=&#34;https://fonts.googleapis.com/css?family=Nunito:200,600&#34; rel=&#34;stylesheet&#34;&gt;
-    &lt;!-- Styles --&gt;
-    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css&#34; integrity=&#34;sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk&#34; crossorigin=&#34;anonymous&#34;&gt;
-    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js&#34; integrity=&#34;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
-    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js&#34; integrity=&#34;sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
-    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js&#34; integrity=&#34;sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;nav&gt;
-    &lt;ul class=&#34;nav&#34;&gt;
-        &lt;li class=&#34;nav-item&#34;&gt;
-            &lt;a class=&#34;nav-link active&#34; href=&#34;/&#34;&gt;首页&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li class=&#34;nav-item&#34;&gt;
-            &lt;a class=&#34;nav-link active&#34; href=&#34;{{route(&#39;user.index&#39;)}}&#34;&gt;用户列表&lt;/a&gt;
-        &lt;/li&gt;
-        @auth
-            &lt;li class=&#34;nav-item&#34;&gt;
-                &lt;a class=&#34;nav-link&#34;&gt;欢迎：&lt;strong&gt;{{auth()-&gt;user()-&gt;name}}&lt;/strong&gt;&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&#34;nav-item&#34;&gt;
-                &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;user.edit&#39;,auth()-&gt;user())}}&#34;&gt;修改资料&lt;/a&gt;
-            &lt;/li&gt;
-            &lt;li class=&#34;nav-item&#34;&gt;
-                &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;logout&#39;)}}&#34;&gt;退出&lt;/a&gt;
-            &lt;/li&gt;
-            @else
-                &lt;li class=&#34;nav-item&#34;&gt;
-                    &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;login&#39;)}}&#34;&gt;登录&lt;/a&gt;
-                &lt;/li&gt;
-                &lt;li class=&#34;nav-item&#34;&gt;
-                    &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;user.create&#39;)}}&#34;&gt;注册&lt;/a&gt;
-                &lt;/li&gt;
-        @endauth
-    &lt;/ul&gt;
-&lt;/nav&gt;
-{{--错误信息--}}
-@include(&#39;layout._errors&#39;)
-{{--提示信息--}}
-@include(&#39;layout._message&#39;)
-@yield(&#39;content&#39;)
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202008041017.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Route::get(&#39;/&#39;, function () {
+</span></span><span style="display:flex;"><span>    return view(&#39;welcome&#39;);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>//user资源
+</span></span><span style="display:flex;"><span>Route::resource(&#39;user&#39;,&#39;UserController&#39;);
+</span></span><span style="display:flex;"><span>//退出路由
+</span></span><span style="display:flex;"><span>Route::get(&#39;logout&#39;,&#39;LoginController@logout&#39;)-&gt;name(&#39;logout&#39;);
+</span></span><span style="display:flex;"><span>//登录路由
+</span></span><span style="display:flex;"><span>Route::get(&#39;login&#39;,&#39;LoginController@login&#39;)-&gt;name(&#39;login&#39;);
+</span></span><span style="display:flex;"><span>//登录处理
+</span></span><span style="display:flex;"><span>Route::post(&#39;login&#39;,&#39;LoginController@store&#39;)-&gt;name(&#39;login&#39;);
+</span></span></code></pre></div><h1 id="登录控制器logincontrollerphp">登录控制器LoginController.php</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>namespace App\Http\Controllers;
+</span></span><span style="display:flex;"><span>use Illuminate\Http\Request;
+</span></span><span style="display:flex;"><span>class LoginController extends Controller
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    //登录视图
+</span></span><span style="display:flex;"><span>    public function login()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        return view(&#39;user.login&#39;);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    //登录处理
+</span></span><span style="display:flex;"><span>    public function store(Request $request)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $data = $this-&gt;validate($request,[
+</span></span><span style="display:flex;"><span>            &#39;email&#39; =&gt;  &#39;email|required&#39;,
+</span></span><span style="display:flex;"><span>            &#39;password&#39; =&gt;  &#39;required|min:6&#39;,
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>        if(\Auth::attempt($data)){
+</span></span><span style="display:flex;"><span>            session()-&gt;flash(&#39;success&#39;,&#39;登录成功&#39;);
+</span></span><span style="display:flex;"><span>            return redirect(&#39;/&#39;);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        session()-&gt;flash(&#39;danger&#39;,&#39;登录失败&#39;);
+</span></span><span style="display:flex;"><span>        return back();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    public function logout()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        \Auth::logout();
+</span></span><span style="display:flex;"><span>        session()-&gt;flash(&#39;success&#39;,&#39;退出成功&#39;);
+</span></span><span style="display:flex;"><span>        return redirect(&#39;/&#39;);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="用户控制器usercontrollerphp">用户控制器UserController.php</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;?php
+</span></span><span style="display:flex;"><span>namespace App\Http\Controllers;
+</span></span><span style="display:flex;"><span>use App\User;
+</span></span><span style="display:flex;"><span>use Illuminate\Http\Request;
+</span></span><span style="display:flex;"><span>class UserController extends Controller
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    public function __construct()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this-&gt;middleware(&#39;auth&#39;,[
+</span></span><span style="display:flex;"><span>            &#39;except&#39;=&gt;[&#39;index&#39;,&#39;show&#39;,&#39;create&#39;,&#39;store&#39;]
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>        //已登录用户不显示注册（create）方法
+</span></span><span style="display:flex;"><span>        $this-&gt;middleware(&#39;guest&#39;,[
+</span></span><span style="display:flex;"><span>            &#39;only&#39;=&gt;[&#39;create&#39;,&#39;store&#39;]
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    //用户列表
+</span></span><span style="display:flex;"><span>    public function index()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $users = User::paginate(10);    //分页
+</span></span><span style="display:flex;"><span>        return view(&#39;user.index&#39;,compact(&#39;users&#39;));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    //用户信息查看
+</span></span><span style="display:flex;"><span>    public function show(User $user)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        return view(&#39;user.show&#39;,compact(&#39;user&#39;));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    //用户注册-视图
+</span></span><span style="display:flex;"><span>    public function create()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        return view(&#39;user.create&#39;);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    //注册处理
+</span></span><span style="display:flex;"><span>    public function store(Request $request)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $data = $this-&gt;validate($request,[
+</span></span><span style="display:flex;"><span>            &#39;name&#39;  =&gt;  &#39;required|min:4&#39;,
+</span></span><span style="display:flex;"><span>            &#39;email&#39;  =&gt;  &#39;required|email|unique:users&#39;,
+</span></span><span style="display:flex;"><span>            &#39;password&#39;  =&gt; &#39;required|min:6|confirmed&#39;,
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>        $data[&#39;password&#39;] = bcrypt($data[&#39;password&#39;]);
+</span></span><span style="display:flex;"><span>        User::create($data);
+</span></span><span style="display:flex;"><span>        //注册成功后自动登录处理
+</span></span><span style="display:flex;"><span>        \Auth::attempt([&#39;email&#39;=&gt;$request-&gt;email,&#39;password&#39;=&gt;$request-&gt;password]);
+</span></span><span style="display:flex;"><span>        return redirect()-&gt;route(&#39;/&#39;);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    //用户信息修改-视图
+</span></span><span style="display:flex;"><span>    public function edit(User $user)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this-&gt;authorize(&#39;update&#39;,$user);   //验证权限-只能修改当前登录的用户资料
+</span></span><span style="display:flex;"><span>        return view(&#39;user.edit&#39;,compact(&#39;user&#39;));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    //用户信息修改-更新数据
+</span></span><span style="display:flex;"><span>    public function update(Request $request,User $user)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this-&gt;validate($request,[
+</span></span><span style="display:flex;"><span>            &#39;name&#39;  =&gt;  &#39;required|min:4&#39;,
+</span></span><span style="display:flex;"><span>            &#39;password&#39;  =&gt; &#39;nullable|min:6|confirmed&#39;,
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>        $user-&gt;name = $request-&gt;name;
+</span></span><span style="display:flex;"><span>        if($request-&gt;password){
+</span></span><span style="display:flex;"><span>            $user-&gt;password = bcrypt($request-&gt;password);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $user-&gt;save();
+</span></span><span style="display:flex;"><span>        session()-&gt;flash(&#39;success&#39;,&#39;修改成功&#39;);
+</span></span><span style="display:flex;"><span>        return redirect()-&gt;route(&#39;user.show&#39;,$user);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    //删除
+</span></span><span style="display:flex;"><span>    public function destroy(User $user)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $this-&gt;authorize(&#39;delete&#39;,$user);
+</span></span><span style="display:flex;"><span>        $user-&gt;delete();
+</span></span><span style="display:flex;"><span>        session()-&gt;flash(&#39;success&#39;,&#39;删除成功&#39;);
+</span></span><span style="display:flex;"><span>        return redirect()-&gt;route(&#39;user.index&#39;);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="新建userpolicy">新建UserPolicy</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan make:policy --model:UserPolicy
+</span></span></code></pre></div><h2 id="在appprovidersauthserviceproviderphp中注册">在app/Providers/AuthServiceProvider.php中注册</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>protected $policies = [
+</span></span><span style="display:flex;"><span>        &#39;App\Model&#39; =&gt; &#39;App\Policies\ModelPolicy&#39;,
+</span></span><span style="display:flex;"><span>        &#39;App\User&#39;  =&gt;  UserPolicy::class
+</span></span><span style="display:flex;"><span>    ];
+</span></span></code></pre></div><h2 id="apppoliciesuserpolicyphp">app/Policies/UserPolicy.php</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>public function update(User $user, User $model)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    //是管理员 或者当前登录的才可以修改资料
+</span></span><span style="display:flex;"><span>    return $user-&gt;is_admin || $user-&gt;id == $model-&gt;id;
+</span></span><span style="display:flex;"><span>}    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>public function delete(User $user, User $model)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    //验证管理员才可以删除，并且管理员不可以删除自己
+</span></span><span style="display:flex;"><span>    return $user-&gt;is_admin &amp;&amp; $user-&gt;id != $model-&gt;id;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="用户列表视图">用户列表视图</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>@extends(&#39;layout/default&#39;)
+</span></span><span style="display:flex;"><span>@section(&#39;content&#39;)
+</span></span><span style="display:flex;"><span>    &lt;div class=&#34;card&#34;&gt;
+</span></span><span style="display:flex;"><span>        &lt;div class=&#34;card-header&#34;&gt;用户别表&lt;/div&gt;
+</span></span><span style="display:flex;"><span>        &lt;div class=&#34;card-body&#34;&gt;
+</span></span><span style="display:flex;"><span>            &lt;table class=&#34;table&#34;&gt;
+</span></span><span style="display:flex;"><span>                &lt;thead&gt;
+</span></span><span style="display:flex;"><span>                &lt;tr&gt;
+</span></span><span style="display:flex;"><span>                    &lt;th&gt;编号&lt;/th&gt;
+</span></span><span style="display:flex;"><span>                    &lt;th&gt;昵称&lt;/th&gt;
+</span></span><span style="display:flex;"><span>                    &lt;th&gt;操作&lt;/th&gt;
+</span></span><span style="display:flex;"><span>                &lt;/tr&gt;
+</span></span><span style="display:flex;"><span>                &lt;/thead&gt;
+</span></span><span style="display:flex;"><span>                &lt;tbody&gt;
+</span></span><span style="display:flex;"><span>                @foreach($users as $user)
+</span></span><span style="display:flex;"><span>                &lt;tr&gt;
+</span></span><span style="display:flex;"><span>                    &lt;td scope=&#34;row&#34;&gt;{{$user[&#39;id&#39;]}}&lt;/td&gt;
+</span></span><span style="display:flex;"><span>                    &lt;td&gt;{{$user[&#39;name&#39;]}}&lt;/td&gt;
+</span></span><span style="display:flex;"><span>                    &lt;td&gt;
+</span></span><span style="display:flex;"><span>                        &lt;div class=&#34;btn-group&#34;&gt;
+</span></span><span style="display:flex;"><span>                            &lt;a href=&#34;{{route(&#39;user.show&#39;,$user)}}&#34; type=&#34;button&#34; class=&#34;btn btn-success&#34;&gt;查看&lt;/a&gt;
+</span></span><span style="display:flex;"><span>                            @can(&#39;update&#39;,$user)
+</span></span><span style="display:flex;"><span>                            &lt;a href=&#34;{{route(&#39;user.edit&#39;,$user)}}&#34; type=&#34;button&#34; class=&#34;btn btn-info&#34;&gt;修改&lt;/a&gt;
+</span></span><span style="display:flex;"><span>                            @endcan
+</span></span><span style="display:flex;"><span>                            @can(&#39;delete&#39;,$user)
+</span></span><span style="display:flex;"><span>                            &lt;form action=&#34;{{route(&#39;user.destroy&#39;,$user)}}&#34; method=&#34;post&#34;&gt;
+</span></span><span style="display:flex;"><span>                                @csrf
+</span></span><span style="display:flex;"><span>                                @method(&#39;DELETE&#39;)
+</span></span><span style="display:flex;"><span>                                &lt;button type=&#34;submit&#34; class=&#34;btn btn-danger&#34;&gt;删除&lt;/button&gt;
+</span></span><span style="display:flex;"><span>                            &lt;/form&gt;
+</span></span><span style="display:flex;"><span>                            @endcan
+</span></span><span style="display:flex;"><span>                        &lt;/div&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/td&gt;
+</span></span><span style="display:flex;"><span>                &lt;/tr&gt;
+</span></span><span style="display:flex;"><span>                @endforeach
+</span></span><span style="display:flex;"><span>                &lt;/tbody&gt;
+</span></span><span style="display:flex;"><span>            &lt;/table&gt;
+</span></span><span style="display:flex;"><span>        &lt;/div&gt;
+</span></span><span style="display:flex;"><span>        &lt;!--分页--&gt;
+</span></span><span style="display:flex;"><span>        &lt;div class=&#34;card-footer text-muted&#34;&gt;
+</span></span><span style="display:flex;"><span>            {{$users-&gt;links()}}
+</span></span><span style="display:flex;"><span>        &lt;/div&gt;
+</span></span><span style="display:flex;"><span>    &lt;/div&gt;
+</span></span><span style="display:flex;"><span>@endsection
+</span></span></code></pre></div><h1 id="使用flash闪存处理提示信息">使用flash闪存处理提示信息</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{--提示信息处理--}}
+</span></span><span style="display:flex;"><span>@foreach([&#39;success&#39;,&#39;danger&#39;] as $t)
+</span></span><span style="display:flex;"><span>    @if(session()-&gt;has($t))
+</span></span><span style="display:flex;"><span>        &lt;div class=&#34;alert alert-{{$t}}&#34; role=&#34;alert&#34;&gt;
+</span></span><span style="display:flex;"><span>            &lt;strong&gt;{{session()-&gt;get($t)}}&lt;/strong&gt;
+</span></span><span style="display:flex;"><span>        &lt;/div&gt;
+</span></span><span style="display:flex;"><span>        @endif
+</span></span><span style="display:flex;"><span>@endforeach
+</span></span></code></pre></div><p>#错误信息处理</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>{{--错误信息处理--}}
+</span></span><span style="display:flex;"><span>@if(count($errors)&gt;0)
+</span></span><span style="display:flex;"><span>    &lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+</span></span><span style="display:flex;"><span>        @foreach($errors-&gt;all() as $error)
+</span></span><span style="display:flex;"><span>            &lt;strong&gt;{{$error}}&lt;/strong&gt;
+</span></span><span style="display:flex;"><span>        @endforeach
+</span></span><span style="display:flex;"><span>    &lt;/div&gt;
+</span></span><span style="display:flex;"><span>@endif
+</span></span></code></pre></div><h1 id="父级视图模板layoutdefaultbladephp">父级视图模板/layout/default.blade.php</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;!DOCTYPE html&gt;
+</span></span><span style="display:flex;"><span>&lt;html lang=&#34;{{ str_replace(&#39;_&#39;, &#39;-&#39;, app()-&gt;getLocale()) }}&#34;&gt;
+</span></span><span style="display:flex;"><span>&lt;head&gt;
+</span></span><span style="display:flex;"><span>    &lt;meta charset=&#34;utf-8&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;title&gt;Blog 01&lt;/title&gt;
+</span></span><span style="display:flex;"><span>    &lt;!-- Fonts --&gt;
+</span></span><span style="display:flex;"><span>    &lt;link href=&#34;https://fonts.googleapis.com/css?family=Nunito:200,600&#34; rel=&#34;stylesheet&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;!-- Styles --&gt;
+</span></span><span style="display:flex;"><span>    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css&#34; integrity=&#34;sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk&#34; crossorigin=&#34;anonymous&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js&#34; integrity=&#34;sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js&#34; integrity=&#34;sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>    &lt;script src=&#34;https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js&#34; integrity=&#34;sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI&#34; crossorigin=&#34;anonymous&#34;&gt;&lt;/script&gt;
+</span></span><span style="display:flex;"><span>&lt;/head&gt;
+</span></span><span style="display:flex;"><span>&lt;body&gt;
+</span></span><span style="display:flex;"><span>&lt;nav&gt;
+</span></span><span style="display:flex;"><span>    &lt;ul class=&#34;nav&#34;&gt;
+</span></span><span style="display:flex;"><span>        &lt;li class=&#34;nav-item&#34;&gt;
+</span></span><span style="display:flex;"><span>            &lt;a class=&#34;nav-link active&#34; href=&#34;/&#34;&gt;首页&lt;/a&gt;
+</span></span><span style="display:flex;"><span>        &lt;/li&gt;
+</span></span><span style="display:flex;"><span>        &lt;li class=&#34;nav-item&#34;&gt;
+</span></span><span style="display:flex;"><span>            &lt;a class=&#34;nav-link active&#34; href=&#34;{{route(&#39;user.index&#39;)}}&#34;&gt;用户列表&lt;/a&gt;
+</span></span><span style="display:flex;"><span>        &lt;/li&gt;
+</span></span><span style="display:flex;"><span>        @auth
+</span></span><span style="display:flex;"><span>            &lt;li class=&#34;nav-item&#34;&gt;
+</span></span><span style="display:flex;"><span>                &lt;a class=&#34;nav-link&#34;&gt;欢迎：&lt;strong&gt;{{auth()-&gt;user()-&gt;name}}&lt;/strong&gt;&lt;/a&gt;
+</span></span><span style="display:flex;"><span>            &lt;/li&gt;
+</span></span><span style="display:flex;"><span>            &lt;li class=&#34;nav-item&#34;&gt;
+</span></span><span style="display:flex;"><span>                &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;user.edit&#39;,auth()-&gt;user())}}&#34;&gt;修改资料&lt;/a&gt;
+</span></span><span style="display:flex;"><span>            &lt;/li&gt;
+</span></span><span style="display:flex;"><span>            &lt;li class=&#34;nav-item&#34;&gt;
+</span></span><span style="display:flex;"><span>                &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;logout&#39;)}}&#34;&gt;退出&lt;/a&gt;
+</span></span><span style="display:flex;"><span>            &lt;/li&gt;
+</span></span><span style="display:flex;"><span>            @else
+</span></span><span style="display:flex;"><span>                &lt;li class=&#34;nav-item&#34;&gt;
+</span></span><span style="display:flex;"><span>                    &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;login&#39;)}}&#34;&gt;登录&lt;/a&gt;
+</span></span><span style="display:flex;"><span>                &lt;/li&gt;
+</span></span><span style="display:flex;"><span>                &lt;li class=&#34;nav-item&#34;&gt;
+</span></span><span style="display:flex;"><span>                    &lt;a class=&#34;nav-link&#34; href=&#34;{{route(&#39;user.create&#39;)}}&#34;&gt;注册&lt;/a&gt;
+</span></span><span style="display:flex;"><span>                &lt;/li&gt;
+</span></span><span style="display:flex;"><span>        @endauth
+</span></span><span style="display:flex;"><span>    &lt;/ul&gt;
+</span></span><span style="display:flex;"><span>&lt;/nav&gt;
+</span></span><span style="display:flex;"><span>{{--错误信息--}}
+</span></span><span style="display:flex;"><span>@include(&#39;layout._errors&#39;)
+</span></span><span style="display:flex;"><span>{{--提示信息--}}
+</span></span><span style="display:flex;"><span>@include(&#39;layout._message&#39;)
+</span></span><span style="display:flex;"><span>@yield(&#39;content&#39;)
+</span></span><span style="display:flex;"><span>&lt;/body&gt;
+</span></span><span style="display:flex;"><span>&lt;/html&gt;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202008041017.png" alt=""></p>
 <hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
@@ -460,7 +460,7 @@ public function delete(User $user, User $model)
 	<div class="post-comment">
     
     
-<span id="/note/2020/08/03/laravel07" class="leancloud_visitors" data-flag-title="Laravel登录注册Auth验证及使用Policy模型策略管理用户权限">
+<span id="https://listenlive.cn/note/2020/08/03/laravel07/" class="leancloud_visitors" data-flag-title="Laravel登录注册Auth验证及使用Policy模型策略管理用户权限">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -484,12 +484,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Laravel登录注册Auth验证及使用Policy模型策略管理用户权限 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -643,7 +648,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

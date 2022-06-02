@@ -191,46 +191,46 @@
     <div class="post-body" itemprop="articleBody">
     <h1 id="使用中间件进行后台权限验证">使用中间件进行后台权限验证</h1>
 <h2 id="创建中间件">创建中间件</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan make:middleware AdminMiddleware
-</code></pre></div><p>执行后会在app/Http/Middleware目录下生成<strong>AdminMiddleware.php</strong>文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan make:middleware AdminMiddleware
+</span></span></code></pre></div><p>执行后会在app/Http/Middleware目录下生成<strong>AdminMiddleware.php</strong>文件</p>
 <h2 id="在adminmiddleware类handle方法中使用auth验证">在AdminMiddleware类handle方法中使用Auth验证</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">use Auth;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function handle($request, Closure $next)
- {
-        if(!Auth::guard(&#39;admin&#39;)-&gt;check()){
-            return redirect(&#39;/admin/login&#39;);
-        }
-        return $next($request);
- }
-</code></pre></div><h2 id="路由中挂载此中间件">路由中挂载此中间件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>use Auth;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>public function handle($request, Closure $next)
+</span></span><span style="display:flex;"><span> {
+</span></span><span style="display:flex;"><span>        if(!Auth::guard(&#39;admin&#39;)-&gt;check()){
+</span></span><span style="display:flex;"><span>            return redirect(&#39;/admin/login&#39;);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        return $next($request);
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><h2 id="路由中挂载此中间件">路由中挂载此中间件</h2>
 <p><em>配置app/Http/Kernel.php</em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">protected $routeMiddleware = [
-        &#39;admin.auth&#39; =&gt; AdminMiddleware::class,      //在路由中挂载登录验证中间件
-        &#39;auth&#39; =&gt; \App\Http\Middleware\Authenticate::class,
-        &#39;auth.basic&#39; =&gt; \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        &#39;bindings&#39; =&gt; \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        &#39;cache.headers&#39; =&gt; \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        &#39;can&#39; =&gt; \Illuminate\Auth\Middleware\Authorize::class,
-        &#39;guest&#39; =&gt; \App\Http\Middleware\RedirectIfAuthenticated::class,
-        &#39;signed&#39; =&gt; \Illuminate\Routing\Middleware\ValidateSignature::class,
-        &#39;throttle&#39; =&gt; \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        &#39;verified&#39; =&gt; \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-    ];
-</code></pre></div><h2 id="在控制器中使用登录验证中间件">在控制器中使用登录验证中间件</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function __construct()
- {
-        //登录验证中间件
-        $this-&gt;middleware(&#39;admin.auth&#39;)-&gt;except([&#39;loginForm&#39;,&#39;login&#39;]);
- }
-</code></pre></div><p><em>except() 排除loginForm、login方法</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>protected $routeMiddleware = [
+</span></span><span style="display:flex;"><span>        &#39;admin.auth&#39; =&gt; AdminMiddleware::class,      //在路由中挂载登录验证中间件
+</span></span><span style="display:flex;"><span>        &#39;auth&#39; =&gt; \App\Http\Middleware\Authenticate::class,
+</span></span><span style="display:flex;"><span>        &#39;auth.basic&#39; =&gt; \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+</span></span><span style="display:flex;"><span>        &#39;bindings&#39; =&gt; \Illuminate\Routing\Middleware\SubstituteBindings::class,
+</span></span><span style="display:flex;"><span>        &#39;cache.headers&#39; =&gt; \Illuminate\Http\Middleware\SetCacheHeaders::class,
+</span></span><span style="display:flex;"><span>        &#39;can&#39; =&gt; \Illuminate\Auth\Middleware\Authorize::class,
+</span></span><span style="display:flex;"><span>        &#39;guest&#39; =&gt; \App\Http\Middleware\RedirectIfAuthenticated::class,
+</span></span><span style="display:flex;"><span>        &#39;signed&#39; =&gt; \Illuminate\Routing\Middleware\ValidateSignature::class,
+</span></span><span style="display:flex;"><span>        &#39;throttle&#39; =&gt; \Illuminate\Routing\Middleware\ThrottleRequests::class,
+</span></span><span style="display:flex;"><span>        &#39;verified&#39; =&gt; \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+</span></span><span style="display:flex;"><span>    ];
+</span></span></code></pre></div><h2 id="在控制器中使用登录验证中间件">在控制器中使用登录验证中间件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>public function __construct()
+</span></span><span style="display:flex;"><span> {
+</span></span><span style="display:flex;"><span>        //登录验证中间件
+</span></span><span style="display:flex;"><span>        $this-&gt;middleware(&#39;admin.auth&#39;)-&gt;except([&#39;loginForm&#39;,&#39;login&#39;]);
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p><em>except() 排除loginForm、login方法</em></p>
 <h1 id="authguard完成退出功能">Auth&amp;guard完成退出功能</h1>
 <h2 id="退出方法">退出方法</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"> public function logout()
- {
-    Auth::guard(&#39;admin&#39;)-&gt;logout();
-    return redirect(&#39;/admin/login&#39;);
- }
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span> public function logout()
+</span></span><span style="display:flex;"><span> {
+</span></span><span style="display:flex;"><span>    Auth::guard(&#39;admin&#39;)-&gt;logout();
+</span></span><span style="display:flex;"><span>    return redirect(&#39;/admin/login&#39;);
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
 </blockquote>
@@ -247,7 +247,7 @@
 	<div class="post-comment">
     
     
-<span id="/note/2020/07/22/laravel03" class="leancloud_visitors" data-flag-title="Laravel基础03-中间件的使用">
+<span id="https://listenlive.cn/note/2020/07/22/laravel03/" class="leancloud_visitors" data-flag-title="Laravel基础03-中间件的使用">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -271,12 +271,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Laravel基础03-中间件的使用 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -432,7 +437,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

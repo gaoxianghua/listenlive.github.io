@@ -191,83 +191,82 @@
     <div class="post-body" itemprop="articleBody">
     <h1 id="rpmbuild">rpmbuild</h1>
 <h2 id="安装rpmbuild">安装rpmbuild</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    yum install rpm-build
-</code></pre></div><h2 id="生成rpmbuild目录结构">生成rpmbuild目录结构</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    yum install rpm-build
+</span></span></code></pre></div><h2 id="生成rpmbuild目录结构">生成rpmbuild目录结构</h2>
 <p><em>使用非root账户</em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">     rpmbuild -ba nginx.spec //会报错，没有文件或目录
-</code></pre></div><p>此时会生成<code>rpmbuild</code>工作目录
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>     rpmbuild -ba nginx.spec //会报错，没有文件或目录
+</span></span></code></pre></div><p>此时会生成<code>rpmbuild</code>工作目录
 <img src="https://listenlive.cn/images/note/202203/202203242011.png" alt="rpmbuild-path"></p>
 <h2 id="编写sepc工程文件">编写SEPC工程文件</h2>
 <p>在<code>rpmbuild/SEPCS</code>目录新建<code>SPEC</code>工程文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    vi webrtc-server.spec
-</code></pre></div><p>文件内容示例：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    Name: webrtc-server
-    Version: 1.0	
-    Release: 1.0
-    Summary: webrtc-server
-    Group: System	
-    License: GPL
-    BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
-    Requires: etcd redis supervisor
-    
-    %description
-    webrtc-server
-    
-    %prep
-    echo &#34;do not&#34;
-    
-    %install
-    cp -ar %{_sourcedir}/opt %{buildroot}/
-    
-    chmod 755 %{buildroot}/opt/dispatch/bin/dispatch
-    chmod 755 %{buildroot}/opt/signal_a/bin/sdn-signal-server
-    chmod 755 %{buildroot}/opt/record/bin/sdn-record-server
-    chmod 755 %{buildroot}/opt/record/data
-    
-    mkdir -p  %{buildroot}/var/log/signal_a
-    install -m 755 %{_sourcedir}/server.log %{buildroot}/var/log/signal_a/server.log
-    mkdir -p  %{buildroot}/var/log/record
-    install -m 755 %{_sourcedir}/server.log %{buildroot}/var/log/record/server.log
-    
-    mkdir -p %{buildroot}/etc/supervisord.d
-    install -m 755 %{_sourcedir}/dispatch.conf %{buildroot}/etc/supervisord.d/dispatch.conf
-    install -m 755 %{_sourcedir}/signal-a.conf %{buildroot}/etc/supervisord.d/signal-a.conf
-    install -m 755 %{_sourcedir}/record.conf %{buildroot}/etc/supervisord.d/record.conf
-    
-    %files
-    %defattr(-,root,root,-)
-    /opt/dispatch
-    /opt/signal_a
-    /opt/record
-    
-    %doc
-    /etc/supervisord.d/dispatch.conf
-    /etc/supervisord.d/signal-a.conf
-    /etc/supervisord.d/record.conf
-    /var/log/record/server.log
-    /var/log/signal_a/server.log
-    
-    %pre
-    %post
-    supervisorctl update
-    
-    %preun
-    rm -rf /opt/dispatch
-    rm -rf /opt/signal_a
-    rm -rf /opt/record
-    rm -rf /var/log/signal_a
-    rm -rf /var/log/record
-    
-    %changelog
-    * Wed Jan 19 2022 &lt;157****0273@126.com&gt; - 1.0.0.1
-    - your writing
-
-</code></pre></div><h2 id="将需要用到的二进制程序及相关配置文件上传至sources目录">将需要用到的二进制程序及相关配置文件上传至<code>SOURCES</code>目录</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    vi webrtc-server.spec
+</span></span></code></pre></div><p>文件内容示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    Name: webrtc-server
+</span></span><span style="display:flex;"><span>    Version: 1.0	
+</span></span><span style="display:flex;"><span>    Release: 1.0
+</span></span><span style="display:flex;"><span>    Summary: webrtc-server
+</span></span><span style="display:flex;"><span>    Group: System	
+</span></span><span style="display:flex;"><span>    License: GPL
+</span></span><span style="display:flex;"><span>    BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+</span></span><span style="display:flex;"><span>    Requires: etcd redis supervisor
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    %description
+</span></span><span style="display:flex;"><span>    webrtc-server
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    %prep
+</span></span><span style="display:flex;"><span>    echo &#34;do not&#34;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    %install
+</span></span><span style="display:flex;"><span>    cp -ar %{_sourcedir}/opt %{buildroot}/
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    chmod 755 %{buildroot}/opt/dispatch/bin/dispatch
+</span></span><span style="display:flex;"><span>    chmod 755 %{buildroot}/opt/signal_a/bin/sdn-signal-server
+</span></span><span style="display:flex;"><span>    chmod 755 %{buildroot}/opt/record/bin/sdn-record-server
+</span></span><span style="display:flex;"><span>    chmod 755 %{buildroot}/opt/record/data
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    mkdir -p  %{buildroot}/var/log/signal_a
+</span></span><span style="display:flex;"><span>    install -m 755 %{_sourcedir}/server.log %{buildroot}/var/log/signal_a/server.log
+</span></span><span style="display:flex;"><span>    mkdir -p  %{buildroot}/var/log/record
+</span></span><span style="display:flex;"><span>    install -m 755 %{_sourcedir}/server.log %{buildroot}/var/log/record/server.log
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    mkdir -p %{buildroot}/etc/supervisord.d
+</span></span><span style="display:flex;"><span>    install -m 755 %{_sourcedir}/dispatch.conf %{buildroot}/etc/supervisord.d/dispatch.conf
+</span></span><span style="display:flex;"><span>    install -m 755 %{_sourcedir}/signal-a.conf %{buildroot}/etc/supervisord.d/signal-a.conf
+</span></span><span style="display:flex;"><span>    install -m 755 %{_sourcedir}/record.conf %{buildroot}/etc/supervisord.d/record.conf
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    %files
+</span></span><span style="display:flex;"><span>    %defattr(-,root,root,-)
+</span></span><span style="display:flex;"><span>    /opt/dispatch
+</span></span><span style="display:flex;"><span>    /opt/signal_a
+</span></span><span style="display:flex;"><span>    /opt/record
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    %doc
+</span></span><span style="display:flex;"><span>    /etc/supervisord.d/dispatch.conf
+</span></span><span style="display:flex;"><span>    /etc/supervisord.d/signal-a.conf
+</span></span><span style="display:flex;"><span>    /etc/supervisord.d/record.conf
+</span></span><span style="display:flex;"><span>    /var/log/record/server.log
+</span></span><span style="display:flex;"><span>    /var/log/signal_a/server.log
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    %pre
+</span></span><span style="display:flex;"><span>    %post
+</span></span><span style="display:flex;"><span>    supervisorctl update
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    %preun
+</span></span><span style="display:flex;"><span>    rm -rf /opt/dispatch
+</span></span><span style="display:flex;"><span>    rm -rf /opt/signal_a
+</span></span><span style="display:flex;"><span>    rm -rf /opt/record
+</span></span><span style="display:flex;"><span>    rm -rf /var/log/signal_a
+</span></span><span style="display:flex;"><span>    rm -rf /var/log/record
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    %changelog
+</span></span><span style="display:flex;"><span>    * Wed Jan 19 2022 &lt;157****0273@126.com&gt; - 1.0.0.1
+</span></span><span style="display:flex;"><span>    - your writing
+</span></span></code></pre></div><h2 id="将需要用到的二进制程序及相关配置文件上传至sources目录">将需要用到的二进制程序及相关配置文件上传至<code>SOURCES</code>目录</h2>
 <p><code>SOURCES</code>目录下文件内容及结构：
 <img src="https://listenlive.cn/images/note/202203/202203242055.png" alt="source-path"></p>
 <h2 id="执行工程文件生成rpm包">执行工程文件生成rpm包</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    rpmbuild -bb webrtc.spec
-</code></pre></div><p>成功执行后将会在<code>rpmbuild/RPMS</code>目录生成rpm文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    rpmbuild -bb webrtc.spec
+</span></span></code></pre></div><p>成功执行后将会在<code>rpmbuild/RPMS</code>目录生成rpm文件</p>
 <hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
@@ -285,7 +284,7 @@
 	<div class="post-comment">
     
     
-<span id="/note/20220322/make-rpm.html" class="leancloud_visitors" data-flag-title="rpmbuild制作rpm包">
+<span id="https://listenlive.cn/note/20220322/make-rpm.html" class="leancloud_visitors" data-flag-title="rpmbuild制作rpm包">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -309,12 +308,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "rpmbuild制作rpm包 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -491,7 +495,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

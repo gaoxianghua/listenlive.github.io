@@ -190,434 +190,434 @@
     </header>
     <div class="post-body" itemprop="articleBody">
     <h1 id="使用object与array控制class">使用object与array控制class</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;style&gt;
-    .font{font-size: 20px}
-    .color{color: skyblue}
-    .red{color: red}
-&lt;/style&gt;
-&lt;div id=&#34;app&#34;&gt;
-   &lt;h2 :class=&#34;obj&#34;&gt;Vue Object&lt;/h2&gt;
-    &lt;hr/&gt;
-    &lt;h2 :class=&#34;[succ,font]&#34;&gt;listenlive.cn&lt;/h2&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data:{
-           obj:{color:true,font:true},  //对象形式
-            //数组形式
-            succ:&#39;red&#39;,
-            font:&#39;font&#39;
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><p><img src="https://listenlive.cn/images/202007261051.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;style&gt;
+</span></span><span style="display:flex;"><span>    .font{font-size: 20px}
+</span></span><span style="display:flex;"><span>    .color{color: skyblue}
+</span></span><span style="display:flex;"><span>    .red{color: red}
+</span></span><span style="display:flex;"><span>&lt;/style&gt;
+</span></span><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>   &lt;h2 :class=&#34;obj&#34;&gt;Vue Object&lt;/h2&gt;
+</span></span><span style="display:flex;"><span>    &lt;hr/&gt;
+</span></span><span style="display:flex;"><span>    &lt;h2 :class=&#34;[succ,font]&#34;&gt;listenlive.cn&lt;/h2&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>           obj:{color:true,font:true},  //对象形式
+</span></span><span style="display:flex;"><span>            //数组形式
+</span></span><span style="display:flex;"><span>            succ:&#39;red&#39;,
+</span></span><span style="display:flex;"><span>            font:&#39;font&#39;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/202007261051.png" alt=""></p>
 <h1 id="使用class表达式实现删除-恢复功能">使用class表达式实现“删除-恢复”功能</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;style&gt;
-    .font{font-size: 20px}
-    .success{color: green}
-    .error{color: red}
-&lt;/style&gt;
-&lt;div id=&#34;app&#34;&gt;
-    &lt;li v-for=&#34;v in news&#34;&gt;
-        &lt;span :class=&#34;v.status?&#39;success&#39;:&#39;error&#39;&#34;&gt;{{v.title}}&lt;/span&gt;
-        &lt;button v-on:click=&#34;changeStatus(v,false)&#34; v-if=&#34;v.status&#34;&gt; 删除&lt;/button&gt;
-        &lt;button v-on:click=&#34;changeStatus(v,true)&#34; v-if=&#34;!v.status&#34;&gt; 恢复&lt;/button&gt;
-    &lt;/li&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        methods:{
-          changeStatus:function (item,status) {
-              item.status = status;
-          }
-        },
-        data:{
-            news:[
-                {title:&#39;北京&#39;,status:true},
-                {title:&#39;上海&#39;,status:true},
-                {title:&#39;广州&#39;,status:true},
-            ]
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202007261141.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;style&gt;
+</span></span><span style="display:flex;"><span>    .font{font-size: 20px}
+</span></span><span style="display:flex;"><span>    .success{color: green}
+</span></span><span style="display:flex;"><span>    .error{color: red}
+</span></span><span style="display:flex;"><span>&lt;/style&gt;
+</span></span><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;li v-for=&#34;v in news&#34;&gt;
+</span></span><span style="display:flex;"><span>        &lt;span :class=&#34;v.status?&#39;success&#39;:&#39;error&#39;&#34;&gt;{{v.title}}&lt;/span&gt;
+</span></span><span style="display:flex;"><span>        &lt;button v-on:click=&#34;changeStatus(v,false)&#34; v-if=&#34;v.status&#34;&gt; 删除&lt;/button&gt;
+</span></span><span style="display:flex;"><span>        &lt;button v-on:click=&#34;changeStatus(v,true)&#34; v-if=&#34;!v.status&#34;&gt; 恢复&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;/li&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        methods:{
+</span></span><span style="display:flex;"><span>          changeStatus:function (item,status) {
+</span></span><span style="display:flex;"><span>              item.status = status;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>            news:[
+</span></span><span style="display:flex;"><span>                {title:&#39;北京&#39;,status:true},
+</span></span><span style="display:flex;"><span>                {title:&#39;上海&#39;,status:true},
+</span></span><span style="display:flex;"><span>                {title:&#39;广州&#39;,status:true},
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202007261141.png" alt=""></p>
 <h1 id="使用vue设置行内样式与动态改变style样式">使用Vue设置行内样式与动态改变style样式</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-   &lt;h2 :style=&#34;{color:&#39;red&#39;,fontSize:size+&#39;px&#39;}&#34;&gt;动态改变大小&lt;/h2&gt;
-   &lt;h2 :style=&#34;style&#34;&gt;Listenlive&lt;/h2&gt;
-   &lt;h2 :style=&#34;[live]&#34;&gt;listenlive.cn&lt;/h2&gt;
-    &lt;input type=&#34;number&#34; v-model=&#34;size&#34;/&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data:{
-            red:&#39;green&#39;,
-            size:16,
-            style:{
-                color:&#39;blue&#39;
-            },
-            live:{
-                color:&#39;yellow&#39;,
-                backgroundColor:&#39;blue&#39;
-            }
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202007261200.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>   &lt;h2 :style=&#34;{color:&#39;red&#39;,fontSize:size+&#39;px&#39;}&#34;&gt;动态改变大小&lt;/h2&gt;
+</span></span><span style="display:flex;"><span>   &lt;h2 :style=&#34;style&#34;&gt;Listenlive&lt;/h2&gt;
+</span></span><span style="display:flex;"><span>   &lt;h2 :style=&#34;[live]&#34;&gt;listenlive.cn&lt;/h2&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;number&#34; v-model=&#34;size&#34;/&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>            red:&#39;green&#39;,
+</span></span><span style="display:flex;"><span>            size:16,
+</span></span><span style="display:flex;"><span>            style:{
+</span></span><span style="display:flex;"><span>                color:&#39;blue&#39;
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            live:{
+</span></span><span style="display:flex;"><span>                color:&#39;yellow&#39;,
+</span></span><span style="display:flex;"><span>                backgroundColor:&#39;blue&#39;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202007261200.png" alt=""></p>
 <h1 id="v-if-在注册场景下的实际应用">v-if 在注册场景下的实际应用</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-  &lt;input type=&#34;text&#34; v-model=&#34;age&#34;/&gt;
-    &lt;span v-if=&#34;age&lt;20&#34;&gt;小孩&lt;/span&gt;
-    &lt;span v-else-if=&#34;age&lt;30&#34;&gt;青年&lt;/span&gt;
-    &lt;span v-else-if=&#34;age&lt;50&#34;&gt;中年&lt;/span&gt;
-    &lt;span v-else=&#34;age&lt;50&#34;&gt;老年&lt;/span&gt;
-    &lt;hr/&gt;
-    &lt;input type=&#34;checkbox&#34; v-model=&#34;copyright&#34;&gt;接受协议&lt;br/&gt;
-    &lt;span v-if=&#34;copyright==false&#34;&gt;请先接受协议&lt;/span&gt;
-    &lt;button v-else&gt;注册&lt;/button&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data:{
-            copyright:false,
-            age:0
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202007261638.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>  &lt;input type=&#34;text&#34; v-model=&#34;age&#34;/&gt;
+</span></span><span style="display:flex;"><span>    &lt;span v-if=&#34;age&lt;20&#34;&gt;小孩&lt;/span&gt;
+</span></span><span style="display:flex;"><span>    &lt;span v-else-if=&#34;age&lt;30&#34;&gt;青年&lt;/span&gt;
+</span></span><span style="display:flex;"><span>    &lt;span v-else-if=&#34;age&lt;50&#34;&gt;中年&lt;/span&gt;
+</span></span><span style="display:flex;"><span>    &lt;span v-else=&#34;age&lt;50&#34;&gt;老年&lt;/span&gt;
+</span></span><span style="display:flex;"><span>    &lt;hr/&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;checkbox&#34; v-model=&#34;copyright&#34;&gt;接受协议&lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;span v-if=&#34;copyright==false&#34;&gt;请先接受协议&lt;/span&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-else&gt;注册&lt;/button&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>            copyright:false,
+</span></span><span style="display:flex;"><span>            age:0
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202007261638.png" alt=""></p>
 <h1 id="使用key值解决表单切换混乱问题">使用key值解决表单切换混乱问题</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;template v-if=&#34;regType==&#39;mail&#39;&#34;&gt;
-        邮箱：&lt;input type=&#34;text&#34; name=&#34;account&#34; key=&#34;mail-register&#34;&gt;
-    &lt;/template&gt;
-    &lt;template v-else&gt;
-        手机：&lt;input type=&#34;text&#34; name=&#34;account&#34; key=&#34;phone-register&#34;&gt;
-    &lt;/template&gt;
-    &lt;hr/&gt;
-    &lt;input type=&#34;radio&#34; value=&#34;mail&#34; v-model=&#34;regType&#34;&gt;邮箱注册
-    &lt;input type=&#34;radio&#34; value=&#34;phone&#34; v-model=&#34;regType&#34;&gt;手机注册
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data:{
-            regType:&#39;mail&#39;
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><p><em>此时点击切换注册方式则会清空表单内容</em><br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;template v-if=&#34;regType==&#39;mail&#39;&#34;&gt;
+</span></span><span style="display:flex;"><span>        邮箱：&lt;input type=&#34;text&#34; name=&#34;account&#34; key=&#34;mail-register&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;/template&gt;
+</span></span><span style="display:flex;"><span>    &lt;template v-else&gt;
+</span></span><span style="display:flex;"><span>        手机：&lt;input type=&#34;text&#34; name=&#34;account&#34; key=&#34;phone-register&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;/template&gt;
+</span></span><span style="display:flex;"><span>    &lt;hr/&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;radio&#34; value=&#34;mail&#34; v-model=&#34;regType&#34;&gt;邮箱注册
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;radio&#34; value=&#34;phone&#34; v-model=&#34;regType&#34;&gt;手机注册
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>            regType:&#39;mail&#39;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><em>此时点击切换注册方式则会清空表单内容</em><br>
 <img src="https://listenlive.cn/images/note/202007261653.png" alt=""></p>
 <h1 id="v-for-循环列表数据并使用key添加序号">v-for 循环列表数据，并使用key添加序号</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;table border=&#34;1&#34;&gt;
-        &lt;tr&gt;
-            &lt;th&gt;序号&lt;/th&gt;
-            &lt;th&gt;编号&lt;/th&gt;
-            &lt;th&gt;标题&lt;/th&gt;
-            &lt;th&gt;城市&lt;/th&gt;
-        &lt;/tr&gt;
-        &lt;tbody&gt;
-        &lt;tr v-for=&#34;(field,key) in news&#34;&gt;
-            &lt;td&gt;{{key+1}}&lt;/td&gt;
-            &lt;td&gt;{{field.id}}&lt;/td&gt;
-            &lt;td&gt;{{field.title}}&lt;/td&gt;
-            &lt;td&gt;{{city}}&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data:{
-           city:&#39;台北&#39;,
-            news:[
-                {id:20200725,title:&#39;listenlive.cn&#39;},
-                {id:20200726,title:&#39;Hello Taipei&#39;}
-            ]
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202007261713.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;table border=&#34;1&#34;&gt;
+</span></span><span style="display:flex;"><span>        &lt;tr&gt;
+</span></span><span style="display:flex;"><span>            &lt;th&gt;序号&lt;/th&gt;
+</span></span><span style="display:flex;"><span>            &lt;th&gt;编号&lt;/th&gt;
+</span></span><span style="display:flex;"><span>            &lt;th&gt;标题&lt;/th&gt;
+</span></span><span style="display:flex;"><span>            &lt;th&gt;城市&lt;/th&gt;
+</span></span><span style="display:flex;"><span>        &lt;/tr&gt;
+</span></span><span style="display:flex;"><span>        &lt;tbody&gt;
+</span></span><span style="display:flex;"><span>        &lt;tr v-for=&#34;(field,key) in news&#34;&gt;
+</span></span><span style="display:flex;"><span>            &lt;td&gt;{{key+1}}&lt;/td&gt;
+</span></span><span style="display:flex;"><span>            &lt;td&gt;{{field.id}}&lt;/td&gt;
+</span></span><span style="display:flex;"><span>            &lt;td&gt;{{field.title}}&lt;/td&gt;
+</span></span><span style="display:flex;"><span>            &lt;td&gt;{{city}}&lt;/td&gt;
+</span></span><span style="display:flex;"><span>        &lt;/tr&gt;
+</span></span><span style="display:flex;"><span>        &lt;/tbody&gt;
+</span></span><span style="display:flex;"><span>    &lt;/table&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>           city:&#39;台北&#39;,
+</span></span><span style="display:flex;"><span>            news:[
+</span></span><span style="display:flex;"><span>                {id:20200725,title:&#39;listenlive.cn&#39;},
+</span></span><span style="display:flex;"><span>                {id:20200726,title:&#39;Hello Taipei&#39;}
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202007261713.png" alt=""></p>
 <h1 id="v-for-结合计算属性computed实现根据条件筛选数据功能">v-for 结合计算属性（computed）实现根据条件筛选数据功能</h1>
 <p><img src="https://listenlive.cn/images/note/202007261741.png" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;li v-for=&#34;v in stus&#34;&gt;
-        {{v.name}} - {{v.sex}}
-    &lt;/li&gt;
-    &lt;input type=&#34;radio&#34; v-model=&#34;type&#34; value=&#34;girl&#34;&gt;Girl
-    &lt;input type=&#34;radio&#34; v-model=&#34;type&#34; value=&#34;boy&#34;&gt;Boy
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        computed:{
-          stus(){
-              if(this.type==&#39;all&#39;){
-                  return this.user;
-              }else{
-                  var Type = this.type;
-                  return this.user.filter(function (v) {
-                      return v.sex == Type;
-                  })
-              }
-          }
-        },
-        data: {
-            type:&#39;all&#39;,
-            user:[
-                {name:&#39;小明&#39;,sex:&#39;boy&#39;},
-                {name:&#39;小麗&#39;,sex:&#39;girl&#39;},
-                {name:&#39;小芳&#39;,sex:&#39;girl&#39;},
-                {name:&#39;小五&#39;,sex:&#39;boy&#39;},
-                {name:&#39;張三&#39;,sex:&#39;boy&#39;},
-                {name:&#39;李四&#39;,sex:&#39;girl&#39;},
-                {name:&#39;貓貓&#39;,sex:&#39;girl&#39;},
-                {name:&#39;狗狗&#39;,sex:&#39;boy&#39;},
-            ]
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><h1 id="vue改良push语法-发表评论功能的实现">Vue改良push语法-发表评论功能的实现</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;li v-for=&#34;v in comments&#34;&gt;
-        {{v.content}}
-    &lt;/li&gt;
-    &lt;textarea v-model=&#34;current_content&#34; cols=&#34;30&#34; rows=&#34;10&#34;&gt;&lt;/textarea&gt;&lt;br/&gt;
-    &lt;button v-on:click=&#34;push&#34;&gt;發表評論&lt;/button&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data: {
-            current_content:&#39;&#39;,
-            comments:[
-                {content:&#39;小明&#39;},
-                {content:&#39;小麗&#39;},
-                {content:&#39;小芳&#39;},
-                {content:&#39;小五&#39;},
-                {content:&#39;張三&#39;},
-                {content:&#39;李四&#39;},
-            ]
-        },
-        methods:{
-            push(){
-                var content = {content:this.current_content};
-                this.comments.push(content);
-                this.current_content = &#39;&#39;;  //清空文本域
-            }
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202007261806.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;li v-for=&#34;v in stus&#34;&gt;
+</span></span><span style="display:flex;"><span>        {{v.name}} - {{v.sex}}
+</span></span><span style="display:flex;"><span>    &lt;/li&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;radio&#34; v-model=&#34;type&#34; value=&#34;girl&#34;&gt;Girl
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;radio&#34; v-model=&#34;type&#34; value=&#34;boy&#34;&gt;Boy
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        computed:{
+</span></span><span style="display:flex;"><span>          stus(){
+</span></span><span style="display:flex;"><span>              if(this.type==&#39;all&#39;){
+</span></span><span style="display:flex;"><span>                  return this.user;
+</span></span><span style="display:flex;"><span>              }else{
+</span></span><span style="display:flex;"><span>                  var Type = this.type;
+</span></span><span style="display:flex;"><span>                  return this.user.filter(function (v) {
+</span></span><span style="display:flex;"><span>                      return v.sex == Type;
+</span></span><span style="display:flex;"><span>                  })
+</span></span><span style="display:flex;"><span>              }
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        data: {
+</span></span><span style="display:flex;"><span>            type:&#39;all&#39;,
+</span></span><span style="display:flex;"><span>            user:[
+</span></span><span style="display:flex;"><span>                {name:&#39;小明&#39;,sex:&#39;boy&#39;},
+</span></span><span style="display:flex;"><span>                {name:&#39;小麗&#39;,sex:&#39;girl&#39;},
+</span></span><span style="display:flex;"><span>                {name:&#39;小芳&#39;,sex:&#39;girl&#39;},
+</span></span><span style="display:flex;"><span>                {name:&#39;小五&#39;,sex:&#39;boy&#39;},
+</span></span><span style="display:flex;"><span>                {name:&#39;張三&#39;,sex:&#39;boy&#39;},
+</span></span><span style="display:flex;"><span>                {name:&#39;李四&#39;,sex:&#39;girl&#39;},
+</span></span><span style="display:flex;"><span>                {name:&#39;貓貓&#39;,sex:&#39;girl&#39;},
+</span></span><span style="display:flex;"><span>                {name:&#39;狗狗&#39;,sex:&#39;boy&#39;},
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h1 id="vue改良push语法-发表评论功能的实现">Vue改良push语法-发表评论功能的实现</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;li v-for=&#34;v in comments&#34;&gt;
+</span></span><span style="display:flex;"><span>        {{v.content}}
+</span></span><span style="display:flex;"><span>    &lt;/li&gt;
+</span></span><span style="display:flex;"><span>    &lt;textarea v-model=&#34;current_content&#34; cols=&#34;30&#34; rows=&#34;10&#34;&gt;&lt;/textarea&gt;&lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;push&#34;&gt;發表評論&lt;/button&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data: {
+</span></span><span style="display:flex;"><span>            current_content:&#39;&#39;,
+</span></span><span style="display:flex;"><span>            comments:[
+</span></span><span style="display:flex;"><span>                {content:&#39;小明&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小麗&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小芳&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小五&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;張三&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;李四&#39;},
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        methods:{
+</span></span><span style="display:flex;"><span>            push(){
+</span></span><span style="display:flex;"><span>                var content = {content:this.current_content};
+</span></span><span style="display:flex;"><span>                this.comments.push(content);
+</span></span><span style="display:flex;"><span>                this.current_content = &#39;&#39;;  //清空文本域
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202007261806.png" alt=""></p>
 <h1 id="使用unshift和pop函数实现数据插入及删除功能">使用unshift和pop函数实现数据插入及删除功能</h1>
 <p><img src="https://listenlive.cn/images/note/202007261827.png" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;li v-for=&#34;v in comments&#34;&gt;
-        {{v.content}}
-    &lt;/li&gt;
-    &lt;textarea v-model=&#34;current_content&#34; cols=&#34;30&#34; rows=&#34;10&#34;&gt;&lt;/textarea&gt;&lt;br/&gt;
-    &lt;button v-on:click=&#34;push(&#39;pre&#39;)&#34;&gt;發表到前面&lt;/button&gt;
-    &lt;button v-on:click=&#34;push(&#39;end&#39;)&#34;&gt;發表到後面&lt;/button&gt;
-    &lt;br/&gt;
-    &lt;button v-on:click=&#34;del(&#39;last&#39;)&#34;&gt;刪除最後一條評論&lt;/button&gt;
-    &lt;button v-on:click=&#34;del(&#39;first&#39;)&#34;&gt;刪除第一條評論&lt;/button&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data: {
-            current_content:&#39;&#39;,
-            comments:[
-                {content:&#39;小明&#39;},
-                {content:&#39;小麗&#39;},
-                {content:&#39;小芳&#39;},
-                {content:&#39;小五&#39;},
-                {content:&#39;張三&#39;},
-                {content:&#39;李四&#39;},
-            ]
-        },
-        methods:{
-            push(type){
-                var content = {content:this.current_content};
-                switch(type){
-                    case &#39;end&#39;:
-                        this.comments.push(content);       //发表到最后一条评论
-                        this.current_content = &#39;&#39;;
-                        break;
-                    case &#39;pre&#39;:
-                        this.comments.unshift(content);    //发表到第一条评论
-                        this.current_content = &#39;&#39;;
-                        break;
-                }
-            },
-            del(type){
-                switch (type) {
-                    case &#39;last&#39;:
-                        this.comments.pop();    //删除最后一条评论
-                        break;
-                    case &#39;first&#39;:
-                        this.comments.shift();  //删除第一条评论
-                        break;
-                }
-            }
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><h1 id="使用splice函数实现单条数据的删除">使用splice函数实现单条数据的删除</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;li v-for=&#34;v in comments&#34;&gt;
+</span></span><span style="display:flex;"><span>        {{v.content}}
+</span></span><span style="display:flex;"><span>    &lt;/li&gt;
+</span></span><span style="display:flex;"><span>    &lt;textarea v-model=&#34;current_content&#34; cols=&#34;30&#34; rows=&#34;10&#34;&gt;&lt;/textarea&gt;&lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;push(&#39;pre&#39;)&#34;&gt;發表到前面&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;push(&#39;end&#39;)&#34;&gt;發表到後面&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;del(&#39;last&#39;)&#34;&gt;刪除最後一條評論&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;del(&#39;first&#39;)&#34;&gt;刪除第一條評論&lt;/button&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data: {
+</span></span><span style="display:flex;"><span>            current_content:&#39;&#39;,
+</span></span><span style="display:flex;"><span>            comments:[
+</span></span><span style="display:flex;"><span>                {content:&#39;小明&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小麗&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小芳&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小五&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;張三&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;李四&#39;},
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        methods:{
+</span></span><span style="display:flex;"><span>            push(type){
+</span></span><span style="display:flex;"><span>                var content = {content:this.current_content};
+</span></span><span style="display:flex;"><span>                switch(type){
+</span></span><span style="display:flex;"><span>                    case &#39;end&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.push(content);       //发表到最后一条评论
+</span></span><span style="display:flex;"><span>                        this.current_content = &#39;&#39;;
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                    case &#39;pre&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.unshift(content);    //发表到第一条评论
+</span></span><span style="display:flex;"><span>                        this.current_content = &#39;&#39;;
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            del(type){
+</span></span><span style="display:flex;"><span>                switch (type) {
+</span></span><span style="display:flex;"><span>                    case &#39;last&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.pop();    //删除最后一条评论
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                    case &#39;first&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.shift();  //删除第一条评论
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h1 id="使用splice函数实现单条数据的删除">使用splice函数实现单条数据的删除</h1>
 <p><img src="https://listenlive.cn/images/note/202007261846.png" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;li v-for=&#34;(v,k) in comments&#34;&gt;
-        {{v.content}} &lt;button v-on:click=&#34;remove(k)&#34;&gt;刪除&lt;/button&gt;
-    &lt;/li&gt;
-    &lt;textarea v-model=&#34;current_content&#34; cols=&#34;30&#34; rows=&#34;10&#34;&gt;&lt;/textarea&gt;&lt;br/&gt;
-    &lt;button v-on:click=&#34;push(&#39;pre&#39;)&#34;&gt;發表到前面&lt;/button&gt;
-    &lt;button v-on:click=&#34;push(&#39;end&#39;)&#34;&gt;發表到後面&lt;/button&gt;
-    &lt;br/&gt;
-    &lt;button v-on:click=&#34;del(&#39;last&#39;)&#34;&gt;刪除最後一條評論&lt;/button&gt;
-    &lt;button v-on:click=&#34;del(&#39;first&#39;)&#34;&gt;刪除第一條評論&lt;/button&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data: {
-            current_content:&#39;&#39;,
-            comments:[
-                {content:&#39;小明&#39;},
-                {content:&#39;小麗&#39;},
-                {content:&#39;小芳&#39;},
-                {content:&#39;小五&#39;},
-                {content:&#39;張三&#39;},
-                {content:&#39;李四&#39;},
-            ]
-        },
-        methods:{
-            //单条数据刪除
-            remove(k){
-                this.comments.splice(k,1);
-            },
-            push(type){
-                var content = {content:this.current_content};
-                switch(type){
-                    case &#39;end&#39;:
-                        this.comments.push(content);        //发表到最后一条评论
-                        this.current_content = &#39;&#39;;
-                        break;
-                    case &#39;pre&#39;:
-                        this.comments.unshift(content);     //发表到第一条评论
-                        this.current_content = &#39;&#39;;
-                        break;
-                }
-            },
-            del(type){
-                switch (type) {
-                    case &#39;last&#39;:
-                        this.comments.pop();    //删除最后一条评论
-                        break;
-                    case &#39;first&#39;:
-                        this.comments.shift();  //删除第一条评论
-                        break;
-                }
-            }
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><h1 id="sort排序与reverse反向排序">sort排序与reverse反向排序</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">  //排序
- sort(){
-          this.comments.sort(function (a,b) {
-           return a.id &gt; b.id;
-          })
-         },
-  //反向排序
- reverse(){
-             this.comments.reverse();
-            },
-</code></pre></div><h1 id="使用filter与regexp方法实现字符匹配搜索功能">使用filter与RegExp方法实现字符匹配搜索功能</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;li v-for=&#34;(v,k) in comments&#34;&gt;
+</span></span><span style="display:flex;"><span>        {{v.content}} &lt;button v-on:click=&#34;remove(k)&#34;&gt;刪除&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;/li&gt;
+</span></span><span style="display:flex;"><span>    &lt;textarea v-model=&#34;current_content&#34; cols=&#34;30&#34; rows=&#34;10&#34;&gt;&lt;/textarea&gt;&lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;push(&#39;pre&#39;)&#34;&gt;發表到前面&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;push(&#39;end&#39;)&#34;&gt;發表到後面&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;del(&#39;last&#39;)&#34;&gt;刪除最後一條評論&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;del(&#39;first&#39;)&#34;&gt;刪除第一條評論&lt;/button&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data: {
+</span></span><span style="display:flex;"><span>            current_content:&#39;&#39;,
+</span></span><span style="display:flex;"><span>            comments:[
+</span></span><span style="display:flex;"><span>                {content:&#39;小明&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小麗&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小芳&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;小五&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;張三&#39;},
+</span></span><span style="display:flex;"><span>                {content:&#39;李四&#39;},
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        methods:{
+</span></span><span style="display:flex;"><span>            //单条数据刪除
+</span></span><span style="display:flex;"><span>            remove(k){
+</span></span><span style="display:flex;"><span>                this.comments.splice(k,1);
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            push(type){
+</span></span><span style="display:flex;"><span>                var content = {content:this.current_content};
+</span></span><span style="display:flex;"><span>                switch(type){
+</span></span><span style="display:flex;"><span>                    case &#39;end&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.push(content);        //发表到最后一条评论
+</span></span><span style="display:flex;"><span>                        this.current_content = &#39;&#39;;
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                    case &#39;pre&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.unshift(content);     //发表到第一条评论
+</span></span><span style="display:flex;"><span>                        this.current_content = &#39;&#39;;
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            del(type){
+</span></span><span style="display:flex;"><span>                switch (type) {
+</span></span><span style="display:flex;"><span>                    case &#39;last&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.pop();    //删除最后一条评论
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                    case &#39;first&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.shift();  //删除第一条评论
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h1 id="sort排序与reverse反向排序">sort排序与reverse反向排序</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>  //排序
+</span></span><span style="display:flex;"><span> sort(){
+</span></span><span style="display:flex;"><span>          this.comments.sort(function (a,b) {
+</span></span><span style="display:flex;"><span>           return a.id &gt; b.id;
+</span></span><span style="display:flex;"><span>          })
+</span></span><span style="display:flex;"><span>         },
+</span></span><span style="display:flex;"><span>  //反向排序
+</span></span><span style="display:flex;"><span> reverse(){
+</span></span><span style="display:flex;"><span>             this.comments.reverse();
+</span></span><span style="display:flex;"><span>            },
+</span></span></code></pre></div><h1 id="使用filter与regexp方法实现字符匹配搜索功能">使用filter与RegExp方法实现字符匹配搜索功能</h1>
 <p><img src="https://listenlive.cn/images/note/202007262017.png" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;li v-for=&#34;(v,k) in comments&#34;&gt;
-        {{v.id}} - {{v.content}} &lt;button v-on:click=&#34;remove(k)&#34;&gt;刪除&lt;/button&gt;
-    &lt;/li&gt;
-    &lt;textarea v-model=&#34;current_content&#34; cols=&#34;30&#34; rows=&#34;10&#34;&gt;&lt;/textarea&gt;&lt;br/&gt;
-    &lt;button v-on:click=&#34;push(&#39;pre&#39;)&#34;&gt;發表到前面&lt;/button&gt;
-    &lt;button v-on:click=&#34;push(&#39;end&#39;)&#34;&gt;發表到後面&lt;/button&gt;
-    &lt;br/&gt;
-    &lt;button v-on:click=&#34;del(&#39;last&#39;)&#34;&gt;刪除最後一條評論&lt;/button&gt;
-    &lt;button v-on:click=&#34;del(&#39;first&#39;)&#34;&gt;刪除第一條評論&lt;/button&gt;&lt;br/&gt;
-    &lt;button v-on:click=&#34;sort()&#34;&gt;排序&lt;/button&gt;
-    &lt;button v-on:click=&#34;reverse()&#34;&gt;反向排序&lt;/button&gt;&lt;br/&gt;
-    &lt;input type=&#34;text&#34; v-on:keyup.enter=&#34;search&#34; v-model=&#34;search_content&#34;/&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-        el:&#39;#app&#39;,
-        data: {
-            current_content:&#39;&#39;,
-            //搜索内容
-            search_content:&#39;&#39;,
-            comments:[
-                {id:5,content:&#39;小明&#39;},
-                {id:6,content:&#39;小麗&#39;},
-                {id:1,content:&#39;Live&#39;},
-                {id:4,content:&#39;Listen&#39;},
-                {id:2,content:&#39;張三&#39;},
-                {id:3,content:&#39;李四&#39;},
-            ]
-        },
-        methods:{
-            //搜索
-            search(){
-              this.comments = this.comments.filter((item)=&gt;{
-                  var reg = new RegExp(this.search_content,&#39;i&#39;);    //&#39;i&#39;模式修正符，不区分大小写进行搜索
-                  return reg.test(item.content);
-              })
-            },
-            //排序
-            sort(){
-                this.comments.sort(function (a,b) {
-                    return a.id &gt; b.id;
-                })
-            },
-            //反向排序
-            reverse(){
-              this.comments.reverse();
-            },
-            //单条数据刪除
-            remove(k){
-                this.comments.splice(k,1);
-            },
-            push(type){
-                var content = {content:this.current_content};
-                switch(type){
-                    case &#39;end&#39;:
-                        this.comments.push(content);
-                        this.current_content = &#39;&#39;;
-                        break;
-                    case &#39;pre&#39;:
-                        this.comments.unshift(content);
-                        this.current_content = &#39;&#39;;
-                        break;
-                }
-            },
-            del(type){
-                switch (type) {
-                    case &#39;last&#39;:
-                        this.comments.pop();
-                        break;
-                    case &#39;first&#39;:
-                        this.comments.shift();
-                        break;
-                }
-            }
-        }
-    });
-&lt;/script&gt;
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;li v-for=&#34;(v,k) in comments&#34;&gt;
+</span></span><span style="display:flex;"><span>        {{v.id}} - {{v.content}} &lt;button v-on:click=&#34;remove(k)&#34;&gt;刪除&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;/li&gt;
+</span></span><span style="display:flex;"><span>    &lt;textarea v-model=&#34;current_content&#34; cols=&#34;30&#34; rows=&#34;10&#34;&gt;&lt;/textarea&gt;&lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;push(&#39;pre&#39;)&#34;&gt;發表到前面&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;push(&#39;end&#39;)&#34;&gt;發表到後面&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;del(&#39;last&#39;)&#34;&gt;刪除最後一條評論&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;del(&#39;first&#39;)&#34;&gt;刪除第一條評論&lt;/button&gt;&lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;sort()&#34;&gt;排序&lt;/button&gt;
+</span></span><span style="display:flex;"><span>    &lt;button v-on:click=&#34;reverse()&#34;&gt;反向排序&lt;/button&gt;&lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;text&#34; v-on:keyup.enter=&#34;search&#34; v-model=&#34;search_content&#34;/&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        data: {
+</span></span><span style="display:flex;"><span>            current_content:&#39;&#39;,
+</span></span><span style="display:flex;"><span>            //搜索内容
+</span></span><span style="display:flex;"><span>            search_content:&#39;&#39;,
+</span></span><span style="display:flex;"><span>            comments:[
+</span></span><span style="display:flex;"><span>                {id:5,content:&#39;小明&#39;},
+</span></span><span style="display:flex;"><span>                {id:6,content:&#39;小麗&#39;},
+</span></span><span style="display:flex;"><span>                {id:1,content:&#39;Live&#39;},
+</span></span><span style="display:flex;"><span>                {id:4,content:&#39;Listen&#39;},
+</span></span><span style="display:flex;"><span>                {id:2,content:&#39;張三&#39;},
+</span></span><span style="display:flex;"><span>                {id:3,content:&#39;李四&#39;},
+</span></span><span style="display:flex;"><span>            ]
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        methods:{
+</span></span><span style="display:flex;"><span>            //搜索
+</span></span><span style="display:flex;"><span>            search(){
+</span></span><span style="display:flex;"><span>              this.comments = this.comments.filter((item)=&gt;{
+</span></span><span style="display:flex;"><span>                  var reg = new RegExp(this.search_content,&#39;i&#39;);    //&#39;i&#39;模式修正符，不区分大小写进行搜索
+</span></span><span style="display:flex;"><span>                  return reg.test(item.content);
+</span></span><span style="display:flex;"><span>              })
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            //排序
+</span></span><span style="display:flex;"><span>            sort(){
+</span></span><span style="display:flex;"><span>                this.comments.sort(function (a,b) {
+</span></span><span style="display:flex;"><span>                    return a.id &gt; b.id;
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            //反向排序
+</span></span><span style="display:flex;"><span>            reverse(){
+</span></span><span style="display:flex;"><span>              this.comments.reverse();
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            //单条数据刪除
+</span></span><span style="display:flex;"><span>            remove(k){
+</span></span><span style="display:flex;"><span>                this.comments.splice(k,1);
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            push(type){
+</span></span><span style="display:flex;"><span>                var content = {content:this.current_content};
+</span></span><span style="display:flex;"><span>                switch(type){
+</span></span><span style="display:flex;"><span>                    case &#39;end&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.push(content);
+</span></span><span style="display:flex;"><span>                        this.current_content = &#39;&#39;;
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                    case &#39;pre&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.unshift(content);
+</span></span><span style="display:flex;"><span>                        this.current_content = &#39;&#39;;
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            del(type){
+</span></span><span style="display:flex;"><span>                switch (type) {
+</span></span><span style="display:flex;"><span>                    case &#39;last&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.pop();
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                    case &#39;first&#39;:
+</span></span><span style="display:flex;"><span>                        this.comments.shift();
+</span></span><span style="display:flex;"><span>                        break;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
 </blockquote>
@@ -634,7 +634,7 @@
 	<div class="post-comment">
     
     
-<span id="/note/2020/07/23/vue02" class="leancloud_visitors" data-flag-title="Vue基础-02">
+<span id="https://listenlive.cn/note/2020/07/23/vue02/" class="leancloud_visitors" data-flag-title="Vue基础-02">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -658,12 +658,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Vue基础-02 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -832,7 +837,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

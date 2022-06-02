@@ -191,211 +191,211 @@
     <div class="post-body" itemprop="articleBody">
     <h2 id="dingo">Dingo</h2>
 <h3 id="安装组件">安装组件</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">composer require dingo/api:2.x
-</code></pre></div><h3 id="生成配置文件">生成配置文件</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan vendor:publish
-</code></pre></div><p><em><strong>执行命令后会生成config/api.php配置文件</strong></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>composer require dingo/api:2.x
+</span></span></code></pre></div><h3 id="生成配置文件">生成配置文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan vendor:publish
+</span></span></code></pre></div><p><em><strong>执行命令后会生成config/api.php配置文件</strong></em></p>
 <h3 id="configapiphp-配置说明">config/api.php 配置说明</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#接口围绕：[x]本地和私有环境 [prs]公司内部app使用 [vnd]公开接口
-&#39;standardsTree&#39; =&gt; env(&#39;API_STANDARDS_TREE&#39;, &#39;x&#39;)
-
-#项目名称
-&#39;subtype&#39; =&gt; env(&#39;API_SUBTYPE&#39;, &#39;hdcms&#39;)
-
-#Api前缀 通过 www.hdcms.com/api 来访问 API。
-&#39;prefix&#39; =&gt; env(&#39;API_PREFIX&#39;, &#39;api&#39;)
-
-#api域名
-&#39;domain&#39; =&gt; env(&#39;API_DOMAIN&#39;, &#39;api.hdcms.com&#39;),
-
-#版本号
-&#39;version&#39; =&gt; env(&#39;API_VERSION&#39;, &#39;v1&#39;)
-
-#开发时开启DEBUG便于发现错误
-&#39;debug&#39; =&gt; env(&#39;API_DEBUG&#39;, false)
-</code></pre></div><h3 id="接口版本--在routesapiphp中定义">接口版本&ndash;在routes/api.php中定义</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$api = app(\Dingo\Api\Routing\Router::class);
-
-#默认配置指定的是v1版本，可以直接通过 {host}/api/version 访问到
-$api-&gt;version(&#39;v1&#39;, function ($api) {
-    $api-&gt;get(&#39;version&#39;, function () {
-        return &#39;v1&#39;;
-    });
-});
-
-#如果v2不是默认版本，需要设置请求头  
-#Accept: application/[配置项 standardsTree].[配置项 subtype].v2+json
-$api-&gt;version(&#39;v2&#39;, function ($api) {
-    $api-&gt;get(&#39;version&#39;, function () {
-        return &#39;v2&#39;;
-    });
-});
-</code></pre></div><h3 id="基础控制器">基础控制器</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan make:controller Api/Controller
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">namespace App\Http\Controllers\Api;
-
-use Dingo\Api\Routing\Helpers;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller as SysController;
-
-class Controller extends SysController
-{
-    use Helpers;
-}
-</code></pre></div><h3 id="响应结果--设置响应状态码">响应结果&ndash;设置响应状态码</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">return $this-&gt;response-&gt;array(User::get())-&gt;setStatusCode(200);
-
-return response()-&gt;json([&#39;error&#39; =&gt; &#39;Unauthorized&#39;], 401);
-</code></pre></div><h3 id="错误响应">错误响应</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">// 一个自定义消息和状态码的普通错误。
-return $this-&gt;response-&gt;error(&#39;This is an error.&#39;, 404);
-
-// 一个没有找到资源的错误，第一个参数可以传递自定义消息。
-return $this-&gt;response-&gt;errorNotFound();
-
-// 一个 bad request 错误，第一个参数可以传递自定义消息。
-return $this-&gt;response-&gt;errorBadRequest();
-
-// 一个服务器拒绝错误，第一个参数可以传递自定义消息。
-return $this-&gt;response-&gt;errorForbidden();
-
-// 一个内部错误，第一个参数可以传递自定义消息。
-return $this-&gt;response-&gt;errorInternal();
-
-// 一个未认证错误，第一个参数可以传递自定义消息。
-return $this-&gt;response-&gt;errorUnauthorized(&#39;帐号或密码错误&#39;);
-</code></pre></div><h3 id="限制请求次数">限制请求次数</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>#接口围绕：[x]本地和私有环境 [prs]公司内部app使用 [vnd]公开接口
+</span></span><span style="display:flex;"><span>&#39;standardsTree&#39; =&gt; env(&#39;API_STANDARDS_TREE&#39;, &#39;x&#39;)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#项目名称
+</span></span><span style="display:flex;"><span>&#39;subtype&#39; =&gt; env(&#39;API_SUBTYPE&#39;, &#39;hdcms&#39;)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#Api前缀 通过 www.hdcms.com/api 来访问 API。
+</span></span><span style="display:flex;"><span>&#39;prefix&#39; =&gt; env(&#39;API_PREFIX&#39;, &#39;api&#39;)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#api域名
+</span></span><span style="display:flex;"><span>&#39;domain&#39; =&gt; env(&#39;API_DOMAIN&#39;, &#39;api.hdcms.com&#39;),
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#版本号
+</span></span><span style="display:flex;"><span>&#39;version&#39; =&gt; env(&#39;API_VERSION&#39;, &#39;v1&#39;)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#开发时开启DEBUG便于发现错误
+</span></span><span style="display:flex;"><span>&#39;debug&#39; =&gt; env(&#39;API_DEBUG&#39;, false)
+</span></span></code></pre></div><h3 id="接口版本--在routesapiphp中定义">接口版本&ndash;在routes/api.php中定义</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$api = app(\Dingo\Api\Routing\Router::class);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#默认配置指定的是v1版本，可以直接通过 {host}/api/version 访问到
+</span></span><span style="display:flex;"><span>$api-&gt;version(&#39;v1&#39;, function ($api) {
+</span></span><span style="display:flex;"><span>    $api-&gt;get(&#39;version&#39;, function () {
+</span></span><span style="display:flex;"><span>        return &#39;v1&#39;;
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#如果v2不是默认版本，需要设置请求头  
+</span></span><span style="display:flex;"><span>#Accept: application/[配置项 standardsTree].[配置项 subtype].v2+json
+</span></span><span style="display:flex;"><span>$api-&gt;version(&#39;v2&#39;, function ($api) {
+</span></span><span style="display:flex;"><span>    $api-&gt;get(&#39;version&#39;, function () {
+</span></span><span style="display:flex;"><span>        return &#39;v2&#39;;
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="基础控制器">基础控制器</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan make:controller Api/Controller
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>namespace App\Http\Controllers\Api;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>use Dingo\Api\Routing\Helpers;
+</span></span><span style="display:flex;"><span>use Illuminate\Http\Request;
+</span></span><span style="display:flex;"><span>use App\Http\Controllers\Controller as SysController;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Controller extends SysController
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    use Helpers;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="响应结果--设置响应状态码">响应结果&ndash;设置响应状态码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>return $this-&gt;response-&gt;array(User::get())-&gt;setStatusCode(200);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>return response()-&gt;json([&#39;error&#39; =&gt; &#39;Unauthorized&#39;], 401);
+</span></span></code></pre></div><h3 id="错误响应">错误响应</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>// 一个自定义消息和状态码的普通错误。
+</span></span><span style="display:flex;"><span>return $this-&gt;response-&gt;error(&#39;This is an error.&#39;, 404);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// 一个没有找到资源的错误，第一个参数可以传递自定义消息。
+</span></span><span style="display:flex;"><span>return $this-&gt;response-&gt;errorNotFound();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// 一个 bad request 错误，第一个参数可以传递自定义消息。
+</span></span><span style="display:flex;"><span>return $this-&gt;response-&gt;errorBadRequest();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// 一个服务器拒绝错误，第一个参数可以传递自定义消息。
+</span></span><span style="display:flex;"><span>return $this-&gt;response-&gt;errorForbidden();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// 一个内部错误，第一个参数可以传递自定义消息。
+</span></span><span style="display:flex;"><span>return $this-&gt;response-&gt;errorInternal();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// 一个未认证错误，第一个参数可以传递自定义消息。
+</span></span><span style="display:flex;"><span>return $this-&gt;response-&gt;errorUnauthorized(&#39;帐号或密码错误&#39;);
+</span></span></code></pre></div><h3 id="限制请求次数">限制请求次数</h3>
 <p><em><strong>使用 api.throttle中间件结合 limit、expires 参数可实现接口次数限制</strong></em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$api-&gt;version(&#39;v1&#39;, [&#39;namespace&#39; =&gt; &#39;\App\Api&#39;], function ($api) {
-    $api-&gt;group([&#39;middleware&#39; =&gt; &#39;api.throttle&#39;, &#39;limit&#39; =&gt; 2, &#39;expires&#39; =&gt; 1], function ($api) {
-        $api-&gt;get(&#39;user&#39;, &#39;UserController@all&#39;);
-    });
-});
-</code></pre></div><p><em><strong>限制1分钟只能访问2次</strong></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$api-&gt;version(&#39;v1&#39;, [&#39;namespace&#39; =&gt; &#39;\App\Api&#39;], function ($api) {
+</span></span><span style="display:flex;"><span>    $api-&gt;group([&#39;middleware&#39; =&gt; &#39;api.throttle&#39;, &#39;limit&#39; =&gt; 2, &#39;expires&#39; =&gt; 1], function ($api) {
+</span></span><span style="display:flex;"><span>        $api-&gt;get(&#39;user&#39;, &#39;UserController@all&#39;);
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><em><strong>限制1分钟只能访问2次</strong></em></p>
 <h2 id="jwt">Jwt</h2>
 <h3 id="安装组件-1">安装组件</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">composer require tymon/jwt-auth:2.x
-</code></pre></div><h3 id="生成配置文件-1">生成配置文件</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan vendor:publish
-</code></pre></div><h3 id="生成密钥">生成密钥</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan jwt:secret
-</code></pre></div><p><em><strong>这将用 JWT_SECRET=foobar 更新.env文件</strong></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>composer require tymon/jwt-auth:2.x
+</span></span></code></pre></div><h3 id="生成配置文件-1">生成配置文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan vendor:publish
+</span></span></code></pre></div><h3 id="生成密钥">生成密钥</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan jwt:secret
+</span></span></code></pre></div><p><em><strong>这将用 JWT_SECRET=foobar 更新.env文件</strong></em></p>
 <h3 id="配置说明">配置说明</h3>
 <p><em><strong>JWT配置文件是 config/jwt.php</strong></em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#令牌过期时间(单位分钟)，设置null为永不过期
-&#39;ttl&#39; =&gt; env(&#39;JWT_TTL&#39;, 60)
-
-#刷新令牌时间(单位分钟)，设置为null可永久随时刷新
-&#39;refresh_ttl&#39; =&gt; env(&#39;JWT_REFRESH_TTL&#39;, 20160)
-</code></pre></div><h3 id="更新用户模型示例">更新用户模型示例</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>#令牌过期时间(单位分钟)，设置null为永不过期
+</span></span><span style="display:flex;"><span>&#39;ttl&#39; =&gt; env(&#39;JWT_TTL&#39;, 60)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#刷新令牌时间(单位分钟)，设置为null可永久随时刷新
+</span></span><span style="display:flex;"><span>&#39;refresh_ttl&#39; =&gt; env(&#39;JWT_REFRESH_TTL&#39;, 20160)
+</span></span></code></pre></div><h3 id="更新用户模型示例">更新用户模型示例</h3>
 <p><em><strong>首先，您需要在用户模型上实现 Tymon\JWTAuth\Contracts\JWTSubject 契约，它要求您实现两个方法 getJWTIdentifier() 和 getJWTCustomClaims()</strong></em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">namespace App;
-
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
-class User extends Authenticatable implements JWTSubject
-{
-    use Notifiable;
-
-    /**
-     * 获取将存储在JWT主题声明中的标识符.
-     * 就是用户表主键 id
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this-&gt;getKey();
-    }
-
-    /**
-     * 返回一个键值数组，其中包含要添加到JWT的任何自定义声明.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-}
-</code></pre></div><h3 id="配置验证守卫">配置验证守卫</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>namespace App;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>use Tymon\JWTAuth\Contracts\JWTSubject;
+</span></span><span style="display:flex;"><span>use Illuminate\Notifications\Notifiable;
+</span></span><span style="display:flex;"><span>use Illuminate\Foundation\Auth\User as Authenticatable;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class User extends Authenticatable implements JWTSubject
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    use Notifiable;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    /**
+</span></span><span style="display:flex;"><span>     * 获取将存储在JWT主题声明中的标识符.
+</span></span><span style="display:flex;"><span>     * 就是用户表主键 id
+</span></span><span style="display:flex;"><span>     *
+</span></span><span style="display:flex;"><span>     * @return mixed
+</span></span><span style="display:flex;"><span>     */
+</span></span><span style="display:flex;"><span>    public function getJWTIdentifier()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        return $this-&gt;getKey();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    /**
+</span></span><span style="display:flex;"><span>     * 返回一个键值数组，其中包含要添加到JWT的任何自定义声明.
+</span></span><span style="display:flex;"><span>     *
+</span></span><span style="display:flex;"><span>     * @return array
+</span></span><span style="display:flex;"><span>     */
+</span></span><span style="display:flex;"><span>    public function getJWTCustomClaims()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        return [];
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="配置验证守卫">配置验证守卫</h3>
 <p><em><strong>修改 config/auth.php 文件以使用jwt保护来为接口身份验证提供支持</strong></em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&#39;guards&#39; =&gt; [
-	&#39;web&#39; =&gt; [
-		&#39;driver&#39; =&gt; &#39;session&#39;,
-		&#39;provider&#39; =&gt; &#39;users&#39;,
-	],
-	&#39;api&#39; =&gt; [
-		&#39;driver&#39; =&gt; &#39;jwt&#39;,
-		&#39;provider&#39; =&gt; &#39;users&#39;,
-	],
-]
-</code></pre></div><p><em><strong>修改dingo配置文件 config/api.php 文件中的身份验证提供者</strong></em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&#39;auth&#39; =&gt; [
-	&#39;jwt&#39; =&gt; \Dingo\Api\Auth\Provider\JWT::class,
-],
-</code></pre></div><h3 id="验证操作">验证操作</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#39;guards&#39; =&gt; [
+</span></span><span style="display:flex;"><span>	&#39;web&#39; =&gt; [
+</span></span><span style="display:flex;"><span>		&#39;driver&#39; =&gt; &#39;session&#39;,
+</span></span><span style="display:flex;"><span>		&#39;provider&#39; =&gt; &#39;users&#39;,
+</span></span><span style="display:flex;"><span>	],
+</span></span><span style="display:flex;"><span>	&#39;api&#39; =&gt; [
+</span></span><span style="display:flex;"><span>		&#39;driver&#39; =&gt; &#39;jwt&#39;,
+</span></span><span style="display:flex;"><span>		&#39;provider&#39; =&gt; &#39;users&#39;,
+</span></span><span style="display:flex;"><span>	],
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><p><em><strong>修改dingo配置文件 config/api.php 文件中的身份验证提供者</strong></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#39;auth&#39; =&gt; [
+</span></span><span style="display:flex;"><span>	&#39;jwt&#39; =&gt; \Dingo\Api\Auth\Provider\JWT::class,
+</span></span><span style="display:flex;"><span>],
+</span></span></code></pre></div><h3 id="验证操作">验证操作</h3>
 <p><em><strong>路由定义</strong></em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$api = app(\Dingo\Api\Routing\Router::class);
-$api-&gt;version(&#39;v1&#39;, [&#39;namespace&#39; =&gt; &#39;App\Http\Controllers\Api&#39;,], function ($api) {
-    $api-&gt;post(&#39;login&#39;, &#39;AuthController@login&#39;);
-    $api-&gt;get(&#39;logout&#39;, &#39;AuthController@logout&#39;);
-    $api-&gt;get(&#39;me&#39;, &#39;AuthController@me&#39;);
-});
-</code></pre></div><p><em><strong>控制器定义</strong></em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">class AuthController extends Controller
-{
-    public function __construct()
-    {
-    	// 除login外都需要验证
-        $this-&gt;middleware(&#39;auth:api&#39;, [&#39;except&#39; =&gt; [&#39;login&#39;]]);
-    }
-
-    //登录获取token
-    public function login()
-    {
-        $credentials = request([&#39;email&#39;, &#39;password&#39;]);
-
-        if (!$token = auth(&#39;api&#39;)-&gt;attempt($credentials)) {
-			return $this-&gt;response-&gt;errorUnauthorized(&#39;帐号或密码错误&#39;);
-        }
-
-        return $this-&gt;respondWithToken($token);
-    }
-
-    //获取用户资料
-    public function me()
-    {
-        return response()-&gt;json(auth(&#39;api&#39;)-&gt;user());
-    }
-
-    //销毁token
-    public function logout()
-    {
-        auth(&#39;api&#39;)-&gt;logout();
-
-        return response()-&gt;json([&#39;message&#39; =&gt; &#39;Successfully logged out&#39;]);
-    }
-
-    //刷新token
-    public function refresh()
-    {
-        return $this-&gt;respondWithToken(auth(&#39;api&#39;)-&gt;refresh());
-    }
-
-    //响应token
-    protected function respondWithToken($token)
-    {
-        return response()-&gt;json([
-            &#39;access_token&#39; =&gt; $token,
-            &#39;token_type&#39;   =&gt; &#39;bearer&#39;,
-            &#39;expires_in&#39;   =&gt; auth(&#39;api&#39;)-&gt;factory()-&gt;getTTL() * 60,
-        ]);
-    }
-}
-</code></pre></div><h3 id="使用令牌">使用令牌</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$api = app(\Dingo\Api\Routing\Router::class);
+</span></span><span style="display:flex;"><span>$api-&gt;version(&#39;v1&#39;, [&#39;namespace&#39; =&gt; &#39;App\Http\Controllers\Api&#39;,], function ($api) {
+</span></span><span style="display:flex;"><span>    $api-&gt;post(&#39;login&#39;, &#39;AuthController@login&#39;);
+</span></span><span style="display:flex;"><span>    $api-&gt;get(&#39;logout&#39;, &#39;AuthController@logout&#39;);
+</span></span><span style="display:flex;"><span>    $api-&gt;get(&#39;me&#39;, &#39;AuthController@me&#39;);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><em><strong>控制器定义</strong></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>class AuthController extends Controller
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    public function __construct()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    	// 除login外都需要验证
+</span></span><span style="display:flex;"><span>        $this-&gt;middleware(&#39;auth:api&#39;, [&#39;except&#39; =&gt; [&#39;login&#39;]]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    //登录获取token
+</span></span><span style="display:flex;"><span>    public function login()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $credentials = request([&#39;email&#39;, &#39;password&#39;]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        if (!$token = auth(&#39;api&#39;)-&gt;attempt($credentials)) {
+</span></span><span style="display:flex;"><span>			return $this-&gt;response-&gt;errorUnauthorized(&#39;帐号或密码错误&#39;);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        return $this-&gt;respondWithToken($token);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    //获取用户资料
+</span></span><span style="display:flex;"><span>    public function me()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        return response()-&gt;json(auth(&#39;api&#39;)-&gt;user());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    //销毁token
+</span></span><span style="display:flex;"><span>    public function logout()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        auth(&#39;api&#39;)-&gt;logout();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        return response()-&gt;json([&#39;message&#39; =&gt; &#39;Successfully logged out&#39;]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    //刷新token
+</span></span><span style="display:flex;"><span>    public function refresh()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        return $this-&gt;respondWithToken(auth(&#39;api&#39;)-&gt;refresh());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    //响应token
+</span></span><span style="display:flex;"><span>    protected function respondWithToken($token)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        return response()-&gt;json([
+</span></span><span style="display:flex;"><span>            &#39;access_token&#39; =&gt; $token,
+</span></span><span style="display:flex;"><span>            &#39;token_type&#39;   =&gt; &#39;bearer&#39;,
+</span></span><span style="display:flex;"><span>            &#39;expires_in&#39;   =&gt; auth(&#39;api&#39;)-&gt;factory()-&gt;getTTL() * 60,
+</span></span><span style="display:flex;"><span>        ]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="使用令牌">使用令牌</h3>
 <p><em><strong>在postman 工具中可以使用以下方式操作</strong></em><br>
 <img src="https://listenlive.cn/images/note/202009221533.png" alt=""></p>
 <hr>
@@ -415,7 +415,7 @@ $api-&gt;version(&#39;v1&#39;, [&#39;namespace&#39; =&gt; &#39;App\Http\Controll
 	<div class="post-comment">
     
     
-<span id="/note/2020/09/22/laravel_dingo" class="leancloud_visitors" data-flag-title="Laravel Api开发之Dingo&amp;Jwt的使用">
+<span id="https://listenlive.cn/note/2020/09/22/laravel_dingo/" class="leancloud_visitors" data-flag-title="Laravel Api开发之Dingo&amp;Jwt的使用">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -439,12 +439,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Laravel Api开发之Dingo\u0026Jwt的使用 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -642,7 +647,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

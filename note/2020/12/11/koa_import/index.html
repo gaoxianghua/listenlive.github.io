@@ -190,46 +190,46 @@
     </header>
     <div class="post-body" itemprop="articleBody">
     <h2 id="安装引入excel-export包">安装引入excel-export包</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    cnpm install excel-export --save
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    const nodeExcel = require(&#39;excel-export&#39;);
-</code></pre></div><h2 id="实现导出方法">实现导出方法</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/**
-   * 数据导出--导出方法
-   * @param resultData [{},{},] //从数据库中获取的数据格式
-   */
-  static async exportData(resultData,ctx){
-    let conf ={};
-        conf.name = &#34;worksheet&#34;;//表格名
-        let alldata = new Array();
-        for(let i = 0;i&lt;resultData.length;i++){
-            let arr = new Array();
-            arr.push(resultData[i].name);
-            arr.push(resultData[i].phone);
-            arr.push(resultData[i].age);
-            alldata.push(arr);
-        }
-        //决定列名和类型
-        conf.cols = [{
-            caption:&#39;姓名&#39;,
-            type:&#39;string&#39;
-        },{
-            caption:&#39;手机号&#39;,
-            type:&#39;string&#39;
-        },{
-            caption:&#39;年龄&#39;,
-            type:&#39;string&#39;
-        }];
-        conf.rows = alldata;//填充数据
-        let result = nodeExcel.execute(conf);
-        //最后3行express框架是这样写
-        // res.setHeader(&#39;Content-Type&#39;, &#39;application/vnd.openxmlformats&#39;);
-        // res.setHeader(&#34;Content-Disposition&#34;, &#34;attachment; filename=&#34; + &#34;Report.xlsx&#34;);
-        // res.end(result, &#39;binary&#39;);
-        ctx.set(&#39;Content-Type&#39;, &#39;application/vnd.openxmlformats&#39;);
-        ctx.set(&#34;Content-Disposition&#34;, &#34;attachment; filename=&#34; + &#34;Report.xlsx&#34;);
-        ctx.body=data;
-  }
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    cnpm install excel-export --save
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    const nodeExcel = require(&#39;excel-export&#39;);
+</span></span></code></pre></div><h2 id="实现导出方法">实现导出方法</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>/**
+</span></span><span style="display:flex;"><span>   * 数据导出--导出方法
+</span></span><span style="display:flex;"><span>   * @param resultData [{},{},] //从数据库中获取的数据格式
+</span></span><span style="display:flex;"><span>   */
+</span></span><span style="display:flex;"><span>  static async exportData(resultData,ctx){
+</span></span><span style="display:flex;"><span>    let conf ={};
+</span></span><span style="display:flex;"><span>        conf.name = &#34;worksheet&#34;;//表格名
+</span></span><span style="display:flex;"><span>        let alldata = new Array();
+</span></span><span style="display:flex;"><span>        for(let i = 0;i&lt;resultData.length;i++){
+</span></span><span style="display:flex;"><span>            let arr = new Array();
+</span></span><span style="display:flex;"><span>            arr.push(resultData[i].name);
+</span></span><span style="display:flex;"><span>            arr.push(resultData[i].phone);
+</span></span><span style="display:flex;"><span>            arr.push(resultData[i].age);
+</span></span><span style="display:flex;"><span>            alldata.push(arr);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        //决定列名和类型
+</span></span><span style="display:flex;"><span>        conf.cols = [{
+</span></span><span style="display:flex;"><span>            caption:&#39;姓名&#39;,
+</span></span><span style="display:flex;"><span>            type:&#39;string&#39;
+</span></span><span style="display:flex;"><span>        },{
+</span></span><span style="display:flex;"><span>            caption:&#39;手机号&#39;,
+</span></span><span style="display:flex;"><span>            type:&#39;string&#39;
+</span></span><span style="display:flex;"><span>        },{
+</span></span><span style="display:flex;"><span>            caption:&#39;年龄&#39;,
+</span></span><span style="display:flex;"><span>            type:&#39;string&#39;
+</span></span><span style="display:flex;"><span>        }];
+</span></span><span style="display:flex;"><span>        conf.rows = alldata;//填充数据
+</span></span><span style="display:flex;"><span>        let result = nodeExcel.execute(conf);
+</span></span><span style="display:flex;"><span>        //最后3行express框架是这样写
+</span></span><span style="display:flex;"><span>        // res.setHeader(&#39;Content-Type&#39;, &#39;application/vnd.openxmlformats&#39;);
+</span></span><span style="display:flex;"><span>        // res.setHeader(&#34;Content-Disposition&#34;, &#34;attachment; filename=&#34; + &#34;Report.xlsx&#34;);
+</span></span><span style="display:flex;"><span>        // res.end(result, &#39;binary&#39;);
+</span></span><span style="display:flex;"><span>        ctx.set(&#39;Content-Type&#39;, &#39;application/vnd.openxmlformats&#39;);
+</span></span><span style="display:flex;"><span>        ctx.set(&#34;Content-Disposition&#34;, &#34;attachment; filename=&#34; + &#34;Report.xlsx&#34;);
+</span></span><span style="display:flex;"><span>        ctx.body=data;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
 </blockquote>
@@ -246,7 +246,7 @@
 	<div class="post-comment">
     
     
-<span id="/note/2020/12/11/koa_import" class="leancloud_visitors" data-flag-title="Koa框架实现导出Excel文件">
+<span id="https://listenlive.cn/note/2020/12/11/koa_import/" class="leancloud_visitors" data-flag-title="Koa框架实现导出Excel文件">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -270,12 +270,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Koa框架实现导出Excel文件 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -449,7 +454,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

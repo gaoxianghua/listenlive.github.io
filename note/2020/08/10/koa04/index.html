@@ -191,69 +191,69 @@
     <div class="post-body" itemprop="articleBody">
     <h1 id="原生nodejs获取post提交的数据">原生Node.js获取post提交的数据</h1>
 <h2 id="表单">表单</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;form action=&#34;/doAdd&#34; method=&#34;post&#34;&gt;
-    用户名: &lt;input type=&#34;text&#34; name=&#34;username&#34;/&gt;
-    &lt;br/&gt;
-    &lt;br/&gt;
-    密　码: &lt;input type=&#34;password&#34; name=&#34;password&#34;/&gt;
-    &lt;br/&gt;
-    &lt;br/&gt;
-    &lt;button type=&#34;submit&#34;&gt;提交&lt;/button&gt;
-&lt;/form&gt;
-</code></pre></div><h2 id="在modulecommonjs封装获取数据的方法">在module/common.js封装获取数据的方法</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">exports.getPostData=function(ctx){
-    //获取数据  异步
-    return new Promise(function(resolve,reject){
-           try{
-               let str=&#39;&#39;;
-               ctx.req.on(&#39;data&#39;,function(chunk){
-                   str+=chunk;
-               })
-
-               ctx.req.on(&#39;end&#39;,function(chunk){
-
-                   resolve(str)
-               })
-           }catch(err){
-                reject(err)
-           }
-    })
-}
-</code></pre></div><h2 id="获取post提交的数据">获取post提交的数据</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">//引用获取数据方法
-var common = require(&#39;./module/common.js&#39;);
-//接收post提交的数据
-router.post(&#39;/doAdd&#39;,async (ctx)=&gt;{
-
-    //原生nodejs 在koa中获取表单提交的数据
-    var data=await common.getPostData(ctx);
-
-    console.log(data);
-    ctx.body=data;
-})
-</code></pre></div><h1 id="使用koa-bodyparser中间件获取post提交的数据">使用koa-bodyparser中间件获取post提交的数据</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;form action=&#34;/doAdd&#34; method=&#34;post&#34;&gt;
+</span></span><span style="display:flex;"><span>    用户名: &lt;input type=&#34;text&#34; name=&#34;username&#34;/&gt;
+</span></span><span style="display:flex;"><span>    &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    密　码: &lt;input type=&#34;password&#34; name=&#34;password&#34;/&gt;
+</span></span><span style="display:flex;"><span>    &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;button type=&#34;submit&#34;&gt;提交&lt;/button&gt;
+</span></span><span style="display:flex;"><span>&lt;/form&gt;
+</span></span></code></pre></div><h2 id="在modulecommonjs封装获取数据的方法">在module/common.js封装获取数据的方法</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>exports.getPostData=function(ctx){
+</span></span><span style="display:flex;"><span>    //获取数据  异步
+</span></span><span style="display:flex;"><span>    return new Promise(function(resolve,reject){
+</span></span><span style="display:flex;"><span>           try{
+</span></span><span style="display:flex;"><span>               let str=&#39;&#39;;
+</span></span><span style="display:flex;"><span>               ctx.req.on(&#39;data&#39;,function(chunk){
+</span></span><span style="display:flex;"><span>                   str+=chunk;
+</span></span><span style="display:flex;"><span>               })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>               ctx.req.on(&#39;end&#39;,function(chunk){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                   resolve(str)
+</span></span><span style="display:flex;"><span>               })
+</span></span><span style="display:flex;"><span>           }catch(err){
+</span></span><span style="display:flex;"><span>                reject(err)
+</span></span><span style="display:flex;"><span>           }
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="获取post提交的数据">获取post提交的数据</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>//引用获取数据方法
+</span></span><span style="display:flex;"><span>var common = require(&#39;./module/common.js&#39;);
+</span></span><span style="display:flex;"><span>//接收post提交的数据
+</span></span><span style="display:flex;"><span>router.post(&#39;/doAdd&#39;,async (ctx)=&gt;{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    //原生nodejs 在koa中获取表单提交的数据
+</span></span><span style="display:flex;"><span>    var data=await common.getPostData(ctx);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    console.log(data);
+</span></span><span style="display:flex;"><span>    ctx.body=data;
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h1 id="使用koa-bodyparser中间件获取post提交的数据">使用koa-bodyparser中间件获取post提交的数据</h1>
 <h2 id="安装并引入koa-bodyparser">安装并引入koa-bodyparser</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cnpm install koa-bodyparser --save
-
-var bodyParser = require(&#39;koa-bodyparser&#39;);
-</code></pre></div><h2 id="配置kooa-bodyparser中间件">配置kooa-bodyparser中间件</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">app.use(bodyParser());
-</code></pre></div><h2 id="获取post提交的数据-1">获取post提交的数据</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">router.post(&#39;/doAdd&#39;,async (ctx)=&gt;{
-
-    ctx.body = ctx.request.body;    //获取表单提交的数据
-    
-})
-</code></pre></div><h1 id="静态资源中间件">静态资源中间件</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cnpm install koa-bodyparser --save
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>var bodyParser = require(&#39;koa-bodyparser&#39;);
+</span></span></code></pre></div><h2 id="配置kooa-bodyparser中间件">配置kooa-bodyparser中间件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>app.use(bodyParser());
+</span></span></code></pre></div><h2 id="获取post提交的数据-1">获取post提交的数据</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>router.post(&#39;/doAdd&#39;,async (ctx)=&gt;{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ctx.body = ctx.request.body;    //获取表单提交的数据
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h1 id="静态资源中间件">静态资源中间件</h1>
 <h2 id="安装koa-static并引入">安装koa-static并引入</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cnpm install koa-static --save
-
-const static = require(&#39;koa-static&#39;);
-</code></pre></div><h2 id="配置koa-static中间件">配置koa-static中间件</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">app.use(static(&#39;./static&#39;));
-</code></pre></div><h2 id="引入静态资源">引入静态资源</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;link rel=&#34;stylesheet&#34; href=&#34;css/basic.css&#34;/&gt;   //即可成功引入static/css/basic.css
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cnpm install koa-static --save
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>const static = require(&#39;koa-static&#39;);
+</span></span></code></pre></div><h2 id="配置koa-static中间件">配置koa-static中间件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>app.use(static(&#39;./static&#39;));
+</span></span></code></pre></div><h2 id="引入静态资源">引入静态资源</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;link rel=&#34;stylesheet&#34; href=&#34;css/basic.css&#34;/&gt;   //即可成功引入static/css/basic.css
+</span></span></code></pre></div><hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
 </blockquote>
@@ -270,7 +270,7 @@ const static = require(&#39;koa-static&#39;);
 	<div class="post-comment">
     
     
-<span id="/note/2020/08/10/koa04" class="leancloud_visitors" data-flag-title="Koa post提交数据与静态资源中间件">
+<span id="https://listenlive.cn/note/2020/08/10/koa04/" class="leancloud_visitors" data-flag-title="Koa post提交数据与静态资源中间件">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -294,12 +294,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Koa post提交数据与静态资源中间件 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -486,7 +491,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

@@ -191,78 +191,78 @@
     <div class="post-body" itemprop="articleBody">
     <h1 id="环境配置">环境配置</h1>
 <h2 id="删除旧版本">删除旧版本</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo apt-get remove docker docker-engine docker.io containerd runc
-</code></pre></div><h2 id="更新apt包索引">更新apt包索引</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo apt-get update
-</code></pre></div><h2 id="安装包以允许apt通过https使用存储库">安装包以允许apt通过HTTPS使用存储库</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo apt-get install apt-transport-https
-    sudo apt-get install ca-certificates
-    sudo apt-get install curl
-    sudo apt-get install gnupg-agent
-    sudo apt-get install software-properties-common
-</code></pre></div><h2 id="添加docker的官方gpg密钥">添加Docker的官方GPG密钥</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-</code></pre></div><p><code>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88</code>通过搜索指纹的最后8个字符，验证您现在拥有带指纹的密钥</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo apt-key fingerprint 0EBFCD88
-</code></pre></div><h2 id="添加软件源">添加软件源</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo add-apt-repository \
-   &#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable&#34;
-</code></pre></div><h2 id="更新apt索引">更新apt索引</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo apt-get update
-</code></pre></div><h1 id="执行安装">执行安装</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo apt-get install docker-ce docker-ce-cli containerd.io
-</code></pre></div><h2 id="通过运行hello-world-映像验证是否正确安装了docker-ce">通过运行hello-world 映像验证是否正确安装了Docker CE</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo docker run hello-world
-</code></pre></div><h2 id="查看docker版本">查看docker版本</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo docker version
-</code></pre></div><h1 id="进程维护">进程维护</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo apt-get remove docker docker-engine docker.io containerd runc
+</span></span></code></pre></div><h2 id="更新apt包索引">更新apt包索引</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo apt-get update
+</span></span></code></pre></div><h2 id="安装包以允许apt通过https使用存储库">安装包以允许apt通过HTTPS使用存储库</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo apt-get install apt-transport-https
+</span></span><span style="display:flex;"><span>    sudo apt-get install ca-certificates
+</span></span><span style="display:flex;"><span>    sudo apt-get install curl
+</span></span><span style="display:flex;"><span>    sudo apt-get install gnupg-agent
+</span></span><span style="display:flex;"><span>    sudo apt-get install software-properties-common
+</span></span></code></pre></div><h2 id="添加docker的官方gpg密钥">添加Docker的官方GPG密钥</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</span></span></code></pre></div><p><code>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88</code>通过搜索指纹的最后8个字符，验证您现在拥有带指纹的密钥</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo apt-key fingerprint 0EBFCD88
+</span></span></code></pre></div><h2 id="添加软件源">添加软件源</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo add-apt-repository \
+</span></span><span style="display:flex;"><span>   &#34;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+</span></span><span style="display:flex;"><span>   $(lsb_release -cs) \
+</span></span><span style="display:flex;"><span>   stable&#34;
+</span></span></code></pre></div><h2 id="更新apt索引">更新apt索引</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo apt-get update
+</span></span></code></pre></div><h1 id="执行安装">执行安装</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo apt-get install docker-ce docker-ce-cli containerd.io
+</span></span></code></pre></div><h2 id="通过运行hello-world-映像验证是否正确安装了docker-ce">通过运行hello-world 映像验证是否正确安装了Docker CE</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo docker run hello-world
+</span></span></code></pre></div><h2 id="查看docker版本">查看docker版本</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo docker version
+</span></span></code></pre></div><h1 id="进程维护">进程维护</h1>
 <h2 id="停止启动重启docker">停止、启动、重启docker</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo systemctl start | stop | restart docker.service
-</code></pre></div><h2 id="加入开机自启">加入开机自启</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo systemctl enable docker
-</code></pre></div><h2 id="开机启动检测">开机启动检测</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo systemctl list-unit-files | grep docker
-</code></pre></div><h1 id="docker的升级维护">Docker的升级维护</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo systemctl start | stop | restart docker.service
+</span></span></code></pre></div><h2 id="加入开机自启">加入开机自启</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo systemctl enable docker
+</span></span></code></pre></div><h2 id="开机启动检测">开机启动检测</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo systemctl list-unit-files | grep docker
+</span></span></code></pre></div><h1 id="docker的升级维护">Docker的升级维护</h1>
 <h2 id="升级">升级</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo apt-get update
-</code></pre></div><h2 id="卸载">卸载</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo apt-get purge docker-ce docker-ce-cli containerd.io docker docker.io
-    sudo rm -rf /var/lib/docker
-    sudo apt autoremove
-</code></pre></div><h1 id="账号权限">账号权限</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo apt-get update
+</span></span></code></pre></div><h2 id="卸载">卸载</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo apt-get purge docker-ce docker-ce-cli containerd.io docker docker.io
+</span></span><span style="display:flex;"><span>    sudo rm -rf /var/lib/docker
+</span></span><span style="display:flex;"><span>    sudo apt autoremove
+</span></span></code></pre></div><h1 id="账号权限">账号权限</h1>
 <p>由于每次运行docker都要在命令前加sudo,下面设置当前登录账号执行docker命令方法</p>
 <h2 id="创建docker组">创建docker组</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo groupadd docker
-</code></pre></div><h2 id="将当前用户添加到docker组">将当前用户添加到docker组</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    sudo usermod -aG docker $USER
-</code></pre></div><h2 id="注销账号并重新登录即可">注销账号并重新登录即可</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo groupadd docker
+</span></span></code></pre></div><h2 id="将当前用户添加到docker组">将当前用户添加到docker组</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    sudo usermod -aG docker $USER
+</span></span></code></pre></div><h2 id="注销账号并重新登录即可">注销账号并重新登录即可</h2>
 <h1 id="镜像管理">镜像管理</h1>
 <h2 id="搜索镜像">搜索镜像</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker search nginx
-</code></pre></div><h2 id="安装镜像">安装镜像</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker pull nginx
-</code></pre></div><h2 id="查看镜像">查看镜像</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker images
-</code></pre></div><h2 id="删除镜像">删除镜像</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker rmi -f nginx
-</code></pre></div><h1 id="容器管理">容器管理</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker search nginx
+</span></span></code></pre></div><h2 id="安装镜像">安装镜像</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker pull nginx
+</span></span></code></pre></div><h2 id="查看镜像">查看镜像</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker images
+</span></span></code></pre></div><h2 id="删除镜像">删除镜像</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker rmi -f nginx
+</span></span></code></pre></div><h1 id="容器管理">容器管理</h1>
 <h2 id="查看运行的容器">查看运行的容器</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker ps
-</code></pre></div><h2 id="查看所有容器">查看所有容器</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker ps -a
-</code></pre></div><h2 id="查看容器进程">查看容器进程</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker top nginx
-</code></pre></div><h2 id="查看容器端口映射">查看容器端口映射</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker port xx
-</code></pre></div><h2 id="查看容器元信息如ip">查看容器元信息（如IP）</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker inspect xx
-</code></pre></div><h2 id="查看容器日志">查看容器日志</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker logs nginx
-</code></pre></div><h2 id="删除容器">删除容器</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">    docker rm -f xx
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker ps
+</span></span></code></pre></div><h2 id="查看所有容器">查看所有容器</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker ps -a
+</span></span></code></pre></div><h2 id="查看容器进程">查看容器进程</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker top nginx
+</span></span></code></pre></div><h2 id="查看容器端口映射">查看容器端口映射</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker port xx
+</span></span></code></pre></div><h2 id="查看容器元信息如ip">查看容器元信息（如IP）</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker inspect xx
+</span></span></code></pre></div><h2 id="查看容器日志">查看容器日志</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker logs nginx
+</span></span></code></pre></div><h2 id="删除容器">删除容器</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>    docker rm -f xx
+</span></span></code></pre></div><hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
 </blockquote>
@@ -279,7 +279,7 @@
 	<div class="post-comment">
     
     
-<span id="/note/202104/docker.html" class="leancloud_visitors" data-flag-title="Ubuntu-Docker的安装与使用">
+<span id="https://listenlive.cn/note/202104/docker.html" class="leancloud_visitors" data-flag-title="Ubuntu-Docker的安装与使用">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -303,12 +303,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Ubuntu-Docker的安装与使用 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -525,7 +530,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

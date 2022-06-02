@@ -192,21 +192,21 @@
     <h1 id="安装">安装</h1>
 <h2 id="composer安装">composer安装</h2>
 <p>composer命令：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">composer create-project --prefer-dist laravel/laravel hd
-</code></pre></div><p>Laravel目录：
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>composer create-project --prefer-dist laravel/laravel hd
+</span></span></code></pre></div><p>Laravel目录：
 <img src="https://listenlive.cn/images/LaravelFolder.jpg" alt="laravel目录"></p>
 <h2 id="安装提示工具">安装提示工具</h2>
 <p>前往PHP应用商店<a href="https://packagist.org">packagist.org</a>下载安装代码提示工具 <strong>barryvdh/laravel-ide-helper</strong>
 <img src="https://listenlive.cn/images/ide_helper.png" alt=""></p>
 <h3 id="使用composer安装以上ide增强工具">使用composer安装以上ide增强工具</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">composer require barryvdh/laravel-ide-helper
-</code></pre></div><h3 id="把增强工具引入laravel项目中">把增强工具引入laravel项目中</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>composer require barryvdh/laravel-ide-helper
+</span></span></code></pre></div><h3 id="把增强工具引入laravel项目中">把增强工具引入laravel项目中</h3>
 <p>在/config/app.php providers扩展中添加代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-</code></pre></div><p><img src="https://listenlive.cn/images/202007201511.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/202007201511.png" alt=""></p>
 <h3 id="执行artisan命令初始化组件">执行artisan命令初始化组件</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan ide-helper:generate
-</code></pre></div><h3 id="重启phpstorm完成工具安装">重启PHPstorm，完成工具安装</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan ide-helper:generate
+</span></span></code></pre></div><h3 id="重启phpstorm完成工具安装">重启PHPstorm，完成工具安装</h3>
 <h2 id="数据库配置">数据库配置</h2>
 <p>laravel有两个地方可以配置数据库：</p>
 <ol>
@@ -217,65 +217,65 @@
 <ol>
 <li>执行<strong>make:migration</strong>命令创建hd数据表PHP文件</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan make:migration create_hd_table --create=hd 
-</code></pre></div><p>执行成功后会在<strong>database/migrations</strong>目录中生成PHP文件
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan make:migration create_hd_table --create=hd 
+</span></span></code></pre></div><p>执行成功后会在<strong>database/migrations</strong>目录中生成PHP文件
 <img src="https://listenlive.cn/images/202007201557.png" alt="">
 2) 执行<strong>migrate</strong>命令创建hd数据表</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan migrate
-</code></pre></div><h3 id="解决mysql-56版本执行migrate命令报错无法创建表问题">解决MySQL 5.6版本执行migrate命令报错，无法创建表问题</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan migrate
+</span></span></code></pre></div><h3 id="解决mysql-56版本执行migrate命令报错无法创建表问题">解决MySQL 5.6版本执行migrate命令报错，无法创建表问题</h3>
 <p><img src="https://listenlive.cn/images/202007201631.png" alt="">
 错误信息：Illuminate\Database\QueryException<br>
 <strong>解决方法1</strong>：将MySQL升级至5.7+<br>
 <strong>解决方法2</strong>：将/config/database.php mysql配置由<strong>utf8bm4</strong>改为<strong>utf8</strong><br>
 <strong>解决方法3</strong>：将/app/Providers/AppServiceProvider.php 文件中引入<strong>Schema</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">use Schema;
-</code></pre></div><p>在<strong>boot</strong>方法中添加：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Schema::defaultStringLength(191);
-</code></pre></div><p><img src="https://listenlive.cn/images/202007201650.png" alt="">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>use Schema;
+</span></span></code></pre></div><p>在<strong>boot</strong>方法中添加：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Schema::defaultStringLength(191);
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/202007201650.png" alt="">
 再次执行<strong>migrate</strong>命令数据表 数据表创建成功<br>
 <img src="https://listenlive.cn/images/202007201641.png" alt=""></p>
 <h2 id="前后端路由配置">前后端路由配置</h2>
 <h1 id="在routes目录下新建admin目录作为后台路由">在/routes目录下新建admin目录作为后台路由</h1>
 <h1 id="在routeswebphp中包含admin目录文件">在/routes/web.php中包含admin目录文件</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">include __DIR__.&#39;/admin/web.php&#39;;
-</code></pre></div><p><img src="https://listenlive.cn/images/202007201708.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>include __DIR__.&#39;/admin/web.php&#39;;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/202007201708.png" alt=""></p>
 <h1 id="在routesadminwebphp中配置路由组">在routes/admin/web.php中配置路由组</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Route::group([&#39;prefix&#39; =&gt; &#39;admin&#39;],function(){
-   Route::get(&#39;/abc&#39;,function(){
-     return &#39;abc&#39;;
-   });
-});
-</code></pre></div><p><img src="https://listenlive.cn/images/202007201712.png" alt=""></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>Route::group([&#39;prefix&#39; =&gt; &#39;admin&#39;],function(){
+</span></span><span style="display:flex;"><span>   Route::get(&#39;/abc&#39;,function(){
+</span></span><span style="display:flex;"><span>     return &#39;abc&#39;;
+</span></span><span style="display:flex;"><span>   });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/202007201712.png" alt=""></p>
 <h1 id="输入域名adminabc即可访问到后台admin路由">输入&rsquo;域名/admin/abc&rsquo;即可访问到后台admin路由</h1>
 <p><img src="https://listenlive.cn/images/202007211009.png" alt=""></p>
 <h2 id="使用模型model创建表">使用模型（Model）创建表</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan make:model Model/Admin -m
-</code></pre></div><p><em>-m 表示同时创建migration</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan make:model Model/Admin -m
+</span></span></code></pre></div><p><em>-m 表示同时创建migration</em></p>
 <h3 id="编辑databasemigrations下的文件设置表字段">编辑database/migrations/下的文件，设置表字段</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">public function up()
-    {
-        Schema::create(&#39;admins&#39;, function (Blueprint $table) {
-            $table-&gt;increments(&#39;id&#39;);
-            $table-&gt;timestamps();
-            $table-&gt;string(&#39;username&#39;)-&gt;unique(); //表示username字段不允许重复
-            $table-&gt;string(&#39;password&#39;); 
-        });
-    }
-</code></pre></div><h3 id="执行migrate命令创建admins表">执行migrate命令创建admins表</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan migrate
-</code></pre></div><h3 id="为admins表添加数据">为admins表添加数据</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>public function up()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        Schema::create(&#39;admins&#39;, function (Blueprint $table) {
+</span></span><span style="display:flex;"><span>            $table-&gt;increments(&#39;id&#39;);
+</span></span><span style="display:flex;"><span>            $table-&gt;timestamps();
+</span></span><span style="display:flex;"><span>            $table-&gt;string(&#39;username&#39;)-&gt;unique(); //表示username字段不允许重复
+</span></span><span style="display:flex;"><span>            $table-&gt;string(&#39;password&#39;); 
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h3 id="执行migrate命令创建admins表">执行migrate命令创建admins表</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan migrate
+</span></span></code></pre></div><h3 id="为admins表添加数据">为admins表添加数据</h3>
 <p>编辑database/factories/Modelfactory.php文件，添加如下代码：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$factory-&gt;define(\App\Model\Admin::class, function (Faker $faker) {
-    return [
-        &#39;username&#39; =&gt; $faker-&gt;name,
-        &#39;password&#39; =&gt; bcrypt(&#39;admin888&#39;),
-    ];
-});
-</code></pre></div><p>接下来使用<strong>tinker</strong>添加数据</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">php artisan tinker      #启动tinker
-
-&gt;&gt;&gt;factory(App\Model\Admin::class,3)-&gt;create();
-</code></pre></div><p>此时admins表会新增3条数据
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$factory-&gt;define(\App\Model\Admin::class, function (Faker $faker) {
+</span></span><span style="display:flex;"><span>    return [
+</span></span><span style="display:flex;"><span>        &#39;username&#39; =&gt; $faker-&gt;name,
+</span></span><span style="display:flex;"><span>        &#39;password&#39; =&gt; bcrypt(&#39;admin888&#39;),
+</span></span><span style="display:flex;"><span>    ];
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>接下来使用<strong>tinker</strong>添加数据</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>php artisan tinker      #启动tinker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt;factory(App\Model\Admin::class,3)-&gt;create();
+</span></span></code></pre></div><p>此时admins表会新增3条数据
 <img src="https://listenlive.cn/images/202007211106.png" alt=""></p>
 <hr>
 <blockquote>
@@ -294,7 +294,7 @@
 	<div class="post-comment">
     
     
-<span id="/note/2020/07/16/laravel01" class="leancloud_visitors" data-flag-title="Laravel基础01-安装配置">
+<span id="https://listenlive.cn/note/2020/07/16/laravel01/" class="leancloud_visitors" data-flag-title="Laravel基础01-安装配置">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -318,12 +318,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Laravel基础01-安装配置 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -479,7 +484,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

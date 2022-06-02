@@ -191,103 +191,103 @@
     <div class="post-body" itemprop="articleBody">
     <h1 id="koa-ejs的安装与使用">Koa ejs的安装与使用</h1>
 <h2 id="安装koa-views">安装koa-views</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cnpm install koa-views --save
-</code></pre></div><h2 id="安装ejs">安装ejs</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cnpm install ejs --save 
-</code></pre></div><h2 id="配置模板引擎中间件">配置模板引擎中间件</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">var views = require(&#39;koa-views&#39;);
-
-app.use(views(&#39;views&#39;,{
-    extension:&#39;ejs&#39;
-}));        //这样配置模板的后缀名是.ejs
-
-//第二种配置方式
-app.use(views(&#39;views&#39;,{map:{html:&#39;ejs&#39;}})); //这样配置模板的后缀名是.html
-</code></pre></div><h2 id="渲染模板">渲染模板</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">router.get(&#39;/&#39;,async function(ctx){
-    await ctx.render(&#39;index&#39;);  //渲染模板
-});
-</code></pre></div><h2 id="将数据渲染到模板">将数据渲染到模板</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">router.get(&#39;/&#39;,async function(ctx){
-    let title = &#39;首页|home&#39; 
-    await ctx.render(&#39;index&#39;,{
-        title:title
-    });
-});
-</code></pre></div><p>模板文件</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;html lang=&#34;en&#34;&gt;
-&lt;head&gt;
-    &lt;meta charset=&#34;UTF-8&#34;&gt;
-    &lt;meta name=&#34;viewport&#34;
-          content=&#34;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&#34;&gt;
-    &lt;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;ie=edge&#34;&gt;
-    &lt;title&gt;&lt;%=title%&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h3&gt;ejs模板&lt;/h3&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre></div><h2 id="循环遍历数据">循环遍历数据</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">router.get(&#39;/&#39;,async function(ctx){   //ctx context 包含request和responses等信息
-    let title = &#39;Home&#39;
-    await ctx.render(&#39;index&#39;,{
-        title:title,
-    });
-}).get(&#39;/news&#39;,async (ctx)=&gt;{
-    let list = [&#39;11&#39;,&#39;aa&#39;,&#39;zz&#39;,&#39;bb&#39;,&#39;ff&#39;,&#39;kk&#39;];
-    await ctx.render(&#39;news&#39;,{
-        list:list,
-    });
-});
-</code></pre></div><p>模板文件写法</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;html lang=&#34;en&#34;&gt;
-&lt;head&gt;
-    &lt;meta charset=&#34;UTF-8&#34;&gt;
-    &lt;meta name=&#34;viewport&#34;
-          content=&#34;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&#34;&gt;
-    &lt;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;ie=edge&#34;&gt;
-    &lt;title&gt;新闻列表&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div&gt;
-        &lt;ul&gt;
-        &lt;%for(var i=0;i&lt;list.length;i++){%&gt;
-            &lt;li&gt;&lt;%=list[i]%&gt;&lt;/li&gt;
-        &lt;%}%&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre></div><p><img src="https://listenlive.cn/images/note/202008101124.png" alt="新闻列表"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cnpm install koa-views --save
+</span></span></code></pre></div><h2 id="安装ejs">安装ejs</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cnpm install ejs --save 
+</span></span></code></pre></div><h2 id="配置模板引擎中间件">配置模板引擎中间件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>var views = require(&#39;koa-views&#39;);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app.use(views(&#39;views&#39;,{
+</span></span><span style="display:flex;"><span>    extension:&#39;ejs&#39;
+</span></span><span style="display:flex;"><span>}));        //这样配置模板的后缀名是.ejs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>//第二种配置方式
+</span></span><span style="display:flex;"><span>app.use(views(&#39;views&#39;,{map:{html:&#39;ejs&#39;}})); //这样配置模板的后缀名是.html
+</span></span></code></pre></div><h2 id="渲染模板">渲染模板</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>router.get(&#39;/&#39;,async function(ctx){
+</span></span><span style="display:flex;"><span>    await ctx.render(&#39;index&#39;);  //渲染模板
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="将数据渲染到模板">将数据渲染到模板</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>router.get(&#39;/&#39;,async function(ctx){
+</span></span><span style="display:flex;"><span>    let title = &#39;首页|home&#39; 
+</span></span><span style="display:flex;"><span>    await ctx.render(&#39;index&#39;,{
+</span></span><span style="display:flex;"><span>        title:title
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>模板文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;html lang=&#34;en&#34;&gt;
+</span></span><span style="display:flex;"><span>&lt;head&gt;
+</span></span><span style="display:flex;"><span>    &lt;meta charset=&#34;UTF-8&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;meta name=&#34;viewport&#34;
+</span></span><span style="display:flex;"><span>          content=&#34;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;ie=edge&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;title&gt;&lt;%=title%&gt;&lt;/title&gt;
+</span></span><span style="display:flex;"><span>&lt;/head&gt;
+</span></span><span style="display:flex;"><span>&lt;body&gt;
+</span></span><span style="display:flex;"><span>    &lt;h3&gt;ejs模板&lt;/h3&gt;
+</span></span><span style="display:flex;"><span>&lt;/body&gt;
+</span></span><span style="display:flex;"><span>&lt;/html&gt;
+</span></span></code></pre></div><h2 id="循环遍历数据">循环遍历数据</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>router.get(&#39;/&#39;,async function(ctx){   //ctx context 包含request和responses等信息
+</span></span><span style="display:flex;"><span>    let title = &#39;Home&#39;
+</span></span><span style="display:flex;"><span>    await ctx.render(&#39;index&#39;,{
+</span></span><span style="display:flex;"><span>        title:title,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}).get(&#39;/news&#39;,async (ctx)=&gt;{
+</span></span><span style="display:flex;"><span>    let list = [&#39;11&#39;,&#39;aa&#39;,&#39;zz&#39;,&#39;bb&#39;,&#39;ff&#39;,&#39;kk&#39;];
+</span></span><span style="display:flex;"><span>    await ctx.render(&#39;news&#39;,{
+</span></span><span style="display:flex;"><span>        list:list,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>模板文件写法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;html lang=&#34;en&#34;&gt;
+</span></span><span style="display:flex;"><span>&lt;head&gt;
+</span></span><span style="display:flex;"><span>    &lt;meta charset=&#34;UTF-8&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;meta name=&#34;viewport&#34;
+</span></span><span style="display:flex;"><span>          content=&#34;width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;ie=edge&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;title&gt;新闻列表&lt;/title&gt;
+</span></span><span style="display:flex;"><span>&lt;/head&gt;
+</span></span><span style="display:flex;"><span>&lt;body&gt;
+</span></span><span style="display:flex;"><span>    &lt;div&gt;
+</span></span><span style="display:flex;"><span>        &lt;ul&gt;
+</span></span><span style="display:flex;"><span>        &lt;%for(var i=0;i&lt;list.length;i++){%&gt;
+</span></span><span style="display:flex;"><span>            &lt;li&gt;&lt;%=list[i]%&gt;&lt;/li&gt;
+</span></span><span style="display:flex;"><span>        &lt;%}%&gt;
+</span></span><span style="display:flex;"><span>        &lt;/ul&gt;
+</span></span><span style="display:flex;"><span>    &lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;/body&gt;
+</span></span><span style="display:flex;"><span>&lt;/html&gt;
+</span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202008101124.png" alt="新闻列表"></p>
 <h2 id="模板的引用">模板的引用</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;% include public/header.ejs%&gt;  //表示引用public目录下的header.ejs模板
-</code></pre></div><h2 id="解析html标签">解析HTML标签</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">let content = &#39;&lt;h2&gt;Content&lt;/h2&gt;&#39;;
-
-&lt;%-content%&gt;        //解析HTML标签
-</code></pre></div><h2 id="使用中间件配置公共的数据-在模板中可以直接使用">使用中间件配置公共的数据 在模板中可以直接使用</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">app.use(async (ctx,next)=&gt;{
-    ctx.state.userinfo=&#39;zhangsan&#39;;
-    
-    await next();   /*继续向下匹配路由*/
-})
-</code></pre></div><h1 id="art-template模板引擎推荐使用">art-template模板引擎（推荐使用）</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;% include public/header.ejs%&gt;  //表示引用public目录下的header.ejs模板
+</span></span></code></pre></div><h2 id="解析html标签">解析HTML标签</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>let content = &#39;&lt;h2&gt;Content&lt;/h2&gt;&#39;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;%-content%&gt;        //解析HTML标签
+</span></span></code></pre></div><h2 id="使用中间件配置公共的数据-在模板中可以直接使用">使用中间件配置公共的数据 在模板中可以直接使用</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>app.use(async (ctx,next)=&gt;{
+</span></span><span style="display:flex;"><span>    ctx.state.userinfo=&#39;zhangsan&#39;;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    await next();   /*继续向下匹配路由*/
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h1 id="art-template模板引擎推荐使用">art-template模板引擎（推荐使用）</h1>
 <h2 id="安装art-templatehttpauigithubioart-template并引入">安装<a href="http://aui.github.io/art-template/">art-template</a>并引入</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cnpm install --save art-template
-cnpm install --save koa-art-template
-
-path=require(&#39;path&#39;);
-const render = require(&#39;koa-art-template&#39;);
-</code></pre></div><h2 id="配置art-template模板引擎">配置art-template模板引擎</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">render(app, {
-    root: path.join(__dirname, &#39;views&#39;),   // 视图的位置
-    extname: &#39;.html&#39;,  // 后缀名
-    debug: process.env.NODE_ENV !== &#39;production&#39;  //是否开启调试模式
-
-});
-</code></pre></div><h2 id="渲染模板-1">渲染模板</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">await ctx.render(&#39;user&#39;);
-</code></pre></div><h2 id="模板语法">模板语法</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cnpm install --save art-template
+</span></span><span style="display:flex;"><span>cnpm install --save koa-art-template
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>path=require(&#39;path&#39;);
+</span></span><span style="display:flex;"><span>const render = require(&#39;koa-art-template&#39;);
+</span></span></code></pre></div><h2 id="配置art-template模板引擎">配置art-template模板引擎</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>render(app, {
+</span></span><span style="display:flex;"><span>    root: path.join(__dirname, &#39;views&#39;),   // 视图的位置
+</span></span><span style="display:flex;"><span>    extname: &#39;.html&#39;,  // 后缀名
+</span></span><span style="display:flex;"><span>    debug: process.env.NODE_ENV !== &#39;production&#39;  //是否开启调试模式
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="渲染模板-1">渲染模板</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>await ctx.render(&#39;user&#39;);
+</span></span></code></pre></div><h2 id="模板语法">模板语法</h2>
 <p><a href="http://aui.github.io/art-template/zh-cn/docs/syntax.html"><strong>官方文档</strong></a></p>
 <hr>
 <blockquote>
@@ -306,7 +306,7 @@ const render = require(&#39;koa-art-template&#39;);
 	<div class="post-comment">
     
     
-<span id="/note/2020/08/10/koa03" class="leancloud_visitors" data-flag-title="Koa ejs模板引擎与art-template模板引擎">
+<span id="https://listenlive.cn/note/2020/08/10/koa03/" class="leancloud_visitors" data-flag-title="Koa ejs模板引擎与art-template模板引擎">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -330,12 +330,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Koa ejs模板引擎与art-template模板引擎 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -525,7 +530,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

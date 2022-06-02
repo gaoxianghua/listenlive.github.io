@@ -190,26 +190,26 @@
     </header>
     <div class="post-body" itemprop="articleBody">
     <h1 id="crontab基本命令">crontab基本命令</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">crontab -l  //查看定时任务
-crontab -e  //编辑定时任务
-crontab -r  //删除定时任务
-</code></pre></div><h1 id="crontab常用写法">crontab常用写法</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">每分钟执行             */1 * * * *     command
-每小时0分执行           <span style="color:#ae81ff">0</span> * * * *       command
-每天0点执行             <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> * * *       command
-每周日0点执行           <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> * * <span style="color:#ae81ff">0</span>       command
-每月1号执行             <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> * *       command
-每年1月1日执行          <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> *       command
-</code></pre></div><h1 id="使用crontab定时任务备份数据库">使用crontab定时任务备份数据库</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>crontab -l  //查看定时任务
+</span></span><span style="display:flex;"><span>crontab -e  //编辑定时任务
+</span></span><span style="display:flex;"><span>crontab -r  //删除定时任务
+</span></span></code></pre></div><h1 id="crontab常用写法">crontab常用写法</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>每分钟执行             */1 * * * *     command
+</span></span><span style="display:flex;"><span>每小时0分执行           <span style="color:#ae81ff">0</span> * * * *       command
+</span></span><span style="display:flex;"><span>每天0点执行             <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> * * *       command
+</span></span><span style="display:flex;"><span>每周日0点执行           <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> * * <span style="color:#ae81ff">0</span>       command
+</span></span><span style="display:flex;"><span>每月1号执行             <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> * *       command
+</span></span><span style="display:flex;"><span>每年1月1日执行          <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> *       command
+</span></span></code></pre></div><h1 id="使用crontab定时任务备份数据库">使用crontab定时任务备份数据库</h1>
 <h2 id="首先编写shell脚本-back_mysqlsh">首先编写shell脚本 <code>back_mysql.sh</code></h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">t <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span>date <span style="color:#e6db74">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span style="color:#e6db74">`</span>   //使用时间做文件名
-mysqldump -h127.0.0.1 -uusername -ppwd dbname &gt; /var/back_mysql/dbname<span style="color:#e6db74">&#34;</span>$t<span style="color:#e6db74">&#34;</span>.sql
-</code></pre></div><h2 id="将shell脚本加入到定时任务">将shell脚本加入到定时任务</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#ae81ff">00</span> <span style="color:#ae81ff">6</span> * * *  /opt/back_mysql.sh    //每天六点备份数据库
-</code></pre></div><h1 id="使用定时任务定期更新数据库表字段">使用定时任务定期更新数据库表字段</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">//每年1月1日更新年龄字段，让 age + <span style="color:#ae81ff">1</span>
-<span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>  * mysql -uusername -ppwd -e <span style="color:#e6db74">&#34;use dbname;UPDATE tablename SET age = age + 1;quit;&#34;</span>
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>t <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span>date <span style="color:#e6db74">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span style="color:#e6db74">`</span>   //使用时间做文件名
+</span></span><span style="display:flex;"><span>mysqldump -h127.0.0.1 -uusername -ppwd dbname &gt; /var/back_mysql/dbname<span style="color:#e6db74">&#34;</span>$t<span style="color:#e6db74">&#34;</span>.sql
+</span></span></code></pre></div><h2 id="将shell脚本加入到定时任务">将shell脚本加入到定时任务</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#ae81ff">00</span> <span style="color:#ae81ff">6</span> * * *  /opt/back_mysql.sh    //每天六点备份数据库
+</span></span></code></pre></div><h1 id="使用定时任务定期更新数据库表字段">使用定时任务定期更新数据库表字段</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>//每年1月1日更新年龄字段，让 age + <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>  * mysql -uusername -ppwd -e <span style="color:#e6db74">&#34;use dbname;UPDATE tablename SET age = age + 1;quit;&#34;</span>
+</span></span></code></pre></div><hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
 </blockquote>
@@ -226,7 +226,7 @@ mysqldump -h127.0.0.1 -uusername -ppwd dbname &gt; /var/back_mysql/dbname<span s
 	<div class="post-comment">
     
     
-<span id="/leaf/202101/crontab_linux.html" class="leancloud_visitors" data-flag-title="使用Linux定时任务-Crontab 完成MySQL数据库的备份和表操作">
+<span id="https://listenlive.cn/leaf/202101/crontab_linux.html" class="leancloud_visitors" data-flag-title="使用Linux定时任务-Crontab 完成MySQL数据库的备份和表操作">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -250,12 +250,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "使用Linux定时任务-Crontab 完成MySQL数据库的备份和表操作 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -429,7 +434,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

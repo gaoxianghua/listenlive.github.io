@@ -193,216 +193,216 @@
 <p>v-if：不显示时，第一次就直接不渲染，如果内容已经显示将其改为不显示，将内容直接从DOM去除。<strong>只渲染一次的内容用v-if</strong><br>
 v-show:不显示时，就会改为display:none,但是会渲染在DOM上。<strong>反复需要切换的内容使用v-show</strong></p>
 <h1 id="使用v-show实现点击切换效果">使用v-show实现点击切换效果</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-	&lt;div v-show=&#34;isShow&#34; id=&#34;pane&#34;&gt;
-		Hello Vue
-	&lt;/div&gt;
-	&lt;button @click=&#34;showPane&#34;&gt;切换显示内容&lt;/button&gt;
-&lt;/div&gt;
-&lt;script type=&#34;text/javascript&#34;&gt;
-	let app = new Vue({
-		el:&#34;#app&#34;,
-		data:{
-			isShow:true
-		},
-		methods:{
-			showPane:function(){
-				app.isShow = !app.isShow;
-			}
-		}
-	})
-&lt;/script&gt;
-</code></pre></div><h1 id="使用v-if实现点击切换效果">使用v-if实现点击切换效果</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>	&lt;div v-show=&#34;isShow&#34; id=&#34;pane&#34;&gt;
+</span></span><span style="display:flex;"><span>		Hello Vue
+</span></span><span style="display:flex;"><span>	&lt;/div&gt;
+</span></span><span style="display:flex;"><span>	&lt;button @click=&#34;showPane&#34;&gt;切换显示内容&lt;/button&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script type=&#34;text/javascript&#34;&gt;
+</span></span><span style="display:flex;"><span>	let app = new Vue({
+</span></span><span style="display:flex;"><span>		el:&#34;#app&#34;,
+</span></span><span style="display:flex;"><span>		data:{
+</span></span><span style="display:flex;"><span>			isShow:true
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		methods:{
+</span></span><span style="display:flex;"><span>			showPane:function(){
+</span></span><span style="display:flex;"><span>				app.isShow = !app.isShow;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h1 id="使用v-if实现点击切换效果">使用v-if实现点击切换效果</h1>
 <p><img src="https://listenlive.cn/images/vue_tab.png" alt="菜单切换"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-	&lt;h3 v-if=&#34;tab==1&#34;&gt;首页&lt;/h3&gt;
-	&lt;h3 v-else-if=&#34;tab==2&#34;&gt;新闻页&lt;/h3&gt;
-	&lt;h3 v-else&gt;个人中心&lt;/h3&gt;
-	
-	&lt;button @click=&#34;tabChange&#34; data-id=&#34;1&#34;&gt;首页&lt;/button&gt;
-	&lt;button @click=&#34;tabChange&#34; data-id=&#34;2&#34;&gt;新闻&lt;/button&gt;
-	&lt;button @click=&#34;tabChange&#34; data-id=&#34;3&#34;&gt;个人中心&lt;/button&gt;
-&lt;/div&gt;
-&lt;script type=&#34;text/javascript&#34;&gt;
-	let app = new Vue({
-		el:&#34;#app&#34;,
-		data:{
-			tab:1
-		},
-		methods:{
-			tabChange:function(e){
-				let tabid = e.target.dataset.id
-				app.tab = tabid //等同于 this.tab = tabid
-			}
-		}
-	})
-&lt;/script&gt;
-</code></pre></div><h1 id="列表渲染-v-for">列表渲染 v-for</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>	&lt;h3 v-if=&#34;tab==1&#34;&gt;首页&lt;/h3&gt;
+</span></span><span style="display:flex;"><span>	&lt;h3 v-else-if=&#34;tab==2&#34;&gt;新闻页&lt;/h3&gt;
+</span></span><span style="display:flex;"><span>	&lt;h3 v-else&gt;个人中心&lt;/h3&gt;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	&lt;button @click=&#34;tabChange&#34; data-id=&#34;1&#34;&gt;首页&lt;/button&gt;
+</span></span><span style="display:flex;"><span>	&lt;button @click=&#34;tabChange&#34; data-id=&#34;2&#34;&gt;新闻&lt;/button&gt;
+</span></span><span style="display:flex;"><span>	&lt;button @click=&#34;tabChange&#34; data-id=&#34;3&#34;&gt;个人中心&lt;/button&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script type=&#34;text/javascript&#34;&gt;
+</span></span><span style="display:flex;"><span>	let app = new Vue({
+</span></span><span style="display:flex;"><span>		el:&#34;#app&#34;,
+</span></span><span style="display:flex;"><span>		data:{
+</span></span><span style="display:flex;"><span>			tab:1
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		methods:{
+</span></span><span style="display:flex;"><span>			tabChange:function(e){
+</span></span><span style="display:flex;"><span>				let tabid = e.target.dataset.id
+</span></span><span style="display:flex;"><span>				app.tab = tabid //等同于 this.tab = tabid
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h1 id="列表渲染-v-for">列表渲染 v-for</h1>
 <p><img src="https://listenlive.cn/images/vue_list.png" alt="列表渲染"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-	&lt;ul&gt;
-		&lt;li v-for=&#34;item in city&#34;&gt;
-			{{item}}
-		&lt;/li&gt;
-	&lt;/ul&gt;
-&lt;/div&gt;
-&lt;script type=&#34;text/javascript&#34;&gt;
-	var app = new Vue({
-		el:&#34;#app&#34;,
-		data:{
-			city:[&#39;北京&#39;,&#39;天津&#39;,&#39;上海&#39;,&#39;重庆&#39;]
-		}
-	})
-&lt;/script&gt;
-</code></pre></div><h1 id="动态绑定">动态绑定</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;style&gt;
-    .font{
-        color:red;
-    }
-&lt;/style&gt;
-&lt;div id=&#34;app&#34;&gt;
-    &lt;span :class=&#34;hello&#34; :id=&#34;sid&#34;&gt;Hello&lt;/span&gt;
-&lt;/div&gt;
-&lt;script type=&#34;text/javascript&#34;&gt;
-    var app = new Vue({
-        el:&#34;#app&#34;,
-        data:{
-            hello:&#39;font&#39;,
-            sid:&#39;bid&#39;
-        }
-    })
-&lt;/script&gt;
-</code></pre></div><h2 id="双向绑定">双向绑定</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>	&lt;ul&gt;
+</span></span><span style="display:flex;"><span>		&lt;li v-for=&#34;item in city&#34;&gt;
+</span></span><span style="display:flex;"><span>			{{item}}
+</span></span><span style="display:flex;"><span>		&lt;/li&gt;
+</span></span><span style="display:flex;"><span>	&lt;/ul&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script type=&#34;text/javascript&#34;&gt;
+</span></span><span style="display:flex;"><span>	var app = new Vue({
+</span></span><span style="display:flex;"><span>		el:&#34;#app&#34;,
+</span></span><span style="display:flex;"><span>		data:{
+</span></span><span style="display:flex;"><span>			city:[&#39;北京&#39;,&#39;天津&#39;,&#39;上海&#39;,&#39;重庆&#39;]
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h1 id="动态绑定">动态绑定</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;style&gt;
+</span></span><span style="display:flex;"><span>    .font{
+</span></span><span style="display:flex;"><span>        color:red;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>&lt;/style&gt;
+</span></span><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;span :class=&#34;hello&#34; :id=&#34;sid&#34;&gt;Hello&lt;/span&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script type=&#34;text/javascript&#34;&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#34;#app&#34;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>            hello:&#39;font&#39;,
+</span></span><span style="display:flex;"><span>            sid:&#39;bid&#39;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h2 id="双向绑定">双向绑定</h2>
 <p><img src="https://listenlive.cn/images/202007241546.png" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;span&gt;{{form}}&lt;/span&gt; &lt;br/&gt;
-    &lt;input type=&#34;text&#34; v-model=&#34;form&#34;/&gt;
-&lt;/div&gt;
-&lt;script type=&#34;text/javascript&#34;&gt;
-    var app = new Vue({
-        el:&#34;#app&#34;,
-        data:{
-            form:&#39;表单提交&#39;
-        }
-    })
-&lt;/script&gt;
-</code></pre></div><p><em>数据只绑定一次的话用</em><em><strong>v-once</strong></em></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;h3 v-once&gt;{{form}}&lt;/h3&gt;
-</code></pre></div><h2 id="v-text与v-html">v-text与v-html</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;span&gt;{{form}}&lt;/span&gt; &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;text&#34; v-model=&#34;form&#34;/&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script type=&#34;text/javascript&#34;&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#34;#app&#34;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>            form:&#39;表单提交&#39;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><em>数据只绑定一次的话用</em><em><strong>v-once</strong></em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;h3 v-once&gt;{{form}}&lt;/h3&gt;
+</span></span></code></pre></div><h2 id="v-text与v-html">v-text与v-html</h2>
 <p><img src="https://listenlive.cn/images/202007241626.png" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;h2 v-text=&#34;tname&#34;&gt;&lt;/h2&gt;
-    &lt;h2 v-html=&#34;tname&#34;&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;script type=&#34;text/javascript&#34;&gt;
-    var app = new Vue({
-        el:&#34;#app&#34;,
-        data:{
-            tname:&#39;&lt;h1 style=&#34;color: skyblue&#34;&gt;listenlive.cn&lt;/h1&gt;&#39;
-        }
-    })
-&lt;/script&gt;
-</code></pre></div><h2 id="动态改变属性">动态改变属性</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;h2 v-text=&#34;tname&#34;&gt;&lt;/h2&gt;
+</span></span><span style="display:flex;"><span>    &lt;h2 v-html=&#34;tname&#34;&gt;&lt;/h2&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script type=&#34;text/javascript&#34;&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#34;#app&#34;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>            tname:&#39;&lt;h1 style=&#34;color: skyblue&#34;&gt;listenlive.cn&lt;/h1&gt;&#39;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h2 id="动态改变属性">动态改变属性</h2>
 <p><img src="https://listenlive.cn/images/202007241820.png" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;style&gt;
-    .tname1{color:red}
-    .tname2{color:green}
-&lt;/style&gt;
-&lt;div id=&#34;app&#34;&gt;
-    &lt;h2 :class=&#34;&#39;tname&#39; + n&#34;&gt;COLOR&lt;/h2&gt;
-    &lt;input type=&#34;text&#34; v-model=&#34;n&#34;&gt; &lt;br/&gt;
-    &lt;input type=&#34;radio&#34; v-model=&#34;n&#34; value=&#34;1&#34;&gt; RED
-    &lt;input type=&#34;radio&#34; v-model=&#34;n&#34; value=&#34;2&#34;&gt; GREEN
-&lt;/div&gt;
-&lt;script type=&#34;text/javascript&#34;&gt;
-    var app = new Vue({
-        el:&#34;#app&#34;,
-        data:{
-            n:1
-        }
-    })
-&lt;/script&gt;
-</code></pre></div><h2 id="computed---购物车商品价格计算逻辑">computed - 购物车商品价格计算逻辑</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;style&gt;
+</span></span><span style="display:flex;"><span>    .tname1{color:red}
+</span></span><span style="display:flex;"><span>    .tname2{color:green}
+</span></span><span style="display:flex;"><span>&lt;/style&gt;
+</span></span><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;h2 :class=&#34;&#39;tname&#39; + n&#34;&gt;COLOR&lt;/h2&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;text&#34; v-model=&#34;n&#34;&gt; &lt;br/&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;radio&#34; v-model=&#34;n&#34; value=&#34;1&#34;&gt; RED
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;radio&#34; v-model=&#34;n&#34; value=&#34;2&#34;&gt; GREEN
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script type=&#34;text/javascript&#34;&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>        el:&#34;#app&#34;,
+</span></span><span style="display:flex;"><span>        data:{
+</span></span><span style="display:flex;"><span>            n:1
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h2 id="computed---购物车商品价格计算逻辑">computed - 购物车商品价格计算逻辑</h2>
 <p><img src="https://listenlive.cn/images/202007252044.png" alt=""></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;input type=&#34;text&#34; v-model=&#34;n1&#34;&gt; +
-    &lt;input type=&#34;text&#34; v-model=&#34;n2&#34;&gt; =
-    &lt;input type=&#34;text&#34; v-model=&#34;sum&#34;&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-       el:&#39;#app&#39;,
-        computed:{
-          sum:function () {
-              return this.n1*1 + this.n2*1; //*1表示将字符串转为整型
-          }
-        },
-       data:{
-           n1:0,
-           n2:1
-       }
-    });
-&lt;/script&gt;
-</code></pre></div><h2 id="watch---监听变量的更改">watch - 监听变量的更改</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;text&#34; v-model=&#34;n1&#34;&gt; +
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;text&#34; v-model=&#34;n2&#34;&gt; =
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;text&#34; v-model=&#34;sum&#34;&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>       el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>        computed:{
+</span></span><span style="display:flex;"><span>          sum:function () {
+</span></span><span style="display:flex;"><span>              return this.n1*1 + this.n2*1; //*1表示将字符串转为整型
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>       data:{
+</span></span><span style="display:flex;"><span>           n1:0,
+</span></span><span style="display:flex;"><span>           n2:1
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h2 id="watch---监听变量的更改">watch - 监听变量的更改</h2>
 <p><em>在常用的搜索场景，输入一个词展示相关搜索结果</em><br>
 <img src="https://listenlive.cn/images/202007252307.png" alt=""></p>
 <h3 id="使用npm安装axios---跨域请求数据">使用npm安装axios - 跨域请求数据</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">npm install axios
-</code></pre></div><h3 id="引入axios">引入axios</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;script src=&#34;node_modules/axios/dist/axios.js&#34;&gt;&lt;/script&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;input type=&#34;text&#34; v-model=&#34;word&#34;&gt;
-    &lt;h3&gt;
-        搜索结果：{{result}}
-    &lt;/h3&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-       el:&#39;#app&#39;,
-       watch:{
-           word: function (newV,oldV) {
-               axios.get(&#39;0725.php?word=&#39;+newV).then(function (response) {
-                   app.result = response.data;
-               })
-           }
-       },
-       data:{
-           word:&#39;&#39;,
-           result:&#39;&#39;
-       }
-    });
-&lt;/script&gt;
-</code></pre></div><h2 id="使用lodash解决实时请求造成资源浪费问题">使用lodash解决实时请求造成资源浪费问题</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>npm install axios
+</span></span></code></pre></div><h3 id="引入axios">引入axios</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;script src=&#34;node_modules/axios/dist/axios.js&#34;&gt;&lt;/script&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;text&#34; v-model=&#34;word&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;h3&gt;
+</span></span><span style="display:flex;"><span>        搜索结果：{{result}}
+</span></span><span style="display:flex;"><span>    &lt;/h3&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>       el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>       watch:{
+</span></span><span style="display:flex;"><span>           word: function (newV,oldV) {
+</span></span><span style="display:flex;"><span>               axios.get(&#39;0725.php?word=&#39;+newV).then(function (response) {
+</span></span><span style="display:flex;"><span>                   app.result = response.data;
+</span></span><span style="display:flex;"><span>               })
+</span></span><span style="display:flex;"><span>           }
+</span></span><span style="display:flex;"><span>       },
+</span></span><span style="display:flex;"><span>       data:{
+</span></span><span style="display:flex;"><span>           word:&#39;&#39;,
+</span></span><span style="display:flex;"><span>           result:&#39;&#39;
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><h2 id="使用lodash解决实时请求造成资源浪费问题">使用lodash解决实时请求造成资源浪费问题</h2>
 <p><img src="https://listenlive.cn/images/202007252334.png" alt=""></p>
 <h3 id="安装并引入lodash">安装并引入lodash</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">npm install lodash
-
-&lt;script src=&#34;node_modules/lodash/lodash.js&#34;&gt;&lt;/script&gt;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div id=&#34;app&#34;&gt;
-    &lt;input type=&#34;text&#34; v-model=&#34;word&#34;&gt;
-    &lt;h3&gt;
-        搜索结果：{{result}}
-    &lt;/h3&gt;
-&lt;/div&gt;
-&lt;script&gt;
-    var app = new Vue({
-       el:&#39;#app&#39;,
-       watch:{
-           word: _.debounce(
-               function (newV,oldV) {
-                   axios.get(&#39;0725.php?word=&#39;+newV).then(function (response) {
-                       app.result = response.data;
-                   })
-               },3000
-           )
-       },
-       data:{
-           word:&#39;&#39;,
-           result:&#39;&#39;
-       }
-    });
-&lt;/script&gt;
-</code></pre></div><p><em>使用</em><em><strong><a href="https://www.lodashjs.com/docs/lodash.debounce">_.debounce()</a></strong></em><em>方法，设置3秒后才请求后台数据，减轻服务器压力</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>npm install lodash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;script src=&#34;node_modules/lodash/lodash.js&#34;&gt;&lt;/script&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;div id=&#34;app&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;input type=&#34;text&#34; v-model=&#34;word&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;h3&gt;
+</span></span><span style="display:flex;"><span>        搜索结果：{{result}}
+</span></span><span style="display:flex;"><span>    &lt;/h3&gt;
+</span></span><span style="display:flex;"><span>&lt;/div&gt;
+</span></span><span style="display:flex;"><span>&lt;script&gt;
+</span></span><span style="display:flex;"><span>    var app = new Vue({
+</span></span><span style="display:flex;"><span>       el:&#39;#app&#39;,
+</span></span><span style="display:flex;"><span>       watch:{
+</span></span><span style="display:flex;"><span>           word: _.debounce(
+</span></span><span style="display:flex;"><span>               function (newV,oldV) {
+</span></span><span style="display:flex;"><span>                   axios.get(&#39;0725.php?word=&#39;+newV).then(function (response) {
+</span></span><span style="display:flex;"><span>                       app.result = response.data;
+</span></span><span style="display:flex;"><span>                   })
+</span></span><span style="display:flex;"><span>               },3000
+</span></span><span style="display:flex;"><span>           )
+</span></span><span style="display:flex;"><span>       },
+</span></span><span style="display:flex;"><span>       data:{
+</span></span><span style="display:flex;"><span>           word:&#39;&#39;,
+</span></span><span style="display:flex;"><span>           result:&#39;&#39;
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span></code></pre></div><p><em>使用</em><em><strong><a href="https://www.lodashjs.com/docs/lodash.debounce">_.debounce()</a></strong></em><em>方法，设置3秒后才请求后台数据，减轻服务器压力</em></p>
 <hr>
 <blockquote>
 <p>喜欢这篇文章的话 打赏一下吧！</p>
@@ -420,7 +420,7 @@ v-show:不显示时，就会改为display:none,但是会渲染在DOM上。<stron
 	<div class="post-comment">
     
     
-<span id="/note/2020/07/13/vue01" class="leancloud_visitors" data-flag-title="Vue基础-01">
+<span id="https://listenlive.cn/note/2020/07/13/vue01/" class="leancloud_visitors" data-flag-title="Vue基础-01">
 <p></p>
 </span>
 <div id="vcomments"></div>
@@ -444,12 +444,17 @@ for(var i in vsubmit)
     vsubmit[i].onclick=function() { 
         var httpRequest = new XMLHttpRequest();
         let pushToken = 'e5c93939959f49d798fa84b847220442';
-        let title = '网站有新的留言了!';
-        let content = '留言内容： '+document.getElementById("veditor").value+'<br/>';
-        let site = '链接： '+window.location.href+"<br/>";
+        let barkKey = 'jFTNvWoCFEYwweHw3SdSFK';
+        let title = '网站有新的留言了! ';
+        let blogTitle = "文章:" + "Vue基础-01 "+' \n';
+        let content = '留言内容： '+document.getElementById("veditor").value+' \n';
+        let site = '链接： '+window.location.href+"  ";
         var date = new Date();
-        let subDate = '时间： '+date .toLocaleString()+"<br/>";
-        let url = "//pushplus.hxtrip.com/send?token="+pushToken+'&title='+title+"&content="+content+site+subDate+"&template=html";
+        let subDate = '时间： '+date .toLocaleString()+" ";
+        
+        
+        
+        let url = "//api.day.app/"+barkKey+'/'+title+"/" +blogTitle+content;
         httpRequest.open('GET', url, true);
         httpRequest.send();
     };
@@ -636,7 +641,7 @@ for(var i in vsubmit)
   <span class="author" itemprop="copyrightHolder">listenlive.cn</span>
 </div>
 <div class="powered-by">
-  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.83.1</a>
+  Powered by - <a class="theme-link" href="http://gohugo.io" target="_blank" title="hugo" >Hugo v0.99.1</a>
 </div>
 <div class="powered-by">
   Theme by - <a class="theme-link" href="https://github.com/xtfly/hugo-theme-next" target="_blank"> NexT

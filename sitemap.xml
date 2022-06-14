@@ -1,6 +1,20 @@
 <search>
     
      <entry>
+        <title>使用docker-compose一键部署nodejs项目</title>
+        <url>https://listenlive.cn/leaf/202206/nodejs-docker.html</url>
+        <categories>
+          <category>技术</category>
+        </categories>
+        <tags>
+          <tag>nodejs</tag><tag>docker</tag><tag>docker-compose</tag>
+        </tags>
+        <content type="html"> 环境  OS: Ubuntu 软件: docker、docker-compose  目录结构 docker-compose.yml文件 version: &amp;#34;2&amp;#34; services:   mysql:  image: mysql:8.0.19  container_name: mysql  restart: always  volumes:  - ./data/mysql:/var/lib/mysql # mysql数据文件目录  ports:  - 33066:3306  environment:  - MYSQL_ROOT_PASSWORD=123456   nodejs:  image: node:latest  container_name: nodejs  working_dir: /application  restart: always  volumes:  - ./application:/application  command: bash -c &amp;#34;cd /application/lincms-koa/ &amp;amp;&amp;amp; npm run start:dev&amp;#34; # 进入项目目录并使用npm运行  depends_on:  - mysql # 依赖mysql服务  ports:  - 5000:5000 部署nodejs项目-以lincms-koa为例 进入到application目录  cd application 获取工程项目  git clone https://github.com/TaleLin/lin-cms-koa.git lincms-koa 安装依赖  cd lincms-koa  npm install 修改数据库配置项app/config/secure.js,根据自己实际情况修改以下配置:  module.exports = {  db: {  database: &amp;#34;lin-cms&amp;#34;,  host: &amp;#34;192.168.153.128&amp;#34;,  port: 33066,  username: &amp;#34;root&amp;#34;,  password: &amp;#34;123456&amp;#34;,  logging: false  }  }; 启动项目  sudo docker-compose up -d 导入数据  新建数据库lin-cms并导入lincms-koa目录下的schema.sql文件
+ 访问5000端口测试是否部署成功   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
         <title>使用docker-compose一键搭建LNMP环境</title>
         <url>https://listenlive.cn/leaf/202205/lnmp-docker.html</url>
         <categories>

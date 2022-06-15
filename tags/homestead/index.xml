@@ -8,12 +8,12 @@
     <language>zh-CN</language>
     <lastBuildDate>Tue, 18 May 2021 15:20:48 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/homestead/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Windows-Laravel开发环境Homestead搭建</title>
+      <title>Homestead环境搭建</title>
       <link>https://listenlive.cn/note/202105/installhd.html</link>
       <pubDate>Tue, 18 May 2021 15:20:48 +0800</pubDate>
       
       <guid>https://listenlive.cn/note/202105/installhd.html</guid>
-      <description>准备工作 安装所需软件 Git Vagrant VitrualBox xshell Navicat 生成SSH Key 在用户家目录运行： cd ~ ssh-keygen -t rsa -C &amp;#34;youemail@homestead.com&amp;#34; 此时，会生成以下的文件 下载Homestead的box文件 打开命令终</description>
+      <description>准备工作 环境 OS: Windows 10 安装所需软件 Git Vagrant VitrualBox xshell Navicat 生成SSH Key 在用户家目录运行： cd ~ ssh-keygen -t rsa -C &amp;#34;youemail@homestead.com&amp;#34; 此时，会生成以下的文件 下载Homestead的box文件</description>
     </item>
     
   </channel>

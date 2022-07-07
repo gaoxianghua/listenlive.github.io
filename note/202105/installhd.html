@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
     <title>Homestead环境搭建 | listenlive.cn</title>
-    <meta name="keywords" content="独立,博客,程序员,个人,开发,思考,读书,笔记,技术,分享,PHP,Hugo,Node.js,Golang">
+    <meta name="keywords" content="独立,博客,程序员,个人,开发,思考,读书,笔记,技术,分享,PHP,nodejs">
     
     <meta property="og:title" content="Homestead环境搭建">
     <meta property="og:site_name" content="listenlive.cn">
     <meta property="og:image" content="/img/author.jpg"> 
     <meta name="title" content="Homestead环境搭建 - listenlive.cn" />
-    <meta name="description" content="博客 | 软件 | 架构 | PHP | 开发 | Hugo | Golang | go | Node.js"> 
+    <meta name="description" content="博客 | 软件 | 架构 | 开发 | PHP | nodejs"> 
     <link rel="shortcut icon" href="https://listenlive.cn/img/favicon.ico" />
     <link rel="apple-touch-icon" href="https://listenlive.cn/img/apple-touch-icon.png" />
     <link rel="apple-touch-icon-precomposed" href="https://listenlive.cn/img/apple-touch-icon.png" />
@@ -184,7 +184,7 @@
     <i class="fa fa-eye"></i>
 </span>
 <span class="post-meta-item-text">阅读：</span>
-<span class="leancloud-visitors-count">655 字 ~2分钟</span>
+<span class="leancloud-visitors-count">710 字 ~2分钟</span>
 </span>
       </div>
     </header>
@@ -210,7 +210,7 @@
 此时，会生成以下的文件<br>
 <img src="https://listenlive.cn/images/note/202105/ssh-img.png" alt=""></p>
 <h1 id="下载homestead的box文件">下载Homestead的box文件</h1>
-<h2 id="打开命令终端以管理员权限运行cd到用户家目录">打开命令终端以管理员权限运行，cd到用户<code>家</code>目录</h2>
+<h2 id="打开命令终端以管理员权限运行cd到用户根cd-目录">打开命令终端以管理员权限运行，cd到用户根<code>cd ~</code>目录</h2>
 <p><img src="https://listenlive.cn/images/note/202105/command.png" alt=""></p>
 <h2 id="运行命令">运行命令：</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vagrant box add laravel/homestead
@@ -283,6 +283,7 @@
 </span></span><span style="display:flex;"><span>sudo update-alternatives --display php 
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 执行后，会列出当前 php 所有版本和编号，输入编号，切换到执行的版本</span>
 </span></span><span style="display:flex;"><span>sudo update-alternatives --config php 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># homestead 目录下有个 aliases 文件，这个文件中定义了一些可以直接在虚拟机中使用的命令，比如想切换到 7.0 版本直接执行 php70 即可  </span>
 </span></span></code></pre></div><p><img src="https://listenlive.cn/images/note/202105/installhd.png" alt=""></p>
 <hr>
 <blockquote>
@@ -419,7 +420,7 @@ for(var i in vsubmit)
       <nav class="site-state motion-element">
     <div class="site-state-item site-state-posts">
       <a href="https://listenlive.cn/post/">
-        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">日志</span>
       </a>
     </div>
@@ -436,7 +437,7 @@ for(var i in vsubmit)
     <div class="site-state-item site-state-tags">
         <a href="https://listenlive.cn/tags/">
          
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">60</span>
         
         <span class="site-state-item-name">标签</span>
         </a>
@@ -494,7 +495,7 @@ for(var i in vsubmit)
   </ul>
 
   <ul>
-    <li><a href="#打开命令终端以管理员权限运行cd到用户家目录">打开命令终端以管理员权限运行，cd到用户<code>家</code>目录</a></li>
+    <li><a href="#打开命令终端以管理员权限运行cd到用户根cd-目录">打开命令终端以管理员权限运行，cd到用户根<code>cd ~</code>目录</a></li>
     <li><a href="#运行命令">运行命令：</a></li>
     <li><a href="#输入编号选择vitrualbox选项">输入编号，选择vitrualbox选项</a></li>
     <li><a href="#等待下载安装即可现在国内的下载速度还是可以的所以不用去找box文件啦">等待下载安装即可（现在国内的下载速度还是可以的，所以不用去找box文件啦）</a></li>

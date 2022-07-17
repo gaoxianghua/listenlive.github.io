@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MP4 on listenlive.cn</title>
+    <link>https://listenlive.cn/tags/mp4/</link>
+    <description>Recent content in MP4 on listenlive.cn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 17 Jul 2022 19:38:37 +0800</lastBuildDate><atom:link href="https://listenlive.cn/tags/mp4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PHP获取mp4和m3u8视频时长的方法</title>
+      <link>https://listenlive.cn/note/202207/duration.html</link>
+      <pubDate>Sun, 17 Jul 2022 19:38:37 +0800</pubDate>
+      
+      <guid>https://listenlive.cn/note/202207/duration.html</guid>
+      <description>PHP获取mp4视频时长 使用getid3获取mp4视频时长(同样适用于mp3等其他媒体文件) $getid3 = new getID3; $file = &amp;#39;./test.mp4&amp;#39;; $info = $getid3-&amp;gt;analyze($file); $playtime_seconds = $info[&amp;#39;playtime_seconds&amp;#39;]; $duration = gmdate(&amp;#34;H:i:s&amp;#34;, $playtime_seconds); //将秒换算为</description>
+    </item>
+    
+  </channel>
+</rss>

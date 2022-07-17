@@ -1,6 +1,19 @@
 <search>
     
      <entry>
+        <title>PHP获取mp4和m3u8视频时长的方法</title>
+        <url>https://listenlive.cn/note/202207/duration.html</url>
+        <categories>
+          <category>笔记</category>
+        </categories>
+        <tags>
+          <tag>PHP</tag><tag>m3u8</tag><tag>MP4</tag>
+        </tags>
+        <content type="html"> PHP获取mp4视频时长 使用getid3获取mp4视频时长(同样适用于mp3等其他媒体文件)  $getid3 = new getID3;  $file = &amp;#39;./test.mp4&amp;#39;;  $info = $getid3-&amp;gt;analyze($file);  $playtime_seconds = $info[&amp;#39;playtime_seconds&amp;#39;];  $duration = gmdate(&amp;#34;H:i:s&amp;#34;, $playtime_seconds); //将秒换算为分钟 PHP获取m3u8视频时长 读取m3u8文件获取视频时长  $file_url = &amp;#39;https://example.com/test.m3u8&amp;#39;; //m3u8视频地址  $vtime = $this-&amp;gt;getDuration($file_url); //获取文件时长  $duration = gmdate(&amp;#34;H:i:s&amp;#34;, $vtime); //将秒换算为分钟   function getDuration($file_url) {  try {  // 忽略ssl证书验证  $stream_opts = [  &amp;#34;ssl&amp;#34; =&amp;gt; [  &amp;#34;verify_peer&amp;#34; =&amp;gt; false,  &amp;#34;verify_peer_name&amp;#34; =&amp;gt; false,  ]  ];  $res = file_get_contents($file, false, stream_context_create($stream_opts));  } catch (\ErrorException $e) {  return 0;  }  // preg_match_all(&amp;#34;/\EXTINF:(.*?)\,/i&amp;#34;, $res, $arr);  // $res = array_sum($arr[1]);  preg_match_all(&amp;#39;/\d&#43;[.]\d&#43;/&amp;#39;, $res, $arr);  $res = array_sum($arr[0]);  return (int)$res;  }   喜欢这篇文章的话 打赏一下吧！
+         </content>
+    </entry>
+    
+     <entry>
         <title>Harbor的安装配置与使用</title>
         <url>https://listenlive.cn/leaf/202207/harbor.html</url>
         <categories>
